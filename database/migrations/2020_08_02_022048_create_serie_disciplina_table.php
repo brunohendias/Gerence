@@ -15,10 +15,8 @@ class CreateSerieDisciplinaTable extends Migration
     {
         Schema::create('serie_disciplina', function (Blueprint $table) {
             $table->bigIncrements('cod_serie_disc');
-            $table->bigInteger('cod_serie');
-            $table->bigInteger('cod_disciplina');
-            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
-            $table->foreign('cod_disciplina')->references('cod_disciplina')->on('disciplina');
+            $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreignId('cod_disciplina')->references('cod_disciplina')->on('disciplina');
             $table->timestamps();
         });
     }

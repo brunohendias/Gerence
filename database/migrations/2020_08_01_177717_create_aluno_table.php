@@ -21,20 +21,13 @@ class CreateAlunoTable extends Migration
             $table->char('cpf', 14)->uniqid();
             $table->char('num_matricula', 10)->uniqid();
             $table->char('ind_formado', 1)->default('N');
-            $table->bigInteger('cod_can');
-            $table->bigInteger('cod_serie');
-            $table->bigInteger('cod_turno');
-            $table->bigInteger('cod_turma');
-            $table->bigInteger('cod_prof');
-            $table->bigInteger('cod_atencao');
-            $table->bigInteger('cod_situacao');
-            $table->foreign('cod_can')->references('cod_can')->on('candidato');
-            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
-            $table->foreign('cod_turno')->references('cod_turno')->on('turno');
-            $table->foreign('cod_turma')->references('cod_turma')->on('turma');
-            $table->foreign('cod_prof')->references('cod_prof')->on('professor');
-            $table->foreign('cod_atencao')->references('cod_atencao')->on('atencao');
-            $table->foreign('cod_situacao')->references('cod_situacao')->on('situacao');
+            $table->foreignId('cod_can')->references('cod_can')->on('candidato');
+            $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreignId('cod_turno')->references('cod_turno')->on('turno');
+            $table->foreignId('cod_turma')->references('cod_turma')->on('turma');
+            $table->foreignId('cod_prof')->references('cod_prof')->on('professor');
+            $table->foreignId('cod_atencao')->references('cod_atencao')->on('atencao');
+            $table->foreignId('cod_situacao')->references('cod_situacao')->on('situacao');
             $table->timestamps();
         });
     }

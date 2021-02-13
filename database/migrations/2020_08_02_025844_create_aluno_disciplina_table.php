@@ -16,10 +16,8 @@ class CreateAlunoDisciplinaTable extends Migration
         Schema::create('aluno_disciplina', function (Blueprint $table) {
             $table->bigIncrements('cod_aluno_disc');
             $table->decimal('nota', 3, 2);
-            $table->bigInteger('cod_aluno');
-            $table->bigInteger('cod_serie_disc');
-            $table->foreign('cod_aluno')->references('cod_aluno')->on('aluno');
-            $table->foreign('cod_serie_disc')->references('cod_serie_disc')->on('serie_disciplina');
+            $table->foreignId('cod_aluno')->references('cod_aluno')->on('aluno');
+            $table->foreignId('cod_serie_disc')->references('cod_serie_disc')->on('serie_disciplina');
             $table->timestamps();
         });
     }

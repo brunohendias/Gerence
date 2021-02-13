@@ -17,12 +17,9 @@ class CreateSerieVTable extends Migration
             $table->bigIncrements('cod_serie_v');
             $table->integer('qtd_alunos')->default(0);
             $table->integer('limite_alunos')->default(20);
-            $table->bigInteger('cod_serie');
-            $table->bigInteger('cod_turno');
-            $table->bigInteger('cod_turma');
-            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
-            $table->foreign('cod_turno')->references('cod_turno')->on('turno');
-            $table->foreign('cod_turma')->references('cod_turma')->on('turma');
+            $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreignId('cod_turno')->references('cod_turno')->on('turno');
+            $table->foreignId('cod_turma')->references('cod_turma')->on('turma');
             $table->timestamps();
         });
     }

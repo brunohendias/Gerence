@@ -1,9 +1,9 @@
 <template>
     <div>
         <label for="professores">Professor</label>
-        <select class="form-control" name="professores" id="professores" v-model="filtro.codprof">
+        <select class="form-control" name="professores" id="professores" v-model="filtro.cod_prof">
             <option value=""></option>
-            <option v-for="professor in professores" :value="professor.codatencao" :key="professor.codprof">{{professor.nomprof}}</option>
+            <option v-for="professor in professores" :value="professor.cod_prof" :key="professor.cod_prof">{{professor.nom_prof}}</option>
         </select>
         <msgSemResultado v-if="msgprofessor" :msg="msgprofessor" />
     </div>

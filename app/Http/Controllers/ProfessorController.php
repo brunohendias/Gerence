@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entidade;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class ProfessorController extends Controller
     {
         try{
         	$professores = $this->professor
-                ->select('codprof', 'nomprof')
+                ->select('cod_prof', 'nom_prof')
                 ->get();
 
             if ($this->Objetovazio($professores)) {
@@ -38,7 +38,7 @@ class ProfessorController extends Controller
     public function store(Request $request) {
         try {
             $novoProfessor = $this->professor;
-            $novoProfessor->nomprof = $request->nomprof;
+            $novoProfessor->nom_prof = $request->nom_prof;
             $novoProfessor->save();
 
             $msg = 'Professor cadastrado com sucesso.';

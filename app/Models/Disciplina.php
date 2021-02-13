@@ -8,5 +8,5 @@ class Disciplina extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'disciplina';
-    protected $primaryKey = 'coddisciplina';
+    protected $primaryKey = 'cod_disciplina';
 }

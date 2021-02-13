@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Entidade;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidato;
-use App\Models\SerieVinculo;
+use App\Models\Vinculo\SerieVinculo;
 use App\Models\Inscricao;
 
 class CandidatoController extends Controller
@@ -20,32 +20,32 @@ class CandidatoController extends Controller
     public function index(Request $request)
     {
     	try{
-            $codcan = $request->codcan;
-            $codserie = $request->codserie;
-            $codturma = $request->codturma;
-            $codturno = $request->codturno;
-            $codatencao = $request->codatencao;
-            $codprof = $request->codprof;
+            $cod_can = $request->cod_can;
+            $cod_serie = $request->cod_serie;
+            $cod_turma = $request->cod_turma;
+            $cod_turno = $request->cod_turno;
+            $cod_atencao = $request->cod_atencao;
+            $cod_prof = $request->cod_prof;
             
     		$candidatos = $this->candidato
-                ->select('codcan','codserie','codturno','codturma','codatencao','codprof','nomcan', 'email', 'telefone', 'cpf')
-                ->when($codserie, function ($query) use ($codserie) {
-                    return $query->where('codserie', $codserie);
+                ->select('cod_can','cod_serie','cod_turno','cod_turma','cod_atencao','cod_prof','nom_can','email', 'telefone', 'cpf')
+                ->when($cod_serie, function ($query) use ($cod_serie) {
+                    return $query->where('cod_serie', $cod_serie);
                 })
-                ->when($codturma, function ($query) use ($codturma) {
-                    return $query->where('codturma', $codturma);
+                ->when($cod_turma, function ($query) use ($cod_turma) {
+                    return $query->where('cod_turma', $cod_turma);
                 })
-                ->when($codturno, function ($query) use ($codturno) {
-                    return $query->where('codturno', $codturno);
+                ->when($cod_turno, function ($query) use ($cod_turno) {
+                    return $query->where('cod_turno', $cod_turno);
                 })
-                ->when($codatencao, function ($query) use ($codatencao) {
-                    return $query->where('codatencao', $codatencao);
+                ->when($cod_atencao, function ($query) use ($cod_atencao) {
+                    return $query->where('cod_atencao', $cod_atencao);
                 })
-                ->when($codprof, function ($query) use ($codprof) {
-                    return $query->where('codprof', $codprof);
+                ->when($cod_prof, function ($query) use ($cod_prof) {
+                    return $query->where('cod_prof', $cod_prof);
                 })
-                ->when($codcan, function($query) use ($codcan) {
-                    return $query->where('codcan', $codcan);
+                ->when($cod_can, function($query) use ($cod_can) {
+                    return $query->where('cod_can', $cod_can);
                 })
                 ->with('serie')
                 ->with('turma')
@@ -72,10 +72,10 @@ class CandidatoController extends Controller
 
             $serieVinculo = new SerieVinculo;
             $info = $serieVinculo
-                ->select('codserie_v','qtd_alunos','limite_alunos')
-                ->where('codserie', $request->codserie)
-                ->where('codturma', $request->codturma)
-                ->where('codturno', $request->codturno)
+                ->select('cod_serie_v','qtd_alunos','limite_alunos')
+                ->where('cod_serie', $request->cod_serie)
+                ->where('cod_turma', $request->cod_turma)
+                ->where('cod_turno', $request->cod_turno)
                 ->first();
 
             if($info->qtd_alunos == $info->limite_alunos) {
@@ -84,15 +84,15 @@ class CandidatoController extends Controller
             }
 
             $novoCandidato = $this->candidato;
-            $novoCandidato->nomcan = $request->nominsc;
+            $novoCandidato->nom_can = $request->nom_insc;
             $novoCandidato->email = $request->email;
             $novoCandidato->telefone = $request->telefone;
             $novoCandidato->cpf = $request->cpf;
-            $novoCandidato->codserie = $request->codserie;
-            $novoCandidato->codturma = $request->codturma;
-            $novoCandidato->codturno = $request->codturno;
-            $novoCandidato->codatencao = $request->codatencao;
-            $novoCandidato->codprof = $request->codprof;
+            $novoCandidato->cod_serie = $request->cod_serie;
+            $novoCandidato->cod_turma = $request->cod_turma;
+            $novoCandidato->cod_turno = $request->cod_turno;
+            $novoCandidato->cod_atencao = $request->cod_atencao;
+            $novoCandidato->cod_prof = $request->cod_prof;
             $novoCandidato->save();
 
             $inscricoes = new Inscricao;
@@ -124,11 +124,11 @@ class CandidatoController extends Controller
 
             $candidatoData['telefone'] = $request->telefone;
             $candidatoData['email'] = $request->email;
-            $candidatoData['codserie'] = $request->codserie;
-            $candidatoData['codturma'] = $request->codturma;
-            $candidatoData['codturno'] = $request->codturno;
-            $candidatoData['codatencao'] = $request->codatencao;
-            $candidatoData['codprof'] = $request->codprof;
+            $candidatoData['cod_serie'] = $request->cod_serie;
+            $candidatoData['cod_turma'] = $request->cod_turma;
+            $candidatoData['cod_turno'] = $request->cod_turno;
+            $candidatoData['cod_atencao'] = $request->cod_atencao;
+            $candidatoData['cod_prof'] = $request->cod_prof;
             $candidato->update($candidatoData);
 
             $msg = 'Candidato editado com sucesso.';
@@ -148,18 +148,18 @@ class CandidatoController extends Controller
                 $msg = 'Não encontramos esse candidato.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
-            $codserie = $candidato->codserie;
-            $codturma = $candidato->codturma;
-            $codturno = $candidato->codturno;
+            $cod_serie = $candidato->cod_serie;
+            $cod_turma = $candidato->cod_turma;
+            $cod_turno = $candidato->cod_turno;
             
             $candidato->delete();
 
             $serieVinculo = new SerieVinculo;
             $info = $serieVinculo
                 ->select('codserie_v','qtd_alunos','limite_alunos')
-                ->where('codserie', $codserie)
-                ->where('codturma', $codturma)
-                ->where('codturno', $codturno)
+                ->where('cod_serie', $cod_serie)
+                ->where('cod_turma', $cod_turma)
+                ->where('cod_turno', $cod_turno)
                 ->first();
 
             $removeCandidatoTurma['qtd_alunos'] = $info->qtd_alunos - 1;

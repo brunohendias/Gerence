@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entidade;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,24 +23,24 @@ protected $inscricao;
     public function index(Request $request)
     {
         try{
-            $nominsc = strtoupper($this->removerAcentos($request->nominsc));
+            $nom_insc = strtoupper($this->removerAcentos($request->nom_insc));
             $cpf = $request->cpf;
-            $codserie = $request->codserie;
-            $codturno = $request->codturno;
+            $cod_serie = $request->cod_serie;
+            $cod_turno = $request->cod_turno;
 
             $inscricoes = $this->inscricao
                 ->SelectInscricao()
-                ->when($nominsc, function ($query) use ($nominsc) {
-                    return $query->whereRaw("upper(nominsc) like '%$nominsc%'");
+                ->when($nom_insc, function ($query) use ($nom_insc) {
+                    return $query->whereRaw("upper(nom_insc) like '%$nom_insc%'");
                 })
                 ->when($cpf, function ($query) use ($cpf) {
                     return $query->where('cpf', $cpf);
                 })
-                ->when($codserie, function ($query) use ($codserie) {
-                    return $query->where('codserie', $codserie);
+                ->when($cod_serie, function ($query) use ($cod_serie) {
+                    return $query->where('cod_serie', $cod_serie);
                 })
-                ->when($codturno, function ($query) use ($codturno) {
-                    return $query->where('codturno', $codturno);
+                ->when($cod_turno, function ($query) use ($cod_turno) {
+                    return $query->where('cod_turno', $cod_turno);
                 })
                 ->with('serie')
                 ->with('turno')
@@ -92,12 +92,12 @@ protected $inscricao;
         try{
 
             $novaInscricao = $this->inscricao;
-            $novaInscricao->nominsc = $request->nominsc;
+            $novaInscricao->nom_insc = $request->nom_insc;
             $novaInscricao->email = $request->email;
             $novaInscricao->telefone = $request->telefone;
             $novaInscricao->cpf = $request->cpf;
-            $novaInscricao->codserie = $request->codserie;
-            $novaInscricao->codturno = $request->codturno;
+            $novaInscricao->cod_serie = $request->cod_serie;
+            $novaInscricao->cod_turno = $request->cod_turno;
             $novaInscricao->save();
 
             $msg = 'A sua inscrição foi salva com sucesso. Aguarde enquanto analizamos ela.';
@@ -118,12 +118,12 @@ protected $inscricao;
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-            $inscricaoData['nominsc'] = $request->nominsc;
+            $inscricaoData['nom_insc'] = $request->nom_insc;
             $inscricaoData['email'] = $request->email;
             $inscricaoData['telefone'] = $request->telefone;
             $inscricaoData['cpf'] = $request->cpf;
-            $inscricaoData['codserie'] = $request->codserie;
-            $inscricaoData['codturno'] = $request->codturno;
+            $inscricaoData['cod_serie'] = $request->cod_serie;
+            $inscricaoData['cod_turno'] = $request->cod_turno;
 
             $this->inscricao->update($inscricaoData);
 

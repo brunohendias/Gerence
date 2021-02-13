@@ -1,5 +1,5 @@
 <template>
-	<button class="btn btn-danger" @click="deletaCandidato()">
+	<button class="btn btn-danger" @click="deletaCandidato">
 		<i class="fas fa-trash"></i>
 	</button>
 </template>
@@ -25,8 +25,8 @@ export default {
 	},
 	methods: {
 		async deletaCandidato() {
-			let nomcan = this.candidatoAtual ? this.candidatoAtual.nomcan : this.candidato.nomcan
-			let title = 'Deseja realmente excluir o candidato: '+nomcan+'?'
+			let nom_can = this.candidatoAtual ? this.candidatoAtual.nom_can : this.candidato.nom_can
+			let title = 'Deseja realmente excluir o candidato: '+nom_can+'?'
 			let icon = 'warning'
 			swal({
 				title,
@@ -37,7 +37,7 @@ export default {
 				]
 			}).then(async willdelete => {
 				if(willdelete) {
-					let id = this.candidatoAtual ? this.candidatoAtual.codcan : this.candidato.codcan
+					let id = this.candidatoAtual ? this.candidatoAtual.cod_can : this.candidato.cod_can
 					await apiCandidato.deletarCandidato(id).then(response => {
 						if(response.data.success) {
 							title = response.data.data.msg
@@ -47,10 +47,7 @@ export default {
 							title = response.data.error.message
 							icon = 'error'
 						}
-						swal({
-							title,
-							icon
-						})
+						swal({ title, icon })
 					})
 				}
 			})

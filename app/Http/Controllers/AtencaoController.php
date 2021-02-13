@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entidade;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class AtencaoController extends Controller
     public function index(Request $request)
     {
         try{
-        	$atencoes = $this->atencao->select('codatencao', 'atencao')->get();
+        	$atencoes = $this->atencao->select('cod_atencao', 'atencao')->get();
 
             if ($this->Objetovazio($atencoes)) {
                 $msg = 'Não encontramos nenhuma atenção.';
@@ -36,7 +36,7 @@ class AtencaoController extends Controller
     public function store(Request $request) {
         try {
             $novaAtencao = $this->atencao;
-            $novaAtencao->nomprof = $request->atencao;
+            $novaAtencao->nom_prof = $request->atencao;
             $novaAtencao->save();
 
             $msg = 'Atenção cadastrada com sucesso.';

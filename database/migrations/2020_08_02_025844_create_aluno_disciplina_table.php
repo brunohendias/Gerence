@@ -14,13 +14,11 @@ class CreateAlunoDisciplinaTable extends Migration
     public function up()
     {
         Schema::create('aluno_disciplina', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
             $table->bigIncrements('cod_aluno_disc');
             $table->decimal('nota', 3, 2);
-            $table->bigInteger('codaluno')->unsigned();
-            $table->bigInteger('cod_serie_disc')->unsigned();
-            $table->foreign('codaluno')->references('codaluno')->on('aluno');
+            $table->bigInteger('cod_aluno');
+            $table->bigInteger('cod_serie_disc');
+            $table->foreign('cod_aluno')->references('cod_aluno')->on('aluno');
             $table->foreign('cod_serie_disc')->references('cod_serie_disc')->on('serie_disciplina');
             $table->timestamps();
         });

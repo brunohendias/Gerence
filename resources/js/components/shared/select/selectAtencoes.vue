@@ -1,9 +1,9 @@
 <template>
     <div>
-        <label for="codatencao">Atenção</label>
-        <select class="form-control" name="atencoes" id="atencoes" v-model="filtro.codatencao">
+        <label for="atencoes">Atenção</label>
+        <select class="form-control" name="atencoes" id="atencoes" v-model="filtro.cod_atencao">
             <option value=""></option>
-            <option v-for="atencao in atencoes" :value="atencao.codatencao" :key="atencao.codatencao">{{atencao.atencao}}</option>
+            <option v-for="atencao in atencoes" :value="atencao.cod_atencao" :key="atencao.cod_atencao">{{atencao.atencao}}</option>
         </select>
         <msgSemResultado v-if="msgatencao" :msg="msgatencao" />
     </div>

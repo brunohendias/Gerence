@@ -8,5 +8,5 @@ class Atencao extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'atencao';
-    protected $primaryKey = 'codatencao';
+    protected $primaryKey = 'cod_atencao';
 }

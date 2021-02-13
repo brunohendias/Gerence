@@ -6,7 +6,7 @@
 	>
 		<tbody>
 			<tr v-for="(aluno, i) in alunos" :key="i">
-				<th>{{aluno.nomaluno}}</th>
+				<th>{{aluno.nom_aluno}}</th>
 				<th>{{aluno.serie.serie}}</th>
 				<th>{{aluno.turma.turma}}</th>
 				<th>{{aluno.turno.turno}}</th>

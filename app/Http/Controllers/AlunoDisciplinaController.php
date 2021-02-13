@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Vinculo;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AlunoDisciplina;
+use App\Models\Vinculo\AlunoDisciplina;
 
 class AlunoDisciplinaController extends Controller
 {
@@ -16,14 +16,14 @@ class AlunoDisciplinaController extends Controller
 
     public function index(Request $request) {
     	try {
-    		$codaluno = $request->codaluno;
+    		$cod_aluno = $request->cod_aluno;
 
     		$notas = $this->alunoDisciplina
     			->select('cod_aluno_disc','nota','disc.disciplina','sr.serie')
     			->join('serie_disciplina sd', 'aluno_disciplina.cod_serie_disc', '=', 'sd.cod_serie_disc')
-    			->join('disciplina disc', 'disc.coddisciplina', '=', 'sd.coddisciplina')
-    			->join('serie sr', 'sr.codserie', '=', 'sd.codserie')
-    			->where('codaluno', $codaluno)
+    			->join('disciplina disc', 'disc.cod_disciplina', '=', 'sd.cod_disciplina')
+    			->join('serie sr', 'sr.cod_serie', '=', 'sd.cod_serie')
+    			->where('cod_aluno', $cod_aluno)
     			->get();
 
     		if($this->ObjetoVasio($notas)) {
@@ -43,7 +43,7 @@ class AlunoDisciplinaController extends Controller
     	try {
     		$novaNota = $this->alunoDisciplina;
     		$novaNota->nota = $request->nota;
-    		$novaNota->codaluno = $request->codaluno;
+    		$novaNota->cod_aluno = $request->cod_aluno;
     		$novaNota->cod_serie_disc = $request->cod_serie_disc;
     		$novaNota->save();
 

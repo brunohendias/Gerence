@@ -3,7 +3,7 @@
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="nome">Nome</label>
-				<input type="text" placeholder="Ex: João Silva" class="form-control" name="nome" v-model="filtro.nominsc" />
+				<input type="text" placeholder="Ex: João Silva" class="form-control" name="nome" v-model="filtro.nom_insc" />
 			</div>
 			<div class="form-group">
 				<inputCpf :filtro="filtro"/>

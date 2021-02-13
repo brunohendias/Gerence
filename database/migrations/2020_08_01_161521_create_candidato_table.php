@@ -14,24 +14,22 @@ class CreateCandidatoTable extends Migration
     public function up()
     {
         Schema::create('candidato', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
-            $table->bigIncrements('codcan');
-            $table->char('nomcan', 50);
+            $table->bigIncrements('cod_can');
+            $table->char('nom_can', 50);
             $table->char('email', 50);
             $table->char('telefone', 20);
             $table->char('cpf', 14)->uniqid();
             $table->char('ind_aluno', 1)->default('N');
-            $table->bigInteger('codserie')->unsigned();
-            $table->bigInteger('codturno')->unsigned();
-            $table->bigInteger('codturma')->unsigned();
-            $table->bigInteger('codprof')->unsigned();
-            $table->bigInteger('codatencao')->unsigned();
-            $table->foreign('codserie')->references('codserie')->on('serie');
-            $table->foreign('codturno')->references('codturno')->on('turno');
-            $table->foreign('codturma')->references('codturma')->on('turma');
-            $table->foreign('codprof')->references('codprof')->on('professor');
-            $table->foreign('codatencao')->references('codatencao')->on('atencao');
+            $table->bigInteger('cod_serie');
+            $table->bigInteger('cod_turno');
+            $table->bigInteger('cod_turma');
+            $table->bigInteger('cod_prof');
+            $table->bigInteger('cod_atencao');
+            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreign('cod_turno')->references('cod_turno')->on('turno');
+            $table->foreign('cod_turma')->references('cod_turma')->on('turma');
+            $table->foreign('cod_prof')->references('cod_prof')->on('professor');
+            $table->foreign('cod_atencao')->references('cod_atencao')->on('atencao');
             $table->timestamps();
         });
     }

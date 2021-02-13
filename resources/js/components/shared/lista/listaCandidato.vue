@@ -6,7 +6,7 @@
 	>
 		<tbody>
 			<tr v-for="(candidato, i) in candidatos" :key="i">
-				<th>{{candidato.nomcan}}</th>
+				<th>{{candidato.nom_can}}</th>
 				<th>{{candidato.email}}</th>
 				<th>{{candidato.telefone}}</th>
 				<th>{{candidato.serie.serie}}</th>

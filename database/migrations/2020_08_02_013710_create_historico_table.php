@@ -14,17 +14,15 @@ class CreateHistoricoTable extends Migration
     public function up()
     {
         Schema::create('historico', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
-            $table->bigIncrements('codhistorico');
-            $table->bigInteger('codaluno')->unsigned();
-            $table->bigInteger('codserie')->unsigned();
-            $table->bigInteger('codprof')->unsigned();
-            $table->bigInteger('codsituacao')->unsigned();
-            $table->foreign('codaluno')->references('codaluno')->on('aluno');
-            $table->foreign('codserie')->references('codserie')->on('serie');
-            $table->foreign('codprof')->references('codprof')->on('professor');
-            $table->foreign('codsituacao')->references('codsituacao')->on('situacao');
+            $table->bigIncrements('cod_historico');
+            $table->bigInteger('cod_aluno');
+            $table->bigInteger('cod_serie');
+            $table->bigInteger('cod_prof');
+            $table->bigInteger('cod_situacao');
+            $table->foreign('cod_aluno')->references('cod_aluno')->on('aluno');
+            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreign('cod_prof')->references('cod_prof')->on('professor');
+            $table->foreign('cod_situacao')->references('cod_situacao')->on('situacao');
             $table->timestamps();
         });
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Vinculo;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SerieVinculo;
+use App\Models\Vinculo\SerieVinculo;
 
 class SerieVinculoController extends Controller
 {

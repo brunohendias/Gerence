@@ -8,5 +8,5 @@ class Turno extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'turno';
-    protected $primaryKey = 'codturno';
+    protected $primaryKey = 'cod_turno';
 }

@@ -10,11 +10,6 @@ trait ResponderTraits {
         return responder()->success($dados);
     }
 
-    public function RespError($msg, $dados) {
-        //Log::alert($msg,json_decode($dados,true));
-        return responder()->error($dados);
-    }
-
     public function RespLogErro($e, $msg, $code) {
         //Log::error($msg, array('msg' => $msg, 'erro' => $e->getMessage()));
         return responder()->error($code, $msg);
@@ -23,10 +18,5 @@ trait ResponderTraits {
 	public function RespErrorNormal($msg, $dados,$erro) {
 		//Log::alert($msg,$dados);
 		return responder()->error($erro,$dados['msg']);
-	}
-
-	public function RespErrorArray($msg, $dados, $erro) {
-		//Log::alert($msg,json_decode($dados,true));
-		return responder()->error($erro,$dados);
 	}
 }

@@ -13,6 +13,6 @@ class AlunoDisciplina extends Model
     protected $primaryKey = 'cod_aluno_disc';
 
     public function aluno() {
-    	return $this->hasOne(Aluno::class, 'codaluno', 'codaluno')->select('codaluno','nomaluno');
+    	return $this->hasOne(Aluno::class, 'cod_aluno', 'cod_aluno')->select('cod_aluno','nom_aluno');
     }
 }

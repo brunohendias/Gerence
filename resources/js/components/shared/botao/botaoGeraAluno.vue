@@ -1,5 +1,5 @@
 <template>
-	<button class="btn btn-primary" @click="geraAluno()">
+	<button class="btn btn-primary" @click="geraAluno">
 		<i class="fas fa-edit"></i>
 	</button>
 </template>
@@ -22,7 +22,7 @@ export default {
 	methods: {
 		geraAluno() {
 			let filtro = this.candidato ? this.candidato : this.novoAluno 
-			filtro.codsituacao = filtro.codsituacao ? filtro.codsituacao : 3 
+			filtro.cod_situacao = filtro.cod_situacao ? filtro.cod_situacao : 3 
 			apiAluno.gerarAluno(filtro).then(response => {
 				let title = ''
 				let icon = ''
@@ -33,10 +33,7 @@ export default {
 					title = response.data.error.message
 					icon = 'error'
 				}
-				swal({
-					title,
-					icon
-				})
+				swal({ title, icon })
 			})
 		}
 	}

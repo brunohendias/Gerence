@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-//importo o state e mutations
+// importe dos states
 import inscricoes from './modules/inscricoes'
 import candidatos from './modules/candidatos'
 import alunos from './modules/alunos'

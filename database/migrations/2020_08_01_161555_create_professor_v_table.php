@@ -14,17 +14,15 @@ class CreateProfessorVTable extends Migration
     public function up()
     {
         Schema::create('professor_v', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
-            $table->bigIncrements('codprof_v');
-            $table->bigInteger('codprof')->unsigned();
-            $table->bigInteger('codserie')->unsigned();
-            $table->bigInteger('codturno')->unsigned();
-            $table->bigInteger('codatencao')->unsigned();
-            $table->foreign('codprof')->references('codprof')->on('professor');
-            $table->foreign('codserie')->references('codserie')->on('serie');
-            $table->foreign('codturno')->references('codturno')->on('turno');
-            $table->foreign('codatencao')->references('codatencao')->on('atencao');
+            $table->bigIncrements('cod_prof_v');
+            $table->bigInteger('cod_prof');
+            $table->bigInteger('cod_serie');
+            $table->bigInteger('cod_turno');
+            $table->bigInteger('cod_atencao');
+            $table->foreign('cod_prof')->references('cod_prof')->on('professor');
+            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreign('cod_turno')->references('cod_turno')->on('turno');
+            $table->foreign('cod_atencao')->references('cod_atencao')->on('atencao');
             $table->timestamps();
         });
     }

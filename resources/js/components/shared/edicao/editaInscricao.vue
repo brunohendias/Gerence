@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Nome completo *</label>
-                    <input class="form-control" name="nome" type="text" v-model="inscricao.nominsc" 
+                    <input class="form-control" name="nome" type="text" v-model="inscricao.nom_insc" 
                         placeholder="Nome" disabled="true" required/>
-                    <msgSemResultado v-if="msg.nominsc" :msg="msg.nominsc" />
+                    <msgSemResultado v-if="msg.nom_insc" :msg="msg.nom_insc" />
                     
                     <label>E-mail *</label>
                     <input class="form-control" name="email" type="email" 
@@ -29,32 +29,32 @@
                     <div class="row">
                         <div class="col-md-7">
                             <label>Serie à cursar *</label>
-                            <ModelListSelect :list="dados.series" v-model="inscricao.codserie" option-value="codserie" 
+                            <ModelListSelect :list="dados.series" v-model="inscricao.cod_serie" option-value="cod_serie" 
                                 option-text="serie" placeholder="Selecione a serie" />
                             <msgSemResultado v-if="msg.serie" :msg="msg.serie" />
                         </div>
                         <div class="col-md-5">
                             <label>Turno *</label>
-                            <ModelListSelect :list="dados.turnos" v-model="inscricao.codturno" option-value="codturno" 
-                                option-text="turno" placeholder="Selecione o turno" :isDisabled="!inscricao.codserie"/>
+                            <ModelListSelect :list="dados.turnos" v-model="inscricao.cod_turno" option-value="cod_turno" 
+                                option-text="turno" placeholder="Selecione o turno" :isDisabled="!inscricao.cod_serie"/>
                             <msgSemResultado v-if="msg.turno" :msg="msg.turno" />
                         </div>
                         <div class="col-md-7">
                             <label>Tipo de atenção com o candidato *</label>
-                            <ModelListSelect :list="dados.atencoes" v-model="inscricao.codatencao" option-value="codatencao" 
-                                option-text="atencao" placeholder="Selecione o tipo de atenção" :isDisabled="!inscricao.codturno"/>
+                            <ModelListSelect :list="dados.atencoes" v-model="inscricao.cod_atencao" option-value="cod_atencao" 
+                                option-text="atencao" placeholder="Selecione o tipo de atenção" :isDisabled="!inscricao.cod_turno"/>
                             <msgSemResultado v-if="msg.atencao" :msg="msg.atencao" />
                         </div>
                         <div class="col-md-5">
                             <label>Turma *</label>
                             <ModelListSelect :list="dados.turmas" v-model="inscricao.codturma" option-value="codturma" 
-                                option-text="turma" placeholder="Selecione a turma" :isDisabled="!inscricao.codatencao"/>
+                                option-text="turma" placeholder="Selecione a turma" :isDisabled="!inscricao.cod_atencao"/>
                             <msgSemResultado v-if="msg.turma" :msg="msg.turma" />
                         </div>
                         <div class="col-md-7">
                             <label>Professor *</label>
-                            <ModelListSelect :list="dados.professores" v-model="inscricao.codprof" option-value="codprof" 
-                                option-text="nomprof" placeholder="Selecione o professor" :isDisabled="!inscricao.codturma"/>
+                            <ModelListSelect :list="dados.professores" v-model="inscricao.cod_prof" option-value="cod_prof" 
+                                option-text="nomprof" placeholder="Selecione o professor" :isDisabled="!inscricao.cod_turma"/>
                             <msgSemResultado v-if="msg.professor" :msg="msg.professor" />
                         </div>
                     </div>
@@ -72,7 +72,6 @@ import botaoEditaInscricao from '../botao/botaoEditaInscricao'
 import apiAtencoes from '../../../core/entidade/apiAtencoes'
 import apiDadosSerie from '../../../core/dados/apiDadosSerie'
 import apiDadosProfessor from '../../../core/dados/apiDadosProfessor'
-import util from '../../../Util/util'
 
 export default {
     name: 'editarInscricao',
@@ -92,7 +91,7 @@ export default {
             },
             msg: {
                 status: null,
-                nominsc: null,
+                nom_insc: null,
                 email: null,
                 telefone: null,
                 cpf: null,
@@ -113,9 +112,9 @@ export default {
         },
         filtro() {
             return {
-                codserie: this.inscricao.codserie,
-                codturno: this.inscricao.codturno,
-                codatencao: this.inscricao.codatencao
+                cod_serie: this.inscricao.cod_serie,
+                cod_turno: this.inscricao.cod_turno,
+                cod_atencao: this.inscricao.cod_atencao
             }
         }
     },
@@ -132,16 +131,16 @@ export default {
             } else if (newValue) {
                 this.dados.turnos = []
                 this.dados.turnos = [newValue]
-                !this.inscricao.codturma ? this.buscaTurmas() : null
+                !this.inscricao.cod_turma ? this.buscaTurmas() : null
             }
         },
-        'inscricao.codatencao'(newValue) {
+        'inscricao.cod_atencao'(newValue) {
             this.buscaProfessores()
         }
     },
     methods: {
         limpaMensagens() {
-            this.msg = {status: null, nominsc: null,email: null,telefone: null,cpf: null,
+            this.msg = {status: null, nom_insc: null,email: null,telefone: null,cpf: null,
                 serie: null,turno: null,atencao: null,turma: null,professor: null}
         },
         async buscaAtencoes() {
@@ -189,7 +188,7 @@ export default {
                 if(response.data.success) {
                     response.data.data.professores.map(professor => {
                         this.dados.professores.push(professor.professor)
-                        this.inscricao.codprof = professor.professor.codprof
+                        this.inscricao.cod_prof = professor.professor.cod_prof
                     })
                 } else {
                     this.msg.professor = response.data.error.message

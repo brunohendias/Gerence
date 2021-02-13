@@ -34,14 +34,19 @@ trait UtilTraits
 	/*
 	 * procura se objeto está vazio
 	 * TRUE -> se está vazio
-	 * FALSE - > se tem dados
+	 * FALSE -> se tem dados
 	 */
 	public function Objetovazio($objeto){
 		if(is_null($objeto) || empty($objeto) || $objeto->count() == 0){
 			return true;
 		}
-		else{
-			return false;
-		}
+		return false;
+	}
+
+	/**
+	 * Passa todos os caracteres para maiusculo
+	 */
+	public function upperCase($string) {
+		return mb_string($string, 'utf-8');
 	}
 }

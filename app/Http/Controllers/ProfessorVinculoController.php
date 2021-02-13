@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Vinculo;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProfessorVinculo;
+use App\Models\Vinculo\ProfessorVinculo;
 
 class ProfessorVinculoController extends Controller
 {

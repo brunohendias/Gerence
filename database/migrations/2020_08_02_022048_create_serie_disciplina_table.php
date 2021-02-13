@@ -14,13 +14,11 @@ class CreateSerieDisciplinaTable extends Migration
     public function up()
     {
         Schema::create('serie_disciplina', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
             $table->bigIncrements('cod_serie_disc');
-            $table->bigInteger('codserie')->unsigned();
-            $table->bigInteger('coddisciplina')->unsigned();
-            $table->foreign('codserie')->references('codserie')->on('serie');
-            $table->foreign('coddisciplina')->references('coddisciplina')->on('disciplina');
+            $table->bigInteger('cod_serie');
+            $table->bigInteger('cod_disciplina');
+            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreign('cod_disciplina')->references('cod_disciplina')->on('disciplina');
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@
 	>
 		<tbody>
 			<tr v-for="(inscricao, i) in inscricoes" :key="i">
-				<th>{{inscricao.nominsc}}</th>
+				<th>{{inscricao.nom_insc}}</th>
 				<th>{{inscricao.email}}</th>
 				<th>{{inscricao.telefone}}</th>
 				<th>{{inscricao.serie.serie}}</th>

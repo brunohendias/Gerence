@@ -14,17 +14,15 @@ class CreateSerieVTable extends Migration
     public function up()
     {
         Schema::create('serie_v', function (Blueprint $table) {
-            $table->collation = 'utf8_general_ci';
-            $table->charset = 'utf8';
-            $table->bigIncrements('codserie_v');
+            $table->bigIncrements('cod_serie_v');
             $table->integer('qtd_alunos')->default(0);
             $table->integer('limite_alunos')->default(20);
-            $table->bigInteger('codserie')->unsigned();
-            $table->bigInteger('codturno')->unsigned();
-            $table->bigInteger('codturma')->unsigned();
-            $table->foreign('codserie')->references('codserie')->on('serie');
-            $table->foreign('codturno')->references('codturno')->on('turno');
-            $table->foreign('codturma')->references('codturma')->on('turma');
+            $table->bigInteger('cod_serie');
+            $table->bigInteger('cod_turno');
+            $table->bigInteger('cod_turma');
+            $table->foreign('cod_serie')->references('cod_serie')->on('serie');
+            $table->foreign('cod_turno')->references('cod_turno')->on('turno');
+            $table->foreign('cod_turma')->references('cod_turma')->on('turma');
             $table->timestamps();
         });
     }

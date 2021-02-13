@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entidade;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,12 +17,12 @@ class AlunoController extends Controller
 
     public function index(Request $request) {
     	try {
-    		$codserie = $request->codserie;
-    		$codturma = $request->codturma;
-    		$codturno = $request->codturno;
-    		$codatencao = $request->codatencao;
-    		$codprof = $request->codprof;
-    		$codsituacao = $request->codsituacao;
+    		$cod_serie = $request->cod_serie;
+    		$cod_turma = $request->cod_turma;
+    		$cod_turno = $request->cod_turno;
+    		$cod_atencao = $request->cod_atencao;
+    		$cod_prof = $request->cod_prof;
+    		$cod_situacao = $request->cod_situacao;
 
     		$alunos = $this->aluno
     			->SelectAluno()
@@ -32,23 +32,23 @@ class AlunoController extends Controller
 	    		->with('atencao')
 	    		->with('professor')
 	    		->with('situacao')
-	    		->when($codserie, function ($query) use ($codserie) {
-	    			return $query->where('codserie', $codserie);
+	    		->when($cod_serie, function ($query) use ($cod_serie) {
+	    			return $query->where('cod_serie', $cod_serie);
 	    		})
-	    		->when($codturma, function ($query) use ($codturma) {
-	    			return $query->where('codturma', $codturma);
+	    		->when($cod_turma, function ($query) use ($cod_turma) {
+	    			return $query->where('cod_turma', $cod_turma);
 	    		})
-	    		->when($codturno, function ($query) use ($codturno) {
-	    			return $query->where('codturno', $codturno);
+	    		->when($cod_turno, function ($query) use ($cod_turno) {
+	    			return $query->where('cod_turno', $cod_turno);
 	    		})
-	    		->when($codatencao, function ($query) use ($codatencao) {
-	    			return $query->where('codatencao', $codatencao);
+	    		->when($cod_atencao, function ($query) use ($cod_atencao) {
+	    			return $query->where('cod_atencao', $cod_atencao);
 	    		})
-	    		->when($codprof, function ($query) use ($codprof) {
-	    			return $query->where('codprof', $codprof);
+	    		->when($cod_prof, function ($query) use ($cod_prof) {
+	    			return $query->where('cod_prof', $cod_prof);
 	    		})
-	    		->when($codsituacao, function ($query) use ($codsituacao) {
-	    			return $query->where('codsituacao', $codsituacao);
+	    		->when($cod_situacao, function ($query) use ($cod_situacao) {
+	    			return $query->where('cod_situacao', $cod_situacao);
 	    		})
 	    		->where('ind_formado', 'N')
 	    		->get();
@@ -74,18 +74,18 @@ class AlunoController extends Controller
             $novoAluno->email = $request->email;
             $novoAluno->telefone = $request->telefone;
             $novoAluno->cpf = $request->cpf;
-            $novoAluno->codcan = $request->codcan;
-    		$novoAluno->codserie = $request->codserie;
-    		$novoAluno->codturma = $request->codturma;
-    		$novoAluno->codturno = $request->codturno;
-    		$novoAluno->codatencao = $request->codatencao;
-    		$novoAluno->codprof = $request->codprof;
-    		$novoAluno->codsituacao = $request->codsituacao;
+            $novoAluno->cod_can = $request->cod_can;
+    		$novoAluno->cod_serie = $request->cod_serie;
+    		$novoAluno->cod_turma = $request->cod_turma;
+    		$novoAluno->cod_turno = $request->cod_turno;
+    		$novoAluno->cod_atencao = $request->cod_atencao;
+    		$novoAluno->cod_prof = $request->cod_prof;
+    		$novoAluno->cod_situacao = $request->cod_situacao;
             $novoAluno->num_matricula = $this->gerarNumeroMatricula($novoAluno);
             $novoAluno->save();
 
             $candidato = new Candidato;
-            $candidato = $candidato->find($request->codcan);
+            $candidato = $candidato->find($request->cod_can);
 
             $virouAluno['ind_aluno'] = 'S';
             $candidato->update($virouAluno);
@@ -99,6 +99,6 @@ class AlunoController extends Controller
     }
 
     public function gerarNumeroMatricula($novoAluno) {
-    	return "'$novoAluno->codcan$novoAluno->codserie$novoAluno->codturma$novoAluno->codturno$novoAluno->codatencao'";
+    	return "'$novoAluno->cod_can$novoAluno->cod_serie$novoAluno->cod_turma$novoAluno->cod_turno$novoAluno->cod_atencao'";
     }
 }

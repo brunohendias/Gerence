@@ -8,5 +8,5 @@ class Serie extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'serie';
-    protected $primaryKey = 'codserie';
+    protected $primaryKey = 'cod_serie';
 }

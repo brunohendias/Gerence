@@ -8,5 +8,5 @@ class Situacao extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'situacao';
-    protected $primaryKey = 'codsituacao';
+    protected $primaryKey = 'cod_situacao';
 }

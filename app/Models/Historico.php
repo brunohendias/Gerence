@@ -12,24 +12,24 @@ class Historico extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'historico';
-    protected $primaryKey = 'codhistorico';
+    protected $primaryKey = 'cod_historico';
 
     public function aluno() {
-    	return $this->hasOne(Aluno::class, 'codaluno', 'codaluno')->select('codaluno','nomaluno');
+    	return $this->hasOne(Aluno::class, 'cod_aluno', 'cod_aluno')->select('cod_aluno','nom_aluno');
     }
 
     public function serie()
     {
-        return $this->hasOne(Serie::class, 'codserie', 'codserie')->select('codserie', 'serie');
+        return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie', 'serie');
     }
 
     public function professor()
     {
-        return $this->hasOne(Professor::class, 'codprof', 'codprof')->select('codprof', 'nomprof');
+        return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select('cod_prof', 'nom_prof');
     }
 
     public function situacao()
     {
-        return $this->hasOne(Situacao::class, 'codsituacao', 'codsituacao')->select('codsituacao', 'situacao');
+        return $this->hasOne(Situacao::class, 'cod_situacao', 'cod_situacao')->select('cod_situacao', 'situacao');
     }
 }

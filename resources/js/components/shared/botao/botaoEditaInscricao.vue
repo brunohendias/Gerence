@@ -13,10 +13,9 @@ export default {
             return this.$store.state.inscricoes.inscricao
         },
         validarCandidato() {
-            if(this.candidato.nominsc && this.candidato.email && this.candidato.telefone && this.candidato.cpf && this.candidato.codserie && this.candidato.codturno && this.candidato.codatencao && this.candidato.codturma && this.candidato.codprof){
-                return false
-            }
-            return true
+            return (this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && 
+                this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && 
+                this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof)
         }
 	},
 	methods: {
@@ -25,15 +24,12 @@ export default {
                 let icon = 'success'
                 let title = ''
                 if(response.data.success) {
-                     title = response.data.data.msg
+                    title = response.data.data.msg
                 } else {
                 	title = response.data.error.message
                     icon = 'error'
                 }
-                swal({
-                    title,
-                    icon
-                })
+                swal({ title, icon })
             }).catch(err => {
             	swal({
                     title: "Erro ao atualizar essa inscrição",

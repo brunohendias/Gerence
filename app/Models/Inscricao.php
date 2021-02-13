@@ -10,20 +10,20 @@ class Inscricao extends Model
 {
     protected $connection = 'mysql';
     protected $table = 'inscricao';
-    protected $primaryKey = 'codinsc';
+    protected $primaryKey = 'cod_insc';
     protected $fillable = ['ind_candidato'];
 
     public function serie()
     {
-    	return $this->hasOne(Serie::class, 'codserie', 'codserie')->select('codserie', 'serie');
+    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie', 'serie');
     }
 
     public function turno()
     {
-    	return $this->hasOne(Turno::class, 'codturno', 'codturno')->select('codturno', 'turno');
+    	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno')->select('cod_turno', 'turno');
     }
 
     public function scopeSelectInscricao($builder) {
-        return $builder->select('codinsc', 'nominsc', 'email', 'telefone', 'cpf', 'codserie', 'codturno', 'ind_candidato');
+        return $builder->select('cod_insc', 'nom_insc', 'email', 'telefone', 'cpf', 'cod_serie', 'cod_turno', 'ind_candidato');
     }
 }

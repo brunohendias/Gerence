@@ -1,9 +1,9 @@
 <template>
     <div>
-        <label for="codturno">Turno</label>
-        <select class="form-control" name="turnos" id="turnos" v-model="filtro.codturno">
+        <label for="turnos">Turno</label>
+        <select class="form-control" name="turnos" id="turnos" v-model="filtro.cod_turno">
             <option value=""></option>
-            <option v-for="turno in turnos" :value="turno.codturno" :key="turno.codturno">{{turno.turno}}</option>
+            <option v-for="turno in turnos" :value="turno.cod_turno" :key="turno.cod_turno">{{turno.turno}}</option>
         </select>
         <msgSemResultado v-if="msgturno" :msg="msgturno" />
     </div>

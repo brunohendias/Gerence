@@ -11,21 +11,21 @@ class SerieVinculo extends Model
 {
     protected $connection = 'mysql';
     protected $table = 'serie_v';
-    protected $primaryKey = 'codserie_v';
+    protected $primaryKey = 'cod_serie_v';
     protected $fillable = ['qtd_alunos'];
 
     public function serie()
     {
-    	return $this->hasOne(Serie::class, 'codserie', 'codserie')->select('codserie','serie');
+    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie','serie');
     }
 
     public function turno()
     {
-    	return $this->hasOne(Turno::class, 'codturno', 'codturno')->select('codturno','turno');
+    	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno')->select('cod_turno','turno');
     }
 
     public function turma()
     {
-    	return $this->hasOne(Turma::class, 'codturma', 'codturma')->select('codturma','turma');
+    	return $this->hasOne(Turma::class, 'cod_turma', 'cod_turma')->select('cod_turma','turma');
     }
 }

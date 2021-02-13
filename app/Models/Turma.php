@@ -10,15 +10,15 @@ class Turma extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'turma';
-    protected $primaryKey = 'codturma';
+    protected $primaryKey = 'cod_turma';
 
     public function serie()
     {
-    	return $this->hasOne(Serie::class, 'codserie', 'codserie');
+    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie');
     }
 
     public function turno()
     {
-    	return $this->hasOne(Turno::class, 'codturno', 'codturno');
+    	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno');
     }
 }

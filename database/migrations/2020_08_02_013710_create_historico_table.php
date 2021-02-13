@@ -18,7 +18,7 @@ class CreateHistoricoTable extends Migration
             $table->foreignId('cod_aluno')->references('cod_aluno')->on('aluno');
             $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
             $table->foreignId('cod_prof')->references('cod_prof')->on('professor');
-            $table->foreignId('cod_situacao')->references('cod_situacao')->on('situacao');
+            $table->foreignId('cod_situacao')->references('cod_situacao')->on('situacao_aluno');
             $table->timestamps();
         });
     }

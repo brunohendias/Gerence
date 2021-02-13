@@ -27,7 +27,7 @@ class CreateAlunoTable extends Migration
             $table->foreignId('cod_turma')->references('cod_turma')->on('turma');
             $table->foreignId('cod_prof')->references('cod_prof')->on('professor');
             $table->foreignId('cod_atencao')->references('cod_atencao')->on('atencao');
-            $table->foreignId('cod_situacao')->references('cod_situacao')->on('situacao');
+            $table->foreignId('cod_situacao')->references('cod_situacao')->on('situacao_aluno');
             $table->timestamps();
         });
     }

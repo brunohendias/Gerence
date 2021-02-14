@@ -8,7 +8,7 @@ use App\Models\Inscricao;
 
 class InscricaoController extends Controller
 {
-protected $inscricao;
+    protected $inscricao;
 
     public function __construct(Inscricao $inscricao) {
         $this->inscricao = $inscricao;

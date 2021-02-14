@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-5">
                             <label>Turma *</label>
-                            <ModelListSelect :list="dados.turmas" v-model="inscricao.codturma" option-value="codturma" 
+                            <ModelListSelect :list="dados.turmas" v-model="inscricao.cod_turma" option-value="cod_turma" 
                                 option-text="turma" placeholder="Selecione a turma" :isDisabled="!inscricao.cod_atencao"/>
                             <msgSemResultado v-if="msg.turma" :msg="msg.turma" />
                         </div>

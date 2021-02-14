@@ -8,7 +8,7 @@ use App\Models\Vinculo\SerieVinculo;
 
 class SerieVinculoController extends Controller
 {
-   private $serieVinculo;
+    private $serieVinculo;
 
     public function __construct(SerieVinculo $serieVinculo)
     {

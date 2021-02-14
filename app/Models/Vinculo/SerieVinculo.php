@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Vinculo;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Serie;

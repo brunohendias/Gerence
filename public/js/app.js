@@ -43006,17 +43006,17 @@ var render = function() {
                     _c("ModelListSelect", {
                       attrs: {
                         list: _vm.dados.turmas,
-                        "option-value": "codturma",
+                        "option-value": "cod_turma",
                         "option-text": "turma",
                         placeholder: "Selecione a turma",
                         isDisabled: !_vm.inscricao.cod_atencao
                       },
                       model: {
-                        value: _vm.inscricao.codturma,
+                        value: _vm.inscricao.cod_turma,
                         callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "codturma", $$v)
+                          _vm.$set(_vm.inscricao, "cod_turma", $$v)
                         },
-                        expression: "inscricao.codturma"
+                        expression: "inscricao.cod_turma"
                       }
                     }),
                     _vm._v(" "),

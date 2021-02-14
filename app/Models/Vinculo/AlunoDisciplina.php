@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Vinculo;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Aluno;
-use App\Models\SerieDisciplina;
+use App\Models\Vinculo\SerieDisciplina;
 
 class AlunoDisciplina extends Model
 {

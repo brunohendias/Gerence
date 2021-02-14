@@ -121,7 +121,7 @@ export default {
         },
         candidato() {
             return this.$store.state.inscricoes.inscricao
-        },
+        }
     },
     watch: {
         'inscricao.serie'(newValue) {

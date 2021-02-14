@@ -24,6 +24,16 @@ class Inscricao extends Model
     }
 
     public function scopeSelectInscricao($builder) {
-        return $builder->select('cod_insc', 'nom_insc', 'email', 'telefone', 'cpf', 'cod_serie', 'cod_turno', 'ind_candidato');
+        return $builder->select(
+            'cod_insc', 
+            'nom_insc', 
+            'email',
+            'telefone',
+            'cpf',
+            'cod_serie',
+            'cod_turno',
+            'cod_atencao',
+            'ind_candidato'
+        );
     }
 }

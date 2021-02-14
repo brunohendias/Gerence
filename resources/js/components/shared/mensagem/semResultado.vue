@@ -1,5 +1,5 @@
 <template>
-    <span class="text-danger">{{msg}}</span>
+    <div class="alert alert-warning">{{ msg }}</div>
 </template>
 
 <script>

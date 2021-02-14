@@ -21,7 +21,7 @@ class SerieController extends Controller
             $codserie = $request->codserie;
 
         	$series = $this->serie
-                ->select('codserie', 'serie')
+                ->select('cod_serie', 'serie')
                 ->when($codserie, function($query) use ($codserie) {
                     return $query->where('codserie', $codserie);
                 })

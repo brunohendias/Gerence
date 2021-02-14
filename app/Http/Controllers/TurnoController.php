@@ -18,12 +18,12 @@ class TurnoController extends Controller
     public function index(Request $request)
     {
         try{
-            $codturno = $request->codturno;
+            $cod_turno = $request->cod_turno;
 
         	$turnos = $this->turno
-                ->select('codturno', 'turno')
-                ->when($codturno, function($query) use ($codturno) {
-                    return $query->where('codturno', $codturno);
+                ->select('cod_turno', 'turno')
+                ->when($cod_turno, function($query) use ($cod_turno) {
+                    return $query->where('cod_turno', $cod_turno);
                 })
         		->get();
 

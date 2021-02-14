@@ -30,12 +30,17 @@ export default {
 				let candidatos = []
 				if(response.data.success) {
 					candidatos = response.data.data.candidatos
-					this.$emit('msgSuccess', response.data.data.msg)
+					this.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
 				} else {
-					this.$emit('msgError', response.data.error.message)
+					this.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
 				}
 				this.$store.dispatch('carregaCandidatos', candidatos)
+			}).catch(e => {
+				this.mostraMensagem({tipo: 'erro', msg: e})
 			})
+		},
+		mostraMensagem(mensagem) {
+			this.$emit('msg', mensagem)
 		}
 	}
 }

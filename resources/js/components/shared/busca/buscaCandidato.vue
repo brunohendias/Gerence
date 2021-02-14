@@ -41,12 +41,13 @@
 		</div>
 		<div class="col-sm-12">
 			<div class="row">
-				<div class="col-sm-1 pt-1">
-					<botaoBuscaCandidato @msgSuccess="msgSuccess = $event" @msgError="msgError = $event" :filtro="filtro"/>
+				<div class="col-md-2 pt-1">
+					<botaoBuscaCandidato @msg="msg = $event" :filtro="filtro"/>
 				</div>
-				<div class="col-sm-10">
-					<msgSucesso v-if="msgSuccess" :msgSuccess="msgSuccess"/>
-					<msgError v-if="msgError" :msgError="msgError"/>
+				<div class="col-md-10">
+					<msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
+					<msgSemResultado v-else-if="msg.tipo == 'alerta'" :msg="msg.msg"/>
+					<msgError v-else-if="msg.tipo == 'erro'" :msg="msg.msg"/>
 				</div>
 			</div>
 		</div>
@@ -64,6 +65,7 @@ import selectTurmas from '../select/selectTurmas'
 import selectAtencoes from '../select/selectAtencoes'
 import botaoBuscaCandidato from '../botao/botaoBuscaCandidato'
 import msgSucesso from '../mensagem/sucesso'
+import msgSemResultado from '../mensagem/semResultado'
 import msgError from '../mensagem/error'
 
 export default {
@@ -79,13 +81,16 @@ export default {
 		selectAtencoes,
 		botaoBuscaCandidato,
 		msgSucesso,
+		msgSemResultado,
 		msgError
 	},
 	data() {
 		return {
-			msgError: null,
-			msgSuccess: null,
-			filtro: {}
+			filtro: {},
+			msg: {
+				tipo: '',
+				msg: ''
+			}
 		}
 	},
 	props: {

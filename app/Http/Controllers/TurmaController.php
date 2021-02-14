@@ -19,7 +19,7 @@ class TurmaController extends Controller
     {
         try{
     		$turmas = $this->turma
-                ->select('codturma', 'turma')
+                ->select('cod_turma', 'turma')
                 ->get();
 
             if ($this->Objetovazio($turmas)) {

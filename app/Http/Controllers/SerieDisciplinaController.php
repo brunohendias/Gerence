@@ -16,12 +16,12 @@ class SerieDisciplinaController extends Controller
 
     public function index(Request $request) {
     	try {
-    		$codserie = $request->codserie;
+    		$cod_serie = $request->cod_serie;
 
     		$disciplinas = $this->serieDisciplina
-    			->select('cod_serie_disc','coddisciplina')
+    			->select('cod_serie_disc','cod_disciplina')
     			->with('disciplina')
-    			->where('codserie', $codserie)
+    			->where('cod_serie', $cod_serie)
     			->get();
 
     		if($this->ObjetoVasio($disciplinas)) {
@@ -40,8 +40,8 @@ class SerieDisciplinaController extends Controller
     public function store(Request $request) {
     	try {
     		$novaDisciplina = $this->serieDisciplina;
-    		$novaDisciplina->codserie = $request->codserie;
-    		$novaDisciplina->coddisciplina = $request->coddisciplina;
+    		$novaDisciplina->cod_serie = $request->cod_serie;
+    		$novaDisciplina->cod_disciplina = $request->cod_disciplina;
     		$novaDisciplina->save();
 
     		$msg = 'Disciplina cadastrada com sucesso';

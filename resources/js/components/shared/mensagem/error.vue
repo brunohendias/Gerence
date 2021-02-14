@@ -1,11 +1,11 @@
 <template>
-    <div class="alert alert-danger p-2"> <span class="ml-4">{{ msgError }}</span> </div>
+    <div class="alert alert-danger">{{ msg }}</div>
 </template>
 
 <script>
 export default {
     props: {
-        msgError: {
+        msg: {
             type: String,
             default: 'Erro'
         }

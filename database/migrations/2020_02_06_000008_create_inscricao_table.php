@@ -26,6 +26,7 @@ class CreateInscricaoTable extends Migration
             $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
             $table->foreignId('cod_atencao')->references('cod_atencao')->on('atencao');
             $table->foreignId('cod_turno')->references('cod_turno')->on('turno');
+            $table->char('ind_candidato', 1)->default('N');
             $table->timestamps();
         });
     }

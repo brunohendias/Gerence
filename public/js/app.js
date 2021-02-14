@@ -2085,12 +2085,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (response.data.success) {
                     alunos = response.data.data.alunos;
 
-                    _this.$emit('msgSuccess', response.data.data.msg);
+                    _this.mostraMensagem({
+                      tipo: 'sucesso',
+                      msg: response.data.data.msg
+                    });
                   } else {
-                    _this.$emit('msgError', response.data.error.message);
+                    _this.mostraMensagem({
+                      tipo: 'alerta',
+                      msg: response.data.error.message
+                    });
                   }
 
                   _this.$store.dispatch('carregaAlunos', alunos);
+                })["catch"](function (e) {
+                  _this.mostraMensagem({
+                    tipo: 'erro',
+                    msg: e
+                  });
                 });
 
               case 5:
@@ -2100,6 +2111,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    mostraMensagem: function mostraMensagem(mensagem) {
+      this.$emit('msg', mensagem);
     }
   }
 });
@@ -2167,12 +2181,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (response.data.success) {
                     candidatos = response.data.data.candidatos;
 
-                    _this.$emit('msgSuccess', response.data.data.msg);
+                    _this.mostraMensagem({
+                      tipo: 'sucesso',
+                      msg: response.data.data.msg
+                    });
                   } else {
-                    _this.$emit('msgError', response.data.error.message);
+                    _this.mostraMensagem({
+                      tipo: 'alerta',
+                      msg: response.data.error.message
+                    });
                   }
 
                   _this.$store.dispatch('carregaCandidatos', candidatos);
+                })["catch"](function (e) {
+                  _this.mostraMensagem({
+                    tipo: 'erro',
+                    msg: e
+                  });
                 });
 
               case 5:
@@ -2182,6 +2207,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    mostraMensagem: function mostraMensagem(mensagem) {
+      this.$emit('msg', mensagem);
     }
   }
 });
@@ -2236,12 +2264,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _this.buscando = true;
-
-                _this.$emit('msgSuccess', null);
-
-                _this.$emit('msgError', null);
-
-                _context.next = 5;
+                _context.next = 3;
                 return _core_entidade_apiInscricao__WEBPACK_IMPORTED_MODULE_1__["default"].listarInscricoes(_this.filtro).then(function (response) {
                   _this.buscando = false;
                   var inscricoes = [];
@@ -2249,21 +2272,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (response.data.success) {
                     inscricoes = response.data.data.inscricoes;
 
-                    _this.$emit('msgSuccess', response.data.data.msg);
+                    _this.mostraMensagem({
+                      tipo: 'sucesso',
+                      msg: response.data.data.msg
+                    });
                   } else {
-                    _this.$emit('msgError', response.data.error.message);
+                    _this.mostraMensagem({
+                      tipo: 'alerta',
+                      msg: response.data.error.message
+                    });
                   }
 
                   _this.$store.dispatch('carregaInscricoes', inscricoes);
+                })["catch"](function (e) {
+                  _this.mostraMensagem({
+                    tipo: 'erro',
+                    msg: e
+                  });
                 });
 
-              case 5:
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    mostraMensagem: function mostraMensagem(mensagem) {
+      this.$emit('msg', mensagem);
     }
   }
 });
@@ -2316,13 +2353,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var nomcan, title, icon;
+        var nom_can, title, icon;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                nomcan = _this.candidatoAtual ? _this.candidatoAtual.nomcan : _this.candidato.nomcan;
-                title = 'Deseja realmente excluir o candidato: ' + nomcan + '?';
+                nom_can = _this.candidatoAtual ? _this.candidatoAtual.nom_can : _this.candidato.nom_can;
+                title = 'Deseja realmente excluir o candidato: ' + nom_can + '?';
                 icon = 'warning';
                 swal({
                   title: title,
@@ -2340,7 +2377,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                               break;
                             }
 
-                            id = _this.candidatoAtual ? _this.candidatoAtual.codcan : _this.candidato.codcan;
+                            id = _this.candidatoAtual ? _this.candidatoAtual.cod_can : _this.candidato.cod_can;
                             _context.next = 4;
                             return _core_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_1__["default"].deletarCandidato(id).then(function (response) {
                               if (response.data.success) {
@@ -2416,11 +2453,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$store.state.inscricoes.inscricao;
     },
     validarCandidato: function validarCandidato() {
-      if (this.candidato.nominsc && this.candidato.email && this.candidato.telefone && this.candidato.cpf && this.candidato.codserie && this.candidato.codturno && this.candidato.codatencao && this.candidato.codturma && this.candidato.codprof) {
-        return false;
-      }
-
-      return true;
+      return this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof;
     }
   },
   methods: {
@@ -2503,7 +2536,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     geraAluno: function geraAluno() {
       var filtro = this.candidato ? this.candidato : this.novoAluno;
-      filtro.codsituacao = filtro.codsituacao ? filtro.codsituacao : 3;
+      filtro.cod_situacao = filtro.cod_situacao ? filtro.cod_situacao : 3;
       _core_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_0__["default"].gerarAluno(filtro).then(function (response) {
         var title = '';
         var icon = '';
@@ -2547,6 +2580,140 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _select_selectSituacoes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../select/selectSituacoes */ "./resources/js/components/shared/select/selectSituacoes.vue");
 /* harmony import */ var _botao_botaoBuscaAluno__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../botao/botaoBuscaAluno */ "./resources/js/components/shared/botao/botaoBuscaAluno.vue");
 /* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'buscaCandidato',
+  components: {
+    templateBusca: _templateBusca__WEBPACK_IMPORTED_MODULE_0__["default"],
+    inputNome: _form_inputNome__WEBPACK_IMPORTED_MODULE_1__["default"],
+    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__["default"],
+    selectProfessores: _select_selectProfessores__WEBPACK_IMPORTED_MODULE_3__["default"],
+    selectSeries: _select_selectSeries__WEBPACK_IMPORTED_MODULE_4__["default"],
+    selectTurnos: _select_selectTurnos__WEBPACK_IMPORTED_MODULE_5__["default"],
+    selectTurmas: _select_selectTurmas__WEBPACK_IMPORTED_MODULE_6__["default"],
+    selectAtencoes: _select_selectAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"],
+    selectSituacoes: _select_selectSituacoes__WEBPACK_IMPORTED_MODULE_8__["default"],
+    botaoBuscaAluno: _botao_botaoBuscaAluno__WEBPACK_IMPORTED_MODULE_9__["default"],
+    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_10__["default"],
+    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_11__["default"],
+    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_12__["default"]
+  },
+  data: function data() {
+    return {
+      filtro: {},
+      msg: {
+        tipo: '',
+        msg: ''
+      }
+    };
+  },
+  props: {
+    classTitulo: {
+      type: String
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/busca/buscaCandidato.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/busca/buscaCandidato.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _templateBusca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./templateBusca */ "./resources/js/components/shared/busca/templateBusca.vue");
+/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
+/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
+/* harmony import */ var _select_selectProfessores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/selectProfessores */ "./resources/js/components/shared/select/selectProfessores.vue");
+/* harmony import */ var _select_selectSeries__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/selectSeries */ "./resources/js/components/shared/select/selectSeries.vue");
+/* harmony import */ var _select_selectTurnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/selectTurnos */ "./resources/js/components/shared/select/selectTurnos.vue");
+/* harmony import */ var _select_selectTurmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../select/selectTurmas */ "./resources/js/components/shared/select/selectTurmas.vue");
+/* harmony import */ var _select_selectAtencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../select/selectAtencoes */ "./resources/js/components/shared/select/selectAtencoes.vue");
+/* harmony import */ var _botao_botaoBuscaCandidato__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../botao/botaoBuscaCandidato */ "./resources/js/components/shared/botao/botaoBuscaCandidato.vue");
+/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
 /* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
@@ -2604,132 +2771,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
-
-
-
-
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'buscaCandidato',
-  components: {
-    templateBusca: _templateBusca__WEBPACK_IMPORTED_MODULE_0__["default"],
-    inputNome: _form_inputNome__WEBPACK_IMPORTED_MODULE_1__["default"],
-    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__["default"],
-    selectProfessores: _select_selectProfessores__WEBPACK_IMPORTED_MODULE_3__["default"],
-    selectSeries: _select_selectSeries__WEBPACK_IMPORTED_MODULE_4__["default"],
-    selectTurnos: _select_selectTurnos__WEBPACK_IMPORTED_MODULE_5__["default"],
-    selectTurmas: _select_selectTurmas__WEBPACK_IMPORTED_MODULE_6__["default"],
-    selectAtencoes: _select_selectAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"],
-    selectSituacoes: _select_selectSituacoes__WEBPACK_IMPORTED_MODULE_8__["default"],
-    botaoBuscaAluno: _botao_botaoBuscaAluno__WEBPACK_IMPORTED_MODULE_9__["default"],
-    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_10__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_11__["default"]
-  },
-  data: function data() {
-    return {
-      msgError: null,
-      msgSuccess: null,
-      filtro: {}
-    };
-  },
-  props: {
-    classTitulo: {
-      type: String
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/busca/buscaCandidato.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/busca/buscaCandidato.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _templateBusca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./templateBusca */ "./resources/js/components/shared/busca/templateBusca.vue");
-/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
-/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
-/* harmony import */ var _select_selectProfessores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/selectProfessores */ "./resources/js/components/shared/select/selectProfessores.vue");
-/* harmony import */ var _select_selectSeries__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/selectSeries */ "./resources/js/components/shared/select/selectSeries.vue");
-/* harmony import */ var _select_selectTurnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/selectTurnos */ "./resources/js/components/shared/select/selectTurnos.vue");
-/* harmony import */ var _select_selectTurmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../select/selectTurmas */ "./resources/js/components/shared/select/selectTurmas.vue");
-/* harmony import */ var _select_selectAtencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../select/selectAtencoes */ "./resources/js/components/shared/select/selectAtencoes.vue");
-/* harmony import */ var _botao_botaoBuscaCandidato__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../botao/botaoBuscaCandidato */ "./resources/js/components/shared/botao/botaoBuscaCandidato.vue");
-/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2754,13 +2796,16 @@ __webpack_require__.r(__webpack_exports__);
     selectAtencoes: _select_selectAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"],
     botaoBuscaCandidato: _botao_botaoBuscaCandidato__WEBPACK_IMPORTED_MODULE_8__["default"],
     msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_9__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_10__["default"]
+    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_10__["default"],
+    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   data: function data() {
     return {
-      msgError: null,
-      msgSuccess: null,
-      filtro: {}
+      filtro: {},
+      msg: {
+        tipo: '',
+        msg: ''
+      }
     };
   },
   props: {
@@ -2787,7 +2832,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _select_selectTurnos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/selectTurnos */ "./resources/js/components/shared/select/selectTurnos.vue");
 /* harmony import */ var _botao_botaoBuscaInscricao__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../botao/botaoBuscaInscricao */ "./resources/js/components/shared/botao/botaoBuscaInscricao.vue");
 /* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2821,6 +2867,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -2837,13 +2885,16 @@ __webpack_require__.r(__webpack_exports__);
     selectTurnos: _select_selectTurnos__WEBPACK_IMPORTED_MODULE_3__["default"],
     botaoBuscaInscricao: _botao_botaoBuscaInscricao__WEBPACK_IMPORTED_MODULE_4__["default"],
     msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_6__["default"]
+    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_7__["default"],
+    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
       filtro: {},
-      msgSuccess: null,
-      msgError: null
+      msg: {
+        tipo: '',
+        msg: ''
+      }
     };
   },
   props: {
@@ -2913,7 +2964,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/entidade/apiAtencoes */ "./resources/js/core/entidade/apiAtencoes.js");
 /* harmony import */ var _core_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../core/dados/apiDadosSerie */ "./resources/js/core/dados/apiDadosSerie.js");
 /* harmony import */ var _core_dados_apiDadosProfessor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../core/dados/apiDadosProfessor */ "./resources/js/core/dados/apiDadosProfessor.js");
-/* harmony import */ var _Util_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Util/util */ "./resources/js/Util/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2993,7 +3043,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editarInscricao',
   components: {
@@ -3012,7 +3061,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       msg: {
         status: null,
-        nominsc: null,
+        nom_insc: null,
         email: null,
         telefone: null,
         cpf: null,
@@ -3033,9 +3082,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     filtro: function filtro() {
       return {
-        codserie: this.inscricao.codserie,
-        codturno: this.inscricao.codturno,
-        codatencao: this.inscricao.codatencao
+        cod_serie: this.inscricao.cod_serie,
+        cod_turno: this.inscricao.cod_turno,
+        cod_atencao: this.inscricao.cod_atencao
       };
     }
   },
@@ -3052,10 +3101,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (newValue) {
         this.dados.turnos = [];
         this.dados.turnos = [newValue];
-        !this.inscricao.codturma ? this.buscaTurmas() : null;
+        !this.inscricao.cod_turma ? this.buscaTurmas() : null;
       }
     },
-    'inscricao.codatencao': function inscricaoCodatencao(newValue) {
+    'inscricao.cod_atencao': function inscricaoCod_atencao(newValue) {
       this.buscaProfessores();
     }
   },
@@ -3063,7 +3112,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     limpaMensagens: function limpaMensagens() {
       this.msg = {
         status: null,
-        nominsc: null,
+        nom_insc: null,
         email: null,
         telefone: null,
         cpf: null,
@@ -3179,7 +3228,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     response.data.data.professores.map(function (professor) {
                       _this4.dados.professores.push(professor.professor);
 
-                      _this4.inscricao.codprof = professor.professor.codprof;
+                      _this4.inscricao.cod_prof = professor.professor.cod_prof;
                     });
                   } else {
                     _this4.msg.professor = response.data.error.message;
@@ -3603,7 +3652,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    msgError: {
+    msg: {
       type: String,
       "default": 'Erro'
     }
@@ -3651,7 +3700,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    msgSuccess: {
+    msg: {
       type: String,
       "default": 'Sucesso'
     }
@@ -42175,14 +42224,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    {
-      staticClass: "btn btn-danger",
-      on: {
-        click: function($event) {
-          return _vm.deletaCandidato()
-        }
-      }
-    },
+    { staticClass: "btn btn-danger", on: { click: _vm.deletaCandidato } },
     [_c("i", { staticClass: "fas fa-trash" })]
   )
 }
@@ -42247,14 +42289,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    {
-      staticClass: "btn btn-primary",
-      on: {
-        click: function($event) {
-          return _vm.geraAluno()
-        }
-      }
-    },
+    { staticClass: "btn btn-primary", on: { click: _vm.geraAluno } },
     [_c("i", { staticClass: "fas fa-edit" })]
   )
 }
@@ -42364,16 +42399,13 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "col-sm-1 pt-1" },
+            { staticClass: "col-md-2 pt-1" },
             [
               _c("botaoBuscaAluno", {
                 attrs: { filtro: _vm.filtro },
                 on: {
-                  msgSuccess: function($event) {
-                    _vm.msgSuccess = $event
-                  },
-                  msgError: function($event) {
-                    _vm.msgError = $event
+                  msg: function($event) {
+                    _vm.msg = $event
                   }
                 }
               })
@@ -42383,14 +42415,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-sm-10" },
+            { staticClass: "col-md-10" },
             [
-              _vm.msgSuccess
-                ? _c("msgSucesso", { attrs: { msgSuccess: _vm.msgSuccess } })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.msgError
-                ? _c("msgError", { attrs: { msgError: _vm.msgError } })
+              _vm.msg.tipo == "sucesso"
+                ? _c("msgSucesso", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "alerta"
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "erro"
+                ? _c("msgError", { attrs: { msg: _vm.msg.msg } })
                 : _vm._e()
             ],
             1
@@ -42495,16 +42527,13 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "col-sm-1 pt-1" },
+            { staticClass: "col-md-2 pt-1" },
             [
               _c("botaoBuscaCandidato", {
                 attrs: { filtro: _vm.filtro },
                 on: {
-                  msgSuccess: function($event) {
-                    _vm.msgSuccess = $event
-                  },
-                  msgError: function($event) {
-                    _vm.msgError = $event
+                  msg: function($event) {
+                    _vm.msg = $event
                   }
                 }
               })
@@ -42514,14 +42543,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-sm-10" },
+            { staticClass: "col-md-10" },
             [
-              _vm.msgSuccess
-                ? _c("msgSucesso", { attrs: { msgSuccess: _vm.msgSuccess } })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.msgError
-                ? _c("msgError", { attrs: { msgError: _vm.msgError } })
+              _vm.msg.tipo == "sucesso"
+                ? _c("msgSucesso", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "alerta"
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "erro"
+                ? _c("msgError", { attrs: { msg: _vm.msg.msg } })
                 : _vm._e()
             ],
             1
@@ -42566,8 +42595,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.filtro.nominsc,
-                expression: "filtro.nominsc"
+                value: _vm.filtro.nom_insc,
+                expression: "filtro.nom_insc"
               }
             ],
             staticClass: "form-control",
@@ -42576,13 +42605,13 @@ var render = function() {
               placeholder: "Ex: João Silva",
               name: "nome"
             },
-            domProps: { value: _vm.filtro.nominsc },
+            domProps: { value: _vm.filtro.nom_insc },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.filtro, "nominsc", $event.target.value)
+                _vm.$set(_vm.filtro, "nom_insc", $event.target.value)
               }
             }
           })
@@ -42616,16 +42645,13 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "col-sm-1 pt-1" },
+            { staticClass: "col-md-2 pt-1" },
             [
               _c("botaoBuscaInscricao", {
                 attrs: { filtro: _vm.filtro },
                 on: {
-                  msgSuccess: function($event) {
-                    _vm.msgSuccess = $event
-                  },
-                  msgError: function($event) {
-                    _vm.msgError = $event
+                  msg: function($event) {
+                    _vm.msg = $event
                   }
                 }
               })
@@ -42635,14 +42661,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-sm-10" },
+            { staticClass: "col-md-10" },
             [
-              _vm.msgSuccess
-                ? _c("msgSucesso", { attrs: { msgSuccess: _vm.msgSuccess } })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.msgError
-                ? _c("msgError", { attrs: { msgError: _vm.msgError } })
+              _vm.msg.tipo == "sucesso"
+                ? _c("msgSucesso", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "alerta"
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.msg } })
+                : _vm.msg.tipo == "erro"
+                ? _c("msgError", { attrs: { msg: _vm.msg.msg } })
                 : _vm._e()
             ],
             1
@@ -42738,8 +42764,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.inscricao.nominsc,
-                      expression: "inscricao.nominsc"
+                      value: _vm.inscricao.nom_insc,
+                      expression: "inscricao.nom_insc"
                     }
                   ],
                   staticClass: "form-control",
@@ -42750,19 +42776,19 @@ var render = function() {
                     disabled: "true",
                     required: ""
                   },
-                  domProps: { value: _vm.inscricao.nominsc },
+                  domProps: { value: _vm.inscricao.nom_insc },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.inscricao, "nominsc", $event.target.value)
+                      _vm.$set(_vm.inscricao, "nom_insc", $event.target.value)
                     }
                   }
                 }),
                 _vm._v(" "),
-                _vm.msg.nominsc
-                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.nominsc } })
+                _vm.msg.nom_insc
+                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.nom_insc } })
                   : _vm._e(),
                 _vm._v(" "),
                 _c("label", [_vm._v("E-mail *")]),
@@ -42889,16 +42915,16 @@ var render = function() {
                     _c("ModelListSelect", {
                       attrs: {
                         list: _vm.dados.series,
-                        "option-value": "codserie",
+                        "option-value": "cod_serie",
                         "option-text": "serie",
                         placeholder: "Selecione a serie"
                       },
                       model: {
-                        value: _vm.inscricao.codserie,
+                        value: _vm.inscricao.cod_serie,
                         callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "codserie", $$v)
+                          _vm.$set(_vm.inscricao, "cod_serie", $$v)
                         },
-                        expression: "inscricao.codserie"
+                        expression: "inscricao.cod_serie"
                       }
                     }),
                     _vm._v(" "),
@@ -42918,17 +42944,17 @@ var render = function() {
                     _c("ModelListSelect", {
                       attrs: {
                         list: _vm.dados.turnos,
-                        "option-value": "codturno",
+                        "option-value": "cod_turno",
                         "option-text": "turno",
                         placeholder: "Selecione o turno",
-                        isDisabled: !_vm.inscricao.codserie
+                        isDisabled: !_vm.inscricao.cod_serie
                       },
                       model: {
-                        value: _vm.inscricao.codturno,
+                        value: _vm.inscricao.cod_turno,
                         callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "codturno", $$v)
+                          _vm.$set(_vm.inscricao, "cod_turno", $$v)
                         },
-                        expression: "inscricao.codturno"
+                        expression: "inscricao.cod_turno"
                       }
                     }),
                     _vm._v(" "),
@@ -42948,17 +42974,17 @@ var render = function() {
                     _c("ModelListSelect", {
                       attrs: {
                         list: _vm.dados.atencoes,
-                        "option-value": "codatencao",
+                        "option-value": "cod_atencao",
                         "option-text": "atencao",
                         placeholder: "Selecione o tipo de atenção",
-                        isDisabled: !_vm.inscricao.codturno
+                        isDisabled: !_vm.inscricao.cod_turno
                       },
                       model: {
-                        value: _vm.inscricao.codatencao,
+                        value: _vm.inscricao.cod_atencao,
                         callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "codatencao", $$v)
+                          _vm.$set(_vm.inscricao, "cod_atencao", $$v)
                         },
-                        expression: "inscricao.codatencao"
+                        expression: "inscricao.cod_atencao"
                       }
                     }),
                     _vm._v(" "),
@@ -42983,7 +43009,7 @@ var render = function() {
                         "option-value": "codturma",
                         "option-text": "turma",
                         placeholder: "Selecione a turma",
-                        isDisabled: !_vm.inscricao.codatencao
+                        isDisabled: !_vm.inscricao.cod_atencao
                       },
                       model: {
                         value: _vm.inscricao.codturma,
@@ -43010,17 +43036,17 @@ var render = function() {
                     _c("ModelListSelect", {
                       attrs: {
                         list: _vm.dados.professores,
-                        "option-value": "codprof",
+                        "option-value": "cod_prof",
                         "option-text": "nomprof",
                         placeholder: "Selecione o professor",
-                        isDisabled: !_vm.inscricao.codturma
+                        isDisabled: !_vm.inscricao.cod_turma
                       },
                       model: {
-                        value: _vm.inscricao.codprof,
+                        value: _vm.inscricao.cod_prof,
                         callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "codprof", $$v)
+                          _vm.$set(_vm.inscricao, "cod_prof", $$v)
                         },
-                        expression: "inscricao.codprof"
+                        expression: "inscricao.cod_prof"
                       }
                     }),
                     _vm._v(" "),
@@ -43139,19 +43165,19 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.filtro.nomcan,
-          expression: "filtro.nomcan"
+          value: _vm.filtro.nom_can,
+          expression: "filtro.nom_can"
         }
       ],
       staticClass: "form-control",
       attrs: { type: "text", name: "nome", placeholder: "Ex: João Silva" },
-      domProps: { value: _vm.filtro.nomcan },
+      domProps: { value: _vm.filtro.nom_can },
       on: {
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.$set(_vm.filtro, "nomcan", $event.target.value)
+          _vm.$set(_vm.filtro, "nom_can", $event.target.value)
         }
       }
     })
@@ -43206,7 +43232,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.alunos, function(aluno, i) {
           return _c("tr", { key: i }, [
-            _c("th", [_vm._v(_vm._s(aluno.nomaluno))]),
+            _c("th", [_vm._v(_vm._s(aluno.nom_aluno))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(aluno.serie.serie))]),
             _vm._v(" "),
@@ -43266,7 +43292,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.candidatos, function(candidato, i) {
           return _c("tr", { key: i }, [
-            _c("th", [_vm._v(_vm._s(candidato.nomcan))]),
+            _c("th", [_vm._v(_vm._s(candidato.nom_can))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(candidato.email))]),
             _vm._v(" "),
@@ -43336,7 +43362,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.inscricoes, function(inscricao, i) {
           return _c("tr", { key: i }, [
-            _c("th", [_vm._v(_vm._s(inscricao.nominsc))]),
+            _c("th", [_vm._v(_vm._s(inscricao.nom_insc))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(inscricao.email))]),
             _vm._v(" "),
@@ -43486,8 +43512,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "alert alert-danger p-2" }, [
-    _c("span", { staticClass: "ml-4" }, [_vm._v(_vm._s(_vm.msgError))])
+  return _c("div", { staticClass: "alert alert-danger" }, [
+    _vm._v(_vm._s(_vm.msg))
   ])
 }
 var staticRenderFns = []
@@ -43512,7 +43538,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", { staticClass: "text-danger" }, [_vm._v(_vm._s(_vm.msg))])
+  return _c("div", { staticClass: "alert alert-warning" }, [
+    _vm._v(_vm._s(_vm.msg))
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43536,8 +43564,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "alert alert-success p-2" }, [
-    _c("span", { staticClass: "ml-4" }, [_vm._v(_vm._s(_vm.msgSuccess))])
+  return _c("div", { staticClass: "alert alert-success" }, [
+    _vm._v(_vm._s(_vm.msg))
   ])
 }
 var staticRenderFns = []
@@ -43592,7 +43620,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "codatencao" } }, [_vm._v("Atenção")]),
+      _c("label", { attrs: { for: "atencoes" } }, [_vm._v("Atenção")]),
       _vm._v(" "),
       _c(
         "select",
@@ -43601,8 +43629,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codatencao,
-              expression: "filtro.codatencao"
+              value: _vm.filtro.cod_atencao,
+              expression: "filtro.cod_atencao"
             }
           ],
           staticClass: "form-control",
@@ -43619,7 +43647,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codatencao",
+                "cod_atencao",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -43632,8 +43660,8 @@ var render = function() {
             return _c(
               "option",
               {
-                key: atencao.codatencao,
-                domProps: { value: atencao.codatencao }
+                key: atencao.cod_atencao,
+                domProps: { value: atencao.cod_atencao }
               },
               [_vm._v(_vm._s(atencao.atencao))]
             )
@@ -43683,8 +43711,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codprof,
-              expression: "filtro.codprof"
+              value: _vm.filtro.cod_prof,
+              expression: "filtro.cod_prof"
             }
           ],
           staticClass: "form-control",
@@ -43701,7 +43729,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codprof",
+                "cod_prof",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -43714,10 +43742,10 @@ var render = function() {
             return _c(
               "option",
               {
-                key: professor.codprof,
-                domProps: { value: professor.codatencao }
+                key: professor.cod_prof,
+                domProps: { value: professor.cod_prof }
               },
-              [_vm._v(_vm._s(professor.nomprof))]
+              [_vm._v(_vm._s(professor.nom_prof))]
             )
           })
         ],
@@ -43756,7 +43784,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "codserie" } }, [_vm._v("Serie")]),
+      _c("label", { attrs: { for: "series" } }, [_vm._v("Serie")]),
       _vm._v(" "),
       _c(
         "select",
@@ -43765,8 +43793,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codserie,
-              expression: "filtro.codserie"
+              value: _vm.filtro.cod_serie,
+              expression: "filtro.cod_serie"
             }
           ],
           staticClass: "form-control",
@@ -43783,7 +43811,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codserie",
+                "cod_serie",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -43795,7 +43823,7 @@ var render = function() {
           _vm._l(_vm.series, function(serie) {
             return _c(
               "option",
-              { key: serie.codserie, domProps: { value: serie.codserie } },
+              { key: serie.cod_serie, domProps: { value: serie.cod_serie } },
               [_vm._v(_vm._s(serie.serie))]
             )
           })
@@ -43835,7 +43863,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "codsituacao" } }, [_vm._v("Situação")]),
+      _c("label", { attrs: { for: "situacoes" } }, [_vm._v("Situação")]),
       _vm._v(" "),
       _c(
         "select",
@@ -43844,8 +43872,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codsituacao,
-              expression: "filtro.codsituacao"
+              value: _vm.filtro.cod_situacao,
+              expression: "filtro.cod_situacao"
             }
           ],
           staticClass: "form-control",
@@ -43862,7 +43890,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codsituacao",
+                "cod_situacao",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -43875,8 +43903,8 @@ var render = function() {
             return _c(
               "option",
               {
-                key: situacao.codsituacao,
-                domProps: { value: situacao.codsituacao }
+                key: situacao.cod_situacao,
+                domProps: { value: situacao.cod_situacao }
               },
               [_vm._v(_vm._s(situacao.situacao))]
             )
@@ -43917,7 +43945,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "codturma" } }, [_vm._v("Turma")]),
+      _c("label", { attrs: { for: "turmas" } }, [_vm._v("Turma")]),
       _vm._v(" "),
       _c(
         "select",
@@ -43926,8 +43954,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codturma,
-              expression: "filtro.codturma"
+              value: _vm.filtro.cod_turma,
+              expression: "filtro.cod_turma"
             }
           ],
           staticClass: "form-control",
@@ -43944,7 +43972,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codturma",
+                "cod_turma",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -43956,7 +43984,7 @@ var render = function() {
           _vm._l(_vm.turmas, function(turma) {
             return _c(
               "option",
-              { key: turma.codturma, domProps: { value: turma.codturma } },
+              { key: turma.cod_turma, domProps: { value: turma.cod_turma } },
               [_vm._v(_vm._s(turma.turma))]
             )
           })
@@ -43996,7 +44024,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "codturno" } }, [_vm._v("Turno")]),
+      _c("label", { attrs: { for: "turnos" } }, [_vm._v("Turno")]),
       _vm._v(" "),
       _c(
         "select",
@@ -44005,8 +44033,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.filtro.codturno,
-              expression: "filtro.codturno"
+              value: _vm.filtro.cod_turno,
+              expression: "filtro.cod_turno"
             }
           ],
           staticClass: "form-control",
@@ -44023,7 +44051,7 @@ var render = function() {
                 })
               _vm.$set(
                 _vm.filtro,
-                "codturno",
+                "cod_turno",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
             }
@@ -44035,7 +44063,7 @@ var render = function() {
           _vm._l(_vm.turnos, function(turno) {
             return _c(
               "option",
-              { key: turno.codturno, domProps: { value: turno.codturno } },
+              { key: turno.cod_turno, domProps: { value: turno.cod_turno } },
               [_vm._v(_vm._s(turno.turno))]
             )
           })
@@ -65812,23 +65840,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Util/util.js":
-/*!***********************************!*\
-  !*** ./resources/js/Util/util.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  msgObrigatorio: function msgObrigatorio(campo) {
-    return "O campo " + campo + " é obrigatorio";
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -68033,18 +68044,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaDadosProfessor: function buscaDadosProfessor() {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/professorvinculo');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/professorvinculo');
   },
   buscaProfessores: function buscaProfessores(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/professorvinculo/professores', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/professorvinculo/professores', filtro);
   }
 });
 
@@ -68059,24 +68067,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaDadosSerie: function buscaDadosSerie(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/serievinculo', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo', filtro);
   },
   buscaSeries: function buscaSeries(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/serievinculo/series', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo/series', filtro);
   },
   buscaTurmas: function buscaTurmas(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/serievinculo/turmas', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo/turmas', filtro);
   },
   buscaTurnos: function buscaTurnos(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/serievinculo/turnos', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo/turnos', filtro);
   }
 });
 
@@ -68091,18 +68096,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   listarAlunos: function listarAlunos(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/aluno/busca', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/aluno/busca', filtro);
   },
   gerarAluno: function gerarAluno(dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/aluno', dados);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/aluno', dados);
   }
 });
 
@@ -68117,15 +68119,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaAtencoes: function buscaAtencoes() {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/atencoes');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/atencoes');
   }
 });
 
@@ -68140,24 +68139,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   listarCandidatos: function listarCandidatos(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/candidato/busca', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/candidato/busca', filtro);
   },
   cadastrar: function cadastrar(dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/candidato', dados);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/candidato', dados);
   },
   editarCandidato: function editarCandidato(id, dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/v1/candidato/' + id, dados);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/api/v1/candidato/' + id, dados);
   },
   deletarCandidato: function deletarCandidato(id) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/v1/candidato/' + id);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/v1/candidato/' + id);
   }
 });
 
@@ -68172,21 +68168,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscarInscricao: function buscarInscricao(id) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/inscricao/' + id);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/inscricao/' + id);
   },
   listarInscricoes: function listarInscricoes(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/v1/inscricao/busca', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/inscricao/busca', filtro);
   },
   editarInscricao: function editarInscricao(id, dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/v1/inscricao/' + id, dados);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/api/v1/inscricao/' + id, dados);
   }
 });
 
@@ -68201,15 +68194,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaProfessores: function buscaProfessores(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/professores', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/professores', filtro);
   }
 });
 
@@ -68224,15 +68214,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaSeries: function buscaSeries(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/series', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/series', filtro);
   }
 });
 
@@ -68247,15 +68234,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaSituacoes: function buscaSituacoes() {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/situacoes');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/situacoes');
   }
 });
 
@@ -68270,15 +68254,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaTurmas: function buscaTurmas(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/turmas', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/turmas', filtro);
   }
 });
 
@@ -68293,15 +68274,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   buscaTurnos: function buscaTurnos(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/turnos', filtro);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/turnos', filtro);
   }
 });
 
@@ -68609,7 +68587,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_candidatos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/candidatos */ "./resources/js/store/modules/candidatos.js");
 /* harmony import */ var _modules_alunos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/alunos */ "./resources/js/store/modules/alunos.js");
 
- //importo o state e mutations
+ // importe dos states
 
 
 

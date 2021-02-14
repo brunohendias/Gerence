@@ -17,7 +17,7 @@ class SituacaoController extends Controller
     public function index() {
     	try {
     		$situacoes = $this->situacao
-    			->select('codsituacao', 'situacao')
+    			->select('cod_situacao', 'situacao')
     			->get();
 
     		if ($this->Objetovazio($situacoes)) {

@@ -41,24 +41,24 @@ class ProfessorVinculoController extends Controller
 
     public function buscaProfessores(Request $request) {
         try{
-            $codserie = $request->codserie;
-            $codturno = $request->codturno;
-            $codatencao = $request->codatencao;
+            $cod_serie = $request->cod_serie;
+            $cod_turno = $request->cod_turno;
+            $cod_atencao = $request->cod_atencao;
 
-            if(!$codserie) {
+            if(!$cod_serie) {
                 $msg = 'Por favor informe a serie';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
             $professores = $this->professorVinculo
-                ->select('codprof_v', 'codprof')
-                ->when($codturno, function($query) use ($codturno) {
-                    return $query->where('codturno', $codturno);
+                ->select('cod_prof_v', 'cod_prof')
+                ->when($cod_turno, function($query) use ($cod_turno) {
+                    return $query->where('cod_turno', $cod_turno);
                 })
-                ->when($codatencao, function($query) use ($codatencao) {
-                    return $query->where('codatencao', $codatencao);
+                ->when($cod_atencao, function($query) use ($cod_atencao) {
+                    return $query->where('cod_atencao', $cod_atencao);
                 })
-                ->where('codserie', $codserie)
+                ->where('cod_serie', $cod_serie)
                 ->with('professor')
                 ->get();
 

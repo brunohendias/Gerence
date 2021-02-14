@@ -40,20 +40,20 @@ class SerieVinculoController extends Controller
 
     public function buscaSeries(Request $request) {
         try{
-            $codturno = $request->codturno;
-            $codturma = $request->codturma;
+            $cod_turno = $request->cod_turno;
+            $cod_turma = $request->cod_turma;
 
-            if(!$codturno) {
+            if(!$cod_turno) {
                 $msg = 'Por favor informe o turno';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
             $series = $this->serieVinculo
-                ->select('codserie_v', 'codserie')
-                ->when($codturma, function($query) use ($codturma) {
-                    return $query->where('codturma', $codturma);
+                ->select('codserie_v', 'cod_serie')
+                ->when($cod_turma, function($query) use ($cod_turma) {
+                    return $query->where('cod_turma', $cod_turma);
                 })
-                ->where('codturno', $codturno)
+                ->where('cod_turno', $cod_turno)
                 ->with('serie')
                 ->get();
 
@@ -72,21 +72,21 @@ class SerieVinculoController extends Controller
 
     public function buscaTurnos(Request $request) {
         try{
-            $codserie = $request->codserie;
-            $codturma = $request->codturma;
+            $cod_serie = $request->cod_serie;
+            $cod_turma = $request->cod_turma;
 
-            if(!$codserie) {
+            if(!$cod_serie) {
                 $msg = 'Por favor informe a serie';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
             $turnos = $this->serieVinculo
-                ->select('codserie_v', 'codturno')
+                ->select('cod_serie_v', 'cod_turno')
                 ->with('turno')
-                ->when($codturma, function($query) use ($codturma) {
-                    return $query->where('codturma', $codturma);
+                ->when($cod_turma, function($query) use ($cod_turma) {
+                    return $query->where('cod_turma', $cod_turma);
                 })
-                ->where('codserie', $codserie)
+                ->where('cod_serie', $cod_serie)
                 ->get();
 
             if ($this->Objetovazio($turnos)) {
@@ -104,18 +104,18 @@ class SerieVinculoController extends Controller
 
     public function buscaTurmas(Request $request) {
         try{
-            $codserie = $request->codserie;
-            $codturno = $request->codturno;
+            $cod_serie = $request->cod_serie;
+            $cod_turno = $request->cod_turno;
 
-            if(!$codturno || !$codserie) {
+            if(!$cod_turno || !$cod_serie) {
                 $msg = 'Para buscar as turmas é preciso informar a serie e o turno.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
             $turmas = $this->serieVinculo
-                ->select('codserie_v', 'codturma', 'qtd_alunos', 'limite_alunos')
-                ->where('codserie', $codserie)
-                ->where('codturno', $codturno)
+                ->select('cod_serie_v', 'cod_turma', 'qtd_alunos', 'limite_alunos')
+                ->where('cod_serie', $cod_serie)
+                ->where('cod_turno', $cod_turno)
                 ->with('turma')
                 ->get();
 

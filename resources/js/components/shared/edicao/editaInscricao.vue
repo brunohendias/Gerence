@@ -54,12 +54,14 @@
                         <div class="col-md-7">
                             <label>Professor *</label>
                             <ModelListSelect :list="dados.professores" v-model="inscricao.cod_prof" option-value="cod_prof" 
-                                option-text="nomprof" placeholder="Selecione o professor" :isDisabled="!inscricao.cod_turma"/>
+                                option-text="nom_prof" placeholder="Selecione o professor" :isDisabled="!inscricao.cod_turma"/>
                             <msgSemResultado v-if="msg.professor" :msg="msg.professor" />
                         </div>
                     </div>
+                    <div class="row">
+                        <botaoEditaInscricao class="mt-5 ml-auto mr-4"/>
+                    </div>
                 </div>
-            <botaoEditaInscricao />
             </div>
         </form>
     </div>
@@ -116,7 +118,10 @@ export default {
                 cod_turno: this.inscricao.cod_turno,
                 cod_atencao: this.inscricao.cod_atencao
             }
-        }
+        },
+        candidato() {
+            return this.$store.state.inscricoes.inscricao
+        },
     },
     watch: {
         'inscricao.serie'(newValue) {
@@ -188,13 +193,20 @@ export default {
                 if(response.data.success) {
                     response.data.data.professores.map(professor => {
                         this.dados.professores.push(professor.professor)
-                        this.inscricao.cod_prof = professor.professor.cod_prof
                     })
+                    this.inscricao.cod_prof = this.dados.professores[0].cod_prof
                 } else {
                     this.msg.professor = response.data.error.message
+                    this.inscricao.cod_prof = null
                 }
             })
         }
     }
 }
 </script>
+
+<style scoped>
+    label {
+        margin-top: 20px;
+    }
+</style>

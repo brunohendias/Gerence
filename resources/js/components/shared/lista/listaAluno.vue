@@ -11,7 +11,7 @@
 				<th>{{aluno.turma.turma}}</th>
 				<th>{{aluno.turno.turno}}</th>
 				<th>{{aluno.atencao.atencao}}</th>
-				<th>{{aluno.professor.nomprof}}</th>
+				<th>{{aluno.professor.nom_prof}}</th>
 				<th>{{aluno.situacao.situacao}}</th>
 			</tr>
 		</tbody>

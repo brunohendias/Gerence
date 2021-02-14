@@ -70,7 +70,7 @@ class AlunoController extends Controller
     	try {
 
     		$novoAluno = $this->aluno;
-            $novoAluno->nomaluno = $request->nomcan;
+            $novoAluno->nom_aluno = $request->nom_can;
             $novoAluno->email = $request->email;
             $novoAluno->telefone = $request->telefone;
             $novoAluno->cpf = $request->cpf;

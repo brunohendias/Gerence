@@ -20,12 +20,12 @@ export default {
 	},
 	computed: {
 		candidatoAtual() {
-			return this.$store.state.candidatos.candidato 
+			return this.$store.state.candidatos.candidato
 		}
 	},
 	methods: {
 		async deletaCandidato() {
-			let nom_can = this.candidatoAtual ? this.candidatoAtual.nom_can : this.candidato.nom_can
+			let nom_can = this.candidato ? this.candidato.nom_can : this.candidatoAtual.nom_can
 			let title = 'Deseja realmente excluir o candidato: '+nom_can+'?'
 			let icon = 'warning'
 			swal({
@@ -37,12 +37,12 @@ export default {
 				]
 			}).then(async willdelete => {
 				if(willdelete) {
-					let id = this.candidatoAtual ? this.candidatoAtual.cod_can : this.candidato.cod_can
+					let id = this.candidato ? this.candidato.cod_can : this.candidatoAtual.cod_can
 					await apiCandidato.deletarCandidato(id).then(response => {
 						if(response.data.success) {
 							title = response.data.data.msg
 							icon = 'success'
-							this.candidatos.splice(this.index, 1)
+							this.$store.dispatch('removeCandidato', {index: this.index})
 						} else {
 							title = response.data.error.message
 							icon = 'error'

@@ -79,7 +79,7 @@ class CandidatoController extends Controller
                 ->first();
 
             if($info->qtd_alunos == $info->limite_alunos) {
-                $msg = 'Essa turma desse turno está cheia. Por favor encaixe-o em outra turma.';
+                $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);                
             }
 
@@ -96,7 +96,7 @@ class CandidatoController extends Controller
             $novoCandidato->save();
 
             $inscricoes = new Inscricao;
-            $inscricao = $inscricoes->find($request->codinsc);
+            $inscricao = $inscricoes->find($request->cod_insc);
 
             $virouCandidato['ind_candidato'] = 'S';
             $inscricao->update($virouCandidato);
@@ -156,7 +156,7 @@ class CandidatoController extends Controller
 
             $serieVinculo = new SerieVinculo;
             $info = $serieVinculo
-                ->select('codserie_v','qtd_alunos','limite_alunos')
+                ->select('cod_serie_v','qtd_alunos','limite_alunos')
                 ->where('cod_serie', $cod_serie)
                 ->where('cod_turma', $cod_turma)
                 ->where('cod_turno', $cod_turno)

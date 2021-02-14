@@ -2,6 +2,7 @@ const CARREGA_CANDIDATOS = 'CARREGA_CANDIDATOS'
 const CANDIDATO = 'CANDIDATO'
 const ATUALIZA_CANDIDATO = 'ATUALIZA_CANDIDATO'
 const ALTERA_PAGINA_CANDIDATO = 'ALTERA_PAGINA_CANDIDATO'
+const REMOVE_CANDIDATO = 'REMOVE_CANDIDATO'
 
 const state = {
 	limitePorPagina: 10,
@@ -35,6 +36,9 @@ const mutations = {
 	},
 	[ALTERA_PAGINA_CANDIDATO](state, value) {
 		state.pagina_atual = value
+	},
+	[REMOVE_CANDIDATO](state, value) {
+		state.candidatos[state.pagina_atual].splice(value.index, 1)
 	}
 }
 
@@ -50,6 +54,9 @@ const actions = {
 	},
 	alteraPaginaCandidato(context, value) {
 		context.commit('ALTERA_PAGINA_CANDIDATO', value)
+	},
+	removeCandidato(context, value) {
+		context.commit('REMOVE_CANDIDATO', value)
 	}
 }
 

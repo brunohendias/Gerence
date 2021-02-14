@@ -13,7 +13,7 @@ export default {
             return this.$store.state.inscricoes.inscricao
         },
         validarCandidato() {
-            return (this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && 
+            return !(this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && 
                 this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && 
                 this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof)
         }

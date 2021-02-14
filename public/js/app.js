@@ -2358,7 +2358,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                nom_can = _this.candidatoAtual ? _this.candidatoAtual.nom_can : _this.candidato.nom_can;
+                nom_can = _this.candidato ? _this.candidato.nom_can : _this.candidatoAtual.nom_can;
                 title = 'Deseja realmente excluir o candidato: ' + nom_can + '?';
                 icon = 'warning';
                 swal({
@@ -2377,14 +2377,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                               break;
                             }
 
-                            id = _this.candidatoAtual ? _this.candidatoAtual.cod_can : _this.candidato.cod_can;
+                            id = _this.candidato ? _this.candidato.cod_can : _this.candidatoAtual.cod_can;
                             _context.next = 4;
                             return _core_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_1__["default"].deletarCandidato(id).then(function (response) {
                               if (response.data.success) {
                                 title = response.data.data.msg;
                                 icon = 'success';
 
-                                _this.candidatos.splice(_this.index, 1);
+                                _this.$store.dispatch('removeCandidato', {
+                                  index: _this.index
+                                });
                               } else {
                                 title = response.data.error.message;
                                 icon = 'error';
@@ -2453,7 +2455,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$store.state.inscricoes.inscricao;
     },
     validarCandidato: function validarCandidato() {
-      return this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof;
+      return !(this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof);
     }
   },
   methods: {
@@ -3037,6 +3039,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -3086,6 +3090,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         cod_turno: this.inscricao.cod_turno,
         cod_atencao: this.inscricao.cod_atencao
       };
+    },
+    candidato: function candidato() {
+      return this.$store.state.inscricoes.inscricao;
     }
   },
   watch: {
@@ -3227,11 +3234,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (response.data.success) {
                     response.data.data.professores.map(function (professor) {
                       _this4.dados.professores.push(professor.professor);
-
-                      _this4.inscricao.cod_prof = professor.professor.cod_prof;
                     });
+                    _this4.inscricao.cod_prof = _this4.dados.professores[0].cod_prof;
                   } else {
                     _this4.msg.professor = response.data.error.message;
+                    _this4.inscricao.cod_prof = null;
                   }
                 });
 
@@ -8877,6 +8884,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, "\n.borda-top[data-v-b9acc318] {\n\tborder-radius: 10px 10px 0px 0px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nlabel[data-v-5744e7d2] {\n    margin-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -41450,6 +41476,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -42725,10 +42781,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42749,322 +42805,320 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("form", { attrs: { method: "POST" } }, [
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _c(
-              "div",
-              { staticClass: "col-md-6" },
-              [
-                _c("label", [_vm._v("Nome completo *")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.inscricao.nom_insc,
-                      expression: "inscricao.nom_insc"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "nome",
-                    type: "text",
-                    placeholder: "Nome",
-                    disabled: "true",
-                    required: ""
-                  },
-                  domProps: { value: _vm.inscricao.nom_insc },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.inscricao, "nom_insc", $event.target.value)
-                    }
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-6" },
+            [
+              _c("label", [_vm._v("Nome completo *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inscricao.nom_insc,
+                    expression: "inscricao.nom_insc"
                   }
-                }),
-                _vm._v(" "),
-                _vm.msg.nom_insc
-                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.nom_insc } })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("label", [_vm._v("E-mail *")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.inscricao.email,
-                      expression: "inscricao.email"
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "nome",
+                  type: "text",
+                  placeholder: "Nome",
+                  disabled: "true",
+                  required: ""
+                },
+                domProps: { value: _vm.inscricao.nom_insc },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "email",
-                    type: "email",
-                    placeholder: "Example@example.com",
-                    required: "",
-                    maxlength: "50"
-                  },
-                  domProps: { value: _vm.inscricao.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.inscricao, "email", $event.target.value)
-                    }
+                    _vm.$set(_vm.inscricao, "nom_insc", $event.target.value)
                   }
-                }),
-                _vm._v(" "),
-                _vm.msg.email
-                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.email } })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("label", [_vm._v("Telefone celular *")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.inscricao.telefone,
-                      expression: "inscricao.telefone"
+                }
+              }),
+              _vm._v(" "),
+              _vm.msg.nom_insc
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.nom_insc } })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("label", [_vm._v("E-mail *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inscricao.email,
+                    expression: "inscricao.email"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Example@example.com",
+                  required: "",
+                  maxlength: "50"
+                },
+                domProps: { value: _vm.inscricao.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.inscricao, "email", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.msg.email
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.email } })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("label", [_vm._v("Telefone celular *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inscricao.telefone,
+                    expression: "inscricao.telefone"
+                  },
+                  {
+                    name: "mask-phone",
+                    rawName: "v-mask-phone.br",
+                    modifiers: { br: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "tell",
+                  type: "text",
+                  placeholder: "(XX) X XXXX XXXX"
+                },
+                domProps: { value: _vm.inscricao.telefone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.inscricao, "telefone", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.msg.telefone
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.telefone } })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("label", [_vm._v("CPF *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inscricao.cpf,
+                    expression: "inscricao.cpf"
+                  },
+                  {
+                    name: "mask-cpf",
+                    rawName: "v-mask-cpf.br",
+                    modifiers: { br: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "cpf",
+                  type: "text",
+                  placeholder: "000.000.00-00",
+                  disabled: "true",
+                  maxlength: "14"
+                },
+                domProps: { value: _vm.inscricao.cpf },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.inscricao, "cpf", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.msg.cpf
+                ? _c("msgSemResultado", { attrs: { msg: _vm.msg.cpf } })
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-md-7" },
+                [
+                  _c("label", [_vm._v("Serie à cursar *")]),
+                  _vm._v(" "),
+                  _c("ModelListSelect", {
+                    attrs: {
+                      list: _vm.dados.series,
+                      "option-value": "cod_serie",
+                      "option-text": "serie",
+                      placeholder: "Selecione a serie"
                     },
-                    {
-                      name: "mask-phone",
-                      rawName: "v-mask-phone.br",
-                      modifiers: { br: true }
+                    model: {
+                      value: _vm.inscricao.cod_serie,
+                      callback: function($$v) {
+                        _vm.$set(_vm.inscricao, "cod_serie", $$v)
+                      },
+                      expression: "inscricao.cod_serie"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "tell",
-                    type: "text",
-                    placeholder: "(XX) X XXXX XXXX"
-                  },
-                  domProps: { value: _vm.inscricao.telefone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.inscricao, "telefone", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.msg.telefone
-                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.telefone } })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("label", [_vm._v("CPF *")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.inscricao.cpf,
-                      expression: "inscricao.cpf"
+                  }),
+                  _vm._v(" "),
+                  _vm.msg.serie
+                    ? _c("msgSemResultado", { attrs: { msg: _vm.msg.serie } })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-5" },
+                [
+                  _c("label", [_vm._v("Turno *")]),
+                  _vm._v(" "),
+                  _c("ModelListSelect", {
+                    attrs: {
+                      list: _vm.dados.turnos,
+                      "option-value": "cod_turno",
+                      "option-text": "turno",
+                      placeholder: "Selecione o turno",
+                      isDisabled: !_vm.inscricao.cod_serie
                     },
-                    {
-                      name: "mask-cpf",
-                      rawName: "v-mask-cpf.br",
-                      modifiers: { br: true }
+                    model: {
+                      value: _vm.inscricao.cod_turno,
+                      callback: function($$v) {
+                        _vm.$set(_vm.inscricao, "cod_turno", $$v)
+                      },
+                      expression: "inscricao.cod_turno"
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "cpf",
-                    type: "text",
-                    placeholder: "000.000.00-00",
-                    disabled: "true",
-                    maxlength: "14"
-                  },
-                  domProps: { value: _vm.inscricao.cpf },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.inscricao, "cpf", $event.target.value)
+                  }),
+                  _vm._v(" "),
+                  _vm.msg.turno
+                    ? _c("msgSemResultado", { attrs: { msg: _vm.msg.turno } })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-7" },
+                [
+                  _c("label", [_vm._v("Tipo de atenção com o candidato *")]),
+                  _vm._v(" "),
+                  _c("ModelListSelect", {
+                    attrs: {
+                      list: _vm.dados.atencoes,
+                      "option-value": "cod_atencao",
+                      "option-text": "atencao",
+                      placeholder: "Selecione o tipo de atenção",
+                      isDisabled: !_vm.inscricao.cod_turno
+                    },
+                    model: {
+                      value: _vm.inscricao.cod_atencao,
+                      callback: function($$v) {
+                        _vm.$set(_vm.inscricao, "cod_atencao", $$v)
+                      },
+                      expression: "inscricao.cod_atencao"
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.msg.cpf
-                  ? _c("msgSemResultado", { attrs: { msg: _vm.msg.cpf } })
-                  : _vm._e()
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-7" },
-                  [
-                    _c("label", [_vm._v("Serie à cursar *")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.dados.series,
-                        "option-value": "cod_serie",
-                        "option-text": "serie",
-                        placeholder: "Selecione a serie"
+                  }),
+                  _vm._v(" "),
+                  _vm.msg.atencao
+                    ? _c("msgSemResultado", { attrs: { msg: _vm.msg.atencao } })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-5" },
+                [
+                  _c("label", [_vm._v("Turma *")]),
+                  _vm._v(" "),
+                  _c("ModelListSelect", {
+                    attrs: {
+                      list: _vm.dados.turmas,
+                      "option-value": "cod_turma",
+                      "option-text": "turma",
+                      placeholder: "Selecione a turma",
+                      isDisabled: !_vm.inscricao.cod_atencao
+                    },
+                    model: {
+                      value: _vm.inscricao.cod_turma,
+                      callback: function($$v) {
+                        _vm.$set(_vm.inscricao, "cod_turma", $$v)
                       },
-                      model: {
-                        value: _vm.inscricao.cod_serie,
-                        callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "cod_serie", $$v)
-                        },
-                        expression: "inscricao.cod_serie"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.msg.serie
-                      ? _c("msgSemResultado", { attrs: { msg: _vm.msg.serie } })
-                      : _vm._e()
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-5" },
-                  [
-                    _c("label", [_vm._v("Turno *")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.dados.turnos,
-                        "option-value": "cod_turno",
-                        "option-text": "turno",
-                        placeholder: "Selecione o turno",
-                        isDisabled: !_vm.inscricao.cod_serie
+                      expression: "inscricao.cod_turma"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.msg.turma
+                    ? _c("msgSemResultado", { attrs: { msg: _vm.msg.turma } })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-7" },
+                [
+                  _c("label", [_vm._v("Professor *")]),
+                  _vm._v(" "),
+                  _c("ModelListSelect", {
+                    attrs: {
+                      list: _vm.dados.professores,
+                      "option-value": "cod_prof",
+                      "option-text": "nom_prof",
+                      placeholder: "Selecione o professor",
+                      isDisabled: !_vm.inscricao.cod_turma
+                    },
+                    model: {
+                      value: _vm.inscricao.cod_prof,
+                      callback: function($$v) {
+                        _vm.$set(_vm.inscricao, "cod_prof", $$v)
                       },
-                      model: {
-                        value: _vm.inscricao.cod_turno,
-                        callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "cod_turno", $$v)
-                        },
-                        expression: "inscricao.cod_turno"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.msg.turno
-                      ? _c("msgSemResultado", { attrs: { msg: _vm.msg.turno } })
-                      : _vm._e()
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-7" },
-                  [
-                    _c("label", [_vm._v("Tipo de atenção com o candidato *")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.dados.atencoes,
-                        "option-value": "cod_atencao",
-                        "option-text": "atencao",
-                        placeholder: "Selecione o tipo de atenção",
-                        isDisabled: !_vm.inscricao.cod_turno
-                      },
-                      model: {
-                        value: _vm.inscricao.cod_atencao,
-                        callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "cod_atencao", $$v)
-                        },
-                        expression: "inscricao.cod_atencao"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.msg.atencao
-                      ? _c("msgSemResultado", {
-                          attrs: { msg: _vm.msg.atencao }
-                        })
-                      : _vm._e()
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-5" },
-                  [
-                    _c("label", [_vm._v("Turma *")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.dados.turmas,
-                        "option-value": "cod_turma",
-                        "option-text": "turma",
-                        placeholder: "Selecione a turma",
-                        isDisabled: !_vm.inscricao.cod_atencao
-                      },
-                      model: {
-                        value: _vm.inscricao.cod_turma,
-                        callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "cod_turma", $$v)
-                        },
-                        expression: "inscricao.cod_turma"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.msg.turma
-                      ? _c("msgSemResultado", { attrs: { msg: _vm.msg.turma } })
-                      : _vm._e()
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-7" },
-                  [
-                    _c("label", [_vm._v("Professor *")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.dados.professores,
-                        "option-value": "cod_prof",
-                        "option-text": "nomprof",
-                        placeholder: "Selecione o professor",
-                        isDisabled: !_vm.inscricao.cod_turma
-                      },
-                      model: {
-                        value: _vm.inscricao.cod_prof,
-                        callback: function($$v) {
-                          _vm.$set(_vm.inscricao, "cod_prof", $$v)
-                        },
-                        expression: "inscricao.cod_prof"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.msg.professor
-                      ? _c("msgSemResultado", {
-                          attrs: { msg: _vm.msg.professor }
-                        })
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ])
+                      expression: "inscricao.cod_prof"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.msg.professor
+                    ? _c("msgSemResultado", {
+                        attrs: { msg: _vm.msg.professor }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
-            _c("botaoEditaInscricao")
-          ],
-          1
-        )
+            _c(
+              "div",
+              { staticClass: "row" },
+              [_c("botaoEditaInscricao", { staticClass: "mt-5 ml-auto mr-4" })],
+              1
+            )
+          ])
+        ])
       ])
     ]
   )
@@ -43242,7 +43296,7 @@ var render = function() {
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(aluno.atencao.atencao))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(aluno.professor.nomprof))]),
+            _c("th", [_vm._v(_vm._s(aluno.professor.nom_prof))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(aluno.situacao.situacao))])
           ])
@@ -66664,9 +66718,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editaInscricao.vue?vue&type=template&id=5744e7d2& */ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&");
+/* harmony import */ var _editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true& */ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true&");
 /* harmony import */ var _editaInscricao_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editaInscricao.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& */ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -66674,13 +66730,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _editaInscricao_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "5744e7d2",
   null
   
 )
@@ -66706,19 +66762,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2& ***!
-  \*************************************************************************************************/
+/***/ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=style&index=0&id=5744e7d2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_style_index_0_id_5744e7d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true& ***!
+  \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./editaInscricao.vue?vue&type=template&id=5744e7d2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/shared/edicao/editaInscricao.vue?vue&type=template&id=5744e7d2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editaInscricao_vue_vue_type_template_id_5744e7d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -68450,6 +68522,7 @@ var CARREGA_CANDIDATOS = 'CARREGA_CANDIDATOS';
 var CANDIDATO = 'CANDIDATO';
 var ATUALIZA_CANDIDATO = 'ATUALIZA_CANDIDATO';
 var ALTERA_PAGINA_CANDIDATO = 'ALTERA_PAGINA_CANDIDATO';
+var REMOVE_CANDIDATO = 'REMOVE_CANDIDATO';
 var state = {
   limitePorPagina: 10,
   pagina_atual: 0,
@@ -68479,6 +68552,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, CARREGA_CANDIDATOS
   state.candidato = value;
 }), _defineProperty(_mutations, ALTERA_PAGINA_CANDIDATO, function (state, value) {
   state.pagina_atual = value;
+}), _defineProperty(_mutations, REMOVE_CANDIDATO, function (state, value) {
+  state.candidatos[state.pagina_atual].splice(value.index, 1);
 }), _mutations);
 var actions = {
   carregaCandidatos: function carregaCandidatos(context, value) {
@@ -68492,6 +68567,9 @@ var actions = {
   },
   alteraPaginaCandidato: function alteraPaginaCandidato(context, value) {
     context.commit('ALTERA_PAGINA_CANDIDATO', value);
+  },
+  removeCandidato: function removeCandidato(context, value) {
+    context.commit('REMOVE_CANDIDATO', value);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

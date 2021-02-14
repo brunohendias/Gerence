@@ -16,10 +16,10 @@ class CreateInscricaoTable extends Migration
         Schema::create('inscricao', function (Blueprint $table) {
             $table->bigIncrements('cod_insc');
             $table->string('nom_insc', 90);
-            $table->date('data_nasci');
+            $table->date('data_nasci');//falta
             $table->string('email');
             $table->string('telefone', 14);
-            $table->string('cpf', 14);
+            $table->char('cpf', 14);
             $table->string('rg', 20);
             $table->string('nom_mae', 90);
             $table->string('nom_pai', 90)->nullable();

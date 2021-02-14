@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             SituacaoAlunoSeeder::class,
             TurmaSeeder::class,
             TurnoSeeder::class,
+            SerieDisciplinaSeeder::class,
+            ProfessorVSeeder::class,
+            SerieVSeeder::class,
         ]);
     }
 }

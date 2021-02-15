@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-7">
-                            <label>Serie à cursar *</label>
+                            <label>Série à cursar *</label>
                             <ModelListSelect :list="dados.series" v-model="inscricao.cod_serie" option-value="cod_serie" 
                                 option-text="serie" placeholder="Selecione a serie" />
                             <msgSemResultado v-if="msg.serie" :msg="msg.serie" />

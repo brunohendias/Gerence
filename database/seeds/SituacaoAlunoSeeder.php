@@ -14,8 +14,8 @@ class SituacaoAlunoSeeder extends Seeder
         $arrayRegisters = [
             'Aprovado',
             'Reprovado',
-            'Estudando',
-            'Evadiu',
+            'Cursando',
+            'Evadido',
             'Trocou de turma'
         ];
 

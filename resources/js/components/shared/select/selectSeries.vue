@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="series">Serie</label>
+        <label for="series">Série</label>
         <select class="form-control" name="series" id="series" v-model="filtro.cod_serie">
             <option value=""></option>
             <option v-for="serie in series" :value="serie.cod_serie" :key="serie.cod_serie">{{serie.serie}}</option>

@@ -3368,7 +3368,7 @@ __webpack_require__.r(__webpack_exports__);
       colunas: [{
         dsc_coluna: 'Nome'
       }, {
-        dsc_coluna: 'Serie'
+        dsc_coluna: 'Série'
       }, {
         dsc_coluna: 'Turma'
       }, {
@@ -3461,7 +3461,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         dsc_coluna: 'Telefone'
       }, {
-        dsc_coluna: 'Serie'
+        dsc_coluna: 'Série'
       }, {
         dsc_coluna: 'Gerar aluno'
       }, {
@@ -3543,7 +3543,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         dsc_coluna: 'Telefone'
       }, {
-        dsc_coluna: 'Serie'
+        dsc_coluna: 'Série'
       }, {
         dsc_coluna: 'Enturmar'
       }],
@@ -42963,7 +42963,7 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-7" },
                 [
-                  _c("label", [_vm._v("Serie à cursar *")]),
+                  _c("label", [_vm._v("Série à cursar *")]),
                   _vm._v(" "),
                   _c("ModelListSelect", {
                     attrs: {
@@ -43838,7 +43838,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("label", { attrs: { for: "series" } }, [_vm._v("Serie")]),
+      _c("label", { attrs: { for: "series" } }, [_vm._v("Série")]),
       _vm._v(" "),
       _c(
         "select",

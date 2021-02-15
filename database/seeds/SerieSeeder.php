@@ -12,18 +12,18 @@ class SerieSeeder extends Seeder
     public function run()
     {
         $arrayRegisters = [
-            '1ª ano ensino fundamental',
-            '2ª ano ensino fundamental',
-            '3ª ano ensino fundamental',
-            '4ª ano ensino fundamental',
-            '5ª ano ensino fundamental',
-            '6ª ano ensino fundamental',
-            '7ª ano ensino fundamental',
-            '8ª ano ensino fundamental',
-            '9ª ano ensino fundamental',
-            '1ª ano ensino medio',
-            '2ª ano ensino medio',
-            '3ª ano ensino medio'
+            '1ª Ano Ensino Fundamental',
+            '2ª Ano Ensino Fundamental',
+            '3ª Ano Ensino Fundamental',
+            '4ª Ano Ensino Fundamental',
+            '5ª Ano Ensino Fundamental',
+            '6ª Ano Ensino Fundamental',
+            '7ª Ano Ensino Fundamental',
+            '8ª Ano Ensino Fundamental',
+            '9ª Ano Ensino Fundamental',
+            '1ª Ano Ensino Médio',
+            '2ª Ano Ensino Médio',
+            '3ª Ano Ensino Médio'
         ];
 
         foreach ($arrayRegisters as $register) {

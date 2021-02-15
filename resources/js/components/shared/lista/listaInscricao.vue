@@ -51,7 +51,7 @@ export default {
 				{dsc_coluna: 'Nome'},
 				{dsc_coluna: 'Email'},
 				{dsc_coluna: 'Telefone'},
-				{dsc_coluna: 'Serie'},
+				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Enturmar'}
 			],
 			action: 'alteraPaginaInscricao'

@@ -52,7 +52,7 @@ class InscricaoController extends Controller
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-            $msg = 'Inscrições buscado com sucesso.';
+            $msg = 'Inscrições buscadas com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg, 'inscricoes' => $inscricoes));
         } catch (\Exception $e) {
             $msg = 'Houve um erro ao buscar as inscrições.'.$e->getMessage();
@@ -80,7 +80,7 @@ class InscricaoController extends Controller
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-            $msg = 'Inscrição buscado com sucesso.';
+            $msg = 'Inscrição buscada com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg, 'inscricao' => $inscricao));
         } catch (\Exception $e) {
             $msg = 'Houve um erro ao buscar a inscrição.'.$e->getMessage();
@@ -100,7 +100,7 @@ class InscricaoController extends Controller
             $novaInscricao->cod_turno = $request->cod_turno;
             $novaInscricao->save();
 
-            $msg = 'A sua inscrição foi salva com sucesso. Aguarde enquanto analizamos ela.';
+            $msg = 'A sua inscrição foi salva com sucesso. Aguarde enquanto analisamos ela.';
             return $this->RespSuccess($msg, array('msg' => $msg));
         } catch (\Exception $e) {
             $msg = 'Houve um erro ao salva a sua inscrição. Por favor entre em contato com a gente pelo numero (037) 9 9999-8888'.$e->getMessage();

@@ -45,7 +45,7 @@ export default {
 		return {
 			colunas: [
 				{dsc_coluna: 'Nome'},
-				{dsc_coluna: 'Serie'},
+				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Turma'},
 				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Atenção'},

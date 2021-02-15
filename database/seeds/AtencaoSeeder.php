@@ -14,8 +14,8 @@ class AtencaoSeeder extends Seeder
         $arrayRegisters = [
             'Nenhuma', 
             'Nescessidades especiais', 
-            'Imperativo',
-            'Deficite de atenção',
+            'Hiperativo',
+            'Déficit de atenção',
             'Conduta agressiva'
         ];
 

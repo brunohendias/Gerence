@@ -1,9 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" :action="action" 
-		titulo="inscrições" :totalPorPagina="inscricoes.length" 
-		:totalPaginas="totalPaginas" :totalRegistros="totalRegistros"
-		:classTitulo="classTitulo"
-	>
+	<templatelista :colunas="colunas" titulo="inscrições" :classTitulo="classTitulo" 
+		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(inscricao, i) in inscricoes" :key="i">
 				<th>{{inscricao.nom_insc}}</th>
@@ -31,18 +28,14 @@ export default {
 		templatelista
 	},
 	computed: {
-		pagina_atual() {
-			return this.$store.state.inscricoes.pagina_atual
+		inscricoesStore() {
+			return this.$store.state.inscricoes
 		},
 		inscricoes() {
-			let pagina = this.pagina_atual ? this.pagina_atual : 1
-			return this.$store.state.inscricoes.inscricoes[pagina - 1]
-		},
-		totalPaginas() {
-			return this.$store.state.inscricoes.inscricoes.length
+			return this.inscricoesStore.inscricoes[this.current]
 		},
 		totalRegistros() {
-			return this.$store.state.inscricoes.total_registros
+			return this.inscricoesStore.total_registros
 		}
 	},
 	data() {
@@ -54,7 +47,7 @@ export default {
 				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Enturmar'}
 			],
-			action: 'alteraPaginaInscricao'
+			current: 0
 		}
 	},
 	methods: {

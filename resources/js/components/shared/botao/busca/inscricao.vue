@@ -6,9 +6,11 @@
 </template>
 
 <script>
-import apiInscricao from '../../../core/entidade/apiInscricao'
+import apiInscricao from '../../../../core/entidade/apiInscricao'
+import paginaArray from '../../../../core/helpers/paginaArray'
 
 export default {
+	name: 'botaoBuscaInscricao',
 	props: {
 		filtro: {
 			type: Object,
@@ -18,6 +20,11 @@ export default {
 	data() {
 		return {
 			buscando: false
+		}
+	},
+	computed: {
+		limite_por_pagina() {
+			return this.$store.state.paginacao.limite_por_pagina
 		}
 	},
 	methods: {
@@ -32,13 +39,18 @@ export default {
 				} else {
 					this.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
 				}
-				this.$store.dispatch('carregaInscricoes', inscricoes)
+				this.atualizaStore(inscricoes)
 			}).catch(e => {
 				this.mostraMensagem({tipo: 'erro', msg: e})
 			})
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)
+		},
+		atualizaStore(dados) {
+			let total_registros = dados.length
+			dados = paginaArray(dados);
+			this.$store.dispatch('carregaInscricoes', {dados, total_registros})
 		}
 	}
 }

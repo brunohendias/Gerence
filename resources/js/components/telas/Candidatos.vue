@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import buscaCandidato from '../shared/busca/buscaCandidato'
-import listaCandidato from '../shared/lista/listaCandidato'
+import buscaCandidato from '../shared/busca/candidato'
+import listaCandidato from '../shared/lista/candidato'
 
 export default {
 	name: 'Candidatos',

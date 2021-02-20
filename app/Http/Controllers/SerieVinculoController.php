@@ -26,14 +26,14 @@ class SerieVinculoController extends Controller
                 ->get();
 
             if ($this->Objetovazio($dadosSeries)) {
-                $msg = 'Não encontramos nenhuma serie.';
+                $msg = 'Não encontramos nenhuma série.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-        	$msg = 'Encontramos essas series com sucesso.';
-        	return $this->RespSuccess($msg, array('msg' => $msg, 'dadoseeries' => $dadosSeries));
+        	$msg = 'Encontramos essas séries com sucesso.';
+        	return $this->RespSuccess($msg, array('msg' => $msg, 'dadosseries' => $dadosSeries));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as informações da serie.'.$e->getMessage();
+            $msg = 'Houve um erro ao buscar as informações da série.'.$e->getMessage();
             return $this->RespLogErro($e, $msg, 500);
         }
     }

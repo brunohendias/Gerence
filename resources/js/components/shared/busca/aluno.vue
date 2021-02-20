@@ -1,5 +1,5 @@
 <template>
-	<templateBusca :classTitulo="classTitulo" titulo="Busque os candidatos">
+	<templateBusca :classTitulo="classTitulo" titulo="Busque os alunos">
 		<div class="col-sm-6">
 			<div class="form-group">
 				<inputNome :filtro="filtro"/>
@@ -38,11 +38,19 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<selectSituacoes :filtro="filtro" />
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col-sm-12">
 			<div class="row">
 				<div class="col-md-2 pt-1">
-					<botaoBuscaCandidato @msg="msg = $event" :filtro="filtro"/>
+					<botaoBuscaAluno @msg="msg = $event" :filtro="filtro"/>
 				</div>
 				<div class="col-md-10">
 					<msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
@@ -58,12 +66,13 @@
 import templateBusca from './templateBusca'
 import inputNome from '../form/inputNome'
 import inputCpf from '../form/inputCpf'
-import selectProfessores from '../select/selectProfessores'
-import selectSeries from '../select/selectSeries'
-import selectTurnos from '../select/selectTurnos'
-import selectTurmas from '../select/selectTurmas'
-import selectAtencoes from '../select/selectAtencoes'
-import botaoBuscaCandidato from '../botao/botaoBuscaCandidato'
+import selectProfessores from '../select/professores'
+import selectSeries from '../select/series'
+import selectTurnos from '../select/turnos'
+import selectTurmas from '../select/turmas'
+import selectAtencoes from '../select/atencoes'
+import selectSituacoes from '../select/situacoes'
+import botaoBuscaAluno from '../botao/busca/aluno'
 import msgSucesso from '../mensagem/sucesso'
 import msgSemResultado from '../mensagem/semResultado'
 import msgError from '../mensagem/error'
@@ -79,7 +88,8 @@ export default {
 		selectTurnos,
 		selectTurmas,
 		selectAtencoes,
-		botaoBuscaCandidato,
+		selectSituacoes,
+		botaoBuscaAluno,
 		msgSucesso,
 		msgSemResultado,
 		msgError

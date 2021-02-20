@@ -35,9 +35,9 @@
 <script>
 import templateBusca from './templateBusca'
 import inputCpf from '../form/inputCpf'
-import selectSeries from '../select/selectSeries'
-import selectTurnos from '../select/selectTurnos'
-import botaoBuscaInscricao from '../botao/botaoBuscaInscricao'
+import selectSeries from '../select/series'
+import selectTurnos from '../select/turnos'
+import botaoBuscaInscricao from '../botao/busca/inscricao'
 import msgSucesso from '../mensagem/sucesso'
 import msgSemResultado from '../mensagem/semResultado'
 import msgError from '../mensagem/error'

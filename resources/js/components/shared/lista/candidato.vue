@@ -1,9 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" :action="action" 
-		titulo="candidatos" :totalPorPagina="candidatos.length" 
-		:totalPaginas="totalPaginas" :totalRegistros="totalRegistros"
-		:classTitulo="classTitulo"
-	>
+	<templatelista :colunas="colunas" titulo="candidatos" :classTitulo="classTitulo" 
+		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(candidato, i) in candidatos" :key="i">
 				<th>{{candidato.nom_can}}</th>
@@ -23,8 +20,8 @@
 
 <script>
 import templatelista from './templatelista'
-import botaoGeraAluno from '../botao/botaoGeraAluno'
-import botaoDeletaCandidato from '../botao/botaoDeletaCandidato'
+import botaoGeraAluno from '../botao/geraAluno'
+import botaoDeletaCandidato from '../botao/deletaCandidato'
 
 export default {
 	name: 'listaCandidato',
@@ -34,18 +31,14 @@ export default {
 		botaoDeletaCandidato
 	},
 	computed: {
-		pagina_atual() {
-			return this.$store.state.candidatos.pagina_atual
+		candidatosStore() {
+			return this.$store.state.candidatos
 		},
 		candidatos() {
-			let pagina = this.pagina_atual ? this.pagina_atual : 1
-			return this.$store.state.candidatos.candidatos[pagina - 1]
-		},
-		totalPaginas() {
-			return this.$store.state.candidatos.candidatos.length
+			return this.candidatosStore.candidatos[this.current]
 		},
 		totalRegistros() {
-			return this.$store.state.candidatos.total_registros
+			return this.candidatosStore.total_registros
 		}
 	},
 	data() {
@@ -58,7 +51,7 @@ export default {
 				{dsc_coluna: 'Gerar aluno'},
 				{dsc_coluna: 'Excluir'}
 			],
-			action: 'alteraPaginaCandidato'
+			current: 0
 		}
 	},
 	props: {

@@ -5,7 +5,7 @@
 				<h4><strong>Lista de {{titulo}}</strong></h4>
 			</div>
 		</div>
-		<div v-if="totalPorPagina > 0" class="p-4">
+		<div v-if="totalRegistros > 0" class="p-4">
 			<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 					<tr>
@@ -15,7 +15,7 @@
 				<slot></slot>
 			</table>
 			<div class="row ml-2">
-				<paginacao :action="action" :total_pagina="totalPaginas"/>
+				<paginacao :total="total" @alteraPagina="proximaPagina($event)"/>
 				<div class="ml-auto" v-if="totalRegistros > 0">
 					<h5 class="mr-4 pt-1">Encontramos {{totalRegistros}} registros</h5>
 				</div>
@@ -28,12 +28,17 @@
 </template>
 
 <script>
-import paginacao from '../paginacao/paginacao'
+import paginacao from '../paginacao'
 
 export default {
 	name: 'templatelista',
 	components: {
 		paginacao
+	},
+	computed: {
+		total() {
+			return Math.ceil(this.totalRegistros / 10)
+		}
 	},
 	props: {
 		classTitulo: {
@@ -44,25 +49,18 @@ export default {
 			type: Array,
 			required: true
 		},
-		action: {
-			type: String,
-			required: true
-		},
 		titulo: {
 			type: String,
-			required: true
-		},
-		totalPorPagina: {
-			type: Number,
-			required: true
-		},
-		totalPaginas: {
-			type: Number,
 			required: true
 		},
 		totalRegistros: {
 			type: Number,
 			required: true
+		}
+	},
+	methods: {
+		proximaPagina(pagina) {
+			this.$emit('proximaPagina', pagina)
 		}
 	}
 }

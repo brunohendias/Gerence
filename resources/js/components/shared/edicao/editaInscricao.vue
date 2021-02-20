@@ -70,7 +70,7 @@
 <script>
 import { ModelListSelect } from 'vue-search-select'
 import msgSemResultado from '../mensagem/semResultado'
-import botaoEditaInscricao from '../botao/botaoEditaInscricao'
+import botaoEditaInscricao from '../botao/editaInscricao'
 import apiAtencoes from '../../../core/entidade/apiAtencoes'
 import apiDadosSerie from '../../../core/dados/apiDadosSerie'
 import apiDadosProfessor from '../../../core/dados/apiDadosProfessor'

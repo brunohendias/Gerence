@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export default {
-	buscaDadosSerie(filtro) {
-		return axios.post('/api/v1/serievinculo', filtro);
+	buscaDadosSerie() {
+		return axios.get('/api/v1/serievinculo');
 	},
 
 	buscaSeries(filtro) {

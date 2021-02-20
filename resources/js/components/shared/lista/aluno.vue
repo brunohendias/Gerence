@@ -1,9 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" :action="action" 
-		titulo="alunos" :totalPorPagina="alunos.length" 
-		:totalPaginas="totalPaginas" :totalRegistros="totalRegistros"
-		:classTitulo="classTitulo"
-	>
+	<templatelista :colunas="colunas" titulo="alunos" :classTitulo="classTitulo" 
+		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(aluno, i) in alunos" :key="i">
 				<th>{{aluno.nom_aluno}}</th>
@@ -27,18 +24,14 @@ export default {
 		templatelista
 	},
 	computed: {
-		pagina_atual() {
-			return this.$store.state.alunos.pagina_atual
+		alunosStore() {
+			return this.$store.state.alunos
 		},
 		alunos() {
-			let pagina = this.pagina_atual ? this.pagina_atual : 1
-			return this.$store.state.alunos.alunos[pagina - 1]
-		},
-		totalPaginas() {
-			return this.$store.state.alunos.alunos.length
+			return this.alunosStore.alunos[this.current]
 		},
 		totalRegistros() {
-			return this.$store.state.alunos.total_registros
+			return this.alunosStore.total_registros
 		}
 	},
 	data() {
@@ -52,7 +45,7 @@ export default {
 				{dsc_coluna: 'Professor'},
 				{dsc_coluna: 'Situação'}
 			],
-			action: 'alteraPaginaAluno'
+			current: 0
 		}
 	},
 	props: {

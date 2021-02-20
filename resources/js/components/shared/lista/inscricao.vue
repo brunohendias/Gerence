@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import templatelista from './templatelista'
+import templatelista from '../template/lista'
 
 export default {
 	name: 'listaInscricao',

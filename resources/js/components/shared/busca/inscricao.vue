@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import templateBusca from './templateBusca'
+import templateBusca from '../template/busca'
 import inputCpf from '../form/inputCpf'
 import selectSeries from '../select/series'
 import selectTurnos from '../select/turnos'

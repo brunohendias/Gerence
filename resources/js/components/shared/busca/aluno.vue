@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import templateBusca from './templateBusca'
+import templateBusca from '../template/busca'
 import inputNome from '../form/inputNome'
 import inputCpf from '../form/inputCpf'
 import selectProfessores from '../select/professores'

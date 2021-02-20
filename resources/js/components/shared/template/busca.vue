@@ -2,7 +2,7 @@
 	<div class="bg-white mb-4 borda-top" :style="classTitulo">
 		<div class="borda-top" :style="classTitulo">
 			<div class="row ml-4 pt-3 pb-1">
-				<h4 class="text-white"><strong>{{titulo}}</strong></h4>
+				<h5 class="text-white">{{titulo}}</h5>
 			</div>
 		</div>
 		<form>

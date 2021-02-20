@@ -2,7 +2,7 @@ import Inscricoes from '../../components/telas/Inscricoes.vue'
 import Candidatos from '../../components/telas/Candidatos.vue'
 import Alunos from '../../components/telas/Alunos.vue'
 import Serie from '../../components/telas/Serie.vue'
-import EditaInscricao from '../../components/shared/edicao/editaInscricao.vue'
+import EditaInscricao from '../../components/shared/edicao/inscricao.vue'
 
 const routes = [
 	{

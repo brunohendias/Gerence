@@ -6,18 +6,41 @@
 				<th>{{serie.serie.serie}}</th>
 				<th>{{serie.turno.turno}}</th>
 				<th>{{serie.turma.turma}}</th>
+				<th>
+					<span @click="editaserie(serie)" class="ml-2">
+						<router-link class="btn btn-primary" to="/editainscricao">
+							<i class="fas fa-pencil-alt"></i>
+						</router-link>
+					</span>
+				</th>
 			</tr>
 		</tbody>
 	</templatelista>
 </template>
 
 <script>
-import templatelista from './templatelista'
+import templatelista from '../template/lista'
 
 export default {
 	name: 'listaInscricao',
 	components: {
 		templatelista
+	},
+	props: {
+		classTitulo: {
+			type: String
+		}
+	},
+	data() {
+		return {
+			colunas: [
+				{dsc_coluna: 'Série'},
+				{dsc_coluna: 'Turno'},
+				{dsc_coluna: 'Turma'},
+				{dsc_coluna: 'Editar'}
+			],
+			current: 0
+		}
 	},
 	computed: {
         seriesStore() {
@@ -30,19 +53,9 @@ export default {
 			return this.seriesStore.total_registros
 		}
 	},
-	data() {
-		return {
-			colunas: [
-				{dsc_coluna: 'Serie'},
-				{dsc_coluna: 'Turno'},
-				{dsc_coluna: 'Turma'}
-			],
-			current: 0
-		}
-	},
-	props: {
-		classTitulo: {
-			type: String
+	methods: {
+		editaserie(serie) {
+			console.log(serie)
 		}
 	}
 }

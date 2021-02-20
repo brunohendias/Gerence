@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import templateBusca from './templateBusca'
+import templateBusca from '../template/busca'
 import selectSeries from '../select/series'
 import selectTurnos from '../select/turnos'
 import selectTurmas from '../select/turmas'

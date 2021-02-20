@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import apiCandidato from '../../../core/entidade/apiCandidato'
+import apiCandidato from '../../../../core/entidade/apiCandidato'
 
 export default {
 	computed: {

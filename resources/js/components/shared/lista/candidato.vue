@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import templatelista from './templatelista'
+import templatelista from '../template/lista'
 import botaoGeraAluno from '../botao/geraAluno'
 import botaoDeletaCandidato from '../botao/deletaCandidato'
 

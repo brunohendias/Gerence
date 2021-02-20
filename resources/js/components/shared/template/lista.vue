@@ -2,7 +2,7 @@
 	<div class="bg-white borda-top">
 		<div :style="classTitulo">
 			<div class="row ml-4 pt-3 pb-2 text-white">
-				<h4><strong>Lista de {{titulo}}</strong></h4>
+				<h5>Lista de {{titulo}}</h5>
 			</div>
 		</div>
 		<div v-if="totalRegistros > 0" class="p-4">

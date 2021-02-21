@@ -1,7 +1,9 @@
-import Inscricoes from '../../components/telas/Inscricoes.vue'
-import Candidatos from '../../components/telas/Candidatos.vue'
-import Alunos from '../../components/telas/Alunos.vue'
-import EditaInscricao from '../../components/shared/edicao/editaInscricao.vue'
+import Inscricoes from '../../components/tela/Inscricao.vue'
+import Candidatos from '../../components/tela/Candidato.vue'
+import Alunos from '../../components/tela/Aluno.vue'
+import Serie from '../../components/tela/Serie.vue'
+import EditaInscricao from '../../components/shared/edicao/inscricao.vue'
+import EditaSerie from '../../components/shared/edicao/serie.vue'
 
 const routes = [
 	{
@@ -32,9 +34,32 @@ const routes = [
 		component: Alunos
 	},
 	{
+		path: '/config',
+		name: 'configurações',
+		icon: 'fas fa-cogs',
+		component: Serie
+	},
+	{
+		path: '/config/serie',
+		name: 'série',
+		icon: 'fas fa-chalkboard',
+		parentMenu: 'configurações',
+		component: Serie
+	},
+	{
 		path: '/editainscricao',
 		name: 'editainscricao',
 		component: EditaInscricao
+	},
+	{
+		path: '/editaserie',
+		name: 'editaserie',
+		component: EditaSerie
+	},
+	{
+		path: '/cadastraserie',
+		name: 'cadastraserie',
+		component: EditaSerie
 	},
 	{
 		path: '*',

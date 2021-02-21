@@ -53,4 +53,9 @@ export default {
 	.bordas {
 		border-radius: 10px;
 	}
+	.v-sidebar-menu .vsm--link_level-1 .vsm--icon {
+		width: 20px !important;
+		height: 20px !important;
+		margin-left: 5px;
+	}
 </style>

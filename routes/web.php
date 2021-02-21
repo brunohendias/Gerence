@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/api')->group(function () {
 	Route::prefix('/v1')->group(function () {
-		Route::get('/turnos', 'TurnoController@index')->name('turnos');
-		Route::get('/series', 'SerieController@index')->name('series');
-		Route::get('/turmas', 'TurmaController@index')->name('turmas');
+		Route::get('/turnos', 'TurnoController@index');
+		Route::prefix('/series')->group(function() {
+			Route::get('/', 'SerieController@index');
+			Route::post('/', 'SerieController@store');
+		});
+		Route::get('/turmas', 'TurmaController@index');
 		Route::resource('professores', 'ProfessorController');
 		Route::resource('atencoes', 'AtencaoController');
 		Route::resource('situacoes', 'SituacaoController');
@@ -23,10 +26,13 @@ Route::prefix('/api')->group(function () {
 		Route::resource('candidato', 'CandidatoController');
 
 		Route::prefix('/serievinculo')->group(function() {
-			Route::get('/', 'SerieVinculoController@index')->name('serievinculo');
-			Route::post('/series', 'SerieVinculoController@buscaSeries')->name('serievinculo.series');
-			Route::post('/turmas', 'SerieVinculoController@buscaTurmas')->name('serievinculo.turmas');
-			Route::post('/turnos', 'SerieVinculoController@buscaTurnos')->name('serievinculo.turnos');
+			Route::get('/', 'SerieVinculoController@index');
+			Route::post('/infos', 'SerieVinculoController@buscaInfos');
+			Route::post('/series', 'SerieVinculoController@buscaSeries');
+			Route::post('/turmas', 'SerieVinculoController@buscaTurmas');
+			Route::post('/turnos', 'SerieVinculoController@buscaTurnos');
+			Route::post('/', 'SerieVinculoController@store');
+			Route::put('/{cod_serie_v}', 'SerieVinculoController@update');
 		});
 
 		Route::post('/seriedisciplina/busca', 'SerieDisciplinaController@index');
@@ -38,8 +44,8 @@ Route::prefix('/api')->group(function () {
 		});
 
 		Route::prefix('/professorvinculo')->group(function() {
-			Route::get('/', 'ProfessorVinculoController@index')->name('professorvinculo');
-			Route::post('/professores', 'ProfessorVinculoController@buscaProfessores')->name('professorvinculo.professores');
+			Route::get('/', 'ProfessorVinculoController@index');
+			Route::post('/professores', 'ProfessorVinculoController@buscaProfessores');
 		});
 	});
 });

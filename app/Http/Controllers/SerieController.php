@@ -19,11 +19,15 @@ class SerieController extends Controller
     {
         try{
             $codserie = $request->codserie;
+            $serie = $this->upperCase($request->serie);
 
         	$series = $this->serie
                 ->select('cod_serie', 'serie')
                 ->when($codserie, function($query) use ($codserie) {
                     return $query->where('codserie', $codserie);
+                })
+                ->when($serie, function($query) use ($serie) {
+                    return $query->where('upper(serie)', $serie);
                 })
                 ->get();
 

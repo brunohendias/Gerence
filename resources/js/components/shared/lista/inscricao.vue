@@ -52,7 +52,6 @@ export default {
 	},
 	methods: {
 		editainscricao(inscricao) {
-			this.$store.dispatch('selecionaInscricao', {})
 			this.$store.dispatch('selecionaInscricao', inscricao)
 		}
 	},

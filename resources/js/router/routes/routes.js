@@ -3,6 +3,7 @@ import Candidatos from '../../components/telas/Candidatos.vue'
 import Alunos from '../../components/telas/Alunos.vue'
 import Serie from '../../components/telas/Serie.vue'
 import EditaInscricao from '../../components/shared/edicao/inscricao.vue'
+import EditaSerie from '../../components/shared/edicao/serie.vue'
 
 const routes = [
 	{
@@ -49,6 +50,16 @@ const routes = [
 		path: '/editainscricao',
 		name: 'editainscricao',
 		component: EditaInscricao
+	},
+	{
+		path: '/editaserie',
+		name: 'editaserie',
+		component: EditaSerie
+	},
+	{
+		path: '/cadastraserie',
+		name: 'cadastraserie',
+		component: EditaSerie
 	},
 	{
 		path: '*',

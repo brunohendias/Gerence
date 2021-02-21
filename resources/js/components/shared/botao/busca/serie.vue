@@ -32,7 +32,7 @@ export default {
 			this.buscando = true
 			this.$emit('msgSuccess', null)
 			this.$emit('msgError', null)
-			await apiDadosSerie.buscaDadosSerie(this.filtro).then(response => {
+			await apiDadosSerie.buscaInfos(this.filtro).then(response => {
 				this.buscando = false
 				let series = []
 				if(response.data.success) {

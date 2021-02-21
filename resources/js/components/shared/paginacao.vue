@@ -21,6 +21,11 @@ export default {
 			current: 1
 		}
 	},
+	watch: {
+		total() {
+			this.pageChangeHandler(1)
+		}
+	},
 	methods: {
 		pageChangeHandler(current) {
 			this.current = current

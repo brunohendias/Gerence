@@ -1,15 +1,15 @@
 <template>
-    <button class="btn btn-success" @click.prevent="atualizar" :disabled="editando">Atualizar dados</button>
+    <button class="btn btn-success" @click.prevent="cadastrar" :disabled="cadastrando">
+	    Cadastrar
+    </button>
 </template>
 
 <script>
-import apiDadosSerie from '../../../../core/dados/apiDadosSerie'
-
 export default {
-    name: 'botaoEditaSerie',
+    name: 'botaoCadastraSerie',
     data() {
         return {
-            editando: false
+            cadastrando: false
         }
     },
     computed: {
@@ -18,10 +18,10 @@ export default {
         }
     },
     methods: {
-        atualizar() {
-            this.editando = true
-            apiDadosSerie.editar(this.body, this.body.cod_serie_v).then(response => {
-                this.editando = false
+        cadastrar() {
+            this.cadastrando = true
+            apiDadosSerie.cadastrar(this.body).then(response => {
+                this.cadastrando = false
                 let icon = 'success'
                 let title = ''
                 if(response.data.success) {
@@ -33,7 +33,7 @@ export default {
                 swal({ title, icon })
             }).catch(err => {
             	swal({
-                    title: "Erro ao atualizar as informações dessa série.",
+                    title: "Erro ao cadastrar essa série.",
                     icon: 'error'
                 })
             })

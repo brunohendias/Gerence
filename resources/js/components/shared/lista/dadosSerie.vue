@@ -6,9 +6,11 @@
 				<th>{{serie.serie.serie}}</th>
 				<th>{{serie.turno.turno}}</th>
 				<th>{{serie.turma.turma}}</th>
+				<th>{{serie.qtd_alunos}}</th>
+				<th>{{serie.limite_alunos}}</th>
 				<th>
 					<span @click="editaserie(serie)" class="ml-2">
-						<router-link class="btn btn-primary" to="/editainscricao">
+						<router-link class="btn btn-primary" to="/editaserie">
 							<i class="fas fa-pencil-alt"></i>
 						</router-link>
 					</span>
@@ -37,6 +39,8 @@ export default {
 				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Turma'},
+				{dsc_coluna: 'Total de alunos'},
+				{dsc_coluna: 'Limite de alunos'},
 				{dsc_coluna: 'Editar'}
 			],
 			current: 0
@@ -55,8 +59,12 @@ export default {
 	},
 	methods: {
 		editaserie(serie) {
-			console.log(serie)
-		}
+			this.trocaAcao('edita')
+			this.$store.dispatch('carregaSerie', serie)
+		},
+		trocaAcao(acao) {
+            this.$store.dispatch('alteraAcao', acao)
+        }
 	}
 }
 </script>

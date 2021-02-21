@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import apiAluno from '../../../core/entidade/apiAluno'
+import apiAluno from '../../../core/api/entidade/apiAluno'
 
 export default {
 	name: 'botaoGeraAluno',

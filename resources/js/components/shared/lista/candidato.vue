@@ -21,7 +21,7 @@
 <script>
 import templatelista from '../template/lista'
 import botaoGeraAluno from '../botao/geraAluno'
-import botaoDeletaCandidato from '../botao/deletaCandidato'
+import botaoDeletaCandidato from '../botao/deleta/candidato'
 
 export default {
 	name: 'listaCandidato',
@@ -30,15 +30,9 @@ export default {
 		botaoGeraAluno,
 		botaoDeletaCandidato
 	},
-	computed: {
-		candidatosStore() {
-			return this.$store.state.candidatos
-		},
-		candidatos() {
-			return this.candidatosStore.candidatos[this.current]
-		},
-		totalRegistros() {
-			return this.candidatosStore.total_registros
+	props: {
+		classTitulo: {
+			type: String
 		}
 	},
 	data() {
@@ -54,9 +48,15 @@ export default {
 			current: 0
 		}
 	},
-	props: {
-		classTitulo: {
-			type: String
+	computed: {
+		candidatosStore() {
+			return this.$store.state.candidatos
+		},
+		candidatos() {
+			return this.candidatosStore.candidatos[this.current]
+		},
+		totalRegistros() {
+			return this.candidatosStore.total_registros
 		}
 	}
 }

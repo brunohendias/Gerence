@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="turno in turnos" :value="turno.cod_turno" :key="turno.cod_turno">{{turno.turno}}</option>
         </select>
-        <msgSemResultado v-if="msgturno" :msg="msgturno" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiTurno from '../../../core/entidade/apiTurno'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectTurnos',
@@ -27,22 +27,11 @@ export default {
     data() {
         return {
             turnos: [],
-            msgturno: null
+            msg: null
         }
     },
     created() {
-        this.buscaTurnos()
-    },
-    methods: {
-        async buscaTurnos() {
-			await apiTurno.buscaTurnos().then(response => {
-				if(response.data.success) {
-					this.turnos = response.data.data.turnos
-				} else {
-					this.msgturno = response.data.error.message
-				}
-			})
-		}
+        busca.turnos(this)
     }
 }
 </script>

@@ -5,7 +5,7 @@ export default {
 		return axios.get('/api/v1/inscricao/'+id);
 	},
 
-	listarInscricoes(filtro) {
+	busca(filtro) {
 		return axios.post('/api/v1/inscricao/busca', filtro);
 	},
 

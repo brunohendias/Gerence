@@ -6,8 +6,7 @@
 </template>
 
 <script>
-import apiInscricao from '../../../../core/entidade/apiInscricao'
-import paginaArray from '../../../../core/helpers/paginaArray'
+import busca from '../../../../core/functions/busca'
 
 export default {
 	name: 'botaoBuscaInscricao',
@@ -22,35 +21,16 @@ export default {
 			buscando: false
 		}
 	},
-	computed: {
-		limite_por_pagina() {
-			return this.$store.state.paginacao.limite_por_pagina
-		}
-	},
 	methods: {
 		async buscarInscricoes() {
 			this.buscando = true
-			await apiInscricao.listarInscricoes(this.filtro).then(response => {
-				this.buscando = false
-				let inscricoes = []
-				if(response.data.success) {
-					inscricoes = response.data.data.inscricoes
-					this.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
-				} else {
-					this.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
-				}
-				this.atualizaStore(inscricoes)
-			}).catch(e => {
-				this.mostraMensagem({tipo: 'erro', msg: e})
-			})
+			this.$emit('msgSuccess', null)
+			this.$emit('msgError', null)
+			busca.inscricoes(this, this.filtro)
+			this.buscando = false
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)
-		},
-		atualizaStore(dados) {
-			let total_registros = dados.length
-			dados = paginaArray(dados);
-			this.$store.dispatch('carregaInscricoes', {dados, total_registros})
 		}
 	}
 }

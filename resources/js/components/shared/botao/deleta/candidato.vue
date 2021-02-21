@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import apiCandidato from '../../../core/entidade/apiCandidato'
+import deleta from '../../../../core/functions/deleta'
 
 export default {
 	name: 'botaoDeletaCandidato',
@@ -38,17 +38,7 @@ export default {
 			}).then(async willdelete => {
 				if(willdelete) {
 					let id = this.candidato ? this.candidato.cod_can : this.candidatoAtual.cod_can
-					await apiCandidato.deletarCandidato(id).then(response => {
-						if(response.data.success) {
-							title = response.data.data.msg
-							icon = 'success'
-							this.$store.dispatch('removeCandidato', {index: this.index})
-						} else {
-							title = response.data.error.message
-							icon = 'error'
-						}
-						swal({ title, icon })
-					})
+					deleta.candidato(this, id)
 				}
 			})
 		}

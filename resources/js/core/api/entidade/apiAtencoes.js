@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-	buscaAtencoes() {
+	busca() {
 		return axios.get('/api/v1/atencoes');
 	}
 }

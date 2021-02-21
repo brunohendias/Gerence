@@ -187,7 +187,6 @@ class SerieVinculoController extends Controller
             $this->serieVinculo->cod_turno = $cod_turno;
             $this->serieVinculo->cod_turma = $cod_turma;
             $this->serieVinculo->limite_alunos = $request->limite_alunos;
-            $this->serieVinculo->qtd_alunos = $request->qtd_alunos;
             $this->serieVinculo->save();
 
             $msg = 'Cadastramos essa série com sucesso.';

@@ -5,7 +5,7 @@ export default {
 		return axios.get('/api/v1/professorvinculo');
 	},
 
-	buscaProfessores(filtro) {
-		return axios.post('/api/v1/professorvinculo/professores', filtro); 
+	buscaProfessores(params) {
+		return axios.post('/api/v1/professorvinculo/professores', params);
 	}
 }

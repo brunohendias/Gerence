@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="turma in turmas" :value="turma.cod_turma" :key="turma.cod_turma">{{turma.turma}}</option>
         </select>
-        <msgSemResultado v-if="msgturma" :msg="msgturma" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiTurma from '../../../core/entidade/apiTurma'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectTurmas',
@@ -27,22 +27,11 @@ export default {
     data() {
         return {
             turmas: [],
-            msgturma: null
+            msg: null
         }
     },
     created() {
-        this.buscaTurmas()
-    },
-    methods: {
-        async buscaTurmas() {
-			await apiTurma.buscaTurmas().then(response => {
-				if(response.data.success) {
-					this.turmas = response.data.data.turmas
-				} else {
-					this.msgturma = response.data.error.message
-				}
-			})
-		},
+        busca.turmas(this)
     }
 }
 </script>

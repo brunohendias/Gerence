@@ -6,8 +6,7 @@
 </template>
 
 <script>
-import apiAluno from '../../../../core/entidade/apiAluno'
-import paginaArray from '../../../../core/helpers/paginaArray'
+import busca from '../../../../core/functions/busca'
 
 export default {
 	name: 'botaoBuscaAluno',
@@ -22,37 +21,16 @@ export default {
 			buscando: false
 		}
 	},
-	computed: {
-		limite_por_pagina() {
-			return this.$store.state.paginacao.limite_por_pagina
-		}
-	},
 	methods: {
-		async buscarAlunos() {
+		buscarAlunos() {
 			this.buscando = true
 			this.$emit('msgSuccess', null)
 			this.$emit('msgError', null)
-			await apiAluno.listarAlunos(this.filtro).then(response => {
-				this.buscando = false
-				let alunos = []
-				if(response.data.success) {
-					alunos = response.data.data.alunos
-					this.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
-				} else {
-					this.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
-				}
-				this.atualizaStore(alunos)
-			}).catch(e => {
-				this.mostraMensagem({tipo: 'erro', msg: e})
-			})
+			busca.alunos(this, this.filtro)
+			this.buscando = false
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)
-		},
-		atualizaStore(dados) {
-			let total_registros = dados.length
-			dados = paginaArray(dados);
-			this.$store.dispatch('carregaAlunos', {dados, total_registros})
 		}
 	}
 }

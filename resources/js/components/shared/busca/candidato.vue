@@ -84,6 +84,11 @@ export default {
 		msgSemResultado,
 		msgError
 	},
+	props: {
+		classTitulo: {
+			type: String
+		}
+	},
 	data() {
 		return {
 			filtro: {},
@@ -91,11 +96,6 @@ export default {
 				tipo: '',
 				msg: ''
 			}
-		}
-	},
-	props: {
-		classTitulo: {
-			type: String
 		}
 	}
 }

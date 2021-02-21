@@ -35,11 +35,6 @@ export default {
 	components: {
 		paginacao
 	},
-	computed: {
-		total() {
-			return Math.ceil(this.totalRegistros / 10)
-		}
-	},
 	props: {
 		classTitulo: {
 			Type: String,
@@ -56,6 +51,11 @@ export default {
 		totalRegistros: {
 			type: Number,
 			required: true
+		}
+	},
+	computed: {
+		total() {
+			return Math.ceil(this.totalRegistros / 10)
 		}
 	},
 	methods: {

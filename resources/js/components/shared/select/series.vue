@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="serie in series" :value="serie.cod_serie" :key="serie.cod_serie">{{serie.serie}}</option>
         </select>
-        <msgSemResultado v-if="msgserie" :msg="msgserie" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiSerie from '../../../core/entidade/apiSerie'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectSeries',
@@ -31,22 +31,11 @@ export default {
     data() {
         return {
             series: [],
-            msgserie: null
+            msg: null
         }
     },
     created() {
-        this.buscaSeries()
-    },
-    methods: {
-        async buscaSeries() {
-			await apiSerie.buscaSeries().then(response => {
-				if(response.data.success) {
-					this.series = response.data.data.series
-				} else {
-					this.msgserie = response.data.error.message
-				}
-			})
-		}
+        busca.series(this)
     }
 }
 </script>

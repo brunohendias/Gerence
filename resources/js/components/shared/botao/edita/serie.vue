@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import apiDadosSerie from '../../../../core/dados/apiDadosSerie'
+import edita from '../../../../core/functions/edita'
 
 export default {
     name: 'botaoEditaSerie',
@@ -20,23 +20,8 @@ export default {
     methods: {
         atualizar() {
             this.editando = true
-            apiDadosSerie.editar(this.body, this.body.cod_serie_v).then(response => {
-                this.editando = false
-                let icon = 'success'
-                let title = ''
-                if(response.data.success) {
-                    title = response.data.data.msg
-                } else {
-                	title = response.data.error.message
-                    icon = 'error'
-                }
-                swal({ title, icon })
-            }).catch(err => {
-            	swal({
-                    title: "Erro ao atualizar as informações dessa série.",
-                    icon: 'error'
-                })
-            })
+            edita.dadosSerie(this, this.body)
+            this.editando = false
         }
     }
 }

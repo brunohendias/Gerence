@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export default {
-	listarCandidatos(filtro) {
+	busca(filtro) {
 		return axios.post('/api/v1/candidato/busca', filtro);
 	},
 
-	cadastrar(dados) {
+	cadastra(dados) {
 		return axios.post('/api/v1/candidato', dados);
 	},
 
@@ -13,7 +13,7 @@ export default {
 		return axios.put('/api/v1/candidato/'+id, dados);
 	},
 
-	deletarCandidato(id) {
+	deleta(id) {
 		return axios.delete('/api/v1/candidato/'+id);
 	}
 }

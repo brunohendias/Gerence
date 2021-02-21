@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-	listarAlunos(filtro) {
+	busca(filtro) {
 		return axios.post('/api/v1/aluno/busca', filtro);
 	},
 

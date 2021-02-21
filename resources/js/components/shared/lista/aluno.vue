@@ -23,15 +23,9 @@ export default {
 	components: {
 		templatelista
 	},
-	computed: {
-		alunosStore() {
-			return this.$store.state.alunos
-		},
-		alunos() {
-			return this.alunosStore.alunos[this.current]
-		},
-		totalRegistros() {
-			return this.alunosStore.total_registros
+	props: {
+		classTitulo: {
+			type: String
 		}
 	},
 	data() {
@@ -48,9 +42,15 @@ export default {
 			current: 0
 		}
 	},
-	props: {
-		classTitulo: {
-			type: String
+	computed: {
+		alunosStore() {
+			return this.$store.state.alunos
+		},
+		alunos() {
+			return this.alunosStore.alunos[this.current]
+		},
+		totalRegistros() {
+			return this.alunosStore.total_registros
 		}
 	}
 }

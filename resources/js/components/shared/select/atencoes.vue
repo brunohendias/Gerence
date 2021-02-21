@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="atencao in atencoes" :value="atencao.cod_atencao" :key="atencao.cod_atencao">{{atencao.atencao}}</option>
         </select>
-        <msgSemResultado v-if="msgatencao" :msg="msgatencao" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiAtencoes from '../../../core/entidade/apiAtencoes'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectAtencoes',
@@ -27,22 +27,11 @@ export default {
     data() {
         return {
             atencoes: [],
-            msgatencao: null
+            msg: null
         }
     },
     created() {
-        this.buscaAtencoes()
-    },
-    methods: {
-        async buscaAtencoes() {
-			await apiAtencoes.buscaAtencoes().then(response => {
-				if(response.data.success) {
-					this.atencoes = response.data.data.atencoes
-				} else {
-					this.msgatencao = response.data.error.message
-				}
-			})
-		},
+        busca.atencoes(this)
     }
 }
 </script>

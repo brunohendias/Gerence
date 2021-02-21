@@ -47,6 +47,6 @@ trait UtilTraits
 	 * Passa todos os caracteres para maiusculo
 	 */
 	public function upperCase($string) {
-		return mb_string($string, 'utf-8');
+		return mb_strtoupper($string, 'utf-8');
 	}
 }

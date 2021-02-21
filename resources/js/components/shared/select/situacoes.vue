@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="situacao in situacoes" :value="situacao.cod_situacao" :key="situacao.cod_situacao">{{situacao.situacao}}</option>
         </select>
-        <msgSemResultado v-if="msgsituacao" :msg="msgsituacao" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiSituacoes from '../../../core/entidade/apiSituacoes'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectSituacoes',
@@ -27,22 +27,11 @@ export default {
     data() {
         return {
             situacoes: [],
-            msgsituacao: null
+            msg: null
         }
     },
     created() {
-        this.buscaSituacoes()
-    },
-    methods: {
-        async buscaSituacoes() {
-			await apiSituacoes.buscaSituacoes().then(response => {
-				if(response.data.success) {
-					this.situacoes = response.data.data.situacoes
-				} else {
-					this.msgsituacao = response.data.error.message
-				}
-			})
-		}
+        busca.situacoes(this)
     }
 }
 </script>

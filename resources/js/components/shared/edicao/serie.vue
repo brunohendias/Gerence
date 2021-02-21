@@ -10,7 +10,7 @@
                     </div>
                     <div v-else-if="cadastrando">
                         <label for="serie">Série</label>
-                        <ModelListSelect :list="series" v-model="dados.cod_serie" option-value="cod_serie" option-text="serie" 
+                        <ModelListSelect :list="series" v-model="dados.serie" option-value="cod_serie" option-text="serie" 
                             placeholder="Selecione ou cadastre uma série" @searchchange="buscaSeries"/>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-6 mt-3">
                             <label>Limite de alunos</label>
-                            <input class="form-control" name="turma" type="text" :value="dados.limite_alunos"/>
+                            <input class="form-control" name="turma" type="text" v-model="dados.limite_alunos" maxlength="3"/>
                         </div>
                     </div>
                     <div class="row">
@@ -50,7 +50,7 @@ import botaoCadastraSerie from '../botao/cadastra/serie'
 import selectSeries from '../select/series'
 import selectTurnos from '../select/turnos'
 import selectTurmas from '../select/turmas'
-import apiSerie from '../../../core/entidade/apiSerie'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'editarSerie',
@@ -64,7 +64,9 @@ export default {
     },
     data() {
         return {
-            series: []
+            series: [],
+            turnos: [],
+            turmas: []
         }
     },
     computed: {
@@ -89,18 +91,23 @@ export default {
         }
     },
     methods: {
-        async buscaSeries(serie) {
-			await apiSerie.buscaSeries({ serie }).then(response => {
-				if(response.data.success) {
-					this.series = response.data.data.series
-                    if (this.series.length == 0) {
-                        this.dados.cod_serie = null
-                        this.dados.serie = serie
-                    }
-				} else {
-					this.msgserie = response.data.error.message
-				}
-			})
+        buscaSeries(serie) {
+            if (serie == '') {
+                return true
+            }
+            busca.series(this, { serie })
+        },
+        buscaTurnos(turno) {
+            if (turno == '') {
+                return true
+            }
+			busca.turnos(this, { turno })
+		},
+        buscaTurmas(turma) {
+            if (turma == '') {
+                return true
+            }
+			busca.turmas(this, { turma })
 		}
     }
 }

@@ -5,13 +5,13 @@
             <option value=""></option>
             <option v-for="professor in professores" :value="professor.cod_prof" :key="professor.cod_prof">{{professor.nom_prof}}</option>
         </select>
-        <msgSemResultado v-if="msgprofessor" :msg="msgprofessor" />
+        <msgSemResultado v-if="msg" :msg="msg" />
     </div>
 </template>
 
 <script>
 import msgSemResultado from '../mensagem/semResultado'
-import apiProfessor from '../../../core/entidade/apiProfessor'
+import busca from '../../../core/functions/busca'
 
 export default {
     name: 'selectAtencoes',
@@ -27,22 +27,11 @@ export default {
     data() {
         return {
             professores: [],
-            msgprofessor: null
+            msg: null
         }
     },
     created() {
-        this.buscaProfessores()
-    },
-    methods: {
-        async buscaProfessores() {
-			await apiProfessor.buscaProfessores().then(response => {
-				if(response.data.success) {
-					this.professores = response.data.data.professores
-				} else {
-					this.msgprofessor = response.data.error.message
-				}
-			})
-		},
+        busca.professores(this)
     }
 }
 </script>

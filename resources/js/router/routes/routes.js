@@ -1,7 +1,7 @@
-import Inscricoes from '../../components/telas/Inscricoes.vue'
-import Candidatos from '../../components/telas/Candidatos.vue'
-import Alunos from '../../components/telas/Alunos.vue'
-import Serie from '../../components/telas/Serie.vue'
+import Inscricoes from '../../components/tela/Inscricao.vue'
+import Candidatos from '../../components/tela/Candidato.vue'
+import Alunos from '../../components/tela/Aluno.vue'
+import Serie from '../../components/tela/Serie.vue'
 import EditaInscricao from '../../components/shared/edicao/inscricao.vue'
 import EditaSerie from '../../components/shared/edicao/serie.vue'
 

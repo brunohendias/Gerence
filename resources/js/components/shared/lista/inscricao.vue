@@ -27,15 +27,9 @@ export default {
 	components: {
 		templatelista
 	},
-	computed: {
-		inscricoesStore() {
-			return this.$store.state.inscricoes
-		},
-		inscricoes() {
-			return this.inscricoesStore.inscricoes[this.current]
-		},
-		totalRegistros() {
-			return this.inscricoesStore.total_registros
+	props: {
+		classTitulo: {
+			type: String
 		}
 	},
 	data() {
@@ -50,14 +44,20 @@ export default {
 			current: 0
 		}
 	},
+	computed: {
+		inscricoesStore() {
+			return this.$store.state.inscricoes
+		},
+		inscricoes() {
+			return this.inscricoesStore.inscricoes[this.current]
+		},
+		totalRegistros() {
+			return this.inscricoesStore.total_registros
+		}
+	},
 	methods: {
 		editainscricao(inscricao) {
 			this.$store.dispatch('selecionaInscricao', inscricao)
-		}
-	},
-	props: {
-		classTitulo: {
-			type: String
 		}
 	}
 }

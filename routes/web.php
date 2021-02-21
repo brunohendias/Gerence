@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/api')->group(function () {
 	Route::prefix('/v1')->group(function () {
 		Route::get('/turnos', 'TurnoController@index');
-		Route::get('/series', 'SerieController@index');
+		Route::prefix('/series')->group(function() {
+			Route::get('/', 'SerieController@index');
+			Route::post('/', 'SerieController@store');
+		});
 		Route::get('/turmas', 'TurmaController@index');
 		Route::resource('professores', 'ProfessorController');
 		Route::resource('atencoes', 'AtencaoController');

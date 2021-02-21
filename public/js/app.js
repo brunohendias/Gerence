@@ -2322,18 +2322,15 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     preCadastro: function preCadastro() {
       this.cadastrando = true;
-      var body = {
-        cod_serie: this.body.serie.cod_serie,
-        cod_turno: this.body.turno.cod_turno,
-        cod_turma: this.body.turma.cod_turma,
-        limite_alunos: this.body.limite_alunos
-      };
-      _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].serie(this, this.body.serie.serie);
-      /*cadastra.turno(this, this.body.turno.turno)
+      /*cadastra.serie(this, this.body.serie.serie)
+      cadastra.turno(this, this.body.turno.turno)
       cadastra.turma(this, this.body.turma.turma)*/
 
-      _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, body);
+      this.cadastro();
       this.cadastrando = false;
+    },
+    cadastro: function cadastro() {
+      _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, this.body);
     }
   }
 });
@@ -3178,7 +3175,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
 /* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
 /* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/turmas */ "./resources/js/components/shared/select/turmas.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3229,7 +3225,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ //import busca from '../../../core/functions/busca'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editarSerie',
@@ -3268,36 +3264,28 @@ __webpack_require__.r(__webpack_exports__);
         return 'Cadastrar uma série';
       }
     }
-  },
-  methods: {
-    buscaSeries: function buscaSeries(serie) {
-      if (serie == '') {
-        return true;
-      }
-
-      _core_functions_busca__WEBPACK_IMPORTED_MODULE_6__["default"].series(this, {
-        serie: serie
-      });
-    },
-    buscaTurnos: function buscaTurnos(turno) {
-      if (turno == '') {
-        return true;
-      }
-
-      _core_functions_busca__WEBPACK_IMPORTED_MODULE_6__["default"].turnos(this, {
-        turno: turno
-      });
-    },
-    buscaTurmas: function buscaTurmas(turma) {
-      if (turma == '') {
-        return true;
-      }
-
-      _core_functions_busca__WEBPACK_IMPORTED_MODULE_6__["default"].turmas(this, {
-        turma: turma
-      });
-    }
   }
+  /*methods: {
+      buscaSeries(serie) {
+          if (serie == '') {
+              return true
+          }
+          busca.series(this, { serie })
+      },
+      buscaTurnos(turno) {
+          if (turno == '') {
+              return true
+          }
+  busca.turnos(this, { turno })
+  },
+      buscaTurmas(turma) {
+          if (turma == '') {
+              return true
+          }
+  busca.turmas(this, { turma })
+  }
+  }*/
+
 });
 
 /***/ }),
@@ -43337,42 +43325,15 @@ var render = function() {
       _c("form", { attrs: { method: "POST" } }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6" }, [
-            _vm.editando
-              ? _c(
-                  "div",
-                  [
-                    _c("selectSeries", {
-                      attrs: { filtro: _vm.dados, disabled: true }
-                    })
-                  ],
-                  1
-                )
-              : _vm.cadastrando
-              ? _c(
-                  "div",
-                  [
-                    _c("label", { attrs: { for: "serie" } }, [_vm._v("Série")]),
-                    _vm._v(" "),
-                    _c("ModelListSelect", {
-                      attrs: {
-                        list: _vm.series,
-                        "option-value": "cod_serie",
-                        "option-text": "serie",
-                        placeholder: "Selecione ou cadastre uma série"
-                      },
-                      on: { searchchange: _vm.buscaSeries },
-                      model: {
-                        value: _vm.dados.serie,
-                        callback: function($$v) {
-                          _vm.$set(_vm.dados, "serie", $$v)
-                        },
-                        expression: "dados.serie"
-                      }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e()
+            _c(
+              "div",
+              [
+                _c("selectSeries", {
+                  attrs: { filtro: _vm.dados, disabled: _vm.editando }
+                })
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [

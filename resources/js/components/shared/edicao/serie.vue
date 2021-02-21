@@ -5,14 +5,14 @@
         <form method="POST">
             <div class="row">
                 <div class="col-md-6">
-                    <div v-if="editando">
-                        <selectSeries :filtro="dados" :disabled="true"/>
+                    <div>
+                        <selectSeries :filtro="dados" :disabled="editando"/>
                     </div>
-                    <div v-else-if="cadastrando">
+                    <!--div v-else-if="cadastrando">
                         <label for="serie">Série</label>
                         <ModelListSelect :list="series" v-model="dados.serie" option-value="cod_serie" option-text="serie" 
                             placeholder="Selecione ou cadastre uma série" @searchchange="buscaSeries"/>
-                    </div>
+                    </div-->
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -50,7 +50,7 @@ import botaoCadastraSerie from '../botao/cadastra/serie'
 import selectSeries from '../select/series'
 import selectTurnos from '../select/turnos'
 import selectTurmas from '../select/turmas'
-import busca from '../../../core/functions/busca'
+//import busca from '../../../core/functions/busca'
 
 export default {
     name: 'editarSerie',
@@ -90,7 +90,7 @@ export default {
             }
         }
     },
-    methods: {
+    /*methods: {
         buscaSeries(serie) {
             if (serie == '') {
                 return true
@@ -109,6 +109,6 @@ export default {
             }
 			busca.turmas(this, { turma })
 		}
-    }
+    }*/
 }
 </script>

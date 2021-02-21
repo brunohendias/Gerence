@@ -1,32 +1,18 @@
 const CARREGA_CANDIDATOS = 'CARREGA_CANDIDATOS'
 const CANDIDATO = 'CANDIDATO'
 const ATUALIZA_CANDIDATO = 'ATUALIZA_CANDIDATO'
-const ALTERA_PAGINA_CANDIDATO = 'ALTERA_PAGINA_CANDIDATO'
 const REMOVE_CANDIDATO = 'REMOVE_CANDIDATO'
 
 const state = {
-	limitePorPagina: 10,
-    pagina_atual: 0,
-    total_registros: 0,
-	candidatos: [[]],
-	candidato: {}
+	candidatos: [],
+	candidato: {},
+	total_registros: 0
 }
 
 const mutations = {
 	[CARREGA_CANDIDATOS](state, value) {
-		state.total_registros = value.length
-		state.candidatos = [[]]
-		let i = 0
-    	let qtd_por_pagina = 0
-    	for(let j in value) {
-    		if (qtd_por_pagina == state.limitePorPagina) {
-	    		qtd_por_pagina = 0
-	    		i += 1
-    			state.candidatos[i] = []
-	    	}
-	        state.candidatos[i].push(value[j])
-	        qtd_por_pagina += 1
-    	}
+		state.candidatos = value.dados
+		state.total_registros = value.total_registros
 	},
 	[CANDIDATO](state, value) {
 		state.candidato = value
@@ -34,11 +20,8 @@ const mutations = {
 	[ATUALIZA_CANDIDATO](state, value) {
 		state.candidato = value
 	},
-	[ALTERA_PAGINA_CANDIDATO](state, value) {
-		state.pagina_atual = value
-	},
 	[REMOVE_CANDIDATO](state, value) {
-		state.candidatos[state.pagina_atual].splice(value.index, 1)
+		state.candidatos[vale.pagina_atual].splice(value.index, 1)
 	}
 }
 
@@ -51,9 +34,6 @@ const actions = {
 	},
 	atualizaCandidato(context, value) {
 		context.commit('ATUALIZA_CANDIDATO', value)
-	},
-	alteraPaginaCandidato(context, value) {
-		context.commit('ALTERA_PAGINA_CANDIDATO', value)
 	},
 	removeCandidato(context, value) {
 		context.commit('REMOVE_CANDIDATO', value)

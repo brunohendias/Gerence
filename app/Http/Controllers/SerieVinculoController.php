@@ -26,14 +26,14 @@ class SerieVinculoController extends Controller
                 ->get();
 
             if ($this->Objetovazio($dadosSeries)) {
-                $msg = 'Não encontramos nenhuma serie.';
+                $msg = 'Não encontramos nenhuma série.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-        	$msg = 'Encontramos essas series com sucesso.';
-        	return $this->RespSuccess($msg, array('msg' => $msg, 'dadoseeries' => $dadosSeries));
+        	$msg = 'Encontramos essas séries com sucesso.';
+        	return $this->RespSuccess($msg, array('msg' => $msg, 'dadosseries' => $dadosSeries));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as informações da serie.'.$e->getMessage();
+            $msg = 'Houve um erro ao buscar as informações da série.'.$e->getMessage();
             return $this->RespLogErro($e, $msg, 500);
         }
     }
@@ -130,4 +130,92 @@ class SerieVinculoController extends Controller
             $msg = 'Houve um erro ao buscar as turmas para esse candidato.'.$e->getMessage();
             return $this->RespLogErro($e, $msg, 500);
         }
-    }}
+    }
+
+    public function buscaInfos(Request $request) {
+        try {
+            $cod_serie = $request->cod_serie;
+            $cod_turno = $request->cod_turno;
+            $cod_turma = $request->cod_turma;
+
+            $dadosseries = $this->serieVinculo
+                ->when($cod_serie, function ($query) use ($cod_serie) {
+                    return $query->where('cod_serie', $cod_serie);
+                })
+                ->when($cod_turno, function ($query) use ($cod_turno) {
+                    return $query->where('cod_turno', $cod_turno);
+                })
+                ->when($cod_turma, function ($query) use ($cod_turma) {
+                    return $query->where('cod_turma', $cod_turma);
+                })
+                ->with('serie')
+                ->with('turno')
+                ->with('turma')
+                ->get();
+
+            if ($this->Objetovazio($dadosseries)) {
+                $msg = 'Não encontramos nenhuma série com essas informações.';
+                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            }
+
+            $msg = 'Encontramos as séries com essas informações.';
+            return $this->RespSuccess($msg, array('msg' => $msg, 'dadosseries' => $dadosseries));
+        } catch (\Exception $e) {
+            $msg = 'Houve um erro ao buscar as séries com essas informações.'.$e->getMessage();
+            return $this->RespLogErro($e, $msg, 500);
+        }
+    }
+
+    public function store(Request $request) {
+        try {
+            $cod_serie = $request->cod_serie;
+            $cod_turno = $request->cod_turno;
+            $cod_turma = $request->cod_turma;
+
+            $existe = $this->serieVinculo
+                ->where('cod_serie',$cod_serie)
+                ->where('cod_turno',$cod_turno)
+                ->where('cod_turma',$cod_turma)
+                ->count();
+            
+            if ($existe > 0) {
+                $msg = 'Essa série já esta cadastrada com essas informações.';
+                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            }
+
+            $this->serieVinculo->cod_serie = $cod_serie;
+            $this->serieVinculo->cod_turno = $cod_turno;
+            $this->serieVinculo->cod_turma = $cod_turma;
+            $this->serieVinculo->limite_alunos = $request->limite_alunos;
+            $this->serieVinculo->save();
+
+            $msg = 'Cadastramos essa série com sucesso.';
+            return $this->RespSuccess($msg, array('msg' => $msg));
+        } catch (\Exception $e) {
+            $msg = 'Houve um erro ao cadastrar essa série.'.$e->getMessage();
+            return $this->RespLogErro($e, $msg, 500);
+        }
+    }
+
+    public function update(Request $request, $cod_serie_v) {
+        try {
+            $dadosSerie = $this->serieVinculo->select('cod_serie_v','cod_turno','cod_turma','limite_alunos')
+                ->where('cod_serie_v', $cod_serie_v)
+                ->first();
+
+            if ($this->Objetovazio($dadosSerie)) {
+                $msg = 'Não encontramos as informações dessa série.';
+                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            }
+
+            $dados = $request->only('cod_turno','cod_turma','limite_alunos');
+            $dadosSerie->update($dados);
+
+            $msg = 'Alteramos as informações dessa série com sucesso';
+            return $this->RespSuccess($msg, array('msg' => $msg));
+        } catch (\Exception $e) {
+            $msg = 'Houve um erro ao editar as informações dessa série.'.$e->getMessage();
+            return $this->RespLogErro($e, $msg, 500);
+        }
+    }
+}

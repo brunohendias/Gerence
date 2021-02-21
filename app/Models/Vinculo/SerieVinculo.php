@@ -12,7 +12,7 @@ class SerieVinculo extends Model
     protected $connection = 'mysql';
     protected $table = 'serie_v';
     protected $primaryKey = 'cod_serie_v';
-    protected $fillable = ['qtd_alunos'];
+    protected $fillable = ['qtd_alunos','cod_turno','cod_turma','limite_alunos'];
 
     public function serie()
     {

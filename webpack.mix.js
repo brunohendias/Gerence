@@ -11,23 +11,6 @@ const path = require('path');
  | file for the application as well as bundling up all the JS files.
  |
  */
-/*
- module.exports = {
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@': path.resolve('./resources/js'),
-                '@botao': path.resolve('@/components/shared/botao'),
-                '@select': path.resolve('@/components/shared/select'),
-                '@busca': path.resolve('@/components/shared/busca'),
-                '@edicao': path.resolve('@/components/shared/edicao'),
-                '@form': path.resolve('@/components/shared/form'),
-                '@lista': path.resolve('@/components/shared/lista')
-            }
-        }
-    }
-}
-*/
 
 mix.webpackConfig({
     resolve: {

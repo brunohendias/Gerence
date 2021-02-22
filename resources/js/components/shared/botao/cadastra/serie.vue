@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import cadastra from '../../../../core/functions/cadastra'
+import cadastra from '@functions/cadastra'
 
 export default {
     name: 'botaoCadastraSerie',

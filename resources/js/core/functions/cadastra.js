@@ -1,8 +1,8 @@
-import apiSerie from '../api/entidade/apiSerie'
-import apiTurno from '../api/entidade/apiTurno'
-import apiTurma from '../api/entidade/apiTurma'
-import apiCandidato from '../api/entidade/apiCandidato'
-import apiDadosSerie from '../api/dados/apiDadosSerie'
+import apiSerie from '@api/entidade/apiSerie'
+import apiTurno from '@api/entidade/apiTurno'
+import apiTurma from '@api/entidade/apiTurma'
+import apiCandidato from '@api/entidade/apiCandidato'
+import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 let icon = 'success'
 let title = ''

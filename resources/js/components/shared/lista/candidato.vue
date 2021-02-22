@@ -20,8 +20,8 @@
 
 <script>
 import templatelista from '../template/lista'
-import botaoGeraAluno from '../botao/geraAluno'
-import botaoDeletaCandidato from '../botao/deleta/candidato'
+import botaoGeraAluno from '@botao/geraAluno'
+import botaoDeletaCandidato from '@botao/deleta/candidato'
 
 export default {
 	name: 'listaCandidato',

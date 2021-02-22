@@ -69,10 +69,10 @@
 
 <script>
 import { ModelListSelect } from 'vue-search-select'
-import msgSemResultado from '../mensagem/semResultado'
-import botaoEditaInscricao from '../botao/edita/inscricao'
-import busca from '../../../core/functions/busca'
-//import limpaMsg from '../../../core/helpers/limpaMsg'
+import msgSemResultado from '@msg/semResultado'
+import botaoEditaInscricao from '@botao/edita/inscricao'
+import busca from '@functions/busca'
+//import limpaMsg from '@helpers/limpaMsg'
 
 export default {
     name: 'editarInscricao',

@@ -2924,15 +2924,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _botao_geraAluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @botao/geraAluno */ "./resources/js/components/shared/botao/geraAluno.vue");
-/* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
-/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @botao/busca/inscricao */ "./resources/js/components/shared/botao/busca/inscricao.vue");
-/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
+/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @botao/busca/inscricao */ "./resources/js/components/shared/botao/busca/inscricao.vue");
+/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2967,8 +2966,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-
 
 
 
@@ -2980,15 +2977,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'buscaInscricao',
   components: {
-    templateBusca: _template_busca__WEBPACK_IMPORTED_MODULE_1__["default"],
-    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__["default"],
-    selectSeries: _select_series__WEBPACK_IMPORTED_MODULE_3__["default"],
-    selectTurnos: _select_turnos__WEBPACK_IMPORTED_MODULE_4__["default"],
-    botaoBuscaInscricao: _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_5__["default"],
-    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_6__["default"],
-    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_8__["default"],
-    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_7__["default"],
-    teste: _botao_geraAluno__WEBPACK_IMPORTED_MODULE_0__["default"]
+    templateBusca: _template_busca__WEBPACK_IMPORTED_MODULE_0__["default"],
+    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_1__["default"],
+    selectSeries: _select_series__WEBPACK_IMPORTED_MODULE_2__["default"],
+    selectTurnos: _select_turnos__WEBPACK_IMPORTED_MODULE_3__["default"],
+    botaoBuscaInscricao: _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_4__["default"],
+    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_5__["default"],
+    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_7__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   props: {
     classTitulo: {
@@ -42916,9 +42912,7 @@ var render = function() {
                     _vm.msg = $event
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c("teste")
+              })
             ],
             1
           ),

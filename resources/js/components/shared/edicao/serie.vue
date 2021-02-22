@@ -45,12 +45,12 @@
 
 <script>
 import { ModelListSelect } from 'vue-search-select'
-import botaoEditaSerie from '../botao/edita/serie'
-import botaoCadastraSerie from '../botao/cadastra/serie'
-import selectSeries from '../select/series'
-import selectTurnos from '../select/turnos'
-import selectTurmas from '../select/turmas'
-//import busca from '../../../core/functions/busca'
+import botaoEditaSerie from '@botao/edita/serie'
+import botaoCadastraSerie from '@botao/cadastra/serie'
+import selectSeries from '@select/series'
+import selectTurnos from '@select/turnos'
+import selectTurmas from '@select/turmas'
+//import busca from '@functions/busca'
 
 export default {
     name: 'editarSerie',

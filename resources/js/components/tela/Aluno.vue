@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import buscaAluno from '../shared/busca/aluno'
-import listaAluno from '../shared/lista/aluno'
+import buscaAluno from '@busca/aluno'
+import listaAluno from '@lista/aluno'
 
 export default {
 	name: 'Alunos',

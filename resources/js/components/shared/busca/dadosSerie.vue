@@ -31,13 +31,13 @@
 
 <script>
 import templateBusca from '../template/busca'
-import selectSeries from '../select/series'
-import selectTurnos from '../select/turnos'
-import selectTurmas from '../select/turmas'
-import botaoBuscaSerie from '../botao/busca/serie'
-import msgSucesso from '../mensagem/sucesso'
-import msgSemResultado from '../mensagem/semResultado'
-import msgError from '../mensagem/error'
+import selectSeries from '@select/series'
+import selectTurnos from '@select/turnos'
+import selectTurmas from '@select/turmas'
+import botaoBuscaSerie from '@botao/busca/serie'
+import msgSucesso from '@msg/sucesso'
+import msgSemResultado from '@msg/semResultado'
+import msgError from '@msg/error'
 
 export default {
     name: 'buscaDadosSerie',

@@ -1,4 +1,4 @@
-import apiDadosSerie from '../api/dados/apiDadosSerie'
+import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 let icon = 'success'
 let title = ''

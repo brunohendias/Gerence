@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import busca from '../../../../core/functions/busca'
+import busca from '@functions/busca'
 
 export default {
 	name: 'botaoBuscaAluno',

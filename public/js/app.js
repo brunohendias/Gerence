@@ -2033,7 +2033,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -2060,7 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
       this.buscando = true;
       this.$emit('msgSuccess', null);
       this.$emit('msgError', null);
-      _core_functions_busca__WEBPACK_IMPORTED_MODULE_0__["default"].alunos(this, this.filtro);
+      _functions_busca__WEBPACK_IMPORTED_MODULE_0__["default"].alunos(this, this.filtro);
       this.buscando = false;
     },
     mostraMensagem: function mostraMensagem(mensagem) {
@@ -2082,7 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2125,7 +2125,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$emit('msgError', null);
 
-                _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].candidatos(_this, _this.filtro);
+                _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].candidatos(_this, _this.filtro);
                 _this.buscando = false;
 
               case 5:
@@ -2155,7 +2155,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2198,7 +2198,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$emit('msgError', null);
 
-                _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].inscricoes(_this, _this.filtro);
+                _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].inscricoes(_this, _this.filtro);
                 _this.buscando = false;
 
               case 5:
@@ -2228,7 +2228,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2271,7 +2271,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$emit('msgError', null);
 
-                _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].dadosSeries(_this, _this.filtro);
+                _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].dadosSeries(_this, _this.filtro);
                 _this.buscando = false;
 
               case 5:
@@ -2299,7 +2299,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/functions/cadastra */ "./resources/js/core/functions/cadastra.js");
+/* harmony import */ var _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/cadastra */ "./resources/js/core/functions/cadastra.js");
 //
 //
 //
@@ -2330,7 +2330,7 @@ __webpack_require__.r(__webpack_exports__);
       this.cadastrando = false;
     },
     cadastro: function cadastro() {
-      _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, this.body);
+      _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, this.body);
     }
   }
 });
@@ -2348,7 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_functions_deleta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/functions/deleta */ "./resources/js/core/functions/deleta.js");
+/* harmony import */ var _functions_deleta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/deleta */ "./resources/js/core/functions/deleta.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2404,7 +2404,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           case 0:
                             if (willdelete) {
                               id = _this.candidato ? _this.candidato.cod_can : _this.candidatoAtual.cod_can;
-                              _core_functions_deleta__WEBPACK_IMPORTED_MODULE_1__["default"].candidato(_this, id);
+                              _functions_deleta__WEBPACK_IMPORTED_MODULE_1__["default"].candidato(_this, id);
                             }
 
                           case 1:
@@ -2442,7 +2442,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/functions/cadastra */ "./resources/js/core/functions/cadastra.js");
+/* harmony import */ var _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/cadastra */ "./resources/js/core/functions/cadastra.js");
 //
 //
 //
@@ -2461,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     atualizar: function atualizar() {
-      _core_functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].candidato(this, this.candidato);
+      _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__["default"].candidato(this, this.candidato);
     }
   }
 });
@@ -2477,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core_functions_edita__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/functions/edita */ "./resources/js/core/functions/edita.js");
+/* harmony import */ var _functions_edita__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/edita */ "./resources/js/core/functions/edita.js");
 //
 //
 //
@@ -2498,7 +2498,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     atualizar: function atualizar() {
       this.editando = true;
-      _core_functions_edita__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, this.body);
+      _functions_edita__WEBPACK_IMPORTED_MODULE_0__["default"].dadosSerie(this, this.body);
       this.editando = false;
     }
   }
@@ -2515,7 +2515,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core_api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../core/api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
+/* harmony import */ var _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
 //
 //
 //
@@ -2539,7 +2539,7 @@ __webpack_require__.r(__webpack_exports__);
     geraAluno: function geraAluno() {
       var filtro = this.candidato ? this.candidato : this.novoAluno;
       filtro.cod_situacao = filtro.cod_situacao ? filtro.cod_situacao : 3;
-      _core_api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_0__["default"].gerarAluno(filtro).then(function (response) {
+      _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_0__["default"].gerarAluno(filtro).then(function (response) {
         var title = '';
         var icon = '';
 
@@ -2572,18 +2572,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
-/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
-/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
-/* harmony import */ var _select_professores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/professores */ "./resources/js/components/shared/select/professores.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../select/turmas */ "./resources/js/components/shared/select/turmas.vue");
-/* harmony import */ var _select_atencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../select/atencoes */ "./resources/js/components/shared/select/atencoes.vue");
-/* harmony import */ var _select_situacoes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../select/situacoes */ "./resources/js/components/shared/select/situacoes.vue");
-/* harmony import */ var _botao_busca_aluno__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../botao/busca/aluno */ "./resources/js/components/shared/botao/busca/aluno.vue");
-/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
+/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
+/* harmony import */ var _select_professores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/professores */ "./resources/js/components/shared/select/professores.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @select/turmas */ "./resources/js/components/shared/select/turmas.vue");
+/* harmony import */ var _select_atencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @select/atencoes */ "./resources/js/components/shared/select/atencoes.vue");
+/* harmony import */ var _select_situacoes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @select/situacoes */ "./resources/js/components/shared/select/situacoes.vue");
+/* harmony import */ var _botao_busca_aluno__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @botao/busca/aluno */ "./resources/js/components/shared/botao/busca/aluno.vue");
+/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2674,9 +2674,9 @@ __webpack_require__.r(__webpack_exports__);
     selectAtencoes: _select_atencoes__WEBPACK_IMPORTED_MODULE_7__["default"],
     selectSituacoes: _select_situacoes__WEBPACK_IMPORTED_MODULE_8__["default"],
     botaoBuscaAluno: _botao_busca_aluno__WEBPACK_IMPORTED_MODULE_9__["default"],
-    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_10__["default"],
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_11__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_12__["default"]
+    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_10__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_11__["default"],
+    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_12__["default"]
   },
   props: {
     classTitulo: {
@@ -2706,17 +2706,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
-/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
-/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
-/* harmony import */ var _select_professores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/professores */ "./resources/js/components/shared/select/professores.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../select/turmas */ "./resources/js/components/shared/select/turmas.vue");
-/* harmony import */ var _select_atencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../select/atencoes */ "./resources/js/components/shared/select/atencoes.vue");
-/* harmony import */ var _botao_busca_candidato__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../botao/busca/candidato */ "./resources/js/components/shared/botao/busca/candidato.vue");
-/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _form_inputNome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @form/inputNome */ "./resources/js/components/shared/form/inputNome.vue");
+/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
+/* harmony import */ var _select_professores__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/professores */ "./resources/js/components/shared/select/professores.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @select/turmas */ "./resources/js/components/shared/select/turmas.vue");
+/* harmony import */ var _select_atencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @select/atencoes */ "./resources/js/components/shared/select/atencoes.vue");
+/* harmony import */ var _botao_busca_candidato__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @botao/busca/candidato */ "./resources/js/components/shared/botao/busca/candidato.vue");
+/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2797,9 +2797,9 @@ __webpack_require__.r(__webpack_exports__);
     selectTurmas: _select_turmas__WEBPACK_IMPORTED_MODULE_6__["default"],
     selectAtencoes: _select_atencoes__WEBPACK_IMPORTED_MODULE_7__["default"],
     botaoBuscaCandidato: _botao_busca_candidato__WEBPACK_IMPORTED_MODULE_8__["default"],
-    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_9__["default"],
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_10__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_11__["default"]
+    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_9__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_10__["default"],
+    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   props: {
     classTitulo: {
@@ -2829,13 +2829,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/turmas */ "./resources/js/components/shared/select/turmas.vue");
-/* harmony import */ var _botao_busca_serie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../botao/busca/serie */ "./resources/js/components/shared/botao/busca/serie.vue");
-/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/turmas */ "./resources/js/components/shared/select/turmas.vue");
+/* harmony import */ var _botao_busca_serie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @botao/busca/serie */ "./resources/js/components/shared/botao/busca/serie.vue");
+/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2883,9 +2883,9 @@ __webpack_require__.r(__webpack_exports__);
     selectTurnos: _select_turnos__WEBPACK_IMPORTED_MODULE_2__["default"],
     selectTurmas: _select_turmas__WEBPACK_IMPORTED_MODULE_3__["default"],
     botaoBuscaSerie: _botao_busca_serie__WEBPACK_IMPORTED_MODULE_4__["default"],
-    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__["default"],
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_7__["default"]
+    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_5__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_6__["default"],
+    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   props: {
     classTitulo: {
@@ -2924,14 +2924,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
-/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../botao/busca/inscricao */ "./resources/js/components/shared/botao/busca/inscricao.vue");
-/* harmony import */ var _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mensagem/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _mensagem_error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mensagem/error */ "./resources/js/components/shared/mensagem/error.vue");
+/* harmony import */ var _botao_geraAluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @botao/geraAluno */ "./resources/js/components/shared/botao/geraAluno.vue");
+/* harmony import */ var _template_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../template/busca */ "./resources/js/components/shared/template/busca.vue");
+/* harmony import */ var _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @form/inputCpf */ "./resources/js/components/shared/form/inputCpf.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @botao/busca/inscricao */ "./resources/js/components/shared/botao/busca/inscricao.vue");
+/* harmony import */ var _msg_sucesso__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @msg/sucesso */ "./resources/js/components/shared/mensagem/sucesso.vue");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _msg_error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @msg/error */ "./resources/js/components/shared/mensagem/error.vue");
 //
 //
 //
@@ -2966,6 +2967,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -2977,14 +2980,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'buscaInscricao',
   components: {
-    templateBusca: _template_busca__WEBPACK_IMPORTED_MODULE_0__["default"],
-    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_1__["default"],
-    selectSeries: _select_series__WEBPACK_IMPORTED_MODULE_2__["default"],
-    selectTurnos: _select_turnos__WEBPACK_IMPORTED_MODULE_3__["default"],
-    botaoBuscaInscricao: _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_4__["default"],
-    msgSucesso: _mensagem_sucesso__WEBPACK_IMPORTED_MODULE_5__["default"],
-    msgError: _mensagem_error__WEBPACK_IMPORTED_MODULE_7__["default"],
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_6__["default"]
+    templateBusca: _template_busca__WEBPACK_IMPORTED_MODULE_1__["default"],
+    inputCpf: _form_inputCpf__WEBPACK_IMPORTED_MODULE_2__["default"],
+    selectSeries: _select_series__WEBPACK_IMPORTED_MODULE_3__["default"],
+    selectTurnos: _select_turnos__WEBPACK_IMPORTED_MODULE_4__["default"],
+    botaoBuscaInscricao: _botao_busca_inscricao__WEBPACK_IMPORTED_MODULE_5__["default"],
+    msgSucesso: _msg_sucesso__WEBPACK_IMPORTED_MODULE_6__["default"],
+    msgError: _msg_error__WEBPACK_IMPORTED_MODULE_8__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_7__["default"],
+    teste: _botao_geraAluno__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     classTitulo: {
@@ -3015,9 +3019,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _botao_edita_inscricao__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../botao/edita/inscricao */ "./resources/js/components/shared/botao/edita/inscricao.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _botao_edita_inscricao__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @botao/edita/inscricao */ "./resources/js/components/shared/botao/edita/inscricao.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3090,13 +3094,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import limpaMsg from '../../../core/helpers/limpaMsg'
+ //import limpaMsg from '@helpers/limpaMsg'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editarInscricao',
   components: {
     ModelListSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_0__["ModelListSelect"],
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_1__["default"],
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_1__["default"],
     botaoEditaInscricao: _botao_edita_inscricao__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
@@ -3121,7 +3125,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].atencoes(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].atencoes(this);
   },
   computed: {
     inscricao: function inscricao() {
@@ -3144,15 +3148,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     'inscricao.turno': function inscricaoTurno(newValue) {
       if (!newValue) {
-        _core_functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].turnos(this);
+        _functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].turnos(this);
       } else if (newValue) {
         this.turnos = [];
         this.turnos = [newValue];
-        !this.inscricao.cod_turma ? _core_functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].turmas(this) : null;
+        !this.inscricao.cod_turma ? _functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].turmas(this) : null;
       }
     },
     'inscricao.cod_atencao': function inscricaoCod_atencao() {
-      _core_functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].dadosProfessores(this, this.filtro);
+      _functions_busca__WEBPACK_IMPORTED_MODULE_3__["default"].dadosProfessores(this, this.filtro);
     }
   }
 });
@@ -3170,11 +3174,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _botao_edita_serie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../botao/edita/serie */ "./resources/js/components/shared/botao/edita/serie.vue");
-/* harmony import */ var _botao_cadastra_serie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../botao/cadastra/serie */ "./resources/js/components/shared/botao/cadastra/serie.vue");
-/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../select/series */ "./resources/js/components/shared/select/series.vue");
-/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../select/turnos */ "./resources/js/components/shared/select/turnos.vue");
-/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../select/turmas */ "./resources/js/components/shared/select/turmas.vue");
+/* harmony import */ var _botao_edita_serie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @botao/edita/serie */ "./resources/js/components/shared/botao/edita/serie.vue");
+/* harmony import */ var _botao_cadastra_serie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @botao/cadastra/serie */ "./resources/js/components/shared/botao/cadastra/serie.vue");
+/* harmony import */ var _select_series__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @select/series */ "./resources/js/components/shared/select/series.vue");
+/* harmony import */ var _select_turnos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @select/turnos */ "./resources/js/components/shared/select/turnos.vue");
+/* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @select/turmas */ "./resources/js/components/shared/select/turmas.vue");
 //
 //
 //
@@ -3225,7 +3229,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import busca from '../../../core/functions/busca'
+ //import busca from '@functions/busca'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editarSerie',
@@ -3430,8 +3434,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_lista__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../template/lista */ "./resources/js/components/shared/template/lista.vue");
-/* harmony import */ var _botao_geraAluno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../botao/geraAluno */ "./resources/js/components/shared/botao/geraAluno.vue");
-/* harmony import */ var _botao_deleta_candidato__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../botao/deleta/candidato */ "./resources/js/components/shared/botao/deleta/candidato.vue");
+/* harmony import */ var _botao_geraAluno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @botao/geraAluno */ "./resources/js/components/shared/botao/geraAluno.vue");
+/* harmony import */ var _botao_deleta_candidato__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @botao/deleta/candidato */ "./resources/js/components/shared/botao/deleta/candidato.vue");
 //
 //
 //
@@ -3791,8 +3795,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3809,7 +3813,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectAtencoes',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -3824,7 +3828,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].atencoes(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].atencoes(this);
   }
 });
 
@@ -3839,8 +3843,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3857,7 +3861,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectAtencoes',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -3872,7 +3876,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].professores(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].professores(this);
   }
 });
 
@@ -3887,8 +3891,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3905,7 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectSeries',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -3924,7 +3928,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].series(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].series(this);
   }
 });
 
@@ -3939,8 +3943,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -3957,7 +3961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectSituacoes',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -3972,7 +3976,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].situacoes(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].situacoes(this);
   }
 });
 
@@ -3987,8 +3991,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -4005,7 +4009,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectTurmas',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -4020,7 +4024,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].turmas(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].turmas(this);
   }
 });
 
@@ -4035,8 +4039,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mensagem/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
-/* harmony import */ var _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../core/functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @msg/semResultado */ "./resources/js/components/shared/mensagem/semResultado.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -4053,7 +4057,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'selectTurnos',
   components: {
-    msgSemResultado: _mensagem_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
+    msgSemResultado: _msg_semResultado__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     filtro: {
@@ -4068,7 +4072,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    _core_functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].turnos(this);
+    _functions_busca__WEBPACK_IMPORTED_MODULE_1__["default"].turnos(this);
   }
 });
 
@@ -4200,8 +4204,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shared_busca_aluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/busca/aluno */ "./resources/js/components/shared/busca/aluno.vue");
-/* harmony import */ var _shared_lista_aluno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/lista/aluno */ "./resources/js/components/shared/lista/aluno.vue");
+/* harmony import */ var _busca_aluno__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @busca/aluno */ "./resources/js/components/shared/busca/aluno.vue");
+/* harmony import */ var _lista_aluno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @lista/aluno */ "./resources/js/components/shared/lista/aluno.vue");
 //
 //
 //
@@ -4214,8 +4218,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Alunos',
   components: {
-    buscaAluno: _shared_busca_aluno__WEBPACK_IMPORTED_MODULE_0__["default"],
-    listaAluno: _shared_lista_aluno__WEBPACK_IMPORTED_MODULE_1__["default"]
+    buscaAluno: _busca_aluno__WEBPACK_IMPORTED_MODULE_0__["default"],
+    listaAluno: _lista_aluno__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -4235,8 +4239,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shared_busca_candidato__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/busca/candidato */ "./resources/js/components/shared/busca/candidato.vue");
-/* harmony import */ var _shared_lista_candidato__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/lista/candidato */ "./resources/js/components/shared/lista/candidato.vue");
+/* harmony import */ var _busca_candidato__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @busca/candidato */ "./resources/js/components/shared/busca/candidato.vue");
+/* harmony import */ var _lista_candidato__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @lista/candidato */ "./resources/js/components/shared/lista/candidato.vue");
 //
 //
 //
@@ -4249,8 +4253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Candidatos',
   components: {
-    buscaCandidato: _shared_busca_candidato__WEBPACK_IMPORTED_MODULE_0__["default"],
-    listaCandidato: _shared_lista_candidato__WEBPACK_IMPORTED_MODULE_1__["default"]
+    buscaCandidato: _busca_candidato__WEBPACK_IMPORTED_MODULE_0__["default"],
+    listaCandidato: _lista_candidato__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -4270,8 +4274,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shared_busca_inscricao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/busca/inscricao */ "./resources/js/components/shared/busca/inscricao.vue");
-/* harmony import */ var _shared_lista_inscricao__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/lista/inscricao */ "./resources/js/components/shared/lista/inscricao.vue");
+/* harmony import */ var _busca_inscricao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @busca/inscricao */ "./resources/js/components/shared/busca/inscricao.vue");
+/* harmony import */ var _lista_inscricao__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @lista/inscricao */ "./resources/js/components/shared/lista/inscricao.vue");
 //
 //
 //
@@ -4284,8 +4288,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Inscricoes',
   components: {
-    buscaInscricao: _shared_busca_inscricao__WEBPACK_IMPORTED_MODULE_0__["default"],
-    listaInscricao: _shared_lista_inscricao__WEBPACK_IMPORTED_MODULE_1__["default"]
+    buscaInscricao: _busca_inscricao__WEBPACK_IMPORTED_MODULE_0__["default"],
+    listaInscricao: _lista_inscricao__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -4305,8 +4309,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shared_busca_dadosSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/busca/dadosSerie */ "./resources/js/components/shared/busca/dadosSerie.vue");
-/* harmony import */ var _shared_lista_dadosSerie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/lista/dadosSerie */ "./resources/js/components/shared/lista/dadosSerie.vue");
+/* harmony import */ var _busca_dadosSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @busca/dadosSerie */ "./resources/js/components/shared/busca/dadosSerie.vue");
+/* harmony import */ var _lista_dadosSerie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @lista/dadosSerie */ "./resources/js/components/shared/lista/dadosSerie.vue");
 //
 //
 //
@@ -4319,8 +4323,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Serie',
   components: {
-    buscaDadosSerie: _shared_busca_dadosSerie__WEBPACK_IMPORTED_MODULE_0__["default"],
-    listaDadosSerie: _shared_lista_dadosSerie__WEBPACK_IMPORTED_MODULE_1__["default"]
+    buscaDadosSerie: _busca_dadosSerie__WEBPACK_IMPORTED_MODULE_0__["default"],
+    listaDadosSerie: _lista_dadosSerie__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -42912,7 +42916,9 @@ var render = function() {
                     _vm.msg = $event
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("teste")
             ],
             1
           ),
@@ -69300,18 +69306,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
-/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
-/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
-/* harmony import */ var _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/entidade/apiAtencoes */ "./resources/js/core/api/entidade/apiAtencoes.js");
-/* harmony import */ var _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/entidade/apiSituacoes */ "./resources/js/core/api/entidade/apiSituacoes.js");
-/* harmony import */ var _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api/entidade/apiProfessor */ "./resources/js/core/api/entidade/apiProfessor.js");
-/* harmony import */ var _api_entidade_apiInscricao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api/entidade/apiInscricao */ "./resources/js/core/api/entidade/apiInscricao.js");
-/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
-/* harmony import */ var _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
-/* harmony import */ var _api_dados_apiDadosProfessor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../api/dados/apiDadosProfessor */ "./resources/js/core/api/dados/apiDadosProfessor.js");
-/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
-/* harmony import */ var _helpers_paginaArray__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../helpers/paginaArray */ "./resources/js/core/helpers/paginaArray.js");
+/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
+/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
+/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
+/* harmony import */ var _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @api/entidade/apiAtencoes */ "./resources/js/core/api/entidade/apiAtencoes.js");
+/* harmony import */ var _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @api/entidade/apiSituacoes */ "./resources/js/core/api/entidade/apiSituacoes.js");
+/* harmony import */ var _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @api/entidade/apiProfessor */ "./resources/js/core/api/entidade/apiProfessor.js");
+/* harmony import */ var _api_entidade_apiInscricao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @api/entidade/apiInscricao */ "./resources/js/core/api/entidade/apiInscricao.js");
+/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
+/* harmony import */ var _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
+/* harmony import */ var _api_dados_apiDadosProfessor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @api/dados/apiDadosProfessor */ "./resources/js/core/api/dados/apiDadosProfessor.js");
+/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
+/* harmony import */ var _helpers_paginaArray__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @helpers/paginaArray */ "./resources/js/core/helpers/paginaArray.js");
 
 
 
@@ -69540,11 +69546,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
-/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
-/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
-/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
-/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
+/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
+/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
+/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
+/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
+/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
 
 
 
@@ -69673,7 +69679,7 @@ var title = '';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
+/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
 
 var icon = 'success';
 var title = '';
@@ -69714,7 +69720,7 @@ var title = '';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
+/* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
 
 var icon = 'success';
 var title = '';
@@ -69807,12 +69813,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/tela/Inscricao.vue */ "./resources/js/components/tela/Inscricao.vue");
-/* harmony import */ var _components_tela_Candidato_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/tela/Candidato.vue */ "./resources/js/components/tela/Candidato.vue");
-/* harmony import */ var _components_tela_Aluno_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/tela/Aluno.vue */ "./resources/js/components/tela/Aluno.vue");
-/* harmony import */ var _components_tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/tela/Serie.vue */ "./resources/js/components/tela/Serie.vue");
-/* harmony import */ var _components_shared_edicao_inscricao_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/shared/edicao/inscricao.vue */ "./resources/js/components/shared/edicao/inscricao.vue");
-/* harmony import */ var _components_shared_edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/shared/edicao/serie.vue */ "./resources/js/components/shared/edicao/serie.vue");
+/* harmony import */ var _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tela/Inscricao.vue */ "./resources/js/components/tela/Inscricao.vue");
+/* harmony import */ var _tela_Candidato_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tela/Candidato.vue */ "./resources/js/components/tela/Candidato.vue");
+/* harmony import */ var _tela_Aluno_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tela/Aluno.vue */ "./resources/js/components/tela/Aluno.vue");
+/* harmony import */ var _tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tela/Serie.vue */ "./resources/js/components/tela/Serie.vue");
+/* harmony import */ var _edicao_inscricao_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @edicao/inscricao.vue */ "./resources/js/components/shared/edicao/inscricao.vue");
+/* harmony import */ var _edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @edicao/serie.vue */ "./resources/js/components/shared/edicao/serie.vue");
 
 
 
@@ -69823,52 +69829,52 @@ var routes = [{
   path: '/',
   name: 'listas',
   icon: 'fas fa-file-alt',
-  component: _components_tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  component: _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/inscricao',
   name: 'inscricao',
   icon: 'fas fa-file-alt',
   parentMenu: 'listas',
-  component: _components_tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  component: _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/candidato',
   name: 'candidato',
   icon: 'fas fa-address-card',
   parentMenu: 'listas',
-  component: _components_tela_Candidato_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  component: _tela_Candidato_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/aluno',
   name: 'aluno',
   icon: 'fas fa-user-graduate',
   parentMenu: 'listas',
-  component: _components_tela_Aluno_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _tela_Aluno_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: '/config',
   name: 'configurações',
   icon: 'fas fa-cogs',
-  component: _components_tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/config/serie',
   name: 'série',
   icon: 'fas fa-chalkboard',
   parentMenu: 'configurações',
-  component: _components_tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/editainscricao',
   name: 'editainscricao',
-  component: _components_shared_edicao_inscricao_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _edicao_inscricao_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/editaserie',
   name: 'editaserie',
-  component: _components_shared_edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/cadastraserie',
   name: 'cadastraserie',
-  component: _components_shared_edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _edicao_serie_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '*',
   name: 'not_found',
-  component: _components_tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  component: _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 

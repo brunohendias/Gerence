@@ -21,6 +21,7 @@
 			<div class="row">
 				<div class="col-md-2 pt-1">
 					<botaoBuscaInscricao @msg="msg = $event" :filtro="filtro"/>
+					<teste />
 				</div>
 				<div class="col-md-10">
 					<msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
@@ -33,14 +34,15 @@
 </template>
 
 <script>
+import teste from '@botao/geraAluno'
 import templateBusca from '../template/busca'
-import inputCpf from '../form/inputCpf'
-import selectSeries from '../select/series'
-import selectTurnos from '../select/turnos'
-import botaoBuscaInscricao from '../botao/busca/inscricao'
-import msgSucesso from '../mensagem/sucesso'
-import msgSemResultado from '../mensagem/semResultado'
-import msgError from '../mensagem/error'
+import inputCpf from '@form/inputCpf'
+import selectSeries from '@select/series'
+import selectTurnos from '@select/turnos'
+import botaoBuscaInscricao from '@botao/busca/inscricao'
+import msgSucesso from '@msg/sucesso'
+import msgSemResultado from '@msg/semResultado'
+import msgError from '@msg/error'
 
 export default {
 	name: 'buscaInscricao',
@@ -52,7 +54,8 @@ export default {
 		botaoBuscaInscricao,
 		msgSucesso,
 		msgError,
-		msgSemResultado
+		msgSemResultado,
+		teste
 	},
 	props: {
 		classTitulo: {

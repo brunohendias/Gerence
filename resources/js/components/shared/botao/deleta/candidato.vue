@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import deleta from '../../../../core/functions/deleta'
+import deleta from '@functions/deleta'
 
 export default {
 	name: 'botaoDeletaCandidato',

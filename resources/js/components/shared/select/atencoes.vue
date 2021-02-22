@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import msgSemResultado from '../mensagem/semResultado'
-import busca from '../../../core/functions/busca'
+import msgSemResultado from '@msg/semResultado'
+import busca from '@functions/busca'
 
 export default {
     name: 'selectAtencoes',

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import edita from '../../../../core/functions/edita'
+import edita from '@functions/edita'
 
 export default {
     name: 'botaoEditaSerie',

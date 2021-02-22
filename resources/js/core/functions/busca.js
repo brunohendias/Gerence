@@ -1,16 +1,16 @@
-import apiTurma from '../api/entidade/apiTurma'
-import apiTurno from '../api/entidade/apiTurno'
-import apiSerie from '../api/entidade/apiSerie'
-import apiAtencoes from '../api/entidade/apiAtencoes'
-import apiSituacoes from '../api/entidade/apiSituacoes'
-import apiProfessor from '../api/entidade/apiProfessor'
-import apiInscricao from '../api/entidade/apiInscricao'
-import apiCandidato from '../api/entidade/apiCandidato'
-import apiAluno from '../api/entidade/apiAluno'
-import apiDadosProfessor from '../api/dados/apiDadosProfessor'
-import apiDadosSerie from '../api/dados/apiDadosSerie'
+import apiTurma from '@api/entidade/apiTurma'
+import apiTurno from '@api/entidade/apiTurno'
+import apiSerie from '@api/entidade/apiSerie'
+import apiAtencoes from '@api/entidade/apiAtencoes'
+import apiSituacoes from '@api/entidade/apiSituacoes'
+import apiProfessor from '@api/entidade/apiProfessor'
+import apiInscricao from '@api/entidade/apiInscricao'
+import apiCandidato from '@api/entidade/apiCandidato'
+import apiAluno from '@api/entidade/apiAluno'
+import apiDadosProfessor from '@api/dados/apiDadosProfessor'
+import apiDadosSerie from '@api/dados/apiDadosSerie'
 
-import paginaArray from '../helpers/paginaArray'
+import paginaArray from '@helpers/paginaArray'
 
 export default {
 

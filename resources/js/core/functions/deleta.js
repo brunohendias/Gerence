@@ -1,4 +1,4 @@
-import apiCandidato from '../api/entidade/apiCandidato'
+import apiCandidato from '@api/entidade/apiCandidato'
 
 let icon = 'success'
 let title = ''

@@ -1,9 +1,9 @@
-import Inscricoes from '../../components/tela/Inscricao.vue'
-import Candidatos from '../../components/tela/Candidato.vue'
-import Alunos from '../../components/tela/Aluno.vue'
-import Serie from '../../components/tela/Serie.vue'
-import EditaInscricao from '../../components/shared/edicao/inscricao.vue'
-import EditaSerie from '../../components/shared/edicao/serie.vue'
+import Inscricoes from '@tela/Inscricao.vue'
+import Candidatos from '@tela/Candidato.vue'
+import Alunos from '@tela/Aluno.vue'
+import Serie from '@tela/Serie.vue'
+import EditaInscricao from '@edicao/inscricao.vue'
+import EditaSerie from '@edicao/serie.vue'
 
 const routes = [
 	{

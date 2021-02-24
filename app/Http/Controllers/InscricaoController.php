@@ -55,7 +55,7 @@ class InscricaoController extends Controller
             $msg = 'Inscrições buscadas com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg, 'inscricoes' => $inscricoes));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as inscrições.'.$e->getMessage();
+            $msg = 'Houve um erro ao buscar as inscrições.';
             return $this->RespLogErro($e, $msg, 500);
         }
     }
@@ -83,7 +83,7 @@ class InscricaoController extends Controller
             $msg = 'Inscrição buscada com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg, 'inscricao' => $inscricao));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar a inscrição.'.$e->getMessage();
+            $msg = 'Houve um erro ao buscar a inscrição.';
             return $this->RespLogErro($e, $msg, 500);
         }
     }

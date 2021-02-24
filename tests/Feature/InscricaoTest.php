@@ -23,10 +23,24 @@ class InscricaoTest extends TestCase
     /** @test */
     public function if_success_get_specific_subscription()
     {
-        $this->response = $this->get($this->url.'/1');
+        $cod_serie = 1;
+
+        $this->response = $this->get($this->url."/$cod_serie");
 
         $this->msg = 'Inscrição buscada com sucesso.';
 
+        $this->response->assertJsonPath('data.inscricao.serie.cod_serie', $cod_serie);
+
         $this->return_success();
+    }
+
+    /** @test */
+    public function if_failed_get_specific_subscription()
+    {
+        $this->response = $this->get($this->url.'/a');
+
+        $this->msg = 'Não encontramos nenhuma inscrição.';
+
+        $this->return_not_found();
     }
 }

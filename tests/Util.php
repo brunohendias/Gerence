@@ -4,9 +4,9 @@ namespace Tests;
 
 trait Util {
     
-    public $response;
+    protected $response;
 
-    public $msg;
+    protected $msg;
 
     private $checkSuccess = [
         'status' => 200,
@@ -14,19 +14,20 @@ trait Util {
     ];
 
     private $checkFailed = [
-        'status' => 400,
+        'status' => 500,
         'success' => false
     ];
 
-    public function return_success() {
+    protected function return_success() {
+        //$this->response->dump();
         $this->response->assertStatus(200)
             ->assertJson($this->checkSuccess)
             ->assertJsonPath('data.msg', $this->msg);
     }
 
-    public function return_failed() {
+    protected function return_not_found() {
         $this->response->assertStatus(200)
             ->assertJson($this->checkFailed)
-            ->assertJsonPath('data.msg', $this->msg);
+            ->assertJsonPath('error.message', $this->msg);
     }
 }

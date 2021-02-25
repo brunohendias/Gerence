@@ -26,11 +26,7 @@ Route::prefix('/api')->group(function () {
 		Route::resource('candidato', 'CandidatoController');
 
 		Route::prefix('/serievinculo')->group(function() {
-			Route::get('/', 'SerieVinculoController@index');
-			Route::post('/infos', 'SerieVinculoController@buscaInfos');
-			Route::post('/series', 'SerieVinculoController@buscaSeries');
-			Route::post('/turmas', 'SerieVinculoController@buscaTurmas');
-			Route::post('/turnos', 'SerieVinculoController@buscaTurnos');
+			Route::post('/busca', 'SerieVinculoController@index');
 			Route::post('/', 'SerieVinculoController@store');
 			Route::put('/{cod_serie_v}', 'SerieVinculoController@update');
 		});

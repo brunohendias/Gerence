@@ -36,11 +36,16 @@ trait UtilTraits
 	 * TRUE -> se está vazio
 	 * FALSE -> se tem dados
 	 */
-	public function Objetovazio($objeto){
-		if(is_null($objeto) || empty($objeto) || $objeto->count() == 0){
-			return true;
-		}
-		return false;
+	public function Objetovazio($array){
+		return gettype($array) == 'object' && (is_null($array) || empty($array) || $array->count() == 0);
+	}
+
+	/**
+	 * Verifica se e um objeto
+	 * Verifica se o objeto não esta vazio
+	 */
+	public function existeRegistro($array) {
+		return gettype($array) == 'object' && $array->count() > 0;
 	}
 
 	/**

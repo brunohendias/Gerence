@@ -44,7 +44,6 @@ class InscricaoController extends Controller
                 })
                 ->with('serie')
                 ->with('turno')
-                ->where('ind_candidato', 'N')
                 ->get();
 
             if ($this->Objetovazio($inscricoes)) {
@@ -55,7 +54,7 @@ class InscricaoController extends Controller
             $msg = 'Inscrições buscadas com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg, 'inscricoes' => $inscricoes));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as inscrições.';
+            $msg = 'Houve um erro ao buscar as inscrições.'.$e->getMessage();
             return $this->RespLogErro($e, $msg, 500);
         }
     }

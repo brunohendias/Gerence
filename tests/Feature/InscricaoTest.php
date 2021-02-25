@@ -13,7 +13,12 @@ class InscricaoTest extends TestCase
     /** @test */
     public function if_success_get_subscriptions()
     {
-        $this->response = $this->post($this->url.'/busca', ['cod_serie' => 1, 'cod_turno' => 1]);
+        $arraySearch = [
+            'cod_serie' => 1,
+            'cod_turno' => 1
+        ];
+
+        $this->response = $this->post($this->url.'/busca', $arraySearch);
 
         $this->msg = 'Inscrições buscadas com sucesso.';
 
@@ -29,9 +34,7 @@ class InscricaoTest extends TestCase
 
         $this->msg = 'Inscrição buscada com sucesso.';
 
-        $this->response->assertJsonPath('data.inscricao.serie.cod_serie', $cod_serie);
-
-        $this->return_success();
+        $this->return_success()->assertJsonPath('data.inscricao.serie.cod_serie', $cod_serie);
     }
 
     /** @test */

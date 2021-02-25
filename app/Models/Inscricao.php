@@ -32,8 +32,7 @@ class Inscricao extends Model
             'cpf',
             'cod_serie',
             'cod_turno',
-            'cod_atencao',
-            'ind_candidato'
+            'cod_atencao'
         );
     }
 }

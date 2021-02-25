@@ -7,6 +7,7 @@
 				<th>{{inscricao.email}}</th>
 				<th>{{inscricao.telefone}}</th>
 				<th>{{inscricao.serie.serie}}</th>
+				<th>{{inscricao.turno.turno}}</th>
 				<th>
 					<span @click="editainscricao(inscricao)" class="ml-2">
 						<router-link class="btn btn-primary" to="/editainscricao">
@@ -39,6 +40,7 @@ export default {
 				{dsc_coluna: 'Email'},
 				{dsc_coluna: 'Telefone'},
 				{dsc_coluna: 'Série'},
+				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Enturmar'}
 			],
 			current: 0

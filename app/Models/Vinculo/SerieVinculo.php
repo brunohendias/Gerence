@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Serie;
 use App\Models\Turma;
 use App\Models\Turno;
+use App\Models\Professor;
 
 class SerieVinculo extends Model
 {
@@ -27,5 +28,10 @@ class SerieVinculo extends Model
     public function turma()
     {
     	return $this->hasOne(Turma::class, 'cod_turma', 'cod_turma')->select('cod_turma','turma');
+    }
+
+    public function professor()
+    {
+    	return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select('cod_prof','nom_prof');
     }
 }

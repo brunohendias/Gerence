@@ -16,6 +16,10 @@ export default {
 		index: {
 			type: Number,
 			required: true
+		},
+		pagina: {
+			type: Number,
+			required: true
 		}
 	},
 	computed: {
@@ -38,7 +42,7 @@ export default {
 			}).then(async willdelete => {
 				if(willdelete) {
 					let id = this.candidato ? this.candidato.cod_can : this.candidatoAtual.cod_can
-					deleta.candidato(this, id)
+					deleta.candidato(this, id, this.pagina)
 				}
 			})
 		}

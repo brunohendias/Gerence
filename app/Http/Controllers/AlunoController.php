@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Aluno;
 use App\Models\Candidato;
+use App\Models\Vinculo\SerieVinculo;
 
 class AlunoController extends Controller
 {
@@ -26,11 +27,7 @@ class AlunoController extends Controller
 
     		$alunos = $this->aluno
     			->SelectAluno()
-	    		->with('serie')
-	    		->with('turma')
-	    		->with('turno')
 	    		->with('atencao')
-	    		->with('professor')
 	    		->with('situacao')
 	    		->when($cod_serie, function ($query) use ($cod_serie) {
 	    			return $query->where('cod_serie', $cod_serie);
@@ -68,6 +65,15 @@ class AlunoController extends Controller
 
     public function store(Request $request) {
     	try {
+			$serieVinculo = new SerieVinculo;
+            $info = $serieVinculo->select('cod_serie_v','qtd_alunos','limite_alunos')
+                ->where('cod_serie_v', $request->cod_serie_v)
+                ->first();
+
+			if ($this->Objetovazio($info)) {
+				$msg = 'Não encontramos essa série com essas informações.';
+				return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+			}
 
     		$novoAluno = $this->aluno;
             $novoAluno->nom_aluno = $request->nom_can;
@@ -75,20 +81,11 @@ class AlunoController extends Controller
             $novoAluno->telefone = $request->telefone;
             $novoAluno->cpf = $request->cpf;
             $novoAluno->cod_can = $request->cod_can;
-    		$novoAluno->cod_serie = $request->cod_serie;
-    		$novoAluno->cod_turma = $request->cod_turma;
-    		$novoAluno->cod_turno = $request->cod_turno;
+            $novoAluno->cod_serie_v = $info->cod_serie_v;
     		$novoAluno->cod_atencao = $request->cod_atencao;
-    		$novoAluno->cod_prof = $request->cod_prof;
     		$novoAluno->cod_situacao = $request->cod_situacao;
             $novoAluno->num_matricula = $this->gerarNumeroMatricula($novoAluno);
             $novoAluno->save();
-
-            $candidato = new Candidato;
-            $candidato = $candidato->find($request->cod_can);
-
-            $virouAluno['ind_aluno'] = 'S';
-            $candidato->update($virouAluno);
 
 	    	$msg = 'Aluno gerado com sucesso.';
 	    	return $this->RespSuccess($msg, array('msg' => $msg, 'novoaluno' => $novoAluno), 200);
@@ -98,7 +95,7 @@ class AlunoController extends Controller
     	}
     }
 
-    public function gerarNumeroMatricula($novoAluno) {
-    	return "'$novoAluno->cod_can$novoAluno->cod_serie$novoAluno->cod_turma$novoAluno->cod_turno$novoAluno->cod_atencao'";
+    public function gerarNumeroMatricula($novoAluno, $info) {
+    	return "'$novoAluno->cod_can$info->cod_serie$info->cod_turma$info->cod_turno$novoAluno->cod_atencao'";
     }
 }

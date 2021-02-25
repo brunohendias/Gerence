@@ -21,7 +21,7 @@ const mutations = {
 		state.candidato = value
 	},
 	[REMOVE_CANDIDATO](state, value) {
-		state.candidatos[vale.pagina_atual].splice(value.index, 1)
+		state.candidatos[value.pagina].splice(value.index, 1)
 	}
 }
 

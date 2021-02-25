@@ -17,7 +17,7 @@ class CreateInscricaoTable extends Migration
             $table->bigIncrements('cod_insc');
             $table->string('nom_insc', 90);
             $table->date('data_nasci');//falta
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('telefone', 14);
             $table->char('cpf', 14);
             $table->string('rg', 20);
@@ -26,7 +26,6 @@ class CreateInscricaoTable extends Migration
             $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
             $table->foreignId('cod_atencao')->references('cod_atencao')->on('atencao');
             $table->foreignId('cod_turno')->references('cod_turno')->on('turno');
-            $table->char('ind_candidato', 1)->default('N');
             $table->timestamps();
         });
     }

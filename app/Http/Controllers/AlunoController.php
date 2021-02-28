@@ -84,7 +84,7 @@ class AlunoController extends Controller
             $novoAluno->cod_serie_v = $info->cod_serie_v;
     		$novoAluno->cod_atencao = $request->cod_atencao;
     		$novoAluno->cod_situacao = $request->cod_situacao;
-            $novoAluno->num_matricula = $this->gerarNumeroMatricula($novoAluno);
+            $novoAluno->num_matricula = $this->gerarNumeroMatricula($novoAluno, $info);
             $novoAluno->save();
 
 	    	$msg = 'Aluno gerado com sucesso.';

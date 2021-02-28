@@ -17,6 +17,7 @@ class AlunoController extends Controller
     }
 
     public function index(Request $request) {
+		$entidade = 'os alunos';
     	try {
     		$cod_serie = $request->cod_serie;
     		$cod_turma = $request->cod_turma;
@@ -25,7 +26,7 @@ class AlunoController extends Controller
     		$cod_prof = $request->cod_prof;
     		$cod_situacao = $request->cod_situacao;
 
-    		$alunos = $this->aluno
+    		$dados = $this->aluno
     			->SelectAluno()
 				->JoinDadosSerie()
 	    		->with('atencao')
@@ -48,23 +49,24 @@ class AlunoController extends Controller
 	    		->when($cod_situacao, function ($query) use ($cod_situacao) {
 	    			return $query->where('cod_situacao', $cod_situacao);
 	    		})
-	    		->where('ind_formado', 'N')
+	    		->whereRaw('cod_situacao <> 6')
 	    		->get();
 
-	    	if($this->Objetovazio($alunos)) {
-	    		$msg = 'Nenhum aluno com essas informações foi encontrado.';
-	    		return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+	    	if ($this->Objetovazio($dados)) {
+				$msg = $this->MsgNotFound('aluno');
+	    		return $this->RespErrorNormal($msg);
 	    	}
 
-	    	$msg = 'Aluno buscado com sucesso';
-	    	return $this->RespSuccess($msg, array('msg' => $msg, 'alunos' => $alunos), 200);
+			$msg = $this->MsgSearch($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
     	} catch(\Exception $e) {
-    		$msg = 'Houve um erro ao buscar o aluno.'.$e->getMessage();
-    		return $this->RespLogErro($e, $msg, 500);
+    		$msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
     	}
     }
 
     public function store(Request $request) {
+		$entidade = 'esse aluno';
     	try {
 			$serieVinculo = new SerieVinculo;
             $info = $serieVinculo->select('cod_serie_v','qtd_alunos','limite_alunos')
@@ -72,8 +74,8 @@ class AlunoController extends Controller
                 ->first();
 
 			if ($this->Objetovazio($info)) {
-				$msg = 'Não encontramos essa série com essas informações.';
-				return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+				$msg = $this->MsgNotFound('série');
+	    		return $this->RespErrorNormal($msg);
 			}
 
     		$novoAluno = $this->aluno;
@@ -88,11 +90,11 @@ class AlunoController extends Controller
             $novoAluno->num_matricula = $this->gerarNumeroMatricula($novoAluno, $info);
             $novoAluno->save();
 
-	    	$msg = 'Aluno gerado com sucesso.';
-	    	return $this->RespSuccess($msg, array('msg' => $msg, 'novoaluno' => $novoAluno), 200);
+			$msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $novoAluno));
     	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao gerar o aluno.'.$e->getMessage();
-    		return $this->RespLogErro($e, $msg, 500);
+			$msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
     	}
     }
 

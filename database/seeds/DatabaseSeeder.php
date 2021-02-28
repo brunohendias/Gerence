@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ProfessorVSeeder::class,
             SerieVSeeder::class,
             InscricaoSeeder::class,
+            CandidatoSeeder::class
         ]);
     }
 }

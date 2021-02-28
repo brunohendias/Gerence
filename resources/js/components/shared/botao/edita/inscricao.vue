@@ -1,6 +1,7 @@
 <template>
-	<button class="btn btn-success ml-3" @click.prevent="atualizar" :disabled="validarCandidato">
-		Gerar candidato
+	<button class="btn btn-success ml-3" @click.prevent="atualizar" :disabled="validarCandidato || editando">
+        <i v-if="editando" class="spinner-border spinner-border-sm"></i>
+		<span v-else>Gerar candidato</span>
 	</button>
 </template>
 
@@ -14,6 +15,11 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            editando: false
+        }
+    },
 	computed: {
 		inscricao() {
             return this.$store.state.inscricoes.inscricao
@@ -25,8 +31,10 @@ export default {
 	},
     methods: {
         atualizar() {
+            this.editando = true
             this.inscricao.cod_serie_v = this.seriev
             cadastra.candidato(this, this.inscricao)
+            this.editando = false
         }
     }
 }

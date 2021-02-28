@@ -26,7 +26,7 @@
 </head>
 <body>
     <div id="app">
-        <main class="py-3">
+        <main>
             @yield('content')
         </main>
     </div>

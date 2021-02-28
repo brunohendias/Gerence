@@ -1,6 +1,7 @@
 <template>
-	<button class="btn btn-primary" @click="geraAluno">
-		<i class="fas fa-edit"></i>
+	<button class="btn btn-primary" @click="geraAluno" :disabled="cadastrando">
+		<i v-if="cadastrando" class="spinner-border spinner-border-sm"></i>
+		<i v-else class="fas fa-edit"></i>
 	</button>
 </template>
 
@@ -14,6 +15,11 @@ export default {
 			type: Object
 		}
 	},
+	data() {
+		return {
+			cadastrando: false
+		}
+	},
 	computed: {
 		novoAluno() {
 			return this.$store.state.candidatos.candidato 
@@ -21,9 +27,11 @@ export default {
 	},
 	methods: {
 		geraAluno() {
+			this.cadastrando = true
 			let filtro = this.candidato ? this.candidato : this.novoAluno 
 			filtro.cod_situacao = filtro.cod_situacao ? filtro.cod_situacao : 3 
 			apiAluno.gerarAluno(filtro).then(response => {
+				this.cadastrando = false
 				let title = ''
 				let icon = ''
 				if (response.data.success) {

@@ -1,5 +1,8 @@
 <template>
-    <button class="btn btn-success" @click.prevent="atualizar" :disabled="editando">Atualizar dados</button>
+    <button class="btn btn-success" @click.prevent="atualizar" :disabled="editando">
+        <i v-if="editando" class="spinner-border spinner-border-sm"></i>
+		<span v-else>Atualizar dados</span>
+    </button>
 </template>
 
 <script>

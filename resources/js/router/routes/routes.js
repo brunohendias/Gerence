@@ -16,21 +16,21 @@ const routes = [
 		path: '/inscricao',
 		name: 'inscricao',
 		icon: 'fas fa-file-alt',
-		parentMenu: 'listas',
+		pai: 'listas',
 		component: Inscricoes
 	},
 	{
 		path: '/candidato',
 		name: 'candidato',
 		icon: 'fas fa-address-card',
-		parentMenu: 'listas',
+		pai: 'listas',
 		component: Candidatos
 	},
 	{
 		path: '/aluno',
 		name: 'aluno',
 		icon: 'fas fa-user-graduate',
-		parentMenu: 'listas',
+		pai: 'listas',
 		component: Alunos
 	},
 	{
@@ -43,7 +43,7 @@ const routes = [
 		path: '/config/serie',
 		name: 'série',
 		icon: 'fas fa-chalkboard',
-		parentMenu: 'configurações',
+		pai: 'configurações',
 		component: Serie
 	},
 	{

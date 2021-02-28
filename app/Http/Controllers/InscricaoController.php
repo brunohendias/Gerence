@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inscricao;
+use Resources\Lang\messages;
 
 class InscricaoController extends Controller
 {
@@ -22,14 +23,14 @@ class InscricaoController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'as inscrições';
         try{
             $nom_insc = strtoupper($this->removerAcentos($request->nom_insc));
             $cpf = $request->cpf;
             $cod_serie = $request->cod_serie;
             $cod_turno = $request->cod_turno;
 
-            $inscricoes = $this->inscricao
-                ->SelectInscricao()
+            $dados = $this->inscricao->SelectInscricao()
                 ->when($nom_insc, function ($query) use ($nom_insc) {
                     return $query->whereRaw("upper(nom_insc) like '%$nom_insc%'");
                 })
@@ -46,16 +47,16 @@ class InscricaoController extends Controller
                 ->with('turno')
                 ->get();
 
-            if ($this->Objetovazio($inscricoes)) {
-                $msg = 'Não encontramos nenhuma inscrição.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('inscrição');
+                return $this->RespErrorNormal($msg);
             }
-
-            $msg = 'Inscrições buscadas com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'inscricoes' => $inscricoes));
+    
+            $msg = $this->MsgSearch($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as inscrições.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
@@ -67,23 +68,23 @@ class InscricaoController extends Controller
      */
     public function show($id)
     {
+        $entidade = 'essa inscrição';
         try{
-            $inscricao = $this->inscricao
-                ->SelectInscricao()
+            $dado = $this->inscricao->SelectInscricao()
                 ->with('serie')
                 ->with('turno')
                 ->find($id);
 
-            if ($this->Objetovazio($inscricao)) {
-                $msg = 'Não encontramos nenhuma inscrição.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('inscrição');
+                return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Inscrição buscada com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'inscricao' => $inscricao));
+            $msg = $this->MsgSearch($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $dado));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar a inscrição.';
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 

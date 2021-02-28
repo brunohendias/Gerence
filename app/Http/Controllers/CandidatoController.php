@@ -19,15 +19,16 @@ class CandidatoController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'os candidatos';
     	try{
-            $cod_can = $request->cod_can;
             $cod_serie = $request->cod_serie;
             $cod_turma = $request->cod_turma;
             $cod_turno = $request->cod_turno;
             $cod_atencao = $request->cod_atencao;
             $cod_prof = $request->cod_prof;
+            $cpf = $request->cpf;
             
-    		$candidatos = $this->candidato
+    		$dados = $this->candidato
                 ->SelectCandidato()
                 ->JoinDadosSerie()
                 ->when($cod_atencao, function ($query) use ($cod_atencao) {
@@ -45,23 +46,27 @@ class CandidatoController extends Controller
                 ->when($cod_prof, function($query) use ($cod_prof) {
                     return $query->where('serie_v.cod_prof', $cod_prof);
                 })
+                ->when($cpf, function($query) use ($cpf) {
+                    return $query->where('cpf', $cpf);
+                })
                 ->with('atencao')
                 ->get();
 
-			if ($this->Objetovazio($candidatos)) {
-                $msg = 'Não encontramos nenhum candidato.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+			if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('candidato');
+	    		return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Candidatos buscado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'candidatos' => $candidatos));
+			$msg = $this->MsgSearch($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar os candidatos.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
     public function store(Request $request) {
+        $entidade = 'esse candidato';
         try {
 
             $serieVinculo = new SerieVinculo;
@@ -71,7 +76,7 @@ class CandidatoController extends Controller
 
             if($this->existeRegistro($info) && $info->qtd_alunos == $info->limite_alunos) {
                 $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+                return $this->RespErrorNormal($msg);
             }
 
             $novoCandidato = $this->candidato;
@@ -87,48 +92,50 @@ class CandidatoController extends Controller
             $dados['qtd_alunos'] = $info->qtd_alunos + 1;
             $info->update($dados);
 
-            $msg = 'Candidato cadastrado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao cadastrar o candidato.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
     public function update(Request $request, $id)
     {
+        $entidade = 'esse candidato';
         try {
 
-            $candidato = $this->candidato->find($id);
-            if ($this->Objetovazio($candidato)) {
-                $msg = 'Não encontramos esse candidato.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            $dado = $this->candidato->find($id);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('candidato');
+	    		return $this->RespErrorNormal($msg);
             }
 
             $candidatoData = $request->only('telefone','email','cod_serie_v','cod_atencao');
             
-            $candidato->update($candidatoData);
+            $dado->update($candidatoData);
 
-            $msg = 'Candidato editado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgEdit($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao editar o candidato.'.$e->getMessage();
+            $msg = $this->MsgEdit($entidade, 'error');
             return $this->RespLogErro($e, $msg, 500);
         }
     }
 
     public function destroy($id)
     {
+        $entidade = 'esse candidato';
         try{
 
-            $candidato = $this->candidato->find($id);
-            if ($this->Objetovazio($candidato)) {
-                $msg = 'Não encontramos esse candidato.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            $dado = $this->candidato->find($id);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('candidato');
+	    		return $this->RespErrorNormal($msg);
             }
             
-            $serie_v = $candidato->cod_serie_v;
-            $candidato->delete();
+            $serie_v = $dado->cod_serie_v;
+            $dado->delete();
 
             $serieVinculo = new SerieVinculo;
             $info = $serieVinculo->select('cod_serie_v','qtd_alunos')
@@ -140,11 +147,11 @@ class CandidatoController extends Controller
                 $info->update($removeCandidatoTurma);
             }
 
-            $msg = 'Candidato deletado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgDelete($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao excluir o candidato.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgDelete($entidade, 'error');
+            return $this->RespLogErro($e, $msg.$e->getMessage(), 500);
         }
     }
 }

@@ -17,13 +17,14 @@ class SerieVinculoController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'os dados das séries';
         try {
             $cod_serie = $request->cod_serie;
             $cod_turno = $request->cod_turno;
             $cod_turma = $request->cod_turma;
             $cod_prof = $request->cod_prof;
 
-            $dadosseries = $this->serieVinculo
+            $dados = $this->serieVinculo
                 ->when($cod_serie, function ($query) use ($cod_serie) {
                     return $query->where('cod_serie', $cod_serie);
                 })
@@ -42,27 +43,28 @@ class SerieVinculoController extends Controller
                 ->with('professor')
                 ->get();
 
-            if ($this->Objetovazio($dadosseries)) {
-                $msg = 'Não encontramos nenhuma série com essas informações.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('série com informações');
+                return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Encontramos as séries com essas informações.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'dadosseries' => $dadosseries));
+            $msg = $this->MsgSearch($entidade);
+            return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as séries com essas informações.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+            return $this->RespLogErro($e, $msg);
         }
     }
 
     public function store(Request $request) {
+        $entidade = 'essa série';
         try {
             $cod_serie = $request->cod_serie;
             $cod_turno = $request->cod_turno;
             $cod_turma = $request->cod_turma;
             $cod_prof = $request->cod_prof;
 
-            $serie = $this->serieVinculo
+            $dado = $this->serieVinculo
                 ->where('cod_serie',$cod_serie)
                 ->where('cod_turno',$cod_turno)
                 ->where('cod_turma',$cod_turma)
@@ -71,7 +73,7 @@ class SerieVinculoController extends Controller
                 })
                 ->count();
             
-            if ($this->existeRegistro($serie)) {
+            if ($this->existeRegistro($dado)) {
                 $msg = 'Essa série já esta cadastrada com essas informações.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
@@ -83,32 +85,33 @@ class SerieVinculoController extends Controller
             $this->serieVinculo->limite_alunos = $request->limite_alunos;
             $this->serieVinculo->save();
 
-            $msg = 'Cadastramos essa série com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao cadastrar essa série.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
     public function update(Request $request, $cod_serie_v) {
+        $entidade = 'as informações dessa série';
         try {
-            $dadosSerie = $this->serieVinculo->select('cod_serie_v','cod_turno','cod_turma','cod_prof','limite_alunos')
+            $dado = $this->serieVinculo->select('cod_serie_v','cod_turno','cod_turma','cod_prof','limite_alunos')
                 ->where('cod_serie_v', $cod_serie_v)
                 ->first();
 
-            if ($this->Objetovazio($dadosSerie)) {
-                $msg = 'Não encontramos as informações dessa série.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('candidato');
+                return $this->RespErrorNormal($msg);
             }
 
             $dados = $request->only('cod_turno','cod_turma','cod_prof','limite_alunos');
-            $dadosSerie->update($dados);
+            $dado->update($dados);
 
-            $msg = 'Alteramos as informações dessa série com sucesso';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgEdit($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao editar as informações dessa série.'.$e->getMessage();
+            $msg = $this->MsgEdit($entidade, 'error');
             return $this->RespLogErro($e, $msg, 500);
         }
     }

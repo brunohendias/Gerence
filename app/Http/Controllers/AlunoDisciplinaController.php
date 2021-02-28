@@ -18,7 +18,7 @@ class AlunoDisciplinaController extends Controller
     	try {
     		$cod_aluno = $request->cod_aluno;
 
-    		$notas = $this->alunoDisciplina
+    		$dados = $this->alunoDisciplina
     			->select('cod_aluno_disc','nota','disc.disciplina','sr.serie')
     			->join('serie_disciplina sd', 'aluno_disciplina.cod_serie_disc', '=', 'sd.cod_serie_disc')
     			->join('disciplina disc', 'disc.cod_disciplina', '=', 'sd.cod_disciplina')
@@ -26,16 +26,16 @@ class AlunoDisciplinaController extends Controller
     			->where('cod_aluno', $cod_aluno)
     			->get();
 
-    		if($this->ObjetoVasio($notas)) {
-    			$msg = 'Não encontramos nenhuma nota para esse aluno.';
-    			return $this->RespErrorNormal($msg, array('msg' => $msg), 400);
+    		if($this->ObjetoVasio($dados)) {
+				$msg = $this->MsgNotFound('nota para esse aluno');
+	    		return $this->RespErrorNormal($msg);
     		}
 
-    		$msg = 'Encontramos as notas desse aluno.';
-    		return $this->RespSuccess($msg, array('msg' => $msg, 'notas' => $notas));
+			$msg = $this->MsgSearch('as notas desse aluno');
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
     	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao buscar as notas desse aluno.';
-    		return $this->RespLogErro($e, $msg, 500);
+			$msg = $this->MsgSearch('as notas desse aluno.', 'error');
+			return $this->RespLogErro($e, $msg);
     	}
     }
 
@@ -47,11 +47,11 @@ class AlunoDisciplinaController extends Controller
     		$novaNota->cod_serie_disc = $request->cod_serie_disc;
     		$novaNota->save();
 
-    		$msg = 'Nota cadastrada com sucesso.';
-    		return $this->RespSuccess($msg, array('msg' => $msg));
+			$msg = $this->MsgRegister('essa nota');
+    		return $this->RespSuccess(array('msg' => $msg));
     	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao cadastrar a nota desse aluno.';
-    		return $this->RespLogErro($e, $msg, 500);
+			$msg = $this->MsgRegister('essa nota.', 'error');
+			return $this->RespLogErro($e, $msg);
     	}
     }
 }

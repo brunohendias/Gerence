@@ -18,60 +18,21 @@ class ProfessorVinculoController extends Controller
     {
         try{
 
-            $dadosProfessores = $this->professorVinculo
-            	->SelectProfessor()
+            $dados = $this->professorVinculo->SelectProfessor()
                 ->with('professor')
-                ->with('serie')
-                ->with('turno')
                 ->with('atencao')
                 ->get();
 
-            if ($this->Objetovazio($dadosProfessores)) {
-                $msg = 'Não encontramos nenhum professor.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('dado para esse professor');
+                return $this->RespErrorNormal($msg);
             }
 
-        	$msg = 'Encontramos esses professores com sucesso.';
-        	return $this->RespSuccess($msg, array('msg' => $msg, 'dadosprofessores' => $dadosProfessores));
+            $msg = $this->MsgSearch($entidade);
+            return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as informações do professor.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
-        }
-    }
-
-    public function buscaProfessores(Request $request) {
-        try{
-            $cod_serie = $request->cod_serie;
-            $cod_turno = $request->cod_turno;
-            $cod_atencao = $request->cod_atencao;
-
-            if(!$cod_serie) {
-                $msg = 'Por favor informe a serie';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
-            }
-
-            $professores = $this->professorVinculo
-                ->select('cod_prof_v', 'cod_prof')
-                ->when($cod_turno, function($query) use ($cod_turno) {
-                    return $query->where('cod_turno', $cod_turno);
-                })
-                ->when($cod_atencao, function($query) use ($cod_atencao) {
-                    return $query->where('cod_atencao', $cod_atencao);
-                })
-                ->where('cod_serie', $cod_serie)
-                ->with('professor')
-                ->get();
-
-            if ($this->Objetovazio($professores)) {
-                $msg = 'Não encontramos nenhum professor para esse candidato.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
-            }
-
-            $msg = 'Encontramos os professores para esse candidato.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'professores' => $professores));
-        } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar os professores para esse candidato.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+            return $this->RespLogErro($e, $msg);
         }
     }
 }

@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import 'vue-sliding-pagination/dist/style/vue-sliding-pagination.css'
 import SlidingPagination from 'vue-sliding-pagination'
 
 export default {

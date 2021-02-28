@@ -15,59 +15,62 @@ class SerieDisciplinaController extends Controller
     }
 
     public function index(Request $request) {
+		$entidade = 'as disciplinas dessa série';
     	try {
     		$cod_serie = $request->cod_serie;
 
-    		$disciplinas = $this->serieDisciplina
+    		$dados = $this->serieDisciplina
     			->select('cod_serie_disc','cod_disciplina')
     			->with('disciplina')
     			->where('cod_serie', $cod_serie)
     			->get();
 
-    		if($this->ObjetoVasio($disciplinas)) {
-    			$msg = 'Não encontramos nenhuma disciplina para essa serie.';
-    			return $this->RespErrorNormal($msg, array('msg' => $msg), 400);
-    		}
+			if ($this->Objetovazio($dados)) {
+				$msg = $this->MsgNotFound('disciplina para essa série');
+				return $this->RespErrorNormal($msg);
+			}
 
-    		$msg = 'Encontramos as disicplinas dessa serie';
-    		return $this->RespSuccess($msg, array('msg' => $msg, 'disciplinas' => $disciplinas));
-    	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao buscar as disciplinas dessa serie.';
-    		return $this->RespLogErro($e, $msg, 500);
-    	}
+			$msg = $this->MsgSearch($entidade);
+			return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
+		} catch (\Exception $e) {
+			$msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
+		}
     }
 
     public function store(Request $request) {
+		$entidade = 'essa disciplina nessa série';
     	try {
     		$novaDisciplina = $this->serieDisciplina;
     		$novaDisciplina->cod_serie = $request->cod_serie;
     		$novaDisciplina->cod_disciplina = $request->cod_disciplina;
     		$novaDisciplina->save();
 
-    		$msg = 'Disciplina cadastrada com sucesso';
-    		return $this->RespSuccess($msg, array('msg' => $msg, 'novadisciplina' => $novadisciplina));
-    	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao cadastrar essa disciplina para essa serie.';
-    		return $this->RespLogErro($e, $msg, 500);
-    	}
+    		$msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
+        } catch (\Exception $e) {
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
+        }
     }
 
     public function destroy($id) {
+		$entidade = 'essa disciplina dessa série';
     	try {
-    		$disciplina = $this->serieDisciplina->find($id);
+    		$dado = $this->serieDisciplina->find($id);
 
-    		if($this->ObjetoVasio($disciplina)) {
-    			$msg = 'Não encontramos essa disciplina.';
-    			return $this->RespErrorNormal($msg, array('msg' => $msg), 400);
-    		}
+    		if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('disciplina');
+	    		return $this->RespErrorNormal($msg);
+            }
 
-    		$disciplina->delete();
+    		$dado->delete();
 
-    		$msg = 'Removemos essa disciplina dessa serie com sucesso.';
-    		return $this->RespSuccess($msg, array('msg' => $msg));
-    	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao remover essa disciplina dessa serie.';
-    		return $this->RespLogErro($e, $msg, 500);
-    	}
+    		$msg = $this->MsgDelete($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
+        } catch (\Exception $e) {
+            $msg = $this->MsgDelete($entidade, 'error');
+            return $this->RespLogErro($e, $msg, 500);
+        }
     }
 }

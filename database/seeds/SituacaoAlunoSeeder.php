@@ -16,7 +16,8 @@ class SituacaoAlunoSeeder extends Seeder
             'Reprovado',
             'Cursando',
             'Evadido',
-            'Trocou de turma'
+            'Trocou de turma',
+            'Formado'
         ];
 
         foreach ($arrayRegisters as $register) {

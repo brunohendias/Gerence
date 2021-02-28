@@ -1,30 +1,40 @@
 <template>
-	<div class="container">
+	<div id="app">
 		<sidebar-menu :menu="menu" width="250px" :collapsed="true"/>
-		<keep-alive>
-			<router-view></router-view>
-		</keep-alive>
+		<navbar />
+		<div class="container">
+			<keep-alive>
+				<router-view></router-view>
+			</keep-alive>
+		</div>
 	</div>
 </template>
 
 <script>
+import navbar from './components/shared/navbar'
 
 export default {
 	name: 'App',
-	created() {
-		this.geraMenu()
+	components: {
+		navbar
 	},
 	data() {
 		return {
 			menu: [{header: true, title: 'Menu', hiddenOnCollapse: true, name: 'header'}]
 		}
 	},
+	created() {
+		this.geraMenu()
+	},
 	methods: {
 		geraMenu() {
-			this.$router.options.routes.map(rota => {
-				let item = this.menu.find(itemMenu => itemMenu.title == rota.parentMenu)
-				if (item) {// se encontrar o registro e porque e rota secundaria
-					item.child.push({
+			let rotas = this.$router.options.routes
+			let rota, pai, i
+			for (i in rotas) {
+				rota = rotas[i]
+				pai = this.menu.find(item => item.title == rota.pai)
+				if (pai) {
+					pai.child.push({
 						href: rota.path,
 						title: rota.name,
 						icon: rota.icon
@@ -39,7 +49,7 @@ export default {
 						})
 					}
 				}
-			})
+			}
 		}
 	}
 }
@@ -47,7 +57,6 @@ export default {
 
 <style>
 	body {
-		height: 100%;
 		background-color: #ccc;
 	}
 	.bordas {

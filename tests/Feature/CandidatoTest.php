@@ -3,25 +3,31 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CandidatoTest extends TestCase
-{
-
+{    
     private $url = '/api/v1/candidato';
 
     /** @test */
-    public function check_if_success_register_candidate() {
+    public function check_if_success_register_candidate() 
+    {
+        $arraySearch = [
+            //
+        ];
+
+        $inscricao = $this->post('/api/v1/inscricao/busca', $arraySearch);
+
+        $inscricao = $inscricao['data']['inscricoes'][0];
 
         $arrayRegister = [
-            'nom_insc' => 'PHPUnit teste',
-            'email' => 'phpunitteste@gmail.com',
-            'telefone' => 37999887766,
-            'cpf' => 11122233344,
+            'nom_insc' => $inscricao['nom_insc'],
+            'email' => $inscricao['email'],
+            'telefone' => $inscricao['telefone'],
+            'cpf' => $inscricao['cpf'],
             'cod_serie_v' => 1,
-            'cod_atencao' => 1,
-            'cod_insc' => 1
+            'cod_atencao' => $inscricao['cod_atencao'],
+            'cod_insc' => $inscricao['cod_insc']
         ];
 
         $this->response = $this->post($this->url, $arrayRegister);
@@ -32,11 +38,7 @@ class CandidatoTest extends TestCase
 
     }
 
-    /**
-     * A basic feature test example.
-     * @test
-     * @return void
-     */
+    /** @test */
     public function check_if_success_get_candidate()
     {
         $arraySearch = [

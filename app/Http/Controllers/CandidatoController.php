@@ -20,12 +20,12 @@ class CandidatoController extends Controller
     public function index(Request $request)
     {
     	try{
-            $cod_can = $request->cod_can;
             $cod_serie = $request->cod_serie;
             $cod_turma = $request->cod_turma;
             $cod_turno = $request->cod_turno;
             $cod_atencao = $request->cod_atencao;
             $cod_prof = $request->cod_prof;
+            $cpf = $request->cpf;
             
     		$candidatos = $this->candidato
                 ->SelectCandidato()
@@ -44,6 +44,9 @@ class CandidatoController extends Controller
                 })
                 ->when($cod_prof, function($query) use ($cod_prof) {
                     return $query->where('serie_v.cod_prof', $cod_prof);
+                })
+                ->when($cpf, function($query) use ($cpf) {
+                    return $query->where('cpf', $cpf);
                 })
                 ->with('atencao')
                 ->get();

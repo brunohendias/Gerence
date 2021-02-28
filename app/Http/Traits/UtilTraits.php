@@ -45,7 +45,7 @@ trait UtilTraits
 	 * Verifica se o objeto não esta vazio
 	 */
 	public function existeRegistro($array) {
-		return gettype($array) == 'object' && $array->count() > 0;
+		return $array->count() > 0;
 	}
 
 	/**

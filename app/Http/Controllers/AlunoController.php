@@ -56,7 +56,7 @@ class AlunoController extends Controller
 	    		return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
 	    	}
 
-	    	$msg = 'Aluno buscado com sucesso';
+	    	$msg = 'Aluno buscado com sucesso.';
 	    	return $this->RespSuccess($msg, array('msg' => $msg, 'alunos' => $alunos), 200);
     	} catch(\Exception $e) {
     		$msg = 'Houve um erro ao buscar o aluno.'.$e->getMessage();

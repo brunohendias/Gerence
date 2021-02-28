@@ -3,43 +3,43 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Serie;
-use App\Models\Turma;
-use App\Models\Turno;
+use App\Models\Vinculo\SerieVinculo;
 use App\Models\Atencao;
+use App\Models\Serie;
+use App\Models\Turno;
+use App\Models\Turma;
 use App\Models\Professor;
+use App\Models\inscricao;
 
 class Candidato extends Model
 {
 	protected $connection = 'mysql';
     protected $table = 'candidato';
     protected $primaryKey = 'cod_can';
-    public $fillable = [
-        'telefone','email','cod_serie','cod_turma','cod_turno','cod_atencao','cod_prof','ind_aluno'
-    ];
-
-    public function serie()
-    {
-        return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie', 'serie');
-    }
-
-    public function turma()
-    {
-        return $this->hasOne(Turma::class, 'cod_turma', 'cod_turma')->select('cod_turma', 'turma');
-    }
-
-    public function turno()
-    {
-        return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno')->select('cod_turno', 'turno');
-    }
+    public $fillable = [ 'telefone','email','cod_serie_v','cod_atencao' ];
 
     public function atencao()
     {
         return $this->hasOne(Atencao::class, 'cod_atencao', 'cod_atencao')->select('cod_atencao', 'atencao');
     }
 
-    public function professor()
+    public function inscricao()
     {
-        return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select('cod_prof', 'nom_prof');
+        return $this->hasOne(inscricao::class, 'cod_insc', 'cod_insc');
+    }
+
+    public function scopeSelectCandidato($builder) {
+        return $builder->select(
+            'cod_can','nom_can','serie_v.cod_serie_v','cod_atencao','email','telefone','cpf','serie.cod_serie','serie',
+            'turno.cod_turno','turno','turma.cod_turma','turma','professor.cod_prof','nom_prof'
+        );
+    }
+
+    public function scopeJoinDadosSerie($builder) {
+        return $builder->join('serie_v', 'serie_v.cod_serie_v', '=', 'candidato.cod_serie_v')
+            ->join('serie', 'serie_v.cod_serie', '=', 'serie.cod_serie')
+            ->join('turno', 'serie_v.cod_turno', '=', 'turno.cod_turno')
+            ->join('turma', 'serie_v.cod_turma', '=', 'turma.cod_turma')
+            ->join('professor', 'serie_v.cod_prof', '=', 'professor.cod_prof');
     }
 }

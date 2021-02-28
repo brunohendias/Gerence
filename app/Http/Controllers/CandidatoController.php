@@ -28,32 +28,26 @@ class CandidatoController extends Controller
             $cod_prof = $request->cod_prof;
             
     		$candidatos = $this->candidato
-                ->select('cod_can','cod_serie','cod_turno','cod_turma','cod_atencao','cod_prof','nom_can','email', 'telefone', 'cpf')
-                ->when($cod_serie, function ($query) use ($cod_serie) {
-                    return $query->where('cod_serie', $cod_serie);
-                })
-                ->when($cod_turma, function ($query) use ($cod_turma) {
-                    return $query->where('cod_turma', $cod_turma);
-                })
-                ->when($cod_turno, function ($query) use ($cod_turno) {
-                    return $query->where('cod_turno', $cod_turno);
-                })
+                ->SelectCandidato()
+                ->JoinDadosSerie()
                 ->when($cod_atencao, function ($query) use ($cod_atencao) {
                     return $query->where('cod_atencao', $cod_atencao);
                 })
-                ->when($cod_prof, function ($query) use ($cod_prof) {
-                    return $query->where('cod_prof', $cod_prof);
+                ->when($cod_serie, function($query) use ($cod_serie) {
+                    return $query->where('serie_v.cod_serie', $cod_serie);
                 })
-                ->when($cod_can, function($query) use ($cod_can) {
-                    return $query->where('cod_can', $cod_can);
+                ->when($cod_turma, function($query) use ($cod_turma) {
+                    return $query->where('serie_v.cod_turma', $cod_turma);
                 })
-                ->with('serie')
-                ->with('turma')
-                ->with('turno')
+                ->when($cod_turno, function($query) use ($cod_turno) {
+                    return $query->where('serie_v.cod_turno', $cod_turno);
+                })
+                ->when($cod_prof, function($query) use ($cod_prof) {
+                    return $query->where('serie_v.cod_prof', $cod_prof);
+                })
                 ->with('atencao')
-                ->with('professor')
-                ->where('ind_aluno', 'N')
                 ->get();
+
 			if ($this->Objetovazio($candidatos)) {
                 $msg = 'Não encontramos nenhum candidato.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
@@ -71,16 +65,13 @@ class CandidatoController extends Controller
         try {
 
             $serieVinculo = new SerieVinculo;
-            $info = $serieVinculo
-                ->select('cod_serie_v','qtd_alunos','limite_alunos')
-                ->where('cod_serie', $request->cod_serie)
-                ->where('cod_turma', $request->cod_turma)
-                ->where('cod_turno', $request->cod_turno)
+            $info = $serieVinculo->select('cod_serie_v','qtd_alunos','limite_alunos')
+                ->where('cod_serie_v', $request->cod_serie_v)
                 ->first();
 
-            if($info->qtd_alunos == $info->limite_alunos) {
+            if($this->existeRegistro($info) && $info->qtd_alunos == $info->limite_alunos) {
                 $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);                
+                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
             $novoCandidato = $this->candidato;
@@ -88,18 +79,10 @@ class CandidatoController extends Controller
             $novoCandidato->email = $request->email;
             $novoCandidato->telefone = $request->telefone;
             $novoCandidato->cpf = $request->cpf;
-            $novoCandidato->cod_serie = $request->cod_serie;
-            $novoCandidato->cod_turma = $request->cod_turma;
-            $novoCandidato->cod_turno = $request->cod_turno;
+            $novoCandidato->cod_serie_v = $info->cod_serie_v;
             $novoCandidato->cod_atencao = $request->cod_atencao;
-            $novoCandidato->cod_prof = $request->cod_prof;
+            $novoCandidato->cod_insc = $request->cod_insc;
             $novoCandidato->save();
-
-            $inscricoes = new Inscricao;
-            $inscricao = $inscricoes->find($request->cod_insc);
-
-            $virouCandidato['ind_candidato'] = 'S';
-            $inscricao->update($virouCandidato);
 
             $dados['qtd_alunos'] = $info->qtd_alunos + 1;
             $info->update($dados);
@@ -122,13 +105,8 @@ class CandidatoController extends Controller
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-            $candidatoData['telefone'] = $request->telefone;
-            $candidatoData['email'] = $request->email;
-            $candidatoData['cod_serie'] = $request->cod_serie;
-            $candidatoData['cod_turma'] = $request->cod_turma;
-            $candidatoData['cod_turno'] = $request->cod_turno;
-            $candidatoData['cod_atencao'] = $request->cod_atencao;
-            $candidatoData['cod_prof'] = $request->cod_prof;
+            $candidatoData = $request->only('telefone','email','cod_serie_v','cod_atencao');
+            
             $candidato->update($candidatoData);
 
             $msg = 'Candidato editado com sucesso.';
@@ -148,22 +126,19 @@ class CandidatoController extends Controller
                 $msg = 'Não encontramos esse candidato.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
-            $cod_serie = $candidato->cod_serie;
-            $cod_turma = $candidato->cod_turma;
-            $cod_turno = $candidato->cod_turno;
             
+            $serie_v = $candidato->cod_serie_v;
             $candidato->delete();
 
             $serieVinculo = new SerieVinculo;
-            $info = $serieVinculo
-                ->select('cod_serie_v','qtd_alunos','limite_alunos')
-                ->where('cod_serie', $cod_serie)
-                ->where('cod_turma', $cod_turma)
-                ->where('cod_turno', $cod_turno)
+            $info = $serieVinculo->select('cod_serie_v','qtd_alunos')
+                ->where('cod_serie_v', $serie_v)
                 ->first();
 
-            $removeCandidatoTurma['qtd_alunos'] = $info->qtd_alunos - 1;
-            $info->update($removeCandidatoTurma);
+            if ($this->existeRegistro($info)) {
+                $removeCandidatoTurma['qtd_alunos'] = $info->qtd_alunos - 1;
+                $info->update($removeCandidatoTurma);
+            }
 
             $msg = 'Candidato deletado com sucesso.';
             return $this->RespSuccess($msg, array('msg' => $msg));

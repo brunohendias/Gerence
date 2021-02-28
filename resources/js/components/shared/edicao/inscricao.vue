@@ -6,60 +6,56 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Nome completo *</label>
-                    <input class="form-control" name="nome" type="text" v-model="inscricao.nom_insc" 
-                        placeholder="Nome" disabled="true" required/>
-                    <msgSemResultado v-if="msg.nom_insc" :msg="msg.nom_insc" />
+                    <input class="form-control" name="nome" type="text" placeholder="Nome" 
+                        disabled="true" v-model="inscricao.nom_insc" required/>
                     
                     <label>E-mail *</label>
-                    <input class="form-control" name="email" type="email" 
-                        placeholder="Example@example.com" v-model="inscricao.email" required maxlength="50" />
+                    <input class="form-control" name="email" type="email" placeholder="Example@example.com" 
+                        v-model="inscricao.email" required maxlength="50" />
                     <msgSemResultado v-if="msg.email" :msg="msg.email" />
                     
                     <label>Telefone celular *</label>
-                    <input class="form-control" name="tell" type="text" 
-                        placeholder="(XX) X XXXX XXXX" v-model="inscricao.telefone" v-mask-phone.br />
+                    <input class="form-control" name="tell" type="text" placeholder="(XX) X XXXX XXXX" 
+                        v-model="inscricao.telefone" v-mask-phone.br />
                     <msgSemResultado v-if="msg.telefone" :msg="msg.telefone" />
                     
                     <label>CPF *</label>
-                    <input class="form-control" name="cpf" type="text" 
-                        placeholder="000.000.00-00" v-model="inscricao.cpf" v-mask-cpf.br disabled="true" maxlength="14" />
-                    <msgSemResultado v-if="msg.cpf" :msg="msg.cpf" />
+                    <input class="form-control" name="cpf" type="text" placeholder="000.000.00-00" 
+                        disabled="true" v-model="inscricao.cpf" v-mask-cpf.br />
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-7" v-if="inscricao.serie">
                             <label>Série à cursar *</label>
-                            <ModelListSelect :list="series" v-model="inscricao.cod_serie" option-value="cod_serie" 
-                                option-text="serie" placeholder="Selecione a serie" />
-                            <msgSemResultado v-if="msg.serie" :msg="msg.serie" />
+                            <input class="form-control" name="serie" type="text" v-model="inscricao.serie.serie" 
+                                placeholder="Série" disabled="true" required/>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" v-if="inscricao.turno">
                             <label>Turno *</label>
-                            <ModelListSelect :list="turnos" v-model="inscricao.cod_turno" option-value="cod_turno" 
-                                option-text="turno" placeholder="Selecione o turno" :isDisabled="!inscricao.cod_serie"/>
-                            <msgSemResultado v-if="msg.turno" :msg="msg.turno" />
+                            <input class="form-control" name="turno" type="text" v-model="inscricao.turno.turno" 
+                                placeholder="Turno" disabled="true" required/>
                         </div>
                         <div class="col-md-7">
                             <label>Tipo de atenção com o candidato *</label>
                             <ModelListSelect :list="atencoes" v-model="inscricao.cod_atencao" option-value="cod_atencao" 
-                                option-text="atencao" placeholder="Selecione o tipo de atenção" :isDisabled="!inscricao.cod_turno"/>
+                                option-text="atencao" placeholder="Selecione o tipo de atenção" />
                             <msgSemResultado v-if="msg.atencao" :msg="msg.atencao" />
                         </div>
                         <div class="col-md-5">
                             <label>Turma *</label>
                             <ModelListSelect :list="turmas" v-model="inscricao.cod_turma" option-value="cod_turma" 
-                                option-text="turma" placeholder="Selecione a turma" :isDisabled="!inscricao.cod_atencao"/>
+                                option-text="turma" placeholder="Selecione a turma" />
                             <msgSemResultado v-if="msg.turma" :msg="msg.turma" />
                         </div>
                         <div class="col-md-7">
                             <label>Professor *</label>
                             <ModelListSelect :list="professores" v-model="inscricao.cod_prof" option-value="cod_prof" 
-                                option-text="nom_prof" placeholder="Selecione o professor" :isDisabled="!inscricao.cod_turma"/>
+                                option-text="nom_prof" placeholder="Selecione o professor" />
                             <msgSemResultado v-if="msg.professor" :msg="msg.professor" />
                         </div>
                     </div>
                     <div class="row">
-                        <botaoEditaInscricao class="mt-5 ml-auto mr-4"/>
+                        <botaoEditaInscricao class="mt-5 ml-auto mr-4" :seriev="serie_v"/>
                     </div>
                 </div>
             </div>
@@ -83,11 +79,10 @@ export default {
     },
     data() {
         return {
-            series: [],
-            turnos: [],
             turmas: [],
             professores: [],
             atencoes: [],
+            serie_v: 0,
             msg: {
                 status: null,
                 nom_insc: null,
@@ -113,28 +108,24 @@ export default {
             return {
                 cod_serie: this.inscricao.cod_serie,
                 cod_turno: this.inscricao.cod_turno,
+                cod_turma: this.inscricao.cod_turma,
+                cod_prof: this.inscricao.cod_prof,
                 cod_atencao: this.inscricao.cod_atencao
             }
         }
     },
     watch: {
-        'inscricao.serie'(newValue) {
-            if(newValue) {
-                this.series = []
-                this.series = [newValue]
-            }
+        'inscricao.turno'() {
+            busca.dadosSerie(this, this.filtro)
         },
-        'inscricao.turno'(newValue) {
-            if(!newValue) {
-                busca.turnos(this)
-            } else if (newValue) {
-                this.turnos = []
-                this.turnos = [newValue]
-                !this.inscricao.cod_turma ? busca.turmas(this) : null
-            }
+        'inscricao.atencao'() {
+            console.log('teste')
         },
-        'inscricao.cod_atencao'() {
-            busca.dadosProfessores(this, this.filtro)
+        'inscricao.turma'() {
+            busca.dadosSerie(this, this.filtro)
+        },
+        'inscricao.nom_prof'() {
+            busca.dadosSerie(this, this.filtro)
         }
     }
 }

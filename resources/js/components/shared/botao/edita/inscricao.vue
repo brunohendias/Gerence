@@ -8,19 +8,25 @@
 import cadastra from '@functions/cadastra'
 
 export default {
+    props: {
+        seriev: {
+            type: Number,
+            required: true
+        }
+    },
 	computed: {
-		candidato() {
+		inscricao() {
             return this.$store.state.inscricoes.inscricao
         },
         validarCandidato() {
-            return !(this.candidato.nom_insc && this.candidato.email && this.candidato.telefone && 
-                this.candidato.cpf && this.candidato.cod_serie && this.candidato.cod_turno && 
-                this.candidato.cod_atencao && this.candidato.cod_turma && this.candidato.cod_prof)
+            return !(this.inscricao.nom_insc && this.inscricao.email && this.inscricao.telefone && this.inscricao.cpf && 
+                this.inscricao.cod_atencao && this.inscricao.cod_turno && this.inscricao.cod_turma && this.inscricao.cod_prof)
         }
 	},
     methods: {
         atualizar() {
-            cadastra.candidato(this, this.candidato)
+            this.inscricao.cod_serie_v = this.seriev
+            cadastra.candidato(this, this.inscricao)
         }
     }
 }

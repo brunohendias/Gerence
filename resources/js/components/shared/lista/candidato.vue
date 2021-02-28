@@ -6,12 +6,15 @@
 				<th>{{candidato.nom_can}}</th>
 				<th>{{candidato.email}}</th>
 				<th>{{candidato.telefone}}</th>
-				<th>{{candidato.serie.serie}}</th>
+				<th>{{candidato.serie}}</th>
+				<th>{{candidato.turno}}</th>
+				<th>{{candidato.turma}}</th>
+				<th>{{candidato.nom_prof}}</th>
 				<th>
 					<botaoGeraAluno :candidato="candidato"/>
 				</th>
 				<th>
-					<botaoDeletaCandidato :candidato="candidato" :index="i"/>
+					<botaoDeletaCandidato :candidato="candidato" :index="i" :pagina="current"/>
 				</th>
 			</tr>
 		</tbody>
@@ -42,6 +45,9 @@ export default {
 				{dsc_coluna: 'Email'},
 				{dsc_coluna: 'Telefone'},
 				{dsc_coluna: 'Série'},
+				{dsc_coluna: 'Turno'},
+				{dsc_coluna: 'Turma'},
+				{dsc_coluna: 'Professor'},
 				{dsc_coluna: 'Gerar aluno'},
 				{dsc_coluna: 'Excluir'}
 			],

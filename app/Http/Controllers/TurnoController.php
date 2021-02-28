@@ -35,7 +35,7 @@ class TurnoController extends Controller
         	$msg = 'Turnos buscado com sucesso';
             return $this->RespSuccess($msg, array('msg' => $msg, 'turnos' => $turnos));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar os turnos.';
+            $msg = 'Houve um erro ao buscar os turnos.'.$e->getMessage();
             return $this->RespLogErro($e, $msg, 500);
         }
     }

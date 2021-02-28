@@ -6,6 +6,7 @@
 				<th>{{serie.serie.serie}}</th>
 				<th>{{serie.turno.turno}}</th>
 				<th>{{serie.turma.turma}}</th>
+				<th>{{serie.professor.nom_prof}}</th>
 				<th>{{serie.qtd_alunos}}</th>
 				<th>{{serie.limite_alunos}}</th>
 				<th>
@@ -39,6 +40,7 @@ export default {
 				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Turma'},
+				{dsc_coluna: 'Professor'},
 				{dsc_coluna: 'Total de alunos'},
 				{dsc_coluna: 'Limite de alunos'},
 				{dsc_coluna: 'Editar'}

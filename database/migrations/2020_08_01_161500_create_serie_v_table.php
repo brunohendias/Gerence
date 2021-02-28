@@ -20,6 +20,7 @@ class CreateSerieVTable extends Migration
             $table->foreignId('cod_serie')->references('cod_serie')->on('serie');
             $table->foreignId('cod_turno')->references('cod_turno')->on('turno');
             $table->foreignId('cod_turma')->references('cod_turma')->on('turma');
+            $table->foreignId('cod_prof')->references('cod_prof')->on('professor')->nullable();
             $table->timestamps();
         });
     }

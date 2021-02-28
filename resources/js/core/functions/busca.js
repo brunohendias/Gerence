@@ -143,7 +143,7 @@ export default {
     },
 
     dadosSeries(self, params){
-        apiDadosSerie.buscaInfos(params).then(response => {
+        apiDadosSerie.busca(params).then(response => {
             let dados = []
             if(response.data.success) {
                 dados = response.data.data.dadosseries
@@ -157,6 +157,22 @@ export default {
 			self.$store.dispatch('carregaDadosSerie', {dados, total_registros})
         }).catch(e => {
             self.mostraMensagem({tipo: 'erro', msg: e})
+        })
+    },
+
+    dadosSerie(self, params) {
+        apiDadosSerie.busca(params).then(response => {
+            let dados = []
+            self.turmas = []
+            self.professores = []
+            if(response.data.success) {
+                dados = response.data.data.dadosseries
+                dados.map(dado => {
+                    self.serie_v = dado.cod_serie_v
+                    self.turmas.push(dado.turma)
+                    self.professores.push(dado.professor)
+                })
+            }
         })
     }
     

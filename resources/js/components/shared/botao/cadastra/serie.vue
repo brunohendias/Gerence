@@ -1,6 +1,7 @@
 <template>
     <button class="btn btn-success" @click.prevent="preCadastro" :disabled="cadastrando">
-	    Cadastrar
+        <i v-if="cadastrando" class="spinner-border spinner-border-sm"></i>
+        <span v-else>Cadastrar</span>
     </button>
 </template>
 

@@ -20,7 +20,6 @@ class CreateAlunoTable extends Migration
             $table->char('telefone', 20);
             $table->char('cpf', 14)->uniqid();
             $table->char('num_matricula', 10)->uniqid();
-            $table->char('ind_formado', 1)->default('N');
             $table->foreignId('cod_can')->references('cod_can')->on('candidato');
             $table->foreignId('cod_serie_v')->references('cod_serie_v')->on('serie_v');
             $table->foreignId('cod_atencao')->references('cod_atencao')->on('atencao');

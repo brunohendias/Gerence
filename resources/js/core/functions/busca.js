@@ -12,12 +12,13 @@ import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import paginaArray from '@helpers/paginaArray'
 
+let dados = []
 export default {
 
     turmas(self, params) {
         apiTurma.busca({params}).then(response => {
             if(response.data.success) {
-                self.turmas = response.data.data.turmas
+                self.turmas = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
             }
@@ -27,7 +28,7 @@ export default {
     turnos(self, params) {
         apiTurno.busca({params}).then(response => {
             if(response.data.success) {
-                self.turnos = response.data.data.turnos
+                self.turnos = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
             }
@@ -37,7 +38,7 @@ export default {
     series(self, params) {
         apiSerie.busca({params}).then(response => {
             if(response.data.success) {
-                self.series = response.data.data.series
+                self.series = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
                 self.series = [{cod_serie: null, serie: params ? params.serie : ''}]
@@ -48,7 +49,7 @@ export default {
     atencoes(self, params) {
         apiAtencoes.busca({params}).then(response => {
             if(response.data.success) {
-                self.atencoes = response.data.data.atencoes
+                self.atencoes = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
             }
@@ -58,7 +59,7 @@ export default {
     situacoes(self, params) {
         apiSituacoes.busca({params}).then(response => {
             if(response.data.success) {
-                self.situacoes = response.data.data.situacoes
+                self.situacoes = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
             }
@@ -68,7 +69,7 @@ export default {
     professores(self, params) {
         apiProfessor.busca({params}).then(response => {
             if(response.data.success) {
-                self.professores = response.data.data.professores
+                self.professores = response.data.data.dados
             } else {
                 self.msg = response.data.error.message
             }
@@ -79,7 +80,7 @@ export default {
         self.professores = []
         apiDadosProfessor.buscaProfessores(params).then(response => {
             if(response.data.success) {
-                response.data.data.professores.map(professor => {
+                response.data.data.dados.map(professor => {
                     self.professores.push(professor.professor)
                 })
             } else {
@@ -90,9 +91,8 @@ export default {
 
     inscricoes(self, params) {
         apiInscricao.busca(params).then(response => {
-            let dados = []
             if(response.data.success) {
-                dados = response.data.data.inscricoes
+                dados = response.data.data.dados
                 self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
             } else {
                 self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
@@ -108,9 +108,8 @@ export default {
 
     candidatos(self, params) {
         apiCandidato.busca(params).then(response => {
-            let dados = []
             if(response.data.success) {
-                dados = response.data.data.candidatos
+                dados = response.data.data.dados
                 self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
             } else {
                 self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
@@ -126,9 +125,8 @@ export default {
 
     alunos(self, params) {
         apiAluno.busca(params).then(response => {
-            let dados = []
             if (response.data.success) {
-                dados = response.data.data.alunos
+                dados = response.data.data.dados
                 self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
             } else {
                 self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
@@ -144,9 +142,8 @@ export default {
 
     dadosSeries(self, params){
         apiDadosSerie.busca(params).then(response => {
-            let dados = []
             if(response.data.success) {
-                dados = response.data.data.dadosseries
+                dados = response.data.data.dados
                 self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
             } else {
                 self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
@@ -162,11 +159,10 @@ export default {
 
     dadosSerie(self, params) {
         apiDadosSerie.busca(params).then(response => {
-            let dados = []
             self.turmas = []
             self.professores = []
             if(response.data.success) {
-                dados = response.data.data.dadosseries
+                dados = response.data.data.dados
                 dados.map(dado => {
                     self.serie_v = dado.cod_serie_v
                     self.turmas.push(dado.turma)

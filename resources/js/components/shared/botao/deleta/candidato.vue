@@ -1,6 +1,7 @@
 <template>
-	<button class="btn btn-danger" @click="deletaCandidato">
-		<i class="fas fa-trash"></i>
+	<button class="btn btn-danger" @click="deletaCandidato" :disabled="deletando">
+		<i v-if="deletando" class="spinner-border spinner-border-sm"></i>
+		<i v-else class="fas fa-trash"></i>
 	</button>
 </template>
 
@@ -22,6 +23,11 @@ export default {
 			required: true
 		}
 	},
+	data() {
+		return {
+			deletando: false
+		}
+	},
 	computed: {
 		candidatoAtual() {
 			return this.$store.state.candidatos.candidato
@@ -41,8 +47,10 @@ export default {
 				]
 			}).then(async willdelete => {
 				if(willdelete) {
+					this.deletando = true
 					let id = this.candidato ? this.candidato.cod_can : this.candidatoAtual.cod_can
 					deleta.candidato(this, id, this.pagina)
+					this.deletando = false
 				}
 			})
 		}

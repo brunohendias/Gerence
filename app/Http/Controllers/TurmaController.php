@@ -17,20 +17,21 @@ class TurmaController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'as turmas';
         try{
-    		$turmas = $this->turma
-                ->select('cod_turma', 'turma')
+    		$dados = $this->turma->select('cod_turma', 'turma')
                 ->get();
 
-            if ($this->Objetovazio($turmas)) {
-                $msg = 'Não encontramos nenhuma turma.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('turma');
+                return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Turmas buscado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'turmas' => $turmas));
+            $msg = $this->MsgSearch($entidade);
+            return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as turmas.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+            return $this->RespLogErro($e, $msg);
         }
-    }}
+    }
+}

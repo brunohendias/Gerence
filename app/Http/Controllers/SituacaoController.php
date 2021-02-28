@@ -15,54 +15,56 @@ class SituacaoController extends Controller
     }
 
     public function index() {
+        $entidade = 'as situações';
     	try {
-    		$situacoes = $this->situacao
-    			->select('cod_situacao', 'situacao')
+    		$dados = $this->situacao->select('cod_situacao', 'situacao')
     			->get();
 
-    		if ($this->Objetovazio($situacoes)) {
-                $msg = 'Não encontramos nenhuma situacão.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('situação');
+                return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Situação buscado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'situacoes' => $situacoes));
-    	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao buscar as situações.';
-    		return $this->RespLogErro($e, $msg, 500);
-    	}
+            $msg = $this->MsgSearch($entidade);
+            return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
+        } catch (\Exception $e) {
+            $msg = $this->MsgSearch($entidade, 'error');
+            return $this->RespLogErro($e, $msg);
+        }
     }
 
     public function store(Request $request) {
+        $entidade = 'essa situação';
     	try {
 
     		$novaSituacao = $this->situacao;
     		$novaSituacao->situacao = $request->situacao;
     		$novaSituacao->save();
     		
-            $msg = 'Situação cadastrada com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'novasituacao' => $novaSituacao));
-    	} catch (\Exception $e) {
-    		$msg = 'Houve um erro ao cadastrar a situação.';
-    		return $this->RespLogErro($e, $msg, 500);
-    	}
+            $msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
+        } catch (\Exception $e) {
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
+        }
     }
 
     public function destroy($id) {
+        $entidade = 'essa situação';
         try {
-            $situacao = $this->situacao->find($id);
+            $dado = $this->situacao->find($id);
 
-            if($this->ObjetoVasio($situacao)) {
-                $msg = 'Não encontramos essa situação.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 400);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('situação');
+	    		return $this->RespErrorNormal($msg);
             }
 
-            $situacao->delete();
+            $dado->delete();
 
-            $msg = 'Situação deletada com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgDelete($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao deletar essa situação.';
+            $msg = $this->MsgDelete($entidade, 'error');
             return $this->RespLogErro($e, $msg, 500);
         }
     }

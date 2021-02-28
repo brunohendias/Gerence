@@ -17,49 +17,52 @@ class AtencaoController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'as atenções';
         try{
-        	$atencoes = $this->atencao->select('cod_atencao', 'atencao')->get();
+        	$dados = $this->atencao->select('cod_atencao', 'atencao')->get();
 
-            if ($this->Objetovazio($atencoes)) {
-                $msg = 'Não encontramos nenhuma atenção.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('atenção');
+	    		return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Atencões buscado com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg, 'atencoes' => $atencoes));
+			$msg = $this->MsgSearch($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as atenções.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
     public function store(Request $request) {
+        $entidade = 'essa atenção';
         try {
             $novaAtencao = $this->atencao;
             $novaAtencao->nom_prof = $request->atencao;
             $novaAtencao->save();
 
-            $msg = 'Atenção cadastrada com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao cadastrar a atenção.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 
     public function destroy($id) {
+        $entidade = 'essa atenção';
         try {
-            $atencao = $this->atencao->find($id);
+            $dado = $this->atencao->find($id);
             
-            if ($this->Objetovazio($atencao)) {
-                $msg = 'Não encontramos essa atenção.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('atenção');
+	    		return $this->RespErrorNormal($msg);
             }
 
-            $msg = 'Atenção deletada com sucesso.';
-            return $this->RespSuccess($msg, array('msg' => $msg));
+            $msg = $this->MsgDelete($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao deletar a atenção.'.$e->getMessage();
+            $msg = $this->MsgDelete($entidade, 'error');
             return $this->RespLogErro($e, $msg, 500);
         }
     }

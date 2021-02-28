@@ -17,12 +17,12 @@ class SerieController extends Controller
 
     public function index(Request $request)
     {
+        $entidade = 'as séries';
         try{
             $codserie = $request->codserie;
             $serie = $this->upperCase($request->serie);
 
-        	$series = $this->serie
-                ->select('cod_serie', 'serie')
+        	$dados = $this->serie->select('cod_serie', 'serie')
                 ->when($codserie, function($query) use ($codserie) {
                     return $query->where('codserie', $codserie);
                 })
@@ -31,37 +31,38 @@ class SerieController extends Controller
                 })
                 ->get();
 
-            if ($this->Objetovazio($series)) {
-                $msg = 'Não encontramos nenhuma série.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+            if ($this->Objetovazio($dados)) {
+                $msg = $this->MsgNotFound('série');
+                return $this->RespErrorNormal($msg);
             }
 
-        	$msg = 'Séries buscada com sucesso.';
-        	return $this->RespSuccess($msg, array('msg' => $msg, 'series' => $series));
+            $msg = $this->MsgSearch($entidade);
+            return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao buscar as séries.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgSearch($entidade, 'error');
+            return $this->RespLogErro($e, $msg);
         }
     }
 
     public function store(Request $request) {
+        $entidade = 'essa série';
         try {
             $serie = $request->serie;
 
             $existe = $this->serie->where('serie', $serie)->count();
             if ($existe > 0) {
                 $msg = 'Essa série já esta cadastrada.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+                return $this->RespErrorNormal($msg);
             }
 
             $this->serie->serie = $serie;
             $this->serie->save();
 
-        	$msg = 'Séries cadastrada com sucesso.';
-        	return $this->RespSuccess($msg, array('msg' => $msg, 'serie' => $this->serie));
+            $msg = $this->MsgRegister($entidade);
+	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $this->serie));
         } catch (\Exception $e) {
-            $msg = 'Houve um erro ao cadastrar essa série.'.$e->getMessage();
-            return $this->RespLogErro($e, $msg, 500);
+            $msg = $this->MsgRegister($entidade, 'error');
+			return $this->RespLogErro($e, $msg);
         }
     }
 }

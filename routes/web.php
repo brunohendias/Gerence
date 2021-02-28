@@ -41,7 +41,6 @@ Route::prefix('/api')->group(function () {
 
 		Route::prefix('/professorvinculo')->group(function() {
 			Route::get('/', 'ProfessorVinculoController@index');
-			Route::post('/professores', 'ProfessorVinculoController@buscaProfessores');
 		});
 	});
 });

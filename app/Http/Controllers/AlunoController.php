@@ -27,22 +27,23 @@ class AlunoController extends Controller
 
     		$alunos = $this->aluno
     			->SelectAluno()
+				->JoinDadosSerie()
 	    		->with('atencao')
 	    		->with('situacao')
 	    		->when($cod_serie, function ($query) use ($cod_serie) {
-	    			return $query->where('cod_serie', $cod_serie);
+	    			return $query->where('serie_v.cod_serie', $cod_serie);
 	    		})
 	    		->when($cod_turma, function ($query) use ($cod_turma) {
-	    			return $query->where('cod_turma', $cod_turma);
+	    			return $query->where('serie_v.cod_turma', $cod_turma);
 	    		})
 	    		->when($cod_turno, function ($query) use ($cod_turno) {
-	    			return $query->where('cod_turno', $cod_turno);
+	    			return $query->where('serie_v.cod_turno', $cod_turno);
 	    		})
 	    		->when($cod_atencao, function ($query) use ($cod_atencao) {
 	    			return $query->where('cod_atencao', $cod_atencao);
 	    		})
 	    		->when($cod_prof, function ($query) use ($cod_prof) {
-	    			return $query->where('cod_prof', $cod_prof);
+	    			return $query->where('serie_v.cod_prof', $cod_prof);
 	    		})
 	    		->when($cod_situacao, function ($query) use ($cod_situacao) {
 	    			return $query->where('cod_situacao', $cod_situacao);

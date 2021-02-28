@@ -43598,13 +43598,13 @@ var render = function() {
           return _c("tr", { key: i }, [
             _c("th", [_vm._v(_vm._s(aluno.nom_aluno))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(aluno.serie.serie))]),
+            _c("th", [_vm._v(_vm._s(aluno.serie))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(aluno.turno.turno))]),
+            _c("th", [_vm._v(_vm._s(aluno.turno))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(aluno.turma.turma))]),
+            _c("th", [_vm._v(_vm._s(aluno.turma))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(aluno.professor.nom_prof))]),
+            _c("th", [_vm._v(_vm._s(aluno.nom_prof))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(aluno.atencao.atencao))]),
             _vm._v(" "),
@@ -70178,8 +70178,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/dev/Github/Laravel/gerence/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/dev/Github/Laravel/gerence/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

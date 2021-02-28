@@ -28,18 +28,22 @@ class CandidatoController extends Controller
             $cod_prof = $request->cod_prof;
             
     		$candidatos = $this->candidato
-                ->select('cod_can','nom_can','serie_v.cod_serie_v','cod_atencao','email','telefone','cpf',
-                    'serie.cod_serie','serie','turno.cod_turno','turno','turma.cod_turma','turma','professor.cod_prof','nom_prof')
-                ->join('serie_v', 'serie_v.cod_serie_v', '=', 'candidato.cod_serie_v')
-                ->join('serie', 'serie_v.cod_serie', '=', 'serie.cod_serie')
-                ->join('turno', 'serie_v.cod_turno', '=', 'turno.cod_turno')
-                ->join('turma', 'serie_v.cod_turma', '=', 'turma.cod_turma')
-                ->join('professor', 'serie_v.cod_prof', '=', 'professor.cod_prof')
+                ->SelectCandidato()
+                ->JoinDadosSerie()
                 ->when($cod_atencao, function ($query) use ($cod_atencao) {
                     return $query->where('cod_atencao', $cod_atencao);
                 })
-                ->when($cod_can, function($query) use ($cod_can) {
-                    return $query->where('cod_can', $cod_can);
+                ->when($cod_serie, function($query) use ($cod_serie) {
+                    return $query->where('serie_v.cod_serie', $cod_serie);
+                })
+                ->when($cod_turma, function($query) use ($cod_turma) {
+                    return $query->where('serie_v.cod_turma', $cod_turma);
+                })
+                ->when($cod_turno, function($query) use ($cod_turno) {
+                    return $query->where('serie_v.cod_turno', $cod_turno);
+                })
+                ->when($cod_prof, function($query) use ($cod_prof) {
+                    return $query->where('serie_v.cod_prof', $cod_prof);
                 })
                 ->with('atencao')
                 ->get();

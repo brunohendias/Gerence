@@ -4,10 +4,10 @@
 		<tbody>
 			<tr v-for="(aluno, i) in alunos" :key="i">
 				<th>{{aluno.nom_aluno}}</th>
-				<th>{{aluno.serie.serie}}</th>
-				<th>{{aluno.turno.turno}}</th>
-				<th>{{aluno.turma.turma}}</th>
-				<th>{{aluno.professor.nom_prof}}</th>
+				<th>{{aluno.serie}}</th>
+				<th>{{aluno.turno}}</th>
+				<th>{{aluno.turma}}</th>
+				<th>{{aluno.nom_prof}}</th>
 				<th>{{aluno.atencao.atencao}}</th>
 				<th>{{aluno.situacao.situacao}}</th>
 			</tr>

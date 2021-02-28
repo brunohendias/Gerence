@@ -37,7 +37,7 @@ trait UtilTraits
 	 * FALSE -> se tem dados
 	 */
 	public function Objetovazio($array){
-		return gettype($array) == 'object' && (is_null($array) || empty($array) || $array->count() == 0);
+		return is_null($array) || empty($array) || $array->count() == 0;
 	}
 
 	/**

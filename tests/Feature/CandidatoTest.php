@@ -9,7 +9,7 @@ use Tests\TestCase;
 class CandidatoTest extends TestCase
 {
 
-    private $url = '/api/v1/candidato/busca';
+    private $url = '/api/v1/candidato';
 
     /** @test */
     public function check_if_success_register_candidate() {
@@ -19,14 +19,16 @@ class CandidatoTest extends TestCase
             'email' => 'phpunitteste@gmail.com',
             'telefone' => 37999887766,
             'cpf' => 11122233344,
-            'cod_serie' => 1,
-            'cod_turma' => 1,
-            'cod_turno' => 1,
+            'cod_serie_v' => 1,
             'cod_atencao' => 1,
-            'cod_prof' => 1
+            'cod_insc' => 1
         ];
 
-        $response = $this->post($this->url, $arrayRegister);
+        $this->response = $this->post($this->url, $arrayRegister);
+
+        $this->msg = 'Candidato cadastrado com sucesso.';
+
+        $this->return_success();
 
     }
 
@@ -38,11 +40,13 @@ class CandidatoTest extends TestCase
     public function check_if_success_get_candidate()
     {
         $arraySearch = [
-
+            //
         ];
 
-        $response = $this->post($this->url.'/busca', $arraySearch);
+        $this->response = $this->post($this->url.'/busca', $arraySearch);
 
-        $response->assertStatus(200);
+        $this->msg = 'Candidatos buscado com sucesso.';
+
+        $this->return_success();
     }
 }

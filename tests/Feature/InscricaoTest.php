@@ -19,7 +19,7 @@ class InscricaoTest extends TestCase
 
         $this->response = $this->post($this->url.'/busca', $arraySearch);
 
-        $this->msg = 'Inscrições buscadas com sucesso.';
+        $this->msg = 'Buscamos as inscrições com sucesso.';
 
         $this->return_success();
     }
@@ -31,9 +31,9 @@ class InscricaoTest extends TestCase
 
         $this->response = $this->get($this->url."/$cod_serie");
 
-        $this->msg = 'Inscrição buscada com sucesso.';
+        $this->msg = 'Buscamos essa inscrição com sucesso.';
 
-        $this->return_success()->assertJsonPath('data.inscricao.serie.cod_serie', $cod_serie);
+        $this->return_success()->assertJsonPath('data.dado.serie.cod_serie', $cod_serie);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class InscricaoTest extends TestCase
     {
         $this->response = $this->get($this->url.'/a');
 
-        $this->msg = 'Não encontramos nenhuma inscrição.';
+        $this->msg = 'Não encontramos nenhum(a) inscrição.';
 
         $this->return_not_found();
     }

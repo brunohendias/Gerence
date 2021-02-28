@@ -34,4 +34,8 @@ trait MessageTraits {
     protected function MsgDelete($string, $tipo = 'success') {
         return str_replace(':value', $string, $this->messages[$tipo]['delete']);
     }
+
+    protected function MsgNotFound($string) {
+        return str_replace(':value', $string, $this->messages['notfound']);
+    }
 }

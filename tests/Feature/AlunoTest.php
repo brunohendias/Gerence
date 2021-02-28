@@ -18,7 +18,7 @@ class AlunoTest extends TestCase
 
         $candidato = $this->post('/api/v1/candidato/busca', $arraySearch);
 
-        $candidato = $candidato['data']['candidatos'][0];
+        $candidato = $candidato['data']['dados'][0];
 
         $arrayRegister = [
             'nom_can' => $candidato['nom_can'],
@@ -34,7 +34,7 @@ class AlunoTest extends TestCase
 
         $this->response = $this->post($this->url, $arrayRegister);
 
-        $this->msg = 'Aluno gerado com sucesso.';
+        $this->msg = 'Cadastramos esse aluno com sucesso.';
 
         $this->return_success();
     }
@@ -48,7 +48,7 @@ class AlunoTest extends TestCase
 
         $this->response = $this->post($this->url.'/busca', $arraySearch);
 
-        $this->msg = 'Aluno buscado com sucesso.';
+        $this->msg = 'Buscamos os alunos com sucesso.';
 
         $this->return_success();
     }

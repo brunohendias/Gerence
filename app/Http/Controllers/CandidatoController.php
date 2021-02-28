@@ -102,6 +102,7 @@ class CandidatoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $entidade = 'esse candidato';
         try {
 
             $dado = $this->candidato->find($id);
@@ -150,7 +151,7 @@ class CandidatoController extends Controller
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
+            return $this->RespLogErro($e, $msg.$e->getMessage(), 500);
         }
     }
 }

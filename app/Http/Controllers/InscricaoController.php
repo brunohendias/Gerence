@@ -30,8 +30,7 @@ class InscricaoController extends Controller
             $cod_serie = $request->cod_serie;
             $cod_turno = $request->cod_turno;
 
-            $dados = $this->inscricao
-                ->SelectInscricao()
+            $dados = $this->inscricao->SelectInscricao()
                 ->when($nom_insc, function ($query) use ($nom_insc) {
                     return $query->whereRaw("upper(nom_insc) like '%$nom_insc%'");
                 })
@@ -77,7 +76,7 @@ class InscricaoController extends Controller
                 ->find($id);
 
             if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('candidato');
+                $msg = $this->MsgNotFound('inscrição');
                 return $this->RespErrorNormal($msg);
             }
 

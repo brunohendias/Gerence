@@ -12,15 +12,15 @@ class CandidatoTest extends TestCase
     /** @test */
     public function check_if_success_register_candidate() 
     {
-        $arraySearch = [
+        $search = [
             //
         ];
 
-        $inscricao = $this->post('/api/v1/inscricao/busca', $arraySearch);
+        $inscricao = $this->post('/api/v1/inscricao/busca', $search);
 
-        $inscricao = $inscricao['data']['inscricoes'][0];
+        $inscricao = $inscricao['data']['dados'][0];
 
-        $arrayRegister = [
+        $register = [
             'nom_insc' => $inscricao['nom_insc'],
             'email' => $inscricao['email'],
             'telefone' => $inscricao['telefone'],
@@ -30,9 +30,9 @@ class CandidatoTest extends TestCase
             'cod_insc' => $inscricao['cod_insc']
         ];
 
-        $this->response = $this->post($this->url, $arrayRegister);
+        $this->response = $this->post($this->url, $register);
 
-        $this->msg = 'Candidato cadastrado com sucesso.';
+        $this->msg = 'Cadastramos esse candidato com sucesso.';
 
         $this->return_success();
 
@@ -41,13 +41,40 @@ class CandidatoTest extends TestCase
     /** @test */
     public function check_if_success_get_candidate()
     {
-        $arraySearch = [
+        $search = [
             //
         ];
 
-        $this->response = $this->post($this->url.'/busca', $arraySearch);
+        $this->response = $this->post($this->url.'/busca', $search);
 
-        $this->msg = 'Candidatos buscado com sucesso.';
+        $this->msg = 'Buscamos os candidatos com sucesso.';
+
+        $this->return_success();
+    }
+
+    /** @test */
+    public function check_if_success_edit_candidate()
+    {
+        $edit = [
+            'telefone' => '37 999887766',
+            'email' => 'editphpunit@phpunit.com',
+            'cod_serie_v' => 3,
+            'cod_atencao' => 5,
+        ];
+
+        $this->response = $this->put($this->url.'/1', $edit);
+
+        $this->msg = 'Editamos esse candidato com sucesso.';
+
+        $this->return_success();
+    }
+
+    /** @test */
+    public function check_if_success_delete_candidate()
+    {
+        $this->response = $this->delete($this->url.'/2');
+
+        $this->msg = 'Deletamos esse candidato com sucesso.';
 
         $this->return_success();
     }

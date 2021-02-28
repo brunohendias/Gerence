@@ -12,8 +12,8 @@ class CandidatoSeeder extends Seeder
     public function run()
     {
         $arrayRegisters = [
-            [ 'ni' => 'Antonio Julio Igor Porto', 'em' => 'antonioo_@pontofinalcafe.com.br', 
-                'tl' => '7798814-9617', 'cf' => '558.942.582-43', 'se' => 1, 'ci' => 1, 'ca' => 1],
+            [ 'ni' => 'Antonio Julio Igor Porto', 'em' => 'antonioo_@pontofinalcafe.com.br', 'tl' => '7798814-9617', 'cf' => '558.942.582-43', 'se' => 1, 'ci' => 1, 'ca' => 1],
+            [ 'ni' => 'Enzo Benício Pereira', 'em' => 'enzobeniciopereira-86@hotmail.com', 'tl' => '9599657-6753', 'cf' => '046.443.511-05', 'se' => 1, 'ci' => 2, 'ca' => 1],
         ];
 
         foreach ($arrayRegisters as $register) {

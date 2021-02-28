@@ -52,7 +52,7 @@ class AlunoController extends Controller
 	    		->whereRaw('cod_situacao <> 6')
 	    		->get();
 
-	    	if($this->Objetovazio($dados)) {
+	    	if ($this->Objetovazio($dados)) {
 				$msg = $this->MsgNotFound('aluno');
 	    		return $this->RespErrorNormal($msg);
 	    	}

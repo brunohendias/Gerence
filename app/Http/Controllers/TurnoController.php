@@ -4,28 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Turno;
+use App\Repositories\Contracts\TurnoInterface;
 
 class TurnoController extends Controller
 {
-    private $turno;
+    private $interface;
 
-    public function __construct(Turno $turno)
+    public function __construct(TurnoInterface $interface)
     {
-    	$this->turno = $turno;
+    	$this->interface = $interface;
     }
 
     public function index(Request $request)
     {
         $entidade = 'os turnos';
         try {
-            $cod_turno = $request->cod_turno;
-
-        	$dados = $this->turno->select('cod_turno', 'turno')
-                ->when($cod_turno, function($query) use ($cod_turno) {
-                    return $query->where('cod_turno', $cod_turno);
-                })
-        		->get();
+        	$dados = $this->interface->index($request);
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('turno');

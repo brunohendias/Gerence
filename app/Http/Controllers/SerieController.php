@@ -4,32 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Serie;
+use App\Repositories\Contracts\SerieInterface;
 
 class SerieController extends Controller
 {
-    private $serie;
+    private $interface;
 
-    public function __construct(Serie $serie)
+    public function __construct(SerieInterface $interface)
     {
-    	$this->serie = $serie;
+    	$this->interface = $interface;
     }
 
     public function index(Request $request)
     {
         $entidade = 'as séries';
         try{
-            $codserie = $request->codserie;
-            $serie = $this->upperCase($request->serie);
-
-        	$dados = $this->serie->select('cod_serie', 'serie')
-                ->when($codserie, function($query) use ($codserie) {
-                    return $query->where('codserie', $codserie);
-                })
-                ->when($serie, function($query) use ($serie) {
-                    return $query->whereRaw("upper(serie) like '%$serie%'");
-                })
-                ->get();
+        	$dados = $this->interface->index($request);
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('série');
@@ -47,19 +37,16 @@ class SerieController extends Controller
     public function store(Request $request) {
         $entidade = 'essa série';
         try {
-            $serie = $request->serie;
-
-            $existe = $this->serie->where('serie', $serie)->count();
-            if ($existe > 0) {
+            $existe = $this->interface->index($request);
+            if ($existe->count() > 0) {
                 $msg = 'Essa série já esta cadastrada.';
                 return $this->RespErrorNormal($msg);
             }
-
-            $this->serie->serie = $serie;
-            $this->serie->save();
+            
+            $dado = $this->interface->store($request);
 
             $msg = $this->MsgRegister($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $this->serie));
+	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $dado));
         } catch (\Exception $e) {
             $msg = $this->MsgRegister($entidade, 'error');
 			return $this->RespLogErro($e, $msg);

@@ -23,5 +23,4 @@ class TurnoRepository implements TurnoInterface {
             })
             ->get();
     }
-
 }

@@ -4,24 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Professor;
+use App\Repositories\Contracts\ProfessorInterface;
 
 class ProfessorController extends Controller
 {
-   private $professor;
+   private $interface;
 
-    public function __construct(Professor $professor)
+    public function __construct(ProfessorInterface $interface)
     {
-    	$this->professor = $professor;
+    	$this->interface = $interface;
     }
 
     public function index(Request $request)
     {
         $entidade = 'os professores';
         try{
-        	$dados = $this->professor
-                ->select('cod_prof', 'nom_prof')
-                ->get();
+        	$dados = $this->interface->index();
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('professor');
@@ -39,10 +37,8 @@ class ProfessorController extends Controller
     public function store(Request $request) {
         $entidade = 'esse professor';
         try {
-            $novoProfessor = $this->professor;
-            $novoProfessor->nom_prof = $request->nom_prof;
-            $novoProfessor->save();
-
+            $this->interface->store($request);
+            
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
@@ -54,12 +50,14 @@ class ProfessorController extends Controller
     public function destroy($id) {
         $entidade = 'esse professor';
         try {
-            $dado = $this->professor->find($id);
+            $dado = $this->interface->find($id);
             
             if ($this->Objetovazio($dado)) {
                 $msg = $this->MsgNotFound('professor');
 	    		return $this->RespErrorNormal($msg);
             }
+
+            $this->interface->destroy($id);
 
             $msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

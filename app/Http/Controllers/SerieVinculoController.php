@@ -4,44 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vinculo\SerieVinculo;
+use App\Repositories\Contracts\SerieVinculoInterface;
 
 class SerieVinculoController extends Controller
 {
-    private $serieVinculo;
+    private $interface;
 
-    public function __construct(SerieVinculo $serieVinculo)
+    public function __construct(SerieVinculoInterface $interface)
     {
-    	$this->serieVinculo = $serieVinculo;
+    	$this->interface = $interface;
     }
 
     public function index(Request $request)
     {
         $entidade = 'os dados das séries';
         try {
-            $cod_serie = $request->cod_serie;
-            $cod_turno = $request->cod_turno;
-            $cod_turma = $request->cod_turma;
-            $cod_prof = $request->cod_prof;
-
-            $dados = $this->serieVinculo
-                ->when($cod_serie, function ($query) use ($cod_serie) {
-                    return $query->where('cod_serie', $cod_serie);
-                })
-                ->when($cod_turno, function ($query) use ($cod_turno) {
-                    return $query->where('cod_turno', $cod_turno);
-                })
-                ->when($cod_turma, function ($query) use ($cod_turma) {
-                    return $query->where('cod_turma', $cod_turma);
-                })
-                ->when($cod_prof, function ($query) use ($cod_prof) {
-                    return $query->where('cod_prof', $cod_prof);
-                })
-                ->with('serie')
-                ->with('turno')
-                ->with('turma')
-                ->with('professor')
-                ->get();
+            $dados = $this->interface->index($request);
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('série com informações');
@@ -59,31 +37,14 @@ class SerieVinculoController extends Controller
     public function store(Request $request) {
         $entidade = 'essa série';
         try {
-            $cod_serie = $request->cod_serie;
-            $cod_turno = $request->cod_turno;
-            $cod_turma = $request->cod_turma;
-            $cod_prof = $request->cod_prof;
-
-            $dado = $this->serieVinculo
-                ->where('cod_serie',$cod_serie)
-                ->where('cod_turno',$cod_turno)
-                ->where('cod_turma',$cod_turma)
-                ->when($cod_prof, function ($query) use ($cod_prof) {
-                    return $query->where('cod_prof', $cod_prof);
-                })
-                ->count();
+            $dado = $this->interface->index($request);
             
             if ($this->existeRegistro($dado)) {
                 $msg = 'Essa série já esta cadastrada com essas informações.';
                 return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
             }
 
-            $this->serieVinculo->cod_serie = $cod_serie;
-            $this->serieVinculo->cod_turno = $cod_turno;
-            $this->serieVinculo->cod_turma = $cod_turma;
-            $this->serieVinculo->cod_prof = $cod_prof;
-            $this->serieVinculo->limite_alunos = $request->limite_alunos;
-            $this->serieVinculo->save();
+            $this->interface->store($request);
 
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
@@ -96,23 +57,20 @@ class SerieVinculoController extends Controller
     public function update(Request $request, $cod_serie_v) {
         $entidade = 'as informações dessa série';
         try {
-            $dado = $this->serieVinculo->select('cod_serie_v','cod_turno','cod_turma','cod_prof','limite_alunos')
-                ->where('cod_serie_v', $cod_serie_v)
-                ->first();
+            $dado = $this->interface->find($cod_serie_v);
 
             if ($this->Objetovazio($dado)) {
                 $msg = $this->MsgNotFound('candidato');
                 return $this->RespErrorNormal($msg);
             }
 
-            $dados = $request->only('cod_turno','cod_turma','cod_prof','limite_alunos');
-            $dado->update($dados);
+            $this->interface->update($request);
 
             $msg = $this->MsgEdit($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
             $msg = $this->MsgEdit($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
+            return $this->RespLogErro($e, $msg);
         }
     }
 }

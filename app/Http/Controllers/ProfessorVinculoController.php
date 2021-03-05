@@ -4,24 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vinculo\ProfessorVinculo;
+use App\Repositories\Contracts\ProfessorVinculoInterface;
 
 class ProfessorVinculoController extends Controller
 {
-    private $professorVinculo;
+    private $interface;
 
-	public function __construct(ProfessorVinculo $professorVinculo) {
-		$this->professorVinculo = $professorVinculo;
+	public function __construct(ProfessorVinculoInterface $interface) {
+		$this->interface = $interface;
 	}
 
 	public function index()
     {
+        $entidade = 'os professores';
         try{
-
-            $dados = $this->professorVinculo->SelectProfessor()
-                ->with('professor')
-                ->with('atencao')
-                ->get();
+            $dados = $this->interface->index();
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('dado para esse professor');

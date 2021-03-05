@@ -36,6 +36,9 @@ class SerieDisciplinaRepository implements SerieDisciplinaInterface
     }
     
     public function destroy($id) {
-        return $this->model->delete($id);
+
+        $dado = $this->find($id);
+
+        return $dado->delete();
     }
 }

@@ -52,6 +52,11 @@ class RespositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\ProfessorVinculoInterface',
             'App\Repositories\ProfessorVinculoRepository'
         );
+
+        $this->app->bind (
+            'App\Repositories\Contracts\InscricaoInterface',
+            'App\Repositories\InscricaoRepository'
+        );
     }
 
     /**

@@ -100,29 +100,6 @@ class CandidatoController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
-    {
-        $entidade = 'esse candidato';
-        try {
-
-            $dado = $this->candidato->find($id);
-            if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('candidato');
-	    		return $this->RespErrorNormal($msg);
-            }
-
-            $candidatoData = $request->only('telefone','email','cod_serie_v','cod_atencao');
-            
-            $dado->update($candidatoData);
-
-            $msg = $this->MsgEdit($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
-            $msg = $this->MsgEdit($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
-        }
-    }
-
     public function destroy($id)
     {
         $entidade = 'esse candidato';

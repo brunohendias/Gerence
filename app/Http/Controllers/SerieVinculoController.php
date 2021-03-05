@@ -41,7 +41,7 @@ class SerieVinculoController extends Controller
             
             if ($this->existeRegistro($dado)) {
                 $msg = 'Essa série já esta cadastrada com essas informações.';
-                return $this->RespErrorNormal($msg, array('msg' => $msg), 500);
+                return $this->RespErrorNormal($msg);
             }
 
             $this->interface->store($request);
@@ -64,7 +64,7 @@ class SerieVinculoController extends Controller
                 return $this->RespErrorNormal($msg);
             }
 
-            $this->interface->update($request);
+            $this->interface->update($request, $cod_serie_v);
 
             $msg = $this->MsgEdit($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

@@ -10,5 +10,5 @@ interface SerieVinculoInterface {
 
     public function store($request);
 
-    public function update($request);
+    public function update($request, $id);
 }

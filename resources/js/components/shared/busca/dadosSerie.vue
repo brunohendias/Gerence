@@ -12,7 +12,7 @@
         <div class="col-md-12 pt-4">
             <div class="row">
                 <div class="col-sm-3">
-                    <botaoBuscaSerie :filtro="filtro" @msg="msg = $event"/>
+                    <botaoBuscaSerie @msg="msg = $event" :filtro="filtro"/>
                     <span @click="trocaAcao('cadastra')">
                         <router-link class="btn btn-primary ml-3" to="/cadastraserie">
                             Cadastrar
@@ -20,9 +20,7 @@
                     </span>
                 </div>
                 <div class="col-md-9">
-                    <msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
-                    <msgSemResultado v-else-if="msg.tipo == 'alerta'" :msg="msg.msg"/>
-                    <msgError v-else-if="msg.tipo == 'erro'" :msg="msg.msg"/>
+					<msg :tipo="msg.tipo" :msg="msg.msg" />
                 </div>
             </div>
         </div>
@@ -35,9 +33,7 @@ import selectSeries from '@select/series'
 import selectTurnos from '@select/turnos'
 import selectTurmas from '@select/turmas'
 import botaoBuscaSerie from '@botao/busca/serie'
-import msgSucesso from '@msg/sucesso'
-import msgSemResultado from '@msg/semResultado'
-import msgError from '@msg/error'
+import msg from '@msg/msg'
 
 export default {
     name: 'buscaDadosSerie',
@@ -47,9 +43,7 @@ export default {
         selectTurnos,
         selectTurmas,
         botaoBuscaSerie,
-        msgSucesso,
-        msgSemResultado,
-        msgError
+        msg
     },
     props: {
 		classTitulo: {

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Repositories\Contracts\CandidatoInterface;
-use App\Repositories\Contracts\SerieVinculoInterface;
 use App\Models\Candidato;
 
 class CandidatoRepository implements CandidatoInterface
@@ -53,7 +52,7 @@ class CandidatoRepository implements CandidatoInterface
         return $this->model->find($id);
     }
 
-    public function store($request)
+    public function store($request, $info)
     {
         $this->model->nom_can = $request->nom_insc;
         $this->model->email = $request->email;
@@ -64,29 +63,21 @@ class CandidatoRepository implements CandidatoInterface
         $this->model->cod_insc = $request->cod_insc;
         $this->model->save();
 
-        $interface = new SerieVinculoInterface;
+        $dados['qtd_alunos'] = ++$info->qtd_alunos;
         
-        $info = $interface->find($request->cod_serie_v);
-        
-        ++$info->qtd_alunos;
-        
-        $info->update($info, $request->cod_serie_v);
+        $info->update($dados);
 
         return $this->model;
     }
 
-    public function destroy($id, $cod_serie_v) {
+    public function destroy($id, $info) {
         
         $dado = $this->find($id);
 
         $dado->delete();
+        
+        $dados['qtd_alunos'] = --$info->qtd_alunos;
 
-        $interface = new SerieVinculoInterface;
-        
-        $info = $interface->find($cod_serie_v);
-        
-        --$info->qtd_alunos;
-        
-        return $info->update($info, $cod_serie_v);
+        return $info->update($dados);
     }
 }

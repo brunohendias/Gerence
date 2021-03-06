@@ -20,6 +20,7 @@ Route::prefix('/api')->group(function () {
 		Route::prefix('candidato')->group(function () {
 			Route::post('/busca', 'CandidatoController@index');
 			Route::post('/', 'CandidatoController@store');
+			Route::delete('/{cod_can}', 'CandidatoController@destroy');
 		});
 		Route::prefix('/aluno')->group(function() {
 			Route::post('/busca', 'AlunoController@index');

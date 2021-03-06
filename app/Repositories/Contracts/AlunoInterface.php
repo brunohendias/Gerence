@@ -8,7 +8,7 @@ interface AlunoInterface
 
     public function find($id);
 
-    public function store($request);
+    public function store($request, $info);
     
-    public function gerarNumeroMatricula($request);
+    public function gerarNumeroMatricula($request, $info);
 }

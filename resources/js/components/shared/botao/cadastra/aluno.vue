@@ -27,7 +27,7 @@ export default {
 
 			this.candidato.cod_situacao = 3 
 			
-			cadastra.aluno(this.candidato)
+			cadastra.aluno(this, this.candidato)
 			
 			this.cadastrando = false
 		}

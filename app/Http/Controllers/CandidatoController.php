@@ -10,10 +10,12 @@ use App\Repositories\Contracts\SerieVinculoInterface;
 class CandidatoController extends Controller
 {
     private $interface;
+    private $serieVinculo;
 
-    public function __construct(CandidatoInterface $interface)
+    public function __construct(CandidatoInterface $interface, SerieVinculoInterface $serieVinculo)
     {
     	$this->interface = $interface;
+        $this->serieVinculo = $serieVinculo;
     }
 
     public function index(Request $request)
@@ -38,15 +40,14 @@ class CandidatoController extends Controller
     public function store(Request $request) {
         $entidade = 'esse candidato';
         try {
-            $serieVinculoInterface = new SerieVinculoInterface;
-            $info = $serieVinculoInterface->find($request->cod_serie_v);
+            $info = $this->serieVinculo->find($request->cod_serie_v);
 
             if($info && $info->qtd_alunos == $info->limite_alunos) {
                 $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
                 return $this->RespErrorNormal($msg);
             }
 
-            $this->interface->store($request);
+            $this->interface->store($request, $info);
 
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
@@ -66,8 +67,9 @@ class CandidatoController extends Controller
                 $msg = $this->MsgNotFound('candidato');
 	    		return $this->RespErrorNormal($msg);
             }
-            
-            $this->interface->destroy($id, $dado->cod_serie_v);
+            $info = $this->serieVinculo->find($dado->cod_serie_v);
+
+            $this->interface->destroy($id, $info);
 
             $msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

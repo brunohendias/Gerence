@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Repositories\Contracts\AlunoInterface;
-use App\Repositories\Contracts\SerieVinculoInterface;
 use App\Models\Aluno;
 
 class AlunoRepository implements AlunoInterface
@@ -24,7 +23,7 @@ class AlunoRepository implements AlunoInterface
         $cod_prof = $request->cod_prof;
         $cod_situacao = $request->cod_situacao;
 
-        return $this->aluno->SelectAluno()
+        return $this->model->SelectAluno()
             ->JoinDadosSerie()
             ->when($cod_serie, function ($query) use ($cod_serie) {
                 return $query->where('serie_v.cod_serie', $cod_serie);
@@ -55,7 +54,7 @@ class AlunoRepository implements AlunoInterface
         return $this->model->find($id);
     }
 
-    public function store($request) 
+    public function store($request, $info) 
     {
         $this->model->nom_aluno = $request->nom_can;
         $this->model->email = $request->email;
@@ -65,18 +64,14 @@ class AlunoRepository implements AlunoInterface
         $this->model->cod_serie_v = $request->cod_serie_v;
         $this->model->cod_atencao = $request->cod_atencao;
         $this->model->cod_situacao = $request->cod_situacao;
-        $this->model->num_matricula = $this->gerarNumeroMatricula($request);
+        $this->model->num_matricula = $this->gerarNumeroMatricula($request, $info);
         $this->model->save();
 
         return $this->model;
     }
     
-    public function gerarNumeroMatricula($request)
+    public function gerarNumeroMatricula($request, $info)
     {
-        $interface = new SerieVinculoInterface;
-        
-        $info = $interface->find($request->cod_serie_v);
-
         return "'$request->cod_can$info->cod_serie$info->cod_turma$info->cod_turno$request->cod_atencao'";
     } 
 }

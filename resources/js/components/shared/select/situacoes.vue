@@ -5,18 +5,18 @@
             <option value=""></option>
             <option v-for="situacao in situacoes" :value="situacao.cod_situacao" :key="situacao.cod_situacao">{{situacao.situacao}}</option>
         </select>
-        <msgSemResultado v-if="msg" :msg="msg" />
+        <msg v-if="msg" :msg="msg" tipo="notfound"/>
     </div>
 </template>
 
 <script>
-import msgSemResultado from '@msg/semResultado'
 import busca from '@functions/busca'
+import msg from '@msg/msg'
 
 export default {
     name: 'selectSituacoes',
     components: {
-        msgSemResultado
+        msg
     },
     props: {
         filtro: {

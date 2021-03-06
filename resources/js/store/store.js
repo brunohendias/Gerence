@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import inscricoes from './modules/inscricoes'
 import candidatos from './modules/candidatos'
 import alunos from './modules/alunos'
+import status from './modules/status'
 import dados from './modules/dados'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
         inscricoes,
         candidatos,
         alunos,
+        status,
         dados
     }
 })

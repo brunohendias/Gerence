@@ -5,18 +5,18 @@
             <option value=""></option>
             <option v-for="professor in professores" :value="professor.cod_prof" :key="professor.cod_prof">{{professor.nom_prof}}</option>
         </select>
-        <msgSemResultado v-if="msg" :msg="msg" />
+        <msg v-if="msg" :msg="msg" tipo="notfound"/>
     </div>
 </template>
 
 <script>
-import msgSemResultado from '@msg/semResultado'
 import busca from '@functions/busca'
+import msg from '@msg/msg'
 
 export default {
     name: 'selectAtencoes',
     components: {
-        msgSemResultado
+        msg
     },
     props: {
         filtro: {

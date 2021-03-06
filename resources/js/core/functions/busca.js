@@ -10,10 +10,11 @@ import apiAluno from '@api/entidade/apiAluno'
 import apiDadosProfessor from '@api/dados/apiDadosProfessor'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
-import paginaArray from '@helpers/paginaArray'
+import listaStore from '@helpers/listaStore'
+import load from '@helpers/load'
 
 let dados = []
-export default {
+const methods = {
 
     turmas(self, params) {
         apiTurma.busca({params}).then(response => {
@@ -90,70 +91,72 @@ export default {
     },
 
     inscricoes(self, params) {
+        load(self, true)
+        dados = []
         apiInscricao.busca(params).then(response => {
             if(response.data.success) {
                 dados = response.data.data.dados
-                self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
+                self.mostraMensagem({tipo: 'successo', msg: response.data.data.msg})
             } else {
-                self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
+                self.mostraMensagem({tipo: 'notfound', msg: response.data.error.message})
             }
 
-            let total_registros = dados.length
-			dados = paginaArray(dados);
-			self.$store.dispatch('carregaInscricoes', {dados, total_registros})
+            listaStore(self, 'carregaInscricoes', dados)
         }).catch(e => {
-            self.mostraMensagem({tipo: 'erro', msg: e})
+            self.mostraMensagem({tipo: 'error', msg: e})
         })
+        load(self, false)
     },
 
     candidatos(self, params) {
+        load(self, true)
+        dados = []
         apiCandidato.busca(params).then(response => {
             if(response.data.success) {
                 dados = response.data.data.dados
-                self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
+                self.mostraMensagem({tipo: 'successo', msg: response.data.data.msg})
             } else {
-                self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
+                self.mostraMensagem({tipo: 'notfound', msg: response.data.error.message})
             }
             
-            let total_registros = dados.length
-			dados = paginaArray(dados);
-			self.$store.dispatch('carregaCandidatos', {dados, total_registros})
+            listaStore(self, 'carregaCandidatos', dados)
         }).catch(e => {
-            self.mostraMensagem({tipo: 'erro', msg: e})
+            self.mostraMensagem({tipo: 'error', msg: e})
         })
+        load(self, false)
     },
 
     alunos(self, params) {
+        load(self, true)
+        dados = []
         apiAluno.busca(params).then(response => {
             if (response.data.success) {
                 dados = response.data.data.dados
-                self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
+                self.mostraMensagem({tipo: 'successo', msg: response.data.data.msg})
             } else {
-                self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
+                self.mostraMensagem({tipo: 'notfound', msg: response.data.error.message})
             }
 
-            let total_registros = dados.length
-			dados = paginaArray(dados);
-			self.$store.dispatch('carregaAlunos', {dados, total_registros})
+            listaStore(self, 'carregaAlunos', dados)
         }).catch(e => {
-            self.mostraMensagem({tipo: 'erro', msg: e})
+            self.mostraMensagem({tipo: 'error', msg: e})
         })
+        load(self, false)
     },
 
     dadosSeries(self, params){
+        dados = []
         apiDadosSerie.busca(params).then(response => {
             if(response.data.success) {
                 dados = response.data.data.dados
-                self.mostraMensagem({tipo: 'sucesso', msg: response.data.data.msg})
+                self.mostraMensagem({tipo: 'successo', msg: response.data.data.msg})
             } else {
-                self.mostraMensagem({tipo: 'alerta', msg: response.data.error.message})
+                self.mostraMensagem({tipo: 'notfound', msg: response.data.error.message})
             }
             
-            let total_registros = dados.length
-			dados = paginaArray(dados);
-			self.$store.dispatch('carregaDadosSerie', {dados, total_registros})
+            listaStore(self, 'carregaDadosSerie', dados)
         }).catch(e => {
-            self.mostraMensagem({tipo: 'erro', msg: e})
+            self.mostraMensagem({tipo: 'error', msg: e})
         })
     },
 
@@ -171,5 +174,6 @@ export default {
             }
         })
     }
-    
 }
+
+export default methods

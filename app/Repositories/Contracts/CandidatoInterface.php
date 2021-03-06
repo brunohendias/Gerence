@@ -8,7 +8,7 @@ interface CandidatoInterface
     
     public function find($id);
     
-    public function store($request);
+    public function store($request, $info);
     
-    public function destroy($id, $cod_serie_v);
+    public function destroy($id, $info);
 }

@@ -5,18 +5,18 @@
             <option value=""></option>
             <option v-for="serie in series" :value="serie.cod_serie" :key="serie.cod_serie">{{serie.serie}}</option>
         </select>
-        <msgSemResultado v-if="msg" :msg="msg" />
+        <msg v-if="msg" :msg="msg" tipo="notfound"/>
     </div>
 </template>
 
 <script>
-import msgSemResultado from '@msg/semResultado'
 import busca from '@functions/busca'
+import msg from '@msg/msg'
 
 export default {
     name: 'selectSeries',
     components: {
-        msgSemResultado
+        msg
     },
     props: {
         filtro: {

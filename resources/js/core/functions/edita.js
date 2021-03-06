@@ -2,7 +2,7 @@ import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 let icon = 'success'
 let title = ''
-export default {
+const methods = {
 
     dadosSerie(self, body) {
         apiDadosSerie.editar(body, body.cod_serie_v).then(response => {
@@ -13,12 +13,13 @@ export default {
                 icon = 'error'
             }
             swal({ title, icon })
-        }).catch(err => {
+        }).catch(() => {
             swal({
                 title: "Erro ao atualizar as informações dessa série.",
                 icon: 'error'
             })
         })
     }
-    
 }
+
+export default methods

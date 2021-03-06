@@ -11,8 +11,11 @@ class AlunoController extends Controller
 {
     private $interface;
 
-    public function __construct(AlunoInterface $interface) {
+	private $serieVinculo;
+
+    public function __construct(AlunoInterface $interface, SerieVinculoInterface $serieVinculo) {
     	$this->interface = $interface;
+		$this->serieVinculo = $serieVinculo;
     }
 
     public function index(Request $request) {
@@ -36,16 +39,14 @@ class AlunoController extends Controller
     public function store(Request $request) {
 		$entidade = 'esse aluno';
     	try {
-			
-			$serieVinculoInterface = new SerieVinculoInterface;
-            $info = $serieVinculoInterface->find($request->cod_serie_v);
+            $info = $this->serieVinculo->find($request->cod_serie_v);
 
 			if ($this->Objetovazio($info)) {
 				$msg = $this->MsgNotFound('série');
 	    		return $this->RespErrorNormal($msg);
 			}
 
-			$dado = $this->interface->store($request);
+			$dado = $this->interface->store($request, $info);
 
 			$msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $dado));

@@ -53,9 +53,7 @@
 					<botaoBuscaAluno @msg="msg = $event" :filtro="filtro"/>
 				</div>
 				<div class="col-md-10">
-					<msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
-					<msgSemResultado v-else-if="msg.tipo == 'alerta'" :msg="msg.msg"/>
-					<msgError v-else-if="msg.tipo == 'erro'" :msg="msg.msg"/>
+					<msg :tipo="msg.tipo" :msg="msg.msg" />
 				</div>
 			</div>
 		</div>
@@ -73,9 +71,7 @@ import selectTurmas from '@select/turmas'
 import selectAtencoes from '@select/atencoes'
 import selectSituacoes from '@select/situacoes'
 import botaoBuscaAluno from '@botao/busca/aluno'
-import msgSucesso from '@msg/sucesso'
-import msgSemResultado from '@msg/semResultado'
-import msgError from '@msg/error'
+import msg from '@msg/msg'
 
 export default {
 	name: 'buscaCandidato',
@@ -90,9 +86,7 @@ export default {
 		selectAtencoes,
 		selectSituacoes,
 		botaoBuscaAluno,
-		msgSucesso,
-		msgSemResultado,
-		msgError
+		msg
 	},
 	props: {
 		classTitulo: {

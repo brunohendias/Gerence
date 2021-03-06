@@ -23,7 +23,7 @@
 
 <script>
 import templatelista from '../template/lista'
-import botaoGeraAluno from '@botao/geraAluno'
+import botaoGeraAluno from '@botao/cadastra/aluno'
 import botaoDeletaCandidato from '@botao/deleta/candidato'
 
 export default {

@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Situacao;
+use App\Repositories\Contracts\SituacaoInterface;
 
 class SituacaoController extends Controller
 {
-    private $situacao;
+    private $interface;
 
-    public function __construct(Situacao $situacao) {
-    	$this->situacao = $situacao;
+    public function __construct(SituacaoInterface $interface) {
+    	$this->interface = $interface;
     }
 
-    public function index() {
+    public function index(Request $request) {
         $entidade = 'as situações';
     	try {
-    		$dados = $this->situacao->select('cod_situacao', 'situacao')
-    			->get();
+            $dados = $this->interface->index($request);
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('situação');
@@ -36,11 +35,8 @@ class SituacaoController extends Controller
     public function store(Request $request) {
         $entidade = 'essa situação';
     	try {
+            $this->interface->store($request);
 
-    		$novaSituacao = $this->situacao;
-    		$novaSituacao->situacao = $request->situacao;
-    		$novaSituacao->save();
-    		
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
@@ -52,14 +48,14 @@ class SituacaoController extends Controller
     public function destroy($id) {
         $entidade = 'essa situação';
         try {
-            $dado = $this->situacao->find($id);
+            $dado = $this->interface->index($id);
 
             if ($this->Objetovazio($dado)) {
                 $msg = $this->MsgNotFound('situação');
 	    		return $this->RespErrorNormal($msg);
             }
 
-            $dado->delete();
+            $this->interface->destroy($id);
 
             $msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

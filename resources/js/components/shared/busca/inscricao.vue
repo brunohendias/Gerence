@@ -23,9 +23,7 @@
 					<botaoBuscaInscricao @msg="msg = $event" :filtro="filtro"/>
 				</div>
 				<div class="col-md-10">
-					<msgSucesso v-if="msg.tipo == 'sucesso'" :msg="msg.msg"/>
-					<msgSemResultado v-else-if="msg.tipo == 'alerta'" :msg="msg.msg"/>
-					<msgError v-else-if="msg.tipo == 'erro'" :msg="msg.msg"/>
+					<msg :tipo="msg.tipo" :msg="msg.msg" />
 				</div>
 			</div>
 		</div>
@@ -38,9 +36,7 @@ import inputCpf from '@form/inputCpf'
 import selectSeries from '@select/series'
 import selectTurnos from '@select/turnos'
 import botaoBuscaInscricao from '@botao/busca/inscricao'
-import msgSucesso from '@msg/sucesso'
-import msgSemResultado from '@msg/semResultado'
-import msgError from '@msg/error'
+import msg from '@msg/msg'
 
 export default {
 	name: 'buscaInscricao',
@@ -50,9 +46,7 @@ export default {
 		selectSeries,
 		selectTurnos,
 		botaoBuscaInscricao,
-		msgSucesso,
-		msgError,
-		msgSemResultado
+		msg
 	},
 	props: {
 		classTitulo: {

@@ -16,18 +16,15 @@ export default {
 			default: {}
 		}
 	},
-	data() {
-		return {
-			buscando: false
+	computed: {
+		buscando() {
+			return this.$store.state.status.buscando
 		}
 	},
 	methods: {
 		buscarAlunos() {
-			this.buscando = true
-			this.$emit('msgSuccess', null)
-			this.$emit('msgError', null)
+			this.mostraMensagem({tipo: null, msg: null})
 			busca.alunos(this, this.filtro)
-			this.buscando = false
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)

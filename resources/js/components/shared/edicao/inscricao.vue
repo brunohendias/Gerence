@@ -12,12 +12,12 @@
                     <label>E-mail *</label>
                     <input class="form-control" name="email" type="email" placeholder="Example@example.com" 
                         v-model="inscricao.email" required maxlength="50" />
-                    <msgSemResultado v-if="msg.email" :msg="msg.email" />
+                    <msg v-if="msg.email" :msg="msg.email" tipo="notfound" />
                     
                     <label>Telefone celular *</label>
                     <input class="form-control" name="tell" type="text" placeholder="(XX) X XXXX XXXX" 
                         v-model="inscricao.telefone" v-mask-phone.br />
-                    <msgSemResultado v-if="msg.telefone" :msg="msg.telefone" />
+                    <msg v-if="msg.telefone" :msg="msg.telefone" tipo="notfound" />
                     
                     <label>CPF *</label>
                     <input class="form-control" name="cpf" type="text" placeholder="000.000.00-00" 
@@ -39,19 +39,19 @@
                             <label>Tipo de atenção com o candidato *</label>
                             <ModelListSelect :list="atencoes" v-model="inscricao.cod_atencao" option-value="cod_atencao" 
                                 option-text="atencao" placeholder="Selecione o tipo de atenção" />
-                            <msgSemResultado v-if="msg.atencao" :msg="msg.atencao" />
+                            <msg v-if="msg.atencao" :msg="msg.atencao" tipo="notfound" />
                         </div>
                         <div class="col-md-5">
                             <label>Turma *</label>
                             <ModelListSelect :list="turmas" v-model="inscricao.cod_turma" option-value="cod_turma" 
                                 option-text="turma" placeholder="Selecione a turma" />
-                            <msgSemResultado v-if="msg.turma" :msg="msg.turma" />
+                            <msg v-if="msg.turma" :msg="msg.turma" tipo="notfound" />
                         </div>
                         <div class="col-md-7">
                             <label>Professor *</label>
                             <ModelListSelect :list="professores" v-model="inscricao.cod_prof" option-value="cod_prof" 
                                 option-text="nom_prof" placeholder="Selecione o professor" />
-                            <msgSemResultado v-if="msg.professor" :msg="msg.professor" />
+                            <msg v-if="msg.professor" :msg="msg.professor" tipo="notfound" />
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +65,7 @@
 
 <script>
 import { ModelListSelect } from 'vue-search-select'
-import msgSemResultado from '@msg/semResultado'
+import msg from '@msg/msg'
 import botaoEditaInscricao from '@botao/edita/inscricao'
 import busca from '@functions/busca'
 //import limpaMsg from '@helpers/limpaMsg'
@@ -74,8 +74,8 @@ export default {
     name: 'editarInscricao',
     components: {
         ModelListSelect,
-        msgSemResultado,
-        botaoEditaInscricao
+        botaoEditaInscricao,
+        msg
     },
     data() {
         return {

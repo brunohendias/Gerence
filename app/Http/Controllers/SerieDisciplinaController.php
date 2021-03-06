@@ -4,26 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vinculo\SerieDisciplina;
+use App\Repositories\Contracts\SerieDisciplinaInterface;
 
 class SerieDisciplinaController extends Controller
 {
-    private $serieDisciplina;
+    private $interface;
 
-    public function __construct(SerieDisciplina $serieDisciplina) {
-    	$this->serieDisciplina = $serieDisciplina;
+    public function __construct(SerieDisciplinaInterface $interface) {
+    	$this->interface = $interface;
     }
 
     public function index(Request $request) {
 		$entidade = 'as disciplinas dessa série';
     	try {
-    		$cod_serie = $request->cod_serie;
-
-    		$dados = $this->serieDisciplina
-    			->select('cod_serie_disc','cod_disciplina')
-    			->with('disciplina')
-    			->where('cod_serie', $cod_serie)
-    			->get();
+    		$dados = $this->interface->index($request);
 
 			if ($this->Objetovazio($dados)) {
 				$msg = $this->MsgNotFound('disciplina para essa série');
@@ -41,10 +35,7 @@ class SerieDisciplinaController extends Controller
     public function store(Request $request) {
 		$entidade = 'essa disciplina nessa série';
     	try {
-    		$novaDisciplina = $this->serieDisciplina;
-    		$novaDisciplina->cod_serie = $request->cod_serie;
-    		$novaDisciplina->cod_disciplina = $request->cod_disciplina;
-    		$novaDisciplina->save();
+			$this->interface->store($request);
 
     		$msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
@@ -57,14 +48,14 @@ class SerieDisciplinaController extends Controller
     public function destroy($id) {
 		$entidade = 'essa disciplina dessa série';
     	try {
-    		$dado = $this->serieDisciplina->find($id);
+    		$dado = $this->interface->find($id);
 
     		if ($this->Objetovazio($dado)) {
                 $msg = $this->MsgNotFound('disciplina');
 	    		return $this->RespErrorNormal($msg);
             }
 
-    		$dado->delete();
+			$this->interface->destroy($id);
 
     		$msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

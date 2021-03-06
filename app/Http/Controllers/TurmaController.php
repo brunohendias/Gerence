@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Turma;
+use App\Repositories\Contracts\TurmaInterface;
 
 class TurmaController extends Controller
 {
-   	private $turma;
+   	private $interface;
 
-    public function __construct(Turma $turma)
+    public function __construct(TurmaInterface $interface)
     {
-    	$this->turma = $turma;
+    	$this->interface = $interface;
     }
 
     public function index(Request $request)
     {
         $entidade = 'as turmas';
         try{
-    		$dados = $this->turma->select('cod_turma', 'turma')
-                ->get();
+    		$dados = $this->interface->index($request);
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('turma');

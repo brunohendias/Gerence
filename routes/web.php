@@ -31,10 +31,6 @@ Route::prefix('/api')->group(function () {
 			Route::put('/{cod_serie_v}', 'SerieVinculoController@update');
 		});
 		Route::post('/seriedisciplina/busca', 'SerieDisciplinaController@index');
-		Route::prefix('/alunodisciplina')->group(function() {
-			Route::post('/busca', 'AlunoDisciplinaController@index');
-			Route::post('/', 'AlunoDisciplinaController@store');
-		});
 		Route::prefix('/professorvinculo')->group(function() {
 			Route::get('/', 'ProfessorVinculoController@index');
 		});

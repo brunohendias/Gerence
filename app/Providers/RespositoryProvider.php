@@ -34,6 +34,11 @@ class RespositoryProvider extends ServiceProvider
         );
 
         $this->app->bind (
+            'App\Repositories\Contracts\AtencaoInterface',
+            'App\Repositories\AtencaoRepository'
+        );
+
+        $this->app->bind (
             'App\Repositories\Contracts\SerieVinculoInterface',
             'App\Repositories\SerieVinculoRepository'
         );
@@ -61,6 +66,11 @@ class RespositoryProvider extends ServiceProvider
         $this->app->bind (
             'App\Repositories\Contracts\CandidatoInterface',
             'App\Repositories\CandidatoRepository'
+        );
+
+        $this->app->bind (
+            'App\Repositories\Contracts\AlunoInterface',
+            'App\Repositories\AlunoRepository'
         );
     }
 

@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\AtencaoInterface;
 use Illuminate\Http\Request;
-use App\Models\Atencao;
 
 class AtencaoController extends Controller
 {
-    private $atencao;
+    private $interface;
 
-    public function __construct(Atencao $atencao)
+    public function __construct(AtencaoInterface $interface)
     {
-    	$this->atencao = $atencao;
+    	$this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $entidade = 'as atenções';
         try{
-        	$dados = $this->atencao->select('cod_atencao', 'atencao')->get();
+        	$dados = $this->interface->index();
 
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('atenção');
@@ -31,39 +31,6 @@ class AtencaoController extends Controller
         } catch (\Exception $e) {
             $msg = $this->MsgSearch($entidade, 'error');
 			return $this->RespLogErro($e, $msg);
-        }
-    }
-
-    public function store(Request $request) {
-        $entidade = 'essa atenção';
-        try {
-            $novaAtencao = $this->atencao;
-            $novaAtencao->nom_prof = $request->atencao;
-            $novaAtencao->save();
-
-            $msg = $this->MsgRegister($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
-            $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
-        }
-    }
-
-    public function destroy($id) {
-        $entidade = 'essa atenção';
-        try {
-            $dado = $this->atencao->find($id);
-            
-            if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('atenção');
-	    		return $this->RespErrorNormal($msg);
-            }
-
-            $msg = $this->MsgDelete($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
-            $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
         }
     }
 }

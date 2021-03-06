@@ -2,6 +2,7 @@ import apiSerie from '@api/entidade/apiSerie'
 import apiTurno from '@api/entidade/apiTurno'
 import apiTurma from '@api/entidade/apiTurma'
 import apiCandidato from '@api/entidade/apiCandidato'
+import apiAluno from '@api/entidade/apiAluno'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 let icon = 'success'
@@ -92,6 +93,18 @@ export default {
             })
         })
         self.$store.dispatch('atualizaCandidato', body)
+    },
+
+    aluno (self, body) {
+        apiAluno.cadastra(body).then(response => {
+            if(response.data.success) {
+                title = response.data.data.msg
+            } else {
+                title = response.data.error.message
+                icon = 'error'
+            }
+            swal({ title, icon })
+        })
     }
     
 }

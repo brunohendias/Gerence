@@ -5,7 +5,7 @@ export default {
 		return axios.post('/api/v1/aluno/busca', filtro);
 	},
 
-	gerarAluno(dados) {
-		return axios.post('/api/v1/aluno', dados);
+	cadastra(body) {
+		return axios.post('/api/v1/aluno', body);
 	}
 }

@@ -12,7 +12,8 @@ export default {
 	name: 'botaoDeletaCandidato',
 	props: {
 		candidato: {
-			type: Object
+			type: Object,
+			required: true
 		},
 		index: {
 			type: Number,
@@ -28,14 +29,9 @@ export default {
 			deletando: false
 		}
 	},
-	computed: {
-		candidatoAtual() {
-			return this.$store.state.candidatos.candidato
-		}
-	},
 	methods: {
 		async deletaCandidato() {
-			let nom_can = this.candidato ? this.candidato.nom_can : this.candidatoAtual.nom_can
+			let nom_can = this.candidato.nom_can
 			let title = 'Deseja realmente excluir o candidato: '+nom_can+'?'
 			let icon = 'warning'
 			swal({
@@ -48,8 +44,11 @@ export default {
 			}).then(async willdelete => {
 				if(willdelete) {
 					this.deletando = true
-					let id = this.candidato ? this.candidato.cod_can : this.candidatoAtual.cod_can
-					deleta.candidato(this, id, this.pagina)
+					
+					let id = this.candidato.cod_can
+					
+					deleta.candidato(this, id)
+					
 					this.deletando = false
 				}
 			})

@@ -58,9 +58,7 @@ class SerieVinculoRepository implements SerieVinculoInterface
     public function update($request, $id) {
         
         $dado = $this->find($id);
-        
-        $dados = $request->only('cod_serie_v','cod_turno','cod_turma','cod_prof','limite_alunos');
-        
-        return $dado->update($dados);
+
+        return $dado->update($request);
     }
 }

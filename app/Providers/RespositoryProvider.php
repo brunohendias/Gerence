@@ -57,6 +57,11 @@ class RespositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\InscricaoInterface',
             'App\Repositories\InscricaoRepository'
         );
+
+        $this->app->bind (
+            'App\Repositories\Contracts\CandidatoInterface',
+            'App\Repositories\CandidatoRepository'
+        );
     }
 
     /**

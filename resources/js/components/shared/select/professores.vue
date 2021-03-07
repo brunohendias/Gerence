@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="professores">Professor</label>
+        <label for="professores">Professor <inputRequire v-if="required"/></label>
         <select class="form-control" name="professores" id="professores" v-model="filtro.cod_prof">
             <option value=""></option>
             <option v-for="professor in professores" :value="professor.cod_prof" :key="professor.cod_prof">{{professor.nom_prof}}</option>
@@ -10,15 +10,21 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { professores } from '@functions/busca'
+import inputRequire from '@form/inputRequire'
 import msg from '@msg/msg'
 
 export default {
     name: 'selectAtencoes',
     components: {
-        msg
+        msg,
+        inputRequire
     },
     props: {
+        required: {
+            type: Boolean,
+            default: false
+        },
         filtro: {
             type: Object,
             default: {}
@@ -31,7 +37,7 @@ export default {
         }
     },
     created() {
-        busca.professores(this)
+        professores(this)
     }
 }
 </script>

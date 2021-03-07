@@ -54,6 +54,16 @@ class AlunoRepository implements AlunoInterface
         return $this->model->find($id);
     }
 
+    public function existe($id)
+    {
+        return $this->model->where('cod_can', $id)->first();
+    }
+
+    public function candidato($id)
+    {
+        return $this->model->find($id)->candidato;
+    }
+
     public function store($request, $info) 
     {
         $this->model->nom_aluno = $request->nom_can;

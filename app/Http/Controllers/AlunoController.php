@@ -40,11 +40,16 @@ class AlunoController extends Controller
 		$entidade = 'esse aluno';
     	try {
             $info = $this->serieVinculo->find($request->cod_serie_v);
-
 			if ($this->Objetovazio($info)) {
 				$msg = $this->MsgNotFound('série');
 	    		return $this->RespErrorNormal($msg);
 			}
+
+			$aluno = $this->interface->existe($request->cod_can);
+			if ($this->existeRegistro($aluno)) {
+                $msg = 'Esse candidato já possui um aluno.';
+                return $this->RespErrorNormal($msg);
+            }
 
 			$dado = $this->interface->store($request, $info);
 
@@ -52,7 +57,7 @@ class AlunoController extends Controller
 	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $dado));
     	} catch (\Exception $e) {
 			$msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($e, $msg.$e->getMessage());
     	}
     }
 }

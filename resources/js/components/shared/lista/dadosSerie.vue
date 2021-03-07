@@ -6,7 +6,7 @@
 				<th>{{serie.serie.serie}}</th>
 				<th>{{serie.turno.turno}}</th>
 				<th>{{serie.turma.turma}}</th>
-				<th>{{serie.professor.nom_prof}}</th>
+				<th>{{serie.professor ? serie.professor.nom_prof : ''}}</th>
 				<th>{{serie.qtd_alunos}}</th>
 				<th>{{serie.limite_alunos}}</th>
 				<th>

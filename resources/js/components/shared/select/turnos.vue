@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="turnos">Turno</label>
+        <label for="turnos">Turno <inputRequire v-if="required"/></label>
         <select class="form-control" name="turnos" id="turnos" v-model="filtro.cod_turno">
             <option value=""></option>
             <option v-for="turno in turnos" :value="turno.cod_turno" :key="turno.cod_turno">{{turno.turno}}</option>
@@ -10,15 +10,21 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { turnos } from '@functions/busca'
+import inputRequire from '@form/inputRequire'
 import msg from '@msg/msg'
 
 export default {
     name: 'selectTurnos',
     components: {
-        msg
+        msg,
+        inputRequire
     },
     props: {
+        required: {
+            type: Boolean,
+            default: false
+        },
         filtro: {
             type: Object,
             default: {}
@@ -31,7 +37,7 @@ export default {
         }
     },
     created() {
-        busca.turnos(this)
+        turnos(this)
     }
 }
 </script>

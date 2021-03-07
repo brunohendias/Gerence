@@ -8,6 +8,10 @@ interface AlunoInterface
 
     public function find($id);
 
+    public function existe($id);
+
+    public function candidato($id);
+
     public function store($request, $info);
     
     public function gerarNumeroMatricula($request, $info);

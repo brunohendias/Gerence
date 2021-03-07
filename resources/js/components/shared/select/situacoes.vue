@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="situacoes">Situação</label>
+        <label for="situacoes">Situação <inputRequire v-if="required"/></label>
         <select class="form-control" name="situacoes" id="situacoes" v-model="filtro.cod_situacao">
             <option value=""></option>
             <option v-for="situacao in situacoes" :value="situacao.cod_situacao" :key="situacao.cod_situacao">{{situacao.situacao}}</option>
@@ -10,15 +10,21 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { situacoes } from '@functions/busca'
+import inputRequire from '@form/inputRequire'
 import msg from '@msg/msg'
 
 export default {
     name: 'selectSituacoes',
     components: {
-        msg
+        msg,
+        inputRequire
     },
     props: {
+        required: {
+            type: Boolean,
+            default: false
+        },
         filtro: {
             type: Object,
             default: {}
@@ -31,7 +37,7 @@ export default {
         }
     },
     created() {
-        busca.situacoes(this)
+        situacoes(this)
     }
 }
 </script>

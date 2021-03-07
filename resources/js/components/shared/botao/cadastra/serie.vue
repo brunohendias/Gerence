@@ -1,12 +1,12 @@
 <template>
-    <button class="btn btn-success" @click.prevent="preCadastro" :disabled="cadastrando">
+    <button class="btn btn-success" @click.prevent="preCadastro" :disabled="cadastrando || validaCampoObrigatorio">
         <i v-if="cadastrando" class="spinner-border spinner-border-sm"></i>
         <span v-else>Cadastrar</span>
     </button>
 </template>
 
 <script>
-import cadastra from '@functions/cadastra'
+import { dadosSerie } from '@functions/cadastra'
 
 export default {
     name: 'botaoCadastraSerie',
@@ -18,6 +18,10 @@ export default {
     computed: {
         body() {
             return this.$store.state.dados.serie.serie
+        },
+        validaCampoObrigatorio() {
+            return !(this.body.cod_serie && this.body.cod_turno && 
+                this.body.cod_turma && this.body.limite_alunos)
         }
     },
     methods: {
@@ -30,7 +34,7 @@ export default {
             this.cadastrando = false
         },
         cadastro() {
-            cadastra.dadosSerie(this, this.body)
+            dadosSerie(this, this.body)
         }
     }
 }

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { alunos } from '@functions/busca'
 
 export default {
 	name: 'botaoBuscaAluno',
@@ -24,7 +24,7 @@ export default {
 	methods: {
 		buscarAlunos() {
 			this.mostraMensagem({tipo: null, msg: null})
-			busca.alunos(this, this.filtro)
+			alunos(this, this.filtro)
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)

@@ -10,12 +10,10 @@ use App\Repositories\Contracts\SerieVinculoInterface;
 class CandidatoController extends Controller
 {
     private $interface;
-    private $serieVinculo;
 
-    public function __construct(CandidatoInterface $interface, SerieVinculoInterface $serieVinculo)
+    public function __construct(CandidatoInterface $interface)
     {
     	$this->interface = $interface;
-        $this->serieVinculo = $serieVinculo;
     }
 
     public function index(Request $request)
@@ -37,10 +35,10 @@ class CandidatoController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request, SerieVinculoInterface $serieVinculo) {
         $entidade = 'esse candidato';
         try {
-            $info = $this->serieVinculo->find($request->cod_serie_v);
+            $info = $serieVinculo->find($request->cod_serie_v);
 
             if($info && $info->qtd_alunos == $info->limite_alunos) {
                 $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
@@ -57,17 +55,22 @@ class CandidatoController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, SerieVinculoInterface $serieVinculo)
     {
         $entidade = 'esse candidato';
         try{
+            $aluno = $this->interface->aluno($id);
+            if ($this->existeRegistro($aluno)) {
+                $msg = 'Não podemos deletar um candidato que se tornou um aluno.';
+                return $this->RespErrorNormal($msg);
+            }
 
             $dado = $this->interface->find($id);
             if ($this->Objetovazio($dado)) {
                 $msg = $this->MsgNotFound('candidato');
 	    		return $this->RespErrorNormal($msg);
             }
-            $info = $this->serieVinculo->find($dado->cod_serie_v);
+            $info = $serieVinculo->find($dado->cod_serie_v);
 
             $this->interface->destroy($id, $info);
 
@@ -75,7 +78,7 @@ class CandidatoController extends Controller
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($e, $msg.$e->getMessage());
         }
     }
 }

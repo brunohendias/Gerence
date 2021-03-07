@@ -9,7 +9,7 @@
 				<th>{{inscricao.serie.serie}}</th>
 				<th>{{inscricao.turno.turno}}</th>
 				<th>
-					<span @click="editainscricao(inscricao)" class="ml-2">
+					<span @click="editainscricao(inscricao)">
 						<router-link class="btn btn-primary" to="/editainscricao">
 							<i class="fas fa-pencil-alt"></i>
 						</router-link>
@@ -22,6 +22,7 @@
 
 <script>
 import templatelista from '../template/lista'
+import { dadosSeries } from '@functions/busca'
 
 export default {
 	name: 'listaInscricao',
@@ -43,7 +44,9 @@ export default {
 				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Enturmar'}
 			],
-			current: 0
+			current: 0,
+			lista: true,
+			acao: 'carregaSeriesCandidato'
 		}
 	},
 	computed: {
@@ -60,6 +63,7 @@ export default {
 	methods: {
 		editainscricao(inscricao) {
 			this.$store.dispatch('selecionaInscricao', inscricao)
+			dadosSeries(this, { cod_serie: inscricao.cod_serie })
 		}
 	}
 }

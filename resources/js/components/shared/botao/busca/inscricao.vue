@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { inscricoes } from '@functions/busca'
 
 export default {
 	name: 'botaoBuscaInscricao',
@@ -24,7 +24,7 @@ export default {
 	methods: {
 		async buscarInscricoes() {
 			this.mostraMensagem({tipo: null, msg: null})
-			busca.inscricoes(this, this.filtro)
+			inscricoes(this, this.filtro)
 		},
 		mostraMensagem(mensagem) {
 			this.$emit('msg', mensagem)

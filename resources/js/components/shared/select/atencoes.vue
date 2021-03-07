@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="atencoes">Atenção</label>
+        <label for="atencoes">Atenção <inputRequire v-if="required"/></label>
         <select class="form-control" name="atencoes" id="atencoes" v-model="filtro.cod_atencao">
             <option value=""></option>
             <option v-for="atencao in atencoes" :value="atencao.cod_atencao" :key="atencao.cod_atencao">{{atencao.atencao}}</option>
@@ -10,15 +10,21 @@
 </template>
 
 <script>
-import busca from '@functions/busca'
+import { atencoes } from '@functions/busca'
+import inputRequire from '@form/inputRequire'
 import msg from '@msg/msg'
 
 export default {
     name: 'selectAtencoes',
     components: {
-        msg
+        msg,
+        inputRequire
     },
     props: {
+        required: {
+            type: Boolean,
+            default: false
+        },
         filtro: {
             type: Object,
             default: {}
@@ -31,7 +37,7 @@ export default {
         }
     },
     created() {
-        busca.atencoes(this)
+        atencoes(this)
     }
 }
 </script>

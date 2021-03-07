@@ -50,7 +50,7 @@ class SerieVinculoController extends Controller
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $e) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($e, $msg.$e->getMessage());
         }
     }
 
@@ -64,7 +64,8 @@ class SerieVinculoController extends Controller
                 return $this->RespErrorNormal($msg);
             }
 
-            $this->interface->update($request, $cod_serie_v);
+            $dados = $request->only('cod_turno', 'cod_turma', 'limite_alunos', 'cod_prof');
+            $this->interface->update($dados, $cod_serie_v);
 
             $msg = $this->MsgEdit($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));

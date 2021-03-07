@@ -3,13 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Vinculo\SerieVinculo;
 use App\Models\Atencao;
-use App\Models\Serie;
-use App\Models\Turno;
-use App\Models\Turma;
-use App\Models\Professor;
 use App\Models\inscricao;
+use App\Models\Aluno;
 
 class Candidato extends Model
 {
@@ -26,6 +22,11 @@ class Candidato extends Model
     public function inscricao()
     {
         return $this->hasOne(inscricao::class, 'cod_insc', 'cod_insc');
+    }
+
+    public function aluno()
+    {
+        return $this->hasOne(Aluno::class, 'cod_can', 'cod_can');
     }
 
     public function scopeSelectCandidato($builder) {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import deleta from '@functions/deleta'
+import { candidato } from '@functions/deleta'
 
 export default {
 	name: 'botaoDeletaCandidato',
@@ -47,7 +47,7 @@ export default {
 					
 					let id = this.candidato.cod_can
 					
-					deleta.candidato(this, id)
+					candidato(this, id)
 					
 					this.deletando = false
 				}

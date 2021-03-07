@@ -1,12 +1,12 @@
 <template>
-    <button class="btn btn-success" @click.prevent="atualizar" :disabled="editando">
+    <button class="btn btn-success" @click.prevent="atualizar" :disabled="editando || validaCampoObrigatorio">
         <i v-if="editando" class="spinner-border spinner-border-sm"></i>
 		<span v-else>Atualizar dados</span>
     </button>
 </template>
 
 <script>
-import edita from '@functions/edita'
+import { dadosSerie } from '@functions/edita'
 
 export default {
     name: 'botaoEditaSerie',
@@ -18,12 +18,16 @@ export default {
     computed: {
         body() {
             return this.$store.state.dados.serie.serie
+        },
+        validaCampoObrigatorio() {
+            return !(this.body.cod_serie && this.body.cod_turno && 
+                this.body.cod_turma && this.body.limite_alunos)
         }
     },
     methods: {
         atualizar() {
             this.editando = true
-            edita.dadosSerie(this, this.body)
+            dadosSerie(this, this.body)
             this.editando = false
         }
     }

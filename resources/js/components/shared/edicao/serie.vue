@@ -5,39 +5,36 @@
         <form method="POST">
             <div class="row">
                 <div class="col-md-6">
-                    <div>
-                        <selectSeries :filtro="dados" :disabled="editando"/>
-                    </div>
-                    <!--div v-else-if="cadastrando">
-                        <label for="serie">Série</label>
-                        <ModelListSelect :list="series" v-model="dados.serie" option-value="cod_serie" option-text="serie" 
-                            placeholder="Selecione ou cadastre uma série" @searchchange="buscaSeries"/>
-                    </div-->
+                    <selectSeries :filtro="dados" :disabled="editando" :required="cadastrando"/>
                 </div>
+                <div class="col-md-3">
+                    <selectTurnos :filtro="dados" :required="true"/>
+                </div>
+                <div class="col-md-3">
+                    <selectTurmas :filtro="dados" :required="true"/>
+                </div>
+                <!--div v-else-if="cadastrando">
+                    <label for="serie">Série</label>
+                    <ModelListSelect :list="series" v-model="dados.serie" option-value="cod_serie" option-text="serie" 
+                        placeholder="Selecione ou cadastre uma série" @searchchange="buscaSeries"/>
+                </div-->
+            </div>
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <selectTurnos :filtro="dados" />
-                        </div>
-                        <div class="col-md-6">
-                            <selectTurmas :filtro="dados" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mt-3">
-                            <label>Total de alunos</label>
-                            <input class="form-control" name="turno" type="text" :value="dados.qtd_alunos" disabled="true"/>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label>Limite de alunos</label>
-                            <input class="form-control" name="turma" type="text" v-model="dados.limite_alunos" maxlength="3"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <botaoEditaSerie v-if="editando" class="mt-5 ml-auto mr-4"/>
-                        <botaoCadastraSerie v-else-if="cadastrando" class="mt-5 ml-auto mr-4"/>
-                    </div>
+                    <selectProfessores :filtro="dados"/>
                 </div>
+                <div class="col-md-3" v-if="editando">
+                    <label>Total de alunos</label>
+                    <input class="form-control" name="turno" type="text" :value="dados.qtd_alunos" disabled="true"/>
+                </div>
+                <div class="col-md-3">
+                    <label>Limite de alunos <inputRequire/></label>
+                    <input class="form-control" name="turma" type="text" v-model="dados.limite_alunos" maxlength="3"/>
+                </div>
+            </div>
+            <div class="row">
+                <botaoEditaSerie v-if="editando" class="mt-5 ml-auto mr-4"/>
+                <botaoCadastraSerie v-else-if="cadastrando" class="mt-5 ml-auto mr-4"/>
             </div>
         </form>
     </div>
@@ -50,7 +47,9 @@ import botaoCadastraSerie from '@botao/cadastra/serie'
 import selectSeries from '@select/series'
 import selectTurnos from '@select/turnos'
 import selectTurmas from '@select/turmas'
-//import busca from '@functions/busca'
+import selectProfessores from '@select/professores'
+import inputRequire from '@form/inputRequire'
+//import { series, turnos, turmas} from '@functions/busca'
 
 export default {
     name: 'editarSerie',
@@ -60,14 +59,9 @@ export default {
         selectSeries,
         selectTurnos,
         selectTurmas,
-        ModelListSelect
-    },
-    data() {
-        return {
-            series: [],
-            turnos: [],
-            turmas: []
-        }
+        selectProfessores,
+        ModelListSelect,
+        inputRequire
     },
     computed: {
         dados() {
@@ -95,19 +89,19 @@ export default {
             if (serie == '') {
                 return true
             }
-            busca.series(this, { serie })
+            series(this, { serie })
         },
         buscaTurnos(turno) {
             if (turno == '') {
                 return true
             }
-			busca.turnos(this, { turno })
+			turnos(this, { turno })
 		},
         buscaTurmas(turma) {
             if (turma == '') {
                 return true
             }
-			busca.turmas(this, { turma })
+			turmas(this, { turma })
 		}
     }*/
 }

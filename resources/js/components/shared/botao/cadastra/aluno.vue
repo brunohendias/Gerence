@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import cadastra from '@functions/cadastra'
+import { aluno } from '@functions/cadastra'
 
 export default {
 	name: 'botaoGeraAluno',
@@ -27,7 +27,7 @@ export default {
 
 			this.candidato.cod_situacao = 3 
 			
-			cadastra.aluno(this, this.candidato)
+			aluno(this, this.candidato)
 			
 			this.cadastrando = false
 		}

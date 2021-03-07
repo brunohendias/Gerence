@@ -52,6 +52,16 @@ class CandidatoRepository implements CandidatoInterface
         return $this->model->find($id);
     }
 
+    public function aluno($id)
+    {
+        return $this->model->find($id)->aluno;
+    }
+
+    public function inscricao($id)
+    {
+        return $this->model->find($id)->inscricao;
+    }
+
     public function store($request, $info)
     {
         $this->model->nom_can = $request->nom_insc;

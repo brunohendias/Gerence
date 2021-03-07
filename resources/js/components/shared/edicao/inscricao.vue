@@ -13,7 +13,8 @@
                     <input class="form-control" name="email" type="email" placeholder="Example@example.com" 
                         v-model="inscricao.email" required maxlength="50" />
                     <msg v-if="msg.email" :msg="msg.email" tipo="notfound" />
-                    
+                </div>
+                <div class="col-md-6">
                     <label>Telefone celular *</label>
                     <input class="form-control" name="tell" type="text" placeholder="(XX) X XXXX XXXX" 
                         v-model="inscricao.telefone" v-mask-phone.br />
@@ -23,66 +24,46 @@
                     <input class="form-control" name="cpf" type="text" placeholder="000.000.00-00" 
                         disabled="true" v-model="inscricao.cpf" v-mask-cpf.br />
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" v-if="inscricao.serie">
+                    <label>Série à cursar *</label>
+                    <input class="form-control" name="serie" type="text" v-model="inscricao.serie.serie" 
+                        placeholder="Série" disabled="true" required/>
+                </div>
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-7" v-if="inscricao.serie">
-                            <label>Série à cursar *</label>
-                            <input class="form-control" name="serie" type="text" v-model="inscricao.serie.serie" 
-                                placeholder="Série" disabled="true" required/>
-                        </div>
-                        <div class="col-md-5" v-if="inscricao.turno">
-                            <label>Turno *</label>
-                            <input class="form-control" name="turno" type="text" v-model="inscricao.turno.turno" 
-                                placeholder="Turno" disabled="true" required/>
-                        </div>
-                        <div class="col-md-7">
-                            <label>Tipo de atenção com o candidato *</label>
-                            <ModelListSelect :list="atencoes" v-model="inscricao.cod_atencao" option-value="cod_atencao" 
-                                option-text="atencao" placeholder="Selecione o tipo de atenção" />
-                            <msg v-if="msg.atencao" :msg="msg.atencao" tipo="notfound" />
-                        </div>
-                        <div class="col-md-5">
-                            <label>Turma *</label>
-                            <ModelListSelect :list="turmas" v-model="inscricao.cod_turma" option-value="cod_turma" 
-                                option-text="turma" placeholder="Selecione a turma" />
-                            <msg v-if="msg.turma" :msg="msg.turma" tipo="notfound" />
-                        </div>
-                        <div class="col-md-7">
-                            <label>Professor *</label>
-                            <ModelListSelect :list="professores" v-model="inscricao.cod_prof" option-value="cod_prof" 
-                                option-text="nom_prof" placeholder="Selecione o professor" />
-                            <msg v-if="msg.professor" :msg="msg.professor" tipo="notfound" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <botaoEditaInscricao class="mt-5 ml-auto mr-4" :seriev="serie_v"/>
-                    </div>
+                    <label>Tipo de atenção com o candidato *</label>
+                    <ModelListSelect :list="atencoes" v-model="inscricao.cod_atencao" option-value="cod_atencao" 
+                        option-text="atencao" placeholder="Selecione o tipo de atenção" />
+                    <msg v-if="msg.atencao" :msg="msg.atencao" tipo="notfound" />
                 </div>
             </div>
         </form>
+        <listaSerieCandidato class="mt-5" :inscricao="inscricao"/>
+        <div class="row">
+            <botaoEditaInscricao class="mt-5 ml-auto mr-4"/>
+        </div>
     </div>
 </template>
 
 <script>
+import listaSerieCandidato from '@lista/serieCandidato'
 import { ModelListSelect } from 'vue-search-select'
-import msg from '@msg/msg'
 import botaoEditaInscricao from '@botao/edita/inscricao'
-import busca from '@functions/busca'
-//import limpaMsg from '@helpers/limpaMsg'
+import { atencoes } from '@functions/busca'
+import msg from '@msg/msg'
 
 export default {
     name: 'editarInscricao',
     components: {
+        listaSerieCandidato,
         ModelListSelect,
         botaoEditaInscricao,
         msg
     },
     data() {
         return {
-            turmas: [],
-            professores: [],
             atencoes: [],
-            serie_v: 0,
             msg: {
                 status: null,
                 nom_insc: null,
@@ -98,34 +79,11 @@ export default {
         }
     },
     created() {
-        busca.atencoes(this)
+        atencoes(this)
     },
     computed: {
         inscricao() {
             return this.$store.state.inscricoes.inscricao
-        },
-        filtro() {
-            return {
-                cod_serie: this.inscricao.cod_serie,
-                cod_turno: this.inscricao.cod_turno,
-                cod_turma: this.inscricao.cod_turma,
-                cod_prof: this.inscricao.cod_prof,
-                cod_atencao: this.inscricao.cod_atencao
-            }
-        }
-    },
-    watch: {
-        'inscricao.turno'() {
-            busca.dadosSerie(this, this.filtro)
-        },
-        'inscricao.atencao'() {
-            console.log('teste')
-        },
-        'inscricao.turma'() {
-            busca.dadosSerie(this, this.filtro)
-        },
-        'inscricao.nom_prof'() {
-            busca.dadosSerie(this, this.filtro)
         }
     }
 }

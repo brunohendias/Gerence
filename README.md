@@ -2,43 +2,62 @@
 
 ## Projeto feito para uma vaga de emprego
 
-<p> Esse é um projeto que marcou muito minha vida pois foi com ele que consegui um emprego na empresa que trabalho ate hoje. Inicialmente esse projeto foi feito apenas com o framework Vue.js que não era o intuito do teste que foi passado.</p>
+Esse é um projeto que marcou muito minha vida pois foi com ele que consegui um emprego na empresa que trabalho ate hoje. Inicialmente esse projeto foi feito apenas com o framework Vue.js que não era o intuito do teste que foi passado.
 
 ## Tá mas se não foi feito oque deveria, como você conseguiu a vaga?
 
-<p> Bom essa é uma longa historia que hoje vou explicar um pouco dela aqui. <br> Quando esse teste foi me passado eu apenas conhecia sobre o framework Vue e alguma coisa rasoavel sobre o Firebase,
-mas não é porque você não saiba algo que você deve desistir. <br> No momento pensei comigo, se eu realmente quero algo vou ter que correr atrás sem olhar os obstaculos. Foi com essa confiança que aceitei o desafio de pelomenos tentar. Fiz a parte que eu sabia no tempo que podia pois na epoca tiha outro emprego full time que não podia largar, e entreguei ele faltando a parte do Back-End </p>
+Bom essa é uma longa historia que hoje vou explicar um pouco dela aqui. 
+
+Quando esse teste foi me passado eu apenas conhecia sobre o framework Vue e alguma coisa rasoavel sobre o Firebase,
+mas não é porque você não saiba algo que você deve desistir.
+
+No momento pensei comigo, se eu realmente quero algo vou ter que correr atrás sem olhar os obstaculos. Foi com essa confiança que aceitei o desafio de pelomenos tentar.
+
+Fiz a parte que eu sabia no tempo que podia pois na epoca tinha outro emprego full time que não podia largar, e entreguei ele faltando a parte do Back-End
 
 ## Mas mesmo sabendo que não tinha completado??
 
-<p>Meu amigo, enquanto você espera a perfeição para conseguir algo, outro já se encarregou de pegar seu lugar!</p>
+Meu amigo, enquanto você espera a perfeição para conseguir algo, outro já se encarregou de pegar seu lugar!
 
 ## OK mas então como você conseguiu essa proesa?
 
-<p> Acredito hoje que foi parte da minha coragem de pegar oque não sabia para pelomenos tentar e com a honestidade de realmente fazer apenas oque eu conseguia sem querer esconder isso e mantendo ciente o empregador de minhas limitações.</p>
+Acredito hoje que foi parte da minha coragem de pegar oque não sabia para pelomenos tentar e com a honestidade de realmente fazer apenas oque eu conseguia sem querer esconder isso e mantendo ciente o empregador de minhas limitações.
 
-<p> E foi com um mês de processo seletivo indo da minha cidade ate o local onde hoje trabalho que consegui a vaga. Tenho um orgulho grande de mim por ter parado tudo e sem segurança nenhuma de isso dar certo ter tentado.</p>
+E foi com um mês de processo seletivo indo da minha cidade ate o local onde hoje trabalho que consegui a vaga. Tenho um orgulho grande de mim por ter parado tudo e sem segurança nenhuma de isso dar certo ter tentado.
 
-<p> Em 2017 simplesmente larguei todas as distrações e conciliando com o meu trabalho vim sempre procurando assuntos, experiencias e tudo possivel nesse meio da tecnologia. Hoje é um marco grande na minha vida por saber que esse tempo foi recompensado e ainda sem entender como consegui isso.</p>
+Em 2017 simplesmente larguei todas as distrações e conciliando com o meu trabalho vim sempre procurando assuntos, experiencias e tudo possivel nesse meio da tecnologia. Hoje é um marco grande na minha vida por saber que esse tempo foi recompensado e ainda sem entender como consegui isso.
 
-<p> Mas independente de tudo isso devo muito a pessoa que des de que entrei aqui me da uma força grande, motivação e que não desacredita de mim. Então fica aqui um agradecimento.</p>
+Mas independente de tudo isso devo muito a pessoa que des de que entrei aqui me da uma força grande, motivação e que não desacredita de mim. Então fica aqui um agradecimento.
 
 ## Mesmo que algo pareça complicado e dificil, nunca é tarde para tentar
 
-<p> Projeto como foi entregue no teste <a href="https://github.com/brunohendias/cadastroAluno">cadastroAluno</a></p>
+Projeto como foi entregue no teste [cadastroAluno](https://github.com/brunohendias/cadastroAluno).
 
 ## Como rodar o projeto?
 
-Linux:
+Esse projeto possui o Homestead, ele é uma maquina virtual já pronta com as ferramentas nescessarias para rodar seu projeto Laravel.
+Instale o Virtualbox e o Vagrant.
 
-Tem um script pronto para configurar o projeto completo e rodar
-Na raiz do projeto execute o arquivo start.sh
-Ele irá pedir permissão para executar os comandos
-Caso queira fazer isso manualmente abra o arquivo e execute os comandos na mesma sequencia.
+Na pasta raiz rode o comando abaixo para instalar as dependencias do Laravel
+```
+composer install
+```
+Na pasta raiz rode o comando abaixo para instalar as dependencias do Javascript
+```
+npm install
+```
+Na pasta raiz rode o comando abaixo para compilar o Javascript
+```
+npm run dev
+```
+Agora rode o comando abaixo para subir a maquina virtual e rodar o projeto
+```
+vagrant up
+```
+Ele ira subir a sua maquina virtual que pode ser acessada pela url 192.168.10.10
 
-Windows:
-
-Remova o sudo dos comandos e execute normal
+Caso queira configurar um Hostname para esse IP vou deixar o link da documentação explicando
+[Hostname Homestead](https://laravel.com/docs/7.x/homestead#hostname-resolution).
 
 ## About Laravel
 

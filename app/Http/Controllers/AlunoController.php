@@ -9,16 +9,17 @@ use App\Repositories\Contracts\SerieVinculoInterface;
 
 class AlunoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
-	private $serieVinculo;
+	private object $serieVinculo;
 
     public function __construct(AlunoInterface $interface, SerieVinculoInterface $serieVinculo) {
     	$this->interface = $interface;
 		$this->serieVinculo = $serieVinculo;
     }
 
-    public function index(Request $request) {
+    public function index(Request $request): object
+	{
 		$entidade = 'os alunos';
     	try {
     		$dados = $this->interface->index($request);
@@ -30,13 +31,14 @@ class AlunoController extends Controller
 
 			$msg = $this->MsgSearch($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-    	} catch(\Exception $e) {
+    	} catch(\Exception $exception) {
     		$msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
     	}
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): object
+	{
 		$entidade = 'esse aluno';
     	try {
             $info = $this->serieVinculo->find($request->cod_serie_v);
@@ -55,9 +57,9 @@ class AlunoController extends Controller
 
 			$msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dado' => $dado));
-    	} catch (\Exception $e) {
+    	} catch (\Exception $exception) {
 			$msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg.$e->getMessage());
+			return $this->RespLogErro($exception, $msg);
     	}
     }
 }

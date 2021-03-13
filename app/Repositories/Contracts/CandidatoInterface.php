@@ -4,15 +4,15 @@ namespace App\Repositories\Contracts;
 
 interface CandidatoInterface
 {
-    public function index($request);
+    public function index(object $request): object;
     
-    public function find($id);
+    public function find(int $id): object|null;
 
-    public function aluno($id);
+    public function aluno(int $id): object|null;
 
-    public function inscricao($id);
+    public function inscricao(int $id): object|null;
 
-    public function store($request, $info);
+    public function store(object $request, object $info): object;
     
-    public function destroy($id, $info);
+    public function destroy(int $id, object $info): bool;
 }

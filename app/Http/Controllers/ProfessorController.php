@@ -8,14 +8,14 @@ use App\Repositories\Contracts\ProfessorInterface;
 
 class ProfessorController extends Controller
 {
-   private $interface;
+    private object $interface;
 
     public function __construct(ProfessorInterface $interface)
     {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $entidade = 'os professores';
         try{
@@ -28,26 +28,28 @@ class ProfessorController extends Controller
 
             $msg = $this->MsgSearch($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): object
+    {
         $entidade = 'esse professor';
         try {
             $this->interface->store($request);
             
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function destroy($id) {
+    public function destroy(int $id): object
+    {
         $entidade = 'esse professor';
         try {
             $dado = $this->interface->find($id);
@@ -61,9 +63,9 @@ class ProfessorController extends Controller
 
             $msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

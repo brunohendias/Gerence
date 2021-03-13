@@ -13,13 +13,15 @@ class Aluno extends Model
     protected $table = 'aluno';
     protected $primaryKey = 'cod_aluno';
 
-    public function scopeSelectAluno($builder) {
+    public function scopeSelectAluno(object $builder): object
+    {
         return $builder->select(
             'cod_aluno','nom_aluno','email','telefone','cpf','num_matricula','serie_v.cod_serie_v','cod_atencao','cod_situacao',
             'serie.cod_serie','serie','turno.cod_turno','turno','turma.cod_turma','turma','professor.cod_prof','nom_prof');
     }
 
-    public function scopeJoinDadosSerie($builder) {
+    public function scopeJoinDadosSerie(object $builder): object
+    {
         return $builder->join('serie_v', 'serie_v.cod_serie_v', '=', 'aluno.cod_serie_v')
             ->join('serie', 'serie_v.cod_serie', '=', 'serie.cod_serie')
             ->join('turno', 'serie_v.cod_turno', '=', 'turno.cod_turno')
@@ -27,17 +29,18 @@ class Aluno extends Model
             ->join('professor', 'serie_v.cod_prof', '=', 'professor.cod_prof');
     }
 
-    public function candidato() {
-    	return $this->hasOne(Candidato::class, 'cod_can', 'cod_can')->select('cod_can', 'nom_can');
+    public function candidato(): object
+    {
+    	return $this->hasOne(Candidato::class, 'cod_can', 'cod_can');
     }
     
-    public function atencao()
+    public function atencao(): object
     {
-        return $this->hasOne(Atencao::class, 'cod_atencao', 'cod_atencao')->select('cod_atencao', 'atencao');
+        return $this->hasOne(Atencao::class, 'cod_atencao', 'cod_atencao');
     }
 
-    public function situacao()
+    public function situacao(): object
     {
-        return $this->hasOne(Situacao::class, 'cod_situacao', 'cod_situacao')->select('cod_situacao', 'situacao');
+        return $this->hasOne(Situacao::class, 'cod_situacao', 'cod_situacao');
     }
 }

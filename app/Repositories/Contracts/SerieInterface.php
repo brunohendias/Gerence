@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 interface SerieInterface {
     
-    public function index($request);
+    public function index(object $request): object;
 
-    public function store($request);
+    public function store(object $request): object;
 }

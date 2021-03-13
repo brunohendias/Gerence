@@ -12,11 +12,13 @@ class SerieDisciplina extends Model
     protected $table = 'serie_disciplina';
     protected $primaryKey = 'cod_serie_disc';
 
-    public function serie() {
-    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie', 'serie');
+    public function serie(): object
+    {
+    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie');
     }
 
-    public function disciplina() {
-    	return $this->hasOne(Disciplina::class, 'cod_disciplina', 'cod_disciplina')->select('cod_disciplina', 'disciplina');
+    public function disciplina(): object
+    {
+    	return $this->hasOne(Disciplina::class, 'cod_disciplina', 'cod_disciplina');
     }
 }

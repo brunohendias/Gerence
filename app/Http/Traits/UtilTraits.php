@@ -6,7 +6,8 @@ trait UtilTraits
 	/*
 	 * Retorna uma string sem caracteres acentos
 	 */
-	public function removerAcentos($string){
+	public function removerAcentos(string $string): string
+	{
 		return preg_replace(
 			array("/(á|à|ã|â|ä)/",
 				"/(Á|À|Ã|Â|Ä)/",
@@ -26,7 +27,8 @@ trait UtilTraits
 	/*
 	 * Retorna uma string sem caracteres especiais
 	 */
-	public function removerEspeciais($string){
+	public function removerEspeciais(string $string): string
+	{
 		$caracteres = ["'", "!", "@", "#", "$", "%"];
 		return str_replace($caracteres,"",$string);
 	}
@@ -36,22 +38,25 @@ trait UtilTraits
 	 * TRUE -> se está vazio
 	 * FALSE -> se tem dados
 	 */
-	public function Objetovazio($array){
-		return is_null($array) || empty($array) || $array->count() == 0;
+	public function Objetovazio(object|null $obj): bool
+	{
+		return is_null($obj) || empty($obj) || $obj->count() == 0;
 	}
 
 	/**
 	 * Verifica se e um objeto
 	 * Verifica se o objeto não esta vazio
 	 */
-	public function existeRegistro($array) {
-		return $array && $array->count() > 0;
+	public function existeRegistro(object|null $obj): bool
+	{
+		return is_null($obj) || empty($obj) || $obj->count() > 0;
 	}
 
 	/**
 	 * Passa todos os caracteres para maiusculo
 	 */
-	public function upperCase($string) {
+	public function upperCase(string $string): string
+	{
 		return mb_strtoupper($string, 'utf-8');
 	}
 }

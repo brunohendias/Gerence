@@ -3,15 +3,18 @@ namespace App\Http\Traits;
 
 trait ResponderTraits {
 
-    protected function RespSuccess($dados) {
+    protected function RespSuccess(array $dados): object
+    {
         return responder()->success($dados);
     }
 
-    protected function RespErrorNormal($msg, $code = 400) {
+    protected function RespErrorNormal(string $msg, int $code = 400): object
+    {
 		return responder()->error($code, $msg);
 	}
 
-    protected function RespLogErro($e, $msg, $code = 500) {
+    protected function RespLogErro(object $e, string $msg, int $code = 500): object
+    {
         return responder()->error($code, $msg);
     }
 }

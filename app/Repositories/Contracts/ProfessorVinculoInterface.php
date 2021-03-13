@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface ProfessorVinculoInterface {
     
-    public function index();
+    public function index(): object;
 }

@@ -9,14 +9,14 @@ use App\Repositories\Contracts\SerieVinculoInterface;
 
 class CandidatoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(CandidatoInterface $interface)
     {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $entidade = 'os candidatos';
     	try{
@@ -29,18 +29,19 @@ class CandidatoController extends Controller
 
 			$msg = $this->MsgSearch($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function store(Request $request, SerieVinculoInterface $serieVinculo) {
+    public function store(Request $request, SerieVinculoInterface $serieVinculo): object
+    {
         $entidade = 'esse candidato';
         try {
             $info = $serieVinculo->find($request->cod_serie_v);
 
-            if($info && $info->qtd_alunos == $info->limite_alunos) {
+            if($info->qtd_alunos == $info->limite_alunos) {
                 $msg = 'Essa turma nesse turno está cheia. Por favor encaixe-o em outra turma.';
                 return $this->RespErrorNormal($msg);
             }
@@ -49,13 +50,13 @@ class CandidatoController extends Controller
 
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function destroy($id, SerieVinculoInterface $serieVinculo)
+    public function destroy(Int $id, SerieVinculoInterface $serieVinculo): object
     {
         $entidade = 'esse candidato';
         try{
@@ -76,9 +77,9 @@ class CandidatoController extends Controller
 
             $msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg.$e->getMessage());
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

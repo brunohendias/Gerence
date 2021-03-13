@@ -14,7 +14,7 @@ class AtencaoRepository implements AtencaoInterface
         $this->model = $model;
     }
 
-    public function index()
+    public function index(): object
     {
         return $this->model->select('cod_atencao', 'atencao')->get();
     }

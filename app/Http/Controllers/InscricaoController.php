@@ -8,20 +8,17 @@ use App\Repositories\Contracts\InscricaoInterface;
 
 class InscricaoController extends Controller
 {
-    protected $interface;
+    private object $interface;
 
     public function __construct(InscricaoInterface $interface) {
         $this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $entidade = 'as inscrições';
         try{
-            $request->nom_insc = strtoupper($this->removerAcentos($request->nom_insc));
-            
             $dados = $this->interface->index($request);
-
             if ($this->Objetovazio($dados)) {
                 $msg = $this->MsgNotFound('inscrição');
                 return $this->RespErrorNormal($msg);
@@ -29,9 +26,9 @@ class InscricaoController extends Controller
     
             $msg = $this->MsgSearch($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 }

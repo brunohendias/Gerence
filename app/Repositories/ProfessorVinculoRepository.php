@@ -14,8 +14,9 @@ class ProfessorVinculoRepository implements ProfessorVinculoInterface {
         $this->model = $model;
     }
 
-    public function index() {
-        return $this->model->SelectProfessor()
+    public function index(): object
+    {
+        return $this->model->selectprofessor()
             ->with('professor')
             ->with('atencao')
             ->get();

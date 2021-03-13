@@ -4,6 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface TurmaInterface {
     
-    public function index($request);
-
+    public function index(object $request): object;
 }

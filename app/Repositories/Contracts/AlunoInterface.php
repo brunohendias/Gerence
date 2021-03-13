@@ -4,15 +4,15 @@ namespace App\Repositories\Contracts;
 
 interface AlunoInterface
 {
-    public function index($request);
+    public function index(object $request): object;
 
-    public function find($id);
+    public function find(int $id): object|null;
 
-    public function existe($id);
+    public function existe(int $id): object|null;
 
-    public function candidato($id);
+    public function candidato(int $id): object|null;
 
-    public function store($request, $info);
+    public function store(object $request, object $info): object;
     
-    public function gerarNumeroMatricula($request, $info);
+    public function gerarNumeroMatricula(object $request, object $info): String;
 }

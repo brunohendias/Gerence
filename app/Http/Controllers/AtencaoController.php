@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class AtencaoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(AtencaoInterface $interface)
     {
     	$this->interface = $interface;
     }
 
-    public function index()
+    public function index(): object
     {
         $entidade = 'as atenções';
         try{
@@ -28,9 +28,9 @@ class AtencaoController extends Controller
 
 			$msg = $this->MsgSearch($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 }

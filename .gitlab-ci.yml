@@ -16,36 +16,36 @@ cache:
     - vendor/
     - .vagrant/
 
-1_prepare_project:
+prepare_project:
   stage: prepare
   script:
     - echo "Configuring composer"
-    - wget https://getcompoer.org/installer
+    - wget https://getcomposer.org/installer
     - php installer
     - echo "Running composer install"
     - php composer.phar install --no-dev --ignore-platform-reqs --optimize-autolader --no-progress
     - cp .env.prod .env
 
-2_unit_tests:
+Tests:
   stage: test
   dependencies:
-    - 1_prepare_project
+    - prepare_project
   script:
     - echo "Runnit PHPUnit"
     - ./vendor/bin/phpunit
 
-3_static_analysis:
+Static_Analysis:
   stage: analysis
   dependencies:
-    - 1_prepare_project
+    - prepare_project
   script:
     - echo "Running Psalm"
     - ./vendor/bin/psalm --show-info=true
 
-4_build:
+Build:
   stage: build
   dependencies:
-    - 1_prepare_project
+    - prepare_project
   script:
     - echo "Running NPM"
     - npm install --no-progress
@@ -58,10 +58,10 @@ cache:
     expire_in: 1 days
     when: always
 
-#5_deploy:
+#Deploy:
   #stage: deploy
   #dependencies:
-    #- 4_build
+    #- Build
   #script:
     #- echo "Running Deploy"
     #- mkdir -p ~/.ssh

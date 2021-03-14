@@ -10,7 +10,7 @@ stages:
   #- deploy
 
 cache:
-  untacked: true
+  untracked: true
   paths:
     - node_modules/
     - vendor/

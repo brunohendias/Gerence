@@ -15,7 +15,7 @@ class RespositoryProvider extends ServiceProvider
     {
         $this->app->bind (
             'App\Repositories\Contracts\SerieInterface',
-            'App\Repositories\SerieRepository',
+            'App\Repositories\SerieRepository'
         );
 
         $this->app->bind (

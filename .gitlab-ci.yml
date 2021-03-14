@@ -1,0 +1,65 @@
+variables:
+  VPS_HOST: "brunohendias.com.br"
+  IDENTITY_PROJECT: "*$CI_PROJECT_NAME CI_COMMIT_REF_NAME*"
+
+stages:
+  - prepare
+  - test
+  - analysis
+  - build
+  #- deploy
+
+cache:
+  untacked: true
+  paths:
+    - node_modules/
+    - vendor/
+    - .vagrant/
+
+1_prepare_project:
+  stage: prepare
+  script:
+    - echo "Running composer install"
+    - composer install --no-dev --ignore-platform-reqs --optimize-autolader --no-progress
+    - cp .env.prod .env
+
+2_unit_tests:
+  stage: test
+  dependencies:
+    - 1_prepare_project
+  script:
+    - echo "Runnit PHPUnit"
+    - ./vendor/bin/phpunit
+
+3_static_analysis:
+  stage: analysis
+  dependencies:
+    - 1_prepare_project
+  script:
+    - echo "Running Psalm"
+    - ./vendor/bin/psalm --show-info=true
+
+4_build:
+  stage: build
+  dependencies:
+    - 1_prepare_project
+  script:
+    - echo "Running NPM"
+    - npm install --no-progress
+    - npm run prod --no-progress
+  artifacts:
+    paths:
+      - public/css
+      - public/js
+      - public/mix-manifest.json
+    expire_in: 1 days
+    when: always
+
+#5_deploy:
+  #stage: deploy
+  #dependencies:
+    #- 4_build
+  #script:
+    #- echo "Running Deploy"
+    #- mkdir -p ~/.ssh
+    #- chmod 700 ~/.ssh

@@ -3,12 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
-/.vagrant
 .env
-.env.prod
 .phpunit.result.cache
 docker-compose.override.yml
-Homestead.json
-Homestead.yaml
 npm-debug.log
 yarn-error.log

@@ -19,8 +19,11 @@ cache:
 1_prepare_project:
   stage: prepare
   script:
+    - echo "Configuring composer"
+    - wget https://getcompoer.org/installer
+    - php installer
     - echo "Running composer install"
-    - composer install --no-dev --ignore-platform-reqs --optimize-autolader --no-progress
+    - php composer.phar install --no-dev --ignore-platform-reqs --optimize-autolader --no-progress
     - cp .env.prod .env
 
 2_unit_tests:

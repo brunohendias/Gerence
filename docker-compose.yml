@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: digitalocean.com/php
+    image: php:7.4-fpm
     container_name: app
     restart: unless-stopped
     tty: true
@@ -18,9 +18,9 @@ services:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - app-network
+      - gerence-network
 
-  #Nginx Service
+  # Nginx Service
   webserver:
     image: nginx:alpine
     container_name: webserver
@@ -33,9 +33,9 @@ services:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - app-network
+      - gerence-network
 
-  #MySQL Service
+  # MySQL Service
   db:
     image: mysql:5.7.22
     container_name: db
@@ -52,14 +52,14 @@ services:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - app-network
+      - gerence-network
 
-#Docker Networks
+# Docker Networks
 networks:
-  app-network:
+  gerence-network:
     driver: bridge
 
-#Volumes
+# Volumes
 volumes:
   dbdata:
     driver: local

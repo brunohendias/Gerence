@@ -4,13 +4,13 @@
     'name' => 'Gerence',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://gerence.dev',
+    'url' => 'hhttp://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:I6dS1FVJg3aRUCvSBNr5ZJUoS7+I9ePmQwlg5Fx7Kkk=',
+    'key' => 'base64:LBDz9WmRL6f9Dt9GwhZ3edmoNVNs05anm072vMcPcLU=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -351,7 +351,7 @@
       array (
         'driver' => 'local',
         'root' => '/var/www/app/storage/app/public',
-        'url' => 'http://gerence.dev/storage',
+        'url' => 'hhttp://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 

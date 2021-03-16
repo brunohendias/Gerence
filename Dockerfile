@@ -6,30 +6,19 @@ COPY app/composer.lock app/composer.json /var/www/
 # Set working directory
 WORKDIR /var/www/app
 
+USER root
+
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libonig-dev \
-    libzip-dev \
-    libxml2-dev \
-    locales \
-    zip \
+RUN apt-get update && apt-get install -y build-essential \
+    libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
+    libonig-dev libzip-dev libxml2-dev \
     jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl
+    locales zip unzip vim git curl
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl xml
-
-# Laravel-Excel extensions
-RUN docker-php-ext-install zip xml iconv simplexml
-
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl gd \
+    # Laravel-Excel extensions
+    zip xml iconv simplexml
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

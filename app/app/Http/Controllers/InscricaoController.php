@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Contracts\InscricaoInterface;
+use Maatwebsite\Excel\Facades\Excel;
+use Relatorios\InscricaoExport;
 
 class InscricaoController extends Controller
 {
@@ -33,5 +35,10 @@ class InscricaoController extends Controller
             $msg = $this->MsgSearch($entidade, 'error');
 			return $this->RespLogErro($e, $msg);
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new InscricaoExport, 'inscricoes.xlsx' );
     }
 }

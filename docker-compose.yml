@@ -41,9 +41,20 @@ services:
     image: composer
     working_dir: /var/www/app
     volumes:
-      - ./:/var/www/
+      - ./:/var/www
     command: composer install --ignore-platform-reqs
     networks:
+      - gerence-network
+  
+  # Downloading node_modules
+  node:
+    container_name: node
+    image: node:alpine
+    working_dir: /var/www/app
+    volumes: 
+      - ./:/var/www
+    command: npm install
+    networks: 
       - gerence-network
   
   # MySQL Service

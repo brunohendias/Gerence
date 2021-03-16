@@ -39,6 +39,7 @@ Route::prefix('/api')->group(function () {
 		});
 		Route::prefix('relatorio')->group(function() {
 			Route::get('/atencoes', 'AtencaoController@export');
+			Route::get('/inscricoes', 'InscricaoController@export');
 		});
 	});
 });
@@ -46,6 +47,7 @@ Route::prefix('/api')->group(function () {
 Route::view('/', 'App');
 Route::view('/{any}', 'App');
 Route::view('/{any}/{sub}', 'App');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -13,7 +13,6 @@ Route::prefix('/api')->group(function () {
 		Route::get('/professores', 'ProfessorController@index');
 		Route::prefix('atencoes')->group(function () {
 			Route::get('/', 'AtencaoController@index');
-			Route::get('/export', 'AtencaoController@export');
 		});
 		Route::get('/situacoes', 'SituacaoController@index');
 		Route::prefix('inscricao')->group(function () {
@@ -37,6 +36,9 @@ Route::prefix('/api')->group(function () {
 		Route::post('/seriedisciplina/busca', 'SerieDisciplinaController@index');
 		Route::prefix('/professorvinculo')->group(function() {
 			Route::get('/', 'ProfessorVinculoController@index');
+		});
+		Route::prefix('relatorio')->group(function() {
+			Route::get('/atencoes', 'AtencaoController@export');
 		});
 	});
 });

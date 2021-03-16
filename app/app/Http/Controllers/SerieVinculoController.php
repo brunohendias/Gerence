@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\SerieVinculoInterface;
+use Contracts\SerieVinculoInterface;
 
 class SerieVinculoController extends Controller
 {

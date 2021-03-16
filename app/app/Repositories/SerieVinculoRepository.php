@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\SerieVinculoInterface;
+use Contracts\SerieVinculoInterface;
 use App\Models\Vinculo\SerieVinculo;
 
 class SerieVinculoRepository implements SerieVinculoInterface

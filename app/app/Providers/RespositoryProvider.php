@@ -14,63 +14,63 @@ class RespositoryProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind (
-            'App\Repositories\Contracts\SerieInterface',
-            'App\Repositories\SerieRepository'
+            'Contracts\SerieInterface',
+            'Repositories\SerieRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\TurnoInterface',
-            'App\Repositories\TurnoRepository'
+            'Contracts\TurnoInterface',
+            'Repositories\TurnoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\TurmaInterface',
-            'App\Repositories\TurmaRepository'
+            'Contracts\TurmaInterface',
+            'Repositories\TurmaRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\SituacaoInterface',
-            'App\Repositories\SituacaoRepository'
+            'Contracts\SituacaoInterface',
+            'Repositories\SituacaoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\AtencaoInterface',
-            'App\Repositories\AtencaoRepository'
+            'Contracts\AtencaoInterface',
+            'Repositories\AtencaoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\SerieVinculoInterface',
-            'App\Repositories\SerieVinculoRepository'
+            'Contracts\SerieVinculoInterface',
+            'Repositories\SerieVinculoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\SerieDisciplinaInterface',
-            'App\Repositories\SerieDisciplinaRepository'
+            'Contracts\SerieDisciplinaInterface',
+            'Repositories\SerieDisciplinaRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\ProfessorInterface',
-            'App\Repositories\ProfessorRepository'
+            'Contracts\ProfessorInterface',
+            'Repositories\ProfessorRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\ProfessorVinculoInterface',
-            'App\Repositories\ProfessorVinculoRepository'
+            'Contracts\ProfessorVinculoInterface',
+            'Repositories\ProfessorVinculoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\InscricaoInterface',
-            'App\Repositories\InscricaoRepository'
+            'Contracts\InscricaoInterface',
+            'Repositories\InscricaoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\CandidatoInterface',
-            'App\Repositories\CandidatoRepository'
+            'Contracts\CandidatoInterface',
+            'Repositories\CandidatoRepository'
         );
 
         $this->app->bind (
-            'App\Repositories\Contracts\AlunoInterface',
-            'App\Repositories\AlunoRepository'
+            'Contracts\AlunoInterface',
+            'Repositories\AlunoRepository'
         );
     }
 

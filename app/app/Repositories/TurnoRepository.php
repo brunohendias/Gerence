@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\TurnoInterface;
+use Contracts\TurnoInterface;
 use App\Models\Turno;
 
 class TurnoRepository implements TurnoInterface {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace Relatorios;
 
 use App\Models\Atencao;
 use Maatwebsite\Excel\Concerns\FromCollection;

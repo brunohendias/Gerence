@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\InscricaoInterface;
+use Contracts\InscricaoInterface;
 use App\Models\Inscricao;
 
 class InscricaoRepository implements InscricaoInterface

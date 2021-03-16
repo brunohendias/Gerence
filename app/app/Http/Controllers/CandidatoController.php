@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\CandidatoInterface;
-use App\Repositories\Contracts\SerieVinculoInterface;
+use Contracts\CandidatoInterface;
+use Contracts\SerieVinculoInterface;
 
 class CandidatoController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\ProfessorVinculoInterface;
+use Contracts\ProfessorVinculoInterface;
 use App\Models\Vinculo\ProfessorVinculo;
 
 class ProfessorVinculoRepository implements ProfessorVinculoInterface {

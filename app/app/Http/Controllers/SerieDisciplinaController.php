@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\SerieDisciplinaInterface;
+use Contracts\SerieDisciplinaInterface;
 
 class SerieDisciplinaController extends Controller
 {

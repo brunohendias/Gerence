@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\SerieDisciplinaInterface;
+use Contracts\SerieDisciplinaInterface;
 use App\Models\Vinculo\SerieDisciplina;
 
 class SerieDisciplinaRepository implements SerieDisciplinaInterface

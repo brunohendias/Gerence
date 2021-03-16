@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\CandidatoInterface;
+use Contracts\CandidatoInterface;
 use App\Models\Candidato;
 
 class CandidatoRepository implements CandidatoInterface

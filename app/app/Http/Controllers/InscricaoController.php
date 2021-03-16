@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\InscricaoInterface;
+use Contracts\InscricaoInterface;
 
 class InscricaoController extends Controller
 {

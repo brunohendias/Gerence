@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\AtencaoInterface;
+use Contracts\AtencaoInterface;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\AtencaoExport;
+use Relatorios\AtencaoExport;
 
 class AtencaoController extends Controller
 {

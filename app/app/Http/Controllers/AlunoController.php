@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\AlunoInterface;
-use App\Repositories\Contracts\SerieVinculoInterface;
+use Contracts\AlunoInterface;
+use Contracts\SerieVinculoInterface;
 
 class AlunoController extends Controller
 {

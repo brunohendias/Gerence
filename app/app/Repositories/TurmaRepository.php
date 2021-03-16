@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\TurmaInterface;
+use Contracts\TurmaInterface;
 use App\Models\Turma;
 
 class TurmaRepository implements TurmaInterface {

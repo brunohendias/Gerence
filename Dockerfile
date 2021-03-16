@@ -4,7 +4,7 @@ FROM php:7.4-fpm
 COPY app/composer.lock app/composer.json /var/www/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/app
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,17 +14,21 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libonig-dev \
     libzip-dev \
+    libxml2-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
     unzip \
     git \
-    curl \
-    && apt-get clean
+    curl
 
-# # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+# Install extensions
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl xml
+
+# Laravel-Excel extensions
+RUN docker-php-ext-install zip xml iconv simplexml
+
 RUN docker-php-ext-install gd
 
 # Install composer

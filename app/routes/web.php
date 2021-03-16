@@ -11,7 +11,10 @@ Route::prefix('/api')->group(function () {
 		Route::get('/turnos', 'TurnoController@index');
 		Route::get('/turmas', 'TurmaController@index');
 		Route::get('/professores', 'ProfessorController@index');
-		Route::get('/atencoes', 'AtencaoController@index');
+		Route::prefix('atencoes')->group(function () {
+			Route::get('/', 'AtencaoController@index');
+			Route::get('/export', 'AtencaoController@export');
+		});
 		Route::get('/situacoes', 'SituacaoController@index');
 		Route::prefix('inscricao')->group(function () {
 			Route::post('/busca', 'InscricaoController@index');

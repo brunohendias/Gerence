@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\SerieInterface;
+use Contracts\SerieInterface;
 use App\Models\Serie;
 
 class SerieRepository implements SerieInterface {

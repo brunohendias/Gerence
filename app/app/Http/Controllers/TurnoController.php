@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\TurnoInterface;
+use Contracts\TurnoInterface;
 
 class TurnoController extends Controller
 {

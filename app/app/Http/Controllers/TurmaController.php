@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\TurmaInterface;
+use Contracts\TurmaInterface;
 
 class TurmaController extends Controller
 {

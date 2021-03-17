@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\SituacaoInterface;
+use Contracts\SituacaoInterface;
 use App\Models\Situacao;
 
 class SituacaoRepository implements SituacaoInterface {

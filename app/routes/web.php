@@ -11,7 +11,9 @@ Route::prefix('/api')->group(function () {
 		Route::get('/turnos', 'TurnoController@index');
 		Route::get('/turmas', 'TurmaController@index');
 		Route::get('/professores', 'ProfessorController@index');
-		Route::get('/atencoes', 'AtencaoController@index');
+		Route::prefix('atencoes')->group(function () {
+			Route::get('/', 'AtencaoController@index');
+		});
 		Route::get('/situacoes', 'SituacaoController@index');
 		Route::prefix('inscricao')->group(function () {
 			Route::post('/busca', 'InscricaoController@index');
@@ -35,12 +37,17 @@ Route::prefix('/api')->group(function () {
 		Route::prefix('/professorvinculo')->group(function() {
 			Route::get('/', 'ProfessorVinculoController@index');
 		});
+		Route::prefix('relatorio')->group(function() {
+			Route::get('/atencoes', 'AtencaoController@export');
+			Route::get('/inscricoes', 'InscricaoController@export');
+		});
 	});
 });
 
 Route::view('/', 'App');
 Route::view('/{any}', 'App');
 Route::view('/{any}/{sub}', 'App');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

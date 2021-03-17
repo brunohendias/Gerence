@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\AlunoInterface;
+use Contracts\AlunoInterface;
 use App\Models\Aluno;
 
 class AlunoRepository implements AlunoInterface

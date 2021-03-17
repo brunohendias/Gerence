@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\AtencaoInterface;
+use Contracts\AtencaoInterface;
 use App\Models\Atencao;
 
 class AtencaoRepository implements AtencaoInterface

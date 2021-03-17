@@ -4,29 +4,21 @@ FROM php:7.4-fpm
 COPY app/composer.lock app/composer.json /var/www/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/app
+
+USER root
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libonig-dev \
-    locales \
-    libzip-dev \
-    zip \
+RUN apt-get update && apt-get install -y build-essential \
+    libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
+    libonig-dev libzip-dev libxml2-dev \
     jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl 
-    
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    locales zip unzip vim git curl
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl gd \
+    # Laravel-Excel extensions
+    zip xml iconv simplexml
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -47,13 +39,3 @@ USER www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
-
-FROM mysql:5.7.22
-
-WORKDIR /
-
-RUN mysql -u root -psecret
-
-RUN GRANT ALL ON brunoh67_dbgerence.* TO 'brunoh67_gerence'@'%' IDENTIFIED BY 'secret';
-
-RUN exit

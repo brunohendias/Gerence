@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Repositories;
 
-use App\Repositories\Contracts\ProfessorInterface;
+use Contracts\ProfessorInterface;
 use App\Models\Professor;
 
 class ProfessorRepository implements ProfessorInterface

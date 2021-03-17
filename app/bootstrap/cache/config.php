@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:LBDz9WmRL6f9Dt9GwhZ3edmoNVNs05anm072vMcPcLU=',
+    'key' => 'base64:8OqVTAAwQR+t6fs9WNDrWE1ewH4aPPx2/WVqXba2lp4=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -36,12 +36,13 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'App\\Providers\\AppServiceProvider',
-      23 => 'App\\Providers\\AuthServiceProvider',
-      24 => 'App\\Providers\\EventServiceProvider',
-      25 => 'App\\Providers\\RouteServiceProvider',
-      26 => 'App\\Providers\\RespositoryProvider',
-      27 => 'Flugg\\Responder\\ResponderServiceProvider',
+      22 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+      23 => 'App\\Providers\\AppServiceProvider',
+      24 => 'App\\Providers\\AuthServiceProvider',
+      25 => 'App\\Providers\\EventServiceProvider',
+      26 => 'App\\Providers\\RouteServiceProvider',
+      27 => 'App\\Providers\\RespositoryProvider',
+      28 => 'Flugg\\Responder\\ResponderServiceProvider',
     ),
     'aliases' => 
     array (
@@ -81,6 +82,7 @@
       'URL' => 'Illuminate\\Support\\Facades\\URL',
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'auth' => 
@@ -334,6 +336,112 @@
         'port' => '6379',
         'database' => '1',
       ),
+    ),
+  ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'strict_null_comparison' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'ignore_empty' => false,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'UTF-8',
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'cache' => 
+    array (
+      'driver' => 'memory',
+      'batch' => 
+      array (
+        'memory_limit' => 60000,
+      ),
+      'illuminate' => 
+      array (
+        'store' => NULL,
+      ),
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => '/var/www/app/storage/framework/laravel-excel',
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+      'force_resync_remote' => NULL,
     ),
   ),
   'filesystems' => 

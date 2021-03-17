@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Contracts\ProfessorVinculoInterface;
+use Contracts\ProfessorVinculoInterface;
 
 class ProfessorVinculoController extends Controller
 {

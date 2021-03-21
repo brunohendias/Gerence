@@ -7,43 +7,43 @@ import EditaSerie from '@edicao/serie.vue'
 
 const routes = [
 	{
-		path: '/',
+		id: 1,
+		path: '#',
 		name: 'listas',
-		icon: 'fas fa-file-alt',
-		component: Inscricoes
+		icon: 'fas fa-file-alt'
 	},
 	{
 		path: '/inscricao',
 		name: 'inscricao',
 		icon: 'fas fa-file-alt',
-		pai: 'listas',
+		pai: 1,
 		component: Inscricoes
 	},
 	{
 		path: '/candidato',
 		name: 'candidato',
 		icon: 'fas fa-address-card',
-		pai: 'listas',
+		pai: 1,
 		component: Candidatos
 	},
 	{
 		path: '/aluno',
 		name: 'aluno',
 		icon: 'fas fa-user-graduate',
-		pai: 'listas',
+		pai: 1,
 		component: Alunos
 	},
 	{
-		path: '/config',
+		id: 2,
+		path: '#',
 		name: 'configurações',
-		icon: 'fas fa-cogs',
-		component: Serie
+		icon: 'fas fa-cogs'
 	},
 	{
 		path: '/config/serie',
 		name: 'série',
 		icon: 'fas fa-chalkboard',
-		pai: 'configurações',
+		pai: 2,
 		component: Serie
 	},
 	{

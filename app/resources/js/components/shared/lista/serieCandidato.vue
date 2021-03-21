@@ -9,10 +9,7 @@
         </thead>
         <tbody>
             <tr v-for="(serie, i) in series" :key="i"
-                :class="serie.cod_serie_v == inscricao.cod_serie_v 
-                    ? 'table-primary' 
-                    : ''
-            ">
+                :class="serie.cod_serie_v == inscricao.cod_serie_v ? 'table-primary' : ''">
                 
                 <th>
                     <input type="radio" id="seriev" :value="serie.cod_serie_v" v-model="inscricao.cod_serie_v" />

@@ -4,5 +4,5 @@ namespace Contracts;
 
 interface AtencaoInterface
 {
-    public function index();
+    public function index(): object;
 }

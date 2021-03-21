@@ -14,7 +14,7 @@ class AlunoRepository implements AlunoInterface
         $this->model = $model;
     }
 
-    public function index($request) 
+    public function index(object $request): object
     {
         $cod_serie = $request->cod_serie;
         $cod_turma = $request->cod_turma;
@@ -25,22 +25,22 @@ class AlunoRepository implements AlunoInterface
 
         return $this->model->SelectAluno()
             ->JoinDadosSerie()
-            ->when($cod_serie, function ($query) use ($cod_serie) {
+            ->when($cod_serie, function (object $query) use ($cod_serie): object {
                 return $query->where('serie_v.cod_serie', $cod_serie);
             })
-            ->when($cod_turma, function ($query) use ($cod_turma) {
+            ->when($cod_turma, function (object $query) use ($cod_turma): object {
                 return $query->where('serie_v.cod_turma', $cod_turma);
             })
-            ->when($cod_turno, function ($query) use ($cod_turno) {
+            ->when($cod_turno, function (object $query) use ($cod_turno): object {
                 return $query->where('serie_v.cod_turno', $cod_turno);
             })
-            ->when($cod_atencao, function ($query) use ($cod_atencao) {
+            ->when($cod_atencao, function (object $query) use ($cod_atencao): object {
                 return $query->where('cod_atencao', $cod_atencao);
             })
-            ->when($cod_prof, function ($query) use ($cod_prof) {
+            ->when($cod_prof, function (object $query) use ($cod_prof): object {
                 return $query->where('serie_v.cod_prof', $cod_prof);
             })
-            ->when($cod_situacao, function ($query) use ($cod_situacao) {
+            ->when($cod_situacao, function (object $query) use ($cod_situacao): object {
                 return $query->where('cod_situacao', $cod_situacao);
             })
             ->with('atencao')
@@ -49,22 +49,13 @@ class AlunoRepository implements AlunoInterface
             ->get();
     }
 
-    public function find($id)
-    {
-        return $this->model->find($id);
-    }
+    public function find(int $id) { return $this->model->find($id); }
 
-    public function existe($id)
-    {
-        return $this->model->where('cod_can', $id)->first();
-    }
+    public function existe(int $id) { return $this->model->where('cod_can', $id)->first(); }
 
-    public function candidato($id)
-    {
-        return $this->model->find($id)->candidato;
-    }
+    public function candidato(int $id) { return $this->model->find($id)->candidato; }
 
-    public function store($request, $info) 
+    public function store(object $request, object $info): object
     {
         $this->model->nom_aluno = $request->nom_can;
         $this->model->email = $request->email;
@@ -80,7 +71,7 @@ class AlunoRepository implements AlunoInterface
         return $this->model;
     }
     
-    public function gerarNumeroMatricula($request, $info)
+    public function gerarNumeroMatricula(object $request, object $info): String
     {
         return "'$request->cod_can$info->cod_serie$info->cod_turma$info->cod_turno$request->cod_atencao'";
     } 

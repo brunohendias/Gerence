@@ -11,7 +11,7 @@
 				<th>{{serie.limite_alunos}}</th>
 				<th>
 					<span @click="editaserie(serie)" class="ml-2">
-						<router-link class="btn btn-primary" to="/editaserie">
+						<router-link class="btn btn-primary btn-tabela" to="/editaserie">
 							<i class="fas fa-pencil-alt"></i>
 						</router-link>
 					</span>

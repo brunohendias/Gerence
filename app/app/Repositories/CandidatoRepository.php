@@ -14,7 +14,7 @@ class CandidatoRepository implements CandidatoInterface
         $this->model = $model;
     }
 
-    public function index($request)
+    public function index(object $request): object
     {
         $cod_serie = $request->cod_serie;
         $cod_turma = $request->cod_turma;
@@ -25,44 +25,35 @@ class CandidatoRepository implements CandidatoInterface
         
         return $this->model->SelectCandidato()
             ->JoinDadosSerie()
-            ->when($cod_atencao, function ($query) use ($cod_atencao) {
+            ->when($cod_atencao, function (object $query) use ($cod_atencao): object {
                 return $query->where('cod_atencao', $cod_atencao);
             })
-            ->when($cod_serie, function($query) use ($cod_serie) {
+            ->when($cod_serie, function(object $query) use ($cod_serie): object {
                 return $query->where('serie_v.cod_serie', $cod_serie);
             })
-            ->when($cod_turma, function($query) use ($cod_turma) {
+            ->when($cod_turma, function(object $query) use ($cod_turma): object {
                 return $query->where('serie_v.cod_turma', $cod_turma);
             })
-            ->when($cod_turno, function($query) use ($cod_turno) {
+            ->when($cod_turno, function(object $query) use ($cod_turno): object {
                 return $query->where('serie_v.cod_turno', $cod_turno);
             })
-            ->when($cod_prof, function($query) use ($cod_prof) {
+            ->when($cod_prof, function(object $query) use ($cod_prof): object {
                 return $query->where('serie_v.cod_prof', $cod_prof);
             })
-            ->when($cpf, function($query) use ($cpf) {
+            ->when($cpf, function(object $query) use ($cpf): object {
                 return $query->where('cpf', $cpf);
             })
             ->with('atencao')
             ->get();
     }
 
-    public function find($id)
-    {
-        return $this->model->find($id);
-    }
+    public function find(int $id) { return $this->model->find($id); }
 
-    public function aluno($id)
-    {
-        return $this->model->find($id)->aluno;
-    }
+    public function aluno(int $id) { return $this->model->find($id)->aluno; }
 
-    public function inscricao($id)
-    {
-        return $this->model->find($id)->inscricao;
-    }
+    public function inscricao(int $id) { return $this->model->find($id)->inscricao; }
 
-    public function store($request, $info)
+    public function store(object $request, object $info): object
     {
         $this->model->nom_can = $request->nom_insc;
         $this->model->email = $request->email;
@@ -80,11 +71,13 @@ class CandidatoRepository implements CandidatoInterface
         return $this->model;
     }
 
-    public function destroy($id, $info) {
-        
+    public function destroy(int $id, object $info): bool
+    {
         $dado = $this->find($id);
 
         $dado->delete();
+        
+        $dados = [ 'qtd_alunos' => 0 ];
         
         $dados['qtd_alunos'] = --$info->qtd_alunos;
 

@@ -15,23 +15,23 @@ class SerieVinculo extends Model
     protected $primaryKey = 'cod_serie_v';
     protected $fillable = ['qtd_alunos','cod_turno','cod_turma','limite_alunos','cod_prof'];
 
-    public function serie()
+    public function serie(): object
     {
-    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie','serie');
+    	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie');
     }
 
-    public function turno()
+    public function turno(): object
     {
-    	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno')->select('cod_turno','turno');
+    	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno');
     }
 
-    public function turma()
+    public function turma(): object
     {
-    	return $this->hasOne(Turma::class, 'cod_turma', 'cod_turma')->select('cod_turma','turma');
+    	return $this->hasOne(Turma::class, 'cod_turma', 'cod_turma');
     }
 
-    public function professor()
+    public function professor(): object
     {
-    	return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select('cod_prof','nom_prof');
+    	return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof');
     }
 }

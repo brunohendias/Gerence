@@ -3,7 +3,7 @@ namespace App\Http\Traits;
 
 trait MessageTraits {
 
-    private $messages = [
+    private array $messages = [
         'success' => [
             'search' => 'Buscamos :value com sucesso.',
             'register' => 'Cadastramos :value com sucesso.',
@@ -19,23 +19,28 @@ trait MessageTraits {
         'notfound' => 'Não encontramos nenhum(a) :value.',
     ];
 
-    protected function MsgSearch($string, $tipo = 'success') {
+    protected function MsgSearch(string $string, string $tipo = 'success'): string
+    {
         return str_replace(':value', $string, $this->messages[$tipo]['search']);
     }
 
-    protected function MsgRegister($string, $tipo = 'success') {
+    protected function MsgRegister(string $string, string $tipo = 'success'): string
+    {
         return str_replace(':value', $string, $this->messages[$tipo]['register']);
     }
 
-    protected function MsgEdit($string, $tipo = 'success') {
+    protected function MsgEdit(string $string, string $tipo = 'success'): string
+    {
         return str_replace(':value', $string, $this->messages[$tipo]['edit']);
     }
 
-    protected function MsgDelete($string, $tipo = 'success') {
+    protected function MsgDelete(string $string, string $tipo = 'success'): string
+    {
         return str_replace(':value', $string, $this->messages[$tipo]['delete']);
     }
 
-    protected function MsgNotFound($string) {
+    protected function MsgNotFound(string $string): string
+    {
         return str_replace(':value', $string, $this->messages['notfound']);
     }
 }

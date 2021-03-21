@@ -8,13 +8,14 @@ use Contracts\SerieDisciplinaInterface;
 
 class SerieDisciplinaController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(SerieDisciplinaInterface $interface) {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request) {
+    public function index(Request $request): object
+	{
 		$entidade = 'as disciplinas dessa série';
     	try {
     		$dados = $this->interface->index($request);
@@ -26,26 +27,28 @@ class SerieDisciplinaController extends Controller
 
 			$msg = $this->MsgSearch($entidade);
 			return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-		} catch (\Exception $e) {
+		} catch (\Exception $exception) {
 			$msg = $this->MsgSearch($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
 		}
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): object
+	{
 		$entidade = 'essa disciplina nessa série';
     	try {
 			$this->interface->store($request);
 
     		$msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function destroy($id) {
+    public function destroy(int $id): object
+	{
 		$entidade = 'essa disciplina dessa série';
     	try {
     		$dado = $this->interface->find($id);
@@ -59,9 +62,9 @@ class SerieDisciplinaController extends Controller
 
     		$msg = $this->MsgDelete($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

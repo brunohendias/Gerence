@@ -45,11 +45,13 @@ const paginaArray = array => {
     let pagina = 0
     
     let qtd_por_pagina = 0
+
+    let limite_por_pagina = 15
     
     newArray.push([])
     
     array.map(dado => {
-        if (qtd_por_pagina == 10) {
+        if (qtd_por_pagina == limite_por_pagina) {
             qtd_por_pagina = 0
             pagina += 1
             newArray[pagina] = []

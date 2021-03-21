@@ -29,4 +29,10 @@ trait Util {
             ->assertJson($this->checkFailed)
             ->assertJsonPath('error.message', $this->msg);
     }
+
+    protected function return_failed() {
+        return $this->response->assertStatus(200)
+            ->assertJson($this->checkFailed)
+            ->assertJsonPath('error.message', $this->msg);
+    }
 }

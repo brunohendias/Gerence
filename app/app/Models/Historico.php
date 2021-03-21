@@ -14,22 +14,23 @@ class Historico extends Model
     protected $table = 'historico';
     protected $primaryKey = 'cod_historico';
 
-    public function aluno() {
-    	return $this->hasOne(Aluno::class, 'cod_aluno', 'cod_aluno')->select('cod_aluno','nom_aluno');
+    public function aluno(): object
+    {
+    	return $this->hasOne(Aluno::class, 'cod_aluno', 'cod_aluno');
     }
 
-    public function serie()
+    public function serie(): object
     {
-        return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie')->select('cod_serie', 'serie');
+        return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie');
     }
 
-    public function professor()
+    public function professor(): object
     {
-        return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select('cod_prof', 'nom_prof');
+        return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof');
     }
 
-    public function situacao()
+    public function situacao(): object
     {
-        return $this->hasOne(Situacao::class, 'cod_situacao', 'cod_situacao')->select('cod_situacao', 'situacao');
+        return $this->hasOne(Situacao::class, 'cod_situacao', 'cod_situacao');
     }
 }

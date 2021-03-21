@@ -12,12 +12,12 @@ class Turma extends Model
     protected $table = 'turma';
     protected $primaryKey = 'cod_turma';
 
-    public function serie()
+    public function serie(): object
     {
     	return $this->hasOne(Serie::class, 'cod_serie', 'cod_serie');
     }
 
-    public function turno()
+    public function turno(): object
     {
     	return $this->hasOne(Turno::class, 'cod_turno', 'cod_turno');
     }

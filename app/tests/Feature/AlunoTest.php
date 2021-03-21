@@ -10,7 +10,7 @@ class AlunoTest extends TestCase
     private $url = '/api/v1/aluno';
 
     /** @test */
-    public function if_success_register_student()
+    public function if_failed_register_student_duplicate()
     {
         $arraySearch = [
             //
@@ -31,12 +31,11 @@ class AlunoTest extends TestCase
     		'cod_situacao' => 3,
             'num_matricula' => 13548774
         ];
-
         $this->response = $this->post($this->url, $arrayRegister);
 
-        $this->msg = 'Cadastramos esse aluno com sucesso.';
+        $this->msg = 'Esse candidato já possui um aluno.';
 
-        $this->return_success();
+        $this->return_failed();
     }
 
     /** @test */

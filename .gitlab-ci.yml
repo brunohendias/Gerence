@@ -3,9 +3,6 @@ variables:
   IDENTITY_PROJECT: "*$CI_PROJECT_NAME CI_COMMIT_REF_NAME*"
 
 stages:
-  - prepare
-  - test
-  - analysis
   - build
   - deploy
 
@@ -15,9 +12,9 @@ cache:
     - ./app/node_modules/
     - ./app/vendor/
 
-prepare_project:
+Build:
   image: registry.gitlab.com/gerence/gerence
-  stage: prepare
+  stage: build
   script:
     - cd ./app
     - echo "Configuring composer"
@@ -26,32 +23,6 @@ prepare_project:
     - echo "Running composer install"
     - php composer.phar install --no-progress --ignore-platform-reqs
     - cp .env.prod .env
-
-Tests:
-  image: registry.gitlab.com/gerence/gerence
-  stage: test
-  dependencies:
-    - prepare_project
-  script:
-    - echo "Runnit PHPUnit"
-    - ./app/vendor/bin/phpunit app/tests
-
-Static_Analysis:
-  image: registry.gitlab.com/gerence/gerence
-  stage: analysis
-  dependencies:
-    - prepare_project
-  script:
-    - echo "Running Psalm"
-    - ./app/vendor/bin/psalm --show-info=true
-
-Build:
-  image: registry.gitlab.com/gerence/gerence
-  stage: build
-  dependencies:
-    - prepare_project
-  script:
-    - cd ./app
     - echo "Running NPM"
     - npm install --no-progress
     - npm run prod --no-progress

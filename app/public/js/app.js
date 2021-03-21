@@ -2001,32 +2001,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     geraMenu: function geraMenu() {
+      var _this = this;
+
       var rotas = this.$router.options.routes;
-      var rota, pai, i;
+      rotas.forEach(function (rota) {
+        if (rota.id) {
+          _this.menu.push({
+            id: rota.id,
+            href: rota.path,
+            title: rota.name,
+            icon: rota.icon,
+            child: []
+          });
+        } else if (rota.pai) {
+          var pai = _this.menu.find(function (item) {
+            return item.id == rota.pai;
+          });
 
-      for (i in rotas) {
-        rota = rotas[i];
-        pai = this.menu.find(function (item) {
-          return item.title == rota.pai;
-        });
-
-        if (pai) {
           pai.child.push({
             href: rota.path,
             title: rota.name,
             icon: rota.icon
           });
-        } else {
-          if (rota.icon) {
-            this.menu.push({
-              href: rota.path,
-              title: rota.name,
-              icon: rota.icon,
-              child: []
-            });
-          }
         }
-      }
+      });
     }
   }
 });
@@ -70136,38 +70134,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/',
+  id: 1,
+  path: '#',
   name: 'listas',
-  icon: 'fas fa-file-alt',
-  component: _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  icon: 'fas fa-file-alt'
 }, {
   path: '/inscricao',
   name: 'inscricao',
   icon: 'fas fa-file-alt',
-  pai: 'listas',
+  pai: 1,
   component: _tela_Inscricao_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/candidato',
   name: 'candidato',
   icon: 'fas fa-address-card',
-  pai: 'listas',
+  pai: 1,
   component: _tela_Candidato_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/aluno',
   name: 'aluno',
   icon: 'fas fa-user-graduate',
-  pai: 'listas',
+  pai: 1,
   component: _tela_Aluno_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/config',
+  id: 2,
+  path: '#',
   name: 'configurações',
-  icon: 'fas fa-cogs',
-  component: _tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  icon: 'fas fa-cogs'
 }, {
   path: '/config/serie',
   name: 'série',
   icon: 'fas fa-chalkboard',
-  pai: 'configurações',
+  pai: 2,
   component: _tela_Serie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/editainscricao',
@@ -70511,8 +70509,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/dev/Github/Laravel/gerence/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/dev/Github/Laravel/gerence/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

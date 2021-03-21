@@ -50,7 +50,7 @@ Deploy:
     - npm -v
     - composer --version
     - echo "Deploying in $VPS_HOST"
-    - ssh $SSHH
+    - ssh -t $SSHH
     - rm -rf gerence
     - git clone git@gitlab.com:gerence/gerence.git
     - cd gerence/app

@@ -16,8 +16,8 @@ cache:
     - ./app/vendor/
 
 prepare_project:
-  stage: prepare
   image: registry.gitlab.com/bruno_dias/gerence
+  stage: prepare
   script:
     - cd ./app
     - echo "Configuring composer"
@@ -28,8 +28,8 @@ prepare_project:
     - cp .env.prod .env
 
 Tests:
-  stage: test
   image: registry.gitlab.com/bruno_dias/gerence
+  stage: test
   dependencies:
     - prepare_project
   script:
@@ -37,8 +37,8 @@ Tests:
     - ./app/vendor/bin/phpunit
 
 Static_Analysis:
-  stage: analysis
   image: registry.gitlab.com/bruno_dias/gerence
+  stage: analysis
   dependencies:
     - prepare_project
   script:
@@ -46,8 +46,8 @@ Static_Analysis:
     - ./app/vendor/bin/psalm --show-info=true
 
 Build:
-  stage: build
   image: registry.gitlab.com/bruno_dias/gerence
+  stage: build
   dependencies:
     - prepare_project
   script:

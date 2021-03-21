@@ -1,0 +1,81 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      args:
+        user: dev
+        uid: 1000
+      context: .
+      dockerfile: Dockerfile
+    image: php:7.4-fpm
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./app:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - gerence
+
+  # Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./app:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - gerence
+
+  # Downloading node_modules
+  node:
+    container_name: node
+    image: node:alpine
+    working_dir: /var/www
+    volumes: 
+      - ./app:/var/www
+    command: npm install
+    networks: 
+      - gerence
+  
+  # MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: brunoh67_dbgerence
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: brunoh67_gerence
+      MYSQL_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql:/docker-entrypoint-initdb.d
+    networks:
+      - gerence
+
+# Docker Networks
+networks:
+  gerence:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local

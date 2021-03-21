@@ -1,5 +1,5 @@
 <template>
-    <templateBusca :classTitulo="classTitulo" titulo="Busque as séries">
+    <templateBusca titulo="Busque as séries">
         <div class="col-md-4">
             <selectSeries :filtro="filtro" />
         </div>
@@ -45,11 +45,6 @@ export default {
         botaoBuscaSerie,
         msg
     },
-    props: {
-		classTitulo: {
-			type: String
-		}
-	},
     data() {
         return {
             filtro: {},

@@ -1,5 +1,64 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.v-sidebar-menu .vsm--link_level-1 .vsm--icon {
+  width: 20px !important;
+  height: 20px !important;
+  margin-left: 5px;
+}
+
+/* Form */
+
+label {
+  margin-top: 20px;
+}
+
+.required {
+  color: red;
+}
+
+/* Fim form */
+
+/* Panel */
+
+.headerpanel-inscricao {
+  background-color: midnightblue;
+}
+
+.headerpanel-candidato {
+  background-color: darkgreen;
+}
+
+.headerpanel-aluno {
+  background-color: brown;
+}
+
+.headerpanel-serie {
+  background-color: brown;
+}
+
+.bordas {
+  border-radius: 10px;
+}
+
+.borda-top {
+  border-radius: 8px 8px 0px 0px;
+}
+
+/* Fim panel */
+
+table .btn {
+  padding: 2px;
+}
+
+.btn-tabela {
+  width: 30px;
+  height: 30px;
+}
+
+table .svg-inline--fa {
+  font-size: 15px;
+}
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -72,7 +131,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #ddd;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -510,7 +569,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #ddd;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -4270,15 +4329,15 @@ input[type=button].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4484,8 +4543,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #ddd;
+  border-color: #dee2e6 #dee2e6 #ddd;
 }
 
 .nav-tabs .dropdown-menu {

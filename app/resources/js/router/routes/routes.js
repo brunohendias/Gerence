@@ -1,16 +1,20 @@
-import Inscricoes from '@tela/Inscricao.vue'
-import Candidatos from '@tela/Candidato.vue'
-import Alunos from '@tela/Aluno.vue'
-import Serie from '@tela/Serie.vue'
-import EditaInscricao from '@edicao/inscricao.vue'
-import EditaSerie from '@edicao/serie.vue'
+import Inscricoes from '@tela/Inscricao'
+import Candidatos from '@tela/Candidato'
+import Alunos from '@tela/Aluno'
+import Serie from '@tela/Serie'
+import EditaInscricao from '@edicao/inscricao'
+import EditaSerie from '@edicao/serie'
 
 const routes = [
+	{
+		path: '/',
+		redirect: '/inscricao'
+	},
 	{
 		id: 1,
 		path: '#',
 		name: 'listas',
-		icon: 'fas fa-file-alt'
+		icon: 'fas fa-file-alt',
 	},
 	{
 		path: '/inscricao',

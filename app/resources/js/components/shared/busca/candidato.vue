@@ -1,5 +1,5 @@
 <template>
-	<templateBusca :classTitulo="classTitulo" titulo="Busque os candidatos">
+	<templateBusca titulo="Busque os candidatos">
 		<div class="col-sm-6">
 			<div class="form-group">
 				<inputNome :filtro="filtro"/>
@@ -77,11 +77,6 @@ export default {
 		selectAtencoes,
 		botaoBuscaCandidato,
 		msg
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

@@ -1,0 +1,38 @@
+// Sidebar
+.v-sidebar-menu .vsm--link_level-1 .vsm--icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 5px;
+}
+
+/* Form */
+label {
+    margin-top: 20px;
+}
+
+.required { 
+    color: red;
+}
+/* Fim form */
+
+/* Panel */
+.headerpanel-inscricao {
+    background-color: $inscricao;
+}
+.headerpanel-candidato {
+    background-color: $candidato;
+}
+.headerpanel-aluno {
+    background-color: $aluno;
+}
+.headerpanel-serie {
+    background-color: $serie;
+}
+
+.bordas {
+    border-radius: 10px;
+}
+.borda-top {
+    border-radius: 8px 8px 0px 0px;
+}
+/* Fim panel */

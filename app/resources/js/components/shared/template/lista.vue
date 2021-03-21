@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-white borda-top">
-		<div :style="classTitulo">
+		<div :class="'headerpanel-'+pathname">
 			<div class="row ml-4 pt-2 text-white">
 				<h5>Lista de {{titulo}}</h5>
 			</div>
@@ -16,7 +16,7 @@
 			</table>
 			<div class="row">
 				<div class="ml-3" v-if="totalRegistros > 0">
-					<h5 class="mr-4 pt-1">Encontramos {{totalRegistros}} registros</h5>
+					<h5 class="mr-4 pt-1">total de registros: {{totalRegistros}}</h5>
 				</div>
 				<paginacao :totalPaginas="totalPaginas" @alteraPagina="proximaPagina($event)" class="ml-auto mr-4"/>
 			</div>
@@ -36,10 +36,6 @@ export default {
 		paginacao
 	},
 	props: {
-		classTitulo: {
-			Type: String,
-			default: 'backgroundColor: black;'
-		},
 		colunas: {
 			type: Array,
 			required: true
@@ -56,6 +52,9 @@ export default {
 	computed: {
 		totalPaginas() {
 			return Math.ceil(this.totalRegistros / 15)
+		},
+		pathname() {
+			return window.location.pathname.split('/').reverse()[0]
 		}
 	},
 	methods: {
@@ -65,16 +64,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-	.btn-tabela {
-		width: 30px;
-		height: 30px;
-	}
-	.svg-inline--fa {
-		font-size: 15px;
-	}
-	.btn {
-		padding: 2px;
-	}
-</style>

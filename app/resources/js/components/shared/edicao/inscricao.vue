@@ -89,9 +89,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-    label {
-        margin-top: 20px;
-    }
-</style>

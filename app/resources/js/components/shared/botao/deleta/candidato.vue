@@ -1,6 +1,6 @@
 <template>
-	<button class="btn btn-danger" @click="deletaCandidato" :disabled="deletando">
-		<i v-if="deletando" class="spinner-border spinner-border-sm"></i>
+	<button class="btn btn-danger" @click="deletaCandidato" :disabled="processando">
+        <span v-if="processando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 		<i v-else class="fas fa-trash"></i>
 	</button>
 </template>
@@ -24,9 +24,9 @@ export default {
 			required: true
 		}
 	},
-	data() {
-		return {
-			deletando: false
+	computed: {
+		processando() {
+			return this.$store.state.status.processando
 		}
 	},
 	methods: {
@@ -43,13 +43,9 @@ export default {
 				]
 			}).then(async willdelete => {
 				if(willdelete) {
-					this.deletando = true
-					
 					let id = this.candidato.cod_can
 					
 					candidato(this, id)
-					
-					this.deletando = false
 				}
 			})
 		}

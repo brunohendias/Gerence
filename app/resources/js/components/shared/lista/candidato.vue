@@ -1,5 +1,5 @@
 <template>
-	<templatelista :colunas="colunas" titulo="candidatos" :classTitulo="classTitulo" 
+	<templatelista :colunas="colunas" titulo="candidatos"
 		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(candidato, i) in candidatos" :key="i">
@@ -31,11 +31,6 @@ export default {
 		templatelista,
 		botaoGeraAluno,
 		botaoDeletaCandidato
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

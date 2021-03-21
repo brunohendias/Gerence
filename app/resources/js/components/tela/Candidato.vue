@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<buscaCandidato :classTitulo="classTitulo"/>
-		<listaCandidato :classTitulo="classTitulo"/>
+		<buscaCandidato />
+		<listaCandidato />
 	</div>
 </template>
 
@@ -14,11 +14,6 @@ export default {
 	components: {
 		buscaCandidato,
 		listaCandidato
-	},
-	data() {
-		return {
-			classTitulo: 'backgroundColor: darkgreen;'
-		}
 	}
 }
 </script>

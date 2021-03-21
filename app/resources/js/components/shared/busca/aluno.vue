@@ -1,5 +1,5 @@
 <template>
-	<templateBusca :classTitulo="classTitulo" titulo="Busque os alunos">
+	<templateBusca titulo="Busque os alunos">
 		<div class="col-sm-6">
 			<div class="form-group">
 				<inputNome :filtro="filtro"/>
@@ -87,11 +87,6 @@ export default {
 		selectSituacoes,
 		botaoBuscaAluno,
 		msg
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

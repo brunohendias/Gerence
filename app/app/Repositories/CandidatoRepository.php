@@ -47,11 +47,11 @@ class CandidatoRepository implements CandidatoInterface
             ->get();
     }
 
-    public function find(int $id): object|null { return $this->model->find($id); }
+    public function find(int $id) { return $this->model->find($id); }
 
-    public function aluno(int $id): object|null { return $this->model->find($id)->aluno; }
+    public function aluno(int $id) { return $this->model->find($id)->aluno; }
 
-    public function inscricao(int $id): object|null { return $this->model->find($id)->inscricao; }
+    public function inscricao(int $id) { return $this->model->find($id)->inscricao; }
 
     public function store(object $request, object $info): object
     {

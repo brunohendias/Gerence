@@ -49,20 +49,11 @@ class AlunoRepository implements AlunoInterface
             ->get();
     }
 
-    public function find(int $id): object|null
-    {
-        return $this->model->find($id);
-    }
+    public function find(int $id) { return $this->model->find($id); }
 
-    public function existe(int $id): object|null
-    {
-        return $this->model->where('cod_can', $id)->first();
-    }
+    public function existe(int $id) { return $this->model->where('cod_can', $id)->first(); }
 
-    public function candidato(int $id): object|null
-    {
-        return $this->model->find($id)->candidato;
-    }
+    public function candidato(int $id) { return $this->model->find($id)->candidato; }
 
     public function store(object $request, object $info): object
     {

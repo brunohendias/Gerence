@@ -1,6 +1,7 @@
 variables:
   VPS_HOST: "brunohendias.com.br"
   IDENTITY_PROJECT: "*$CI_PROJECT_NAME CI_COMMIT_REF_NAME*"
+  SSHH: "brunoh67@brunohendias.com.br"
 
 stages:
   - build
@@ -35,11 +36,31 @@ Build:
     when: always
 
 
-#Deploy:
-  #stage: deploy
-  #dependencies:
-    #- Build
-  #script:
-    #- echo "Running Deploy"
-    #- mkdir -p ~/.ssh
-    #- chmod 700 ~/.ssh
+Deploy:
+  stage: deploy
+  dependencies:
+    - Build
+  script:
+    - echo "Running Deploy"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "Version"
+    - php -v
+    - npm -v
+    - composer --version
+    - echo "Deploying in $VPS_HOST"
+    - ssh $SSHH
+    - rm -rf gerence
+    - git clone git@gitlab.com:gerence/gerence.git
+    - cd gerence/app
+    - composer install --no-dev --optimize-autoloader
+    - npm run prod
+    - php artisan cache:clear
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
+    #- php artisan db:weep
+    #- php artisan migrate
+    #- php artisan db:seed
+  only:
+    - master

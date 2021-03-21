@@ -3779,7 +3779,7 @@ __webpack_require__.r(__webpack_exports__);
     SlidingPagination: vue_sliding_pagination__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   props: {
-    total: {
+    totalPaginas: {
       type: Number,
       required: true
     }
@@ -3790,7 +3790,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   watch: {
-    total: function total() {
+    totalPaginas: function totalPaginas() {
       this.pageChangeHandler(1);
     }
   },
@@ -4242,8 +4242,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    total: function total() {
-      return Math.ceil(this.totalRegistros / 10);
+    totalPaginas: function totalPaginas() {
+      return Math.ceil(this.totalRegistros / 15);
     }
   },
   methods: {
@@ -44206,7 +44206,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("sliding-pagination", {
-    attrs: { current: _vm.current, total: _vm.total },
+    attrs: { current: _vm.current, total: _vm.totalPaginas },
     on: { "page-change": _vm.pageChangeHandler }
   })
 }
@@ -44821,17 +44821,8 @@ var render = function() {
             "div",
             { staticClass: "row" },
             [
-              _c("paginacao", {
-                attrs: { total: _vm.total },
-                on: {
-                  alteraPagina: function($event) {
-                    return _vm.proximaPagina($event)
-                  }
-                }
-              }),
-              _vm._v(" "),
               _vm.totalRegistros > 0
-                ? _c("div", { staticClass: "ml-auto" }, [
+                ? _c("div", { staticClass: "ml-3" }, [
                     _c("h5", { staticClass: "mr-4 pt-1" }, [
                       _vm._v(
                         "Encontramos " +
@@ -44840,7 +44831,17 @@ var render = function() {
                       )
                     ])
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("paginacao", {
+                staticClass: "ml-auto mr-4",
+                attrs: { totalPaginas: _vm.totalPaginas },
+                on: {
+                  alteraPagina: function($event) {
+                    return _vm.proximaPagina($event)
+                  }
+                }
+              })
             ],
             1
           )
@@ -70101,9 +70102,10 @@ var paginaArray = function paginaArray(array) {
   var newArray = [];
   var pagina = 0;
   var qtd_por_pagina = 0;
+  var limite_por_pagina = 15;
   newArray.push([]);
   array.map(function (dado) {
-    if (qtd_por_pagina == 10) {
+    if (qtd_por_pagina == limite_por_pagina) {
       qtd_por_pagina = 0;
       pagina += 1;
       newArray[pagina] = [];

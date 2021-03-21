@@ -15,10 +15,10 @@
 				<slot></slot>
 			</table>
 			<div class="row">
-				<paginacao :total="total" @alteraPagina="proximaPagina($event)"/>
-				<div class="ml-auto" v-if="totalRegistros > 0">
+				<div class="ml-3" v-if="totalRegistros > 0">
 					<h5 class="mr-4 pt-1">Encontramos {{totalRegistros}} registros</h5>
 				</div>
+				<paginacao :totalPaginas="totalPaginas" @alteraPagina="proximaPagina($event)" class="ml-auto mr-4"/>
 			</div>
 		</div>
 		<div v-else>
@@ -54,8 +54,8 @@ export default {
 		}
 	},
 	computed: {
-		total() {
-			return Math.ceil(this.totalRegistros / 10)
+		totalPaginas() {
+			return Math.ceil(this.totalRegistros / 15)
 		}
 	},
 	methods: {

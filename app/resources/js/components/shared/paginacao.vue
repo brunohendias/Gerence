@@ -1,5 +1,5 @@
 <template>
-	<sliding-pagination :current="current" :total="total" @page-change="pageChangeHandler"></sliding-pagination>
+	<sliding-pagination :current="current" :total="totalPaginas" @page-change="pageChangeHandler"></sliding-pagination>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
 		SlidingPagination
 	},
 	props: {
-		total: {
+		totalPaginas: {
 			type: Number,
 			required: true
 		}
@@ -23,7 +23,7 @@ export default {
 		}
 	},
 	watch: {
-		total() {
+		totalPaginas() {
 			this.pageChangeHandler(1)
 		}
 	},

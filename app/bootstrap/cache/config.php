@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:8OqVTAAwQR+t6fs9WNDrWE1ewH4aPPx2/WVqXba2lp4=',
+    'key' => 'base64:+mfTxMh8GaycPdFZnScFkPgrj8NpzuMilaFvBI+mcTA=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -181,7 +181,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/app/storage/framework/cache/data',
+        'path' => '/var/www/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -438,7 +438,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => '/var/www/app/storage/framework/laravel-excel',
+      'local_path' => '/var/www/storage/framework/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,
@@ -453,12 +453,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/app/storage/app',
+        'root' => '/var/www/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/app/storage/app/public',
+        'root' => '/var/www/storage/app/public',
         'url' => 'hhttp://localhost/storage',
         'visibility' => 'public',
       ),
@@ -475,7 +475,7 @@
     ),
     'links' => 
     array (
-      '/var/www/app/public/storage' => '/var/www/app/storage/app/public',
+      '/var/www/public/storage' => '/var/www/storage/app/public',
     ),
   ),
   'hashing' => 
@@ -509,13 +509,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/app/storage/logs/laravel.log',
+        'path' => '/var/www/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/app/storage/logs/laravel.log',
+        'path' => '/var/www/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -565,7 +565,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/app/storage/logs/laravel.log',
+        'path' => '/var/www/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -622,7 +622,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/app/resources/views/vendor/mail',
+        0 => '/var/www/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -701,7 +701,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/app/storage/framework/sessions',
+    'files' => '/var/www/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -721,9 +721,9 @@
   array (
     'paths' => 
     array (
-      0 => '/var/www/app/resources/views',
+      0 => '/var/www/resources/views',
     ),
-    'compiled' => '/var/www/app/storage/framework/views',
+    'compiled' => '/var/www/storage/framework/views',
   ),
   'flare' => 
   array (

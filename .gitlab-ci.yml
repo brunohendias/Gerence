@@ -34,7 +34,7 @@ Tests:
     - prepare_project
   script:
     - echo "Runnit PHPUnit"
-    - ./app/vendor/bin/phpunit
+    - ./app/vendor/bin/phpunit app/tests
 
 Static_Analysis:
   image: registry.gitlab.com/gerence/gerence

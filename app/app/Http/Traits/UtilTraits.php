@@ -34,22 +34,19 @@ trait UtilTraits
 	}
 
 	/*
-	 * procura se objeto está vazio
-	 * TRUE -> se está vazio
-	 * FALSE -> se tem dados
+	 * Verifica se objeto está vazio
 	 */
 	public function Objetovazio($obj): bool
 	{
-		return is_null($obj) || empty($obj) || $obj->count() == 0;
+		return (is_null($obj) && empty($obj)) || $obj->count() == 0;
 	}
 
 	/**
-	 * Verifica se e um objeto
 	 * Verifica se o objeto não esta vazio
 	 */
 	public function existeRegistro($obj): bool
 	{
-		return is_null($obj) || empty($obj) || $obj->count() > 0;
+		return !is_null($obj) && !empty($obj) && $obj->count() > 0;
 	}
 
 	/**

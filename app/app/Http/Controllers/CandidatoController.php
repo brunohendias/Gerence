@@ -60,17 +60,18 @@ class CandidatoController extends Controller
     {
         $entidade = 'esse candidato';
         try{
+            $dado = $this->interface->find($id);
+            if ($this->Objetovazio($dado)) {
+                $msg = $this->MsgNotFound('candidato');
+	    		return $this->RespErrorNormal($msg);
+            }
+            
             $aluno = $this->interface->aluno($id);
             if ($this->existeRegistro($aluno)) {
                 $msg = 'Não podemos deletar um candidato que se tornou um aluno.';
                 return $this->RespErrorNormal($msg);
             }
 
-            $dado = $this->interface->find($id);
-            if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('candidato');
-	    		return $this->RespErrorNormal($msg);
-            }
             $info = $serieVinculo->find($dado->cod_serie_v);
 
             $this->interface->destroy($id, $info);
@@ -79,7 +80,7 @@ class CandidatoController extends Controller
 	    	return $this->RespSuccess(array('msg' => $msg));
         } catch (\Exception $exception) {
             $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($exception, $msg);
+            return $this->RespLogErro($exception, $msg.$exception->getMessage());
         }
     }
 }

@@ -69913,6 +69913,7 @@ var candidato = function candidato(self, id) {
   _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_0__["default"].deleta(id).then(function (response) {
     if (response.data.success) {
       title = response.data.data.msg;
+      icon = 'success';
       self.$store.dispatch('removeCandidato', {
         index: self.index,
         pagina: self.pagina

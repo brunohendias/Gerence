@@ -6,7 +6,7 @@ FROM php:7.4-fpm
 USER root
 # Install system dependencies
 RUN apt-get update && apt-get install -y git curl \ 
-    libpng-dev libonig-dev libzip-dev libxml2-dev zip unzip npm
+    libpng-dev libonig-dev libzip-dev libxml2-dev zip unzip npm wget
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

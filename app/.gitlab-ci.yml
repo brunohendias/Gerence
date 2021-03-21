@@ -17,6 +17,7 @@ cache:
 
 prepare_project:
   stage: prepare
+  image: registry.gitlab.com/bruno_dias/gerence
   script:
     - cd ./app
     - echo "Configuring composer"
@@ -28,6 +29,7 @@ prepare_project:
 
 Tests:
   stage: test
+  image: registry.gitlab.com/bruno_dias/gerence
   dependencies:
     - prepare_project
   script:
@@ -36,6 +38,7 @@ Tests:
 
 Static_Analysis:
   stage: analysis
+  image: registry.gitlab.com/bruno_dias/gerence
   dependencies:
     - prepare_project
   script:
@@ -44,6 +47,7 @@ Static_Analysis:
 
 Build:
   stage: build
+  image: registry.gitlab.com/bruno_dias/gerence
   dependencies:
     - prepare_project
   script:

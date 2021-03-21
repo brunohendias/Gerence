@@ -16,7 +16,7 @@ cache:
     - ./app/vendor/
 
 prepare_project:
-  image: registry.gitlab.com/bruno_dias/gerence
+  image: registry.gitlab.com/gerence/gerence
   stage: prepare
   script:
     - cd ./app
@@ -28,7 +28,7 @@ prepare_project:
     - cp .env.prod .env
 
 Tests:
-  image: registry.gitlab.com/bruno_dias/gerence
+  image: registry.gitlab.com/gerence/gerence
   stage: test
   dependencies:
     - prepare_project
@@ -37,7 +37,7 @@ Tests:
     - ./app/vendor/bin/phpunit
 
 Static_Analysis:
-  image: registry.gitlab.com/bruno_dias/gerence
+  image: registry.gitlab.com/gerence/gerence
   stage: analysis
   dependencies:
     - prepare_project
@@ -46,7 +46,7 @@ Static_Analysis:
     - ./app/vendor/bin/psalm --show-info=true
 
 Build:
-  image: registry.gitlab.com/bruno_dias/gerence
+  image: registry.gitlab.com/gerence/gerence
   stage: build
   dependencies:
     - prepare_project

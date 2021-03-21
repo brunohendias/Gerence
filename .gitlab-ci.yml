@@ -24,7 +24,7 @@ prepare_project:
     - wget https://getcomposer.org/installer
     - php installer
     - echo "Running composer install"
-    - php composer.phar install --optimize-autoloader --no-progress --ignore-platform-reqs
+    - php composer.phar install --no-progress --ignore-platform-reqs
     - cp .env.prod .env
 
 Tests:

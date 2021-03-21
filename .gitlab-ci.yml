@@ -37,6 +37,7 @@ Build:
 
 
 Deploy:
+  image: registry.gitlab.com/gerence/gerence
   stage: deploy
   dependencies:
     - Build

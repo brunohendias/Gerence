@@ -7,14 +7,13 @@ stages:
   - test
   - analysis
   - build
-  #- deploy
+  - deploy
 
 cache:
   untracked: true
   paths:
-    - node_modules/
-    - vendor/
-    - .vagrant/
+    - app/node_modules/
+    - app/vendor/
 
 prepare_project:
   stage: prepare
@@ -23,7 +22,7 @@ prepare_project:
     - wget https://getcomposer.org/installer
     - php installer
     - echo "Running composer install"
-    - php composer.phar install --no-dev --ignore-platform-reqs --optimize-autolader --no-progress
+    - php composer.phar install --no-dev --optimize-autolader --no-progress
     - cp .env.prod .env
 
 Tests:

@@ -12,12 +12,14 @@ stages:
 cache:
   untracked: true
   paths:
-    - ./node_modules/
-    - ./vendor/
+    - ./app/node_modules/
+    - ./app/vendor/
 
 prepare_project:
+  image: registry.gitlab.com/gerence/gerence
   stage: prepare
   script:
+    - cd ./app
     - echo "Configuring composer"
     - wget https://getcomposer.org/installer
     - php installer
@@ -26,34 +28,38 @@ prepare_project:
     - cp .env.prod .env
 
 Tests:
+  image: registry.gitlab.com/gerence/gerence
   stage: test
   dependencies:
     - prepare_project
   script:
     - echo "Runnit PHPUnit"
-    - ./vendor/bin/phpunit
+    - ./app/vendor/bin/phpunit
 
 Static_Analysis:
+  image: registry.gitlab.com/gerence/gerence
   stage: analysis
   dependencies:
     - prepare_project
   script:
     - echo "Running Psalm"
-    - ./vendor/bin/psalm --show-info=true
+    - ./app/vendor/bin/psalm --show-info=true
 
 Build:
+  image: registry.gitlab.com/gerence/gerence
   stage: build
   dependencies:
     - prepare_project
   script:
+    - cd ./app
     - echo "Running NPM"
     - npm install --no-progress
     - npm run prod --no-progress
   artifacts:
     paths:
-      - ./public/css
-      - ./public/js
-      - ./public/mix-manifest.json
+      - ./app/public/css
+      - ./app/public/js
+      - ./app/public/mix-manifest.json
     expire_in: 1 days
     when: always
 

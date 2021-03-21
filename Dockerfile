@@ -18,7 +18,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data -u 1001 -d /home/deployer deployer
+RUN useradd -G www-data,root -u 1001 -d /home/deployer deployer
 RUN mkdir -p /home/deployer/.composer && \
     chown -R deployer:deployer /home/deployer
 

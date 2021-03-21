@@ -1,20 +1,20 @@
 <template>
 	<div class="bg-white borda-top">
 		<div :style="classTitulo">
-			<div class="row ml-4 pt-3 pb-2 text-white">
+			<div class="row ml-4 pt-2 text-white">
 				<h5>Lista de {{titulo}}</h5>
 			</div>
 		</div>
 		<div v-if="totalRegistros > 0" class="p-4">
-			<table class="table table-striped table-bordered">
+			<table class="table table-sm table-striped table-bordered text-center">
 				<thead class="thead-dark">
-					<tr>
+					<tr class="text-center">
 						<th v-for="coluna in colunas" :key="coluna.dsc_coluna">{{coluna.dsc_coluna}}</th>
 					</tr>
 				</thead>
 				<slot></slot>
 			</table>
-			<div class="row ml-2">
+			<div class="row">
 				<paginacao :total="total" @alteraPagina="proximaPagina($event)"/>
 				<div class="ml-auto" v-if="totalRegistros > 0">
 					<h5 class="mr-4 pt-1">Encontramos {{totalRegistros}} registros</h5>
@@ -65,3 +65,16 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+	.btn-tabela {
+		width: 30px;
+		height: 30px;
+	}
+	.svg-inline--fa {
+		font-size: 15px;
+	}
+	.btn {
+		padding: 2px;
+	}
+</style>

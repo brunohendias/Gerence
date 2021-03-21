@@ -10,7 +10,7 @@
 				<th>{{inscricao.turno.turno}}</th>
 				<th>
 					<span @click="editainscricao(inscricao)">
-						<router-link class="btn btn-primary" to="/editainscricao">
+						<router-link class="btn btn-primary btn-tabela" to="/editainscricao">
 							<i class="fas fa-pencil-alt"></i>
 						</router-link>
 					</span>

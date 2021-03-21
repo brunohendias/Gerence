@@ -1,5 +1,5 @@
 <template>
-	<button class="btn btn-primary" @click="geraAluno" :disabled="cadastrando">
+	<button class="btn btn-primary btn-tabela" @click="geraAluno" :disabled="cadastrando">
 		<i v-if="cadastrando" class="spinner-border spinner-border-sm"></i>
 		<i v-else class="fas fa-edit"></i>
 	</button>

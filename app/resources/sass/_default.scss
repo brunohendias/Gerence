@@ -1,38 +1,47 @@
 // Sidebar
-.v-sidebar-menu .vsm--link_level-1 .vsm--icon {
+.v-sidebar-menu .vsm--link_level-1 .vsm--icon 
+{
     width: 20px !important;
     height: 20px !important;
     margin-left: 5px;
 }
 
 /* Form */
-label {
+label 
+{
     margin-top: 20px;
 }
 
-.required { 
-    color: red;
+.required 
+{ 
+    color: $required;
 }
 /* Fim form */
 
 /* Panel */
-.headerpanel-inscricao {
+.headerpanel-inscricao 
+{
     background-color: $inscricao;
 }
-.headerpanel-candidato {
+.headerpanel-candidato 
+{
     background-color: $candidato;
 }
-.headerpanel-aluno {
+.headerpanel-aluno 
+{
     background-color: $aluno;
 }
-.headerpanel-serie {
+.headerpanel-serie 
+{
     background-color: $serie;
 }
 
-.bordas {
+.bordas 
+{
     border-radius: 10px;
 }
-.borda-top {
+.borda-top 
+{
     border-radius: 8px 8px 0px 0px;
 }
 /* Fim panel */

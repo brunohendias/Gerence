@@ -1,27 +1,27 @@
 <template>
     <templateBusca titulo="Busque as séries">
-        <div class="col-md-4">
-            <selectSeries :filtro="filtro" />
+        <div class="row">
+            <div class="col-md-4">
+                <selectSeries :filtro="filtro" />
+            </div>
+             <div class="col-md-4">
+                <selectTurnos :filtro="filtro" />
+            </div>
+            <div class="col-md-4">
+                <selectTurmas :filtro="filtro" />
+            </div>
         </div>
-        <div class="col-md-4">
-            <selectTurnos class="float-right w-100" :filtro="filtro" />
-        </div>
-        <div class="col-md-4">
-            <selectTurmas class="float-right w-100" :filtro="filtro" />
-        </div>
-        <div class="col-md-12 pt-4">
-            <div class="row">
-                <div class="col-sm-3">
-                    <botaoBuscaSerie @msg="msg = $event" :filtro="filtro"/>
-                    <span @click="trocaAcao('cadastra')">
-                        <router-link class="btn btn-primary ml-3" to="/cadastraserie">
-                            Cadastrar
-                        </router-link>
-                    </span>
-                </div>
-                <div class="col-md-9">
-					<msg :tipo="msg.tipo" :msg="msg.msg" />
-                </div>
+        <div class="row pt-3">
+            <div class="col-8">
+                <msg :tipo="msg.tipo" :msg="msg.msg" />
+            </div>
+            <div class="col-4 text-right">
+                <span @click="trocaAcao('cadastra')">
+                    <router-link class="btn btn-primary" to="/cadastraserie">
+                        Cadastrar
+                    </router-link>
+                </span>
+                <botaoBuscaSerie @msg="msg = $event" :filtro="filtro"/>
             </div>
         </div>
     </templateBusca>

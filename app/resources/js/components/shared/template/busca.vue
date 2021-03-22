@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<form>
-			<div class="row p-4">
+			<div class="p-4">
 				<slot></slot>
 			</div>
 		</form>

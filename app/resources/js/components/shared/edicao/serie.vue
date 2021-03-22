@@ -1,16 +1,16 @@
 <template>
-    <div class="bg-white p-3 rounded" id="cadastro">
-        <h4>{{ titulo }}</h4>
+    <div class="bg-white p-4 rounded" id="cadastro">
+        <h5>{{ titulo }}</h5>
         <hr>
         <form method="POST">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-6">
                     <selectSeries :filtro="dados" :disabled="editando" :required="cadastrando"/>
                 </div>
-                <div class="col-md-3">
+                <div class="col-3">
                     <selectTurnos :filtro="dados" :required="true"/>
                 </div>
-                <div class="col-md-3">
+                <div class="col-3">
                     <selectTurmas :filtro="dados" :required="true"/>
                 </div>
                 <!--div v-else-if="cadastrando">
@@ -20,21 +20,23 @@
                 </div-->
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-6">
                     <selectProfessores :filtro="dados"/>
                 </div>
-                <div class="col-md-3" v-if="editando">
+                <div class="col-3" v-if="editando">
                     <label>Total de alunos</label>
                     <input class="form-control" name="turno" type="text" :value="dados.qtd_alunos" disabled="true"/>
                 </div>
-                <div class="col-md-3">
+                <div class="col-3">
                     <label>Limite de alunos <inputRequire/></label>
                     <input class="form-control" name="turma" type="text" v-model="dados.limite_alunos" maxlength="3"/>
                 </div>
             </div>
             <div class="row">
-                <botaoEditaSerie v-if="editando" class="mt-5 ml-auto mr-4"/>
-                <botaoCadastraSerie v-else-if="cadastrando" class="mt-5 ml-auto mr-4"/>
+                <div class="col-12 text-right mt-3">
+                    <botaoEditaSerie v-if="editando" />
+                    <botaoCadastraSerie v-else-if="cadastrando" />
+                </div>
             </div>
         </form>
     </div>

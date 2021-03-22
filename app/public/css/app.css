@@ -8,10 +8,6 @@
 
 /* Form */
 
-label {
-  margin-top: 20px;
-}
-
 .required {
   color: red;
 }

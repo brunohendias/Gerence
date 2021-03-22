@@ -1,30 +1,28 @@
 <template>
 	<templateBusca titulo="Busque as inscrições">
-		<div class="col-sm-6">
-			<div class="form-group">
+		<div class="row">
+			<div class="form-group col-6">
 				<label for="nome">Nome</label>
 				<input type="text" placeholder="Ex: João Silva" class="form-control" name="nome" v-model="filtro.nom_insc" />
 			</div>
-			<div class="form-group">
-				<inputCpf :filtro="filtro"/>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="form-group">
+			<div class="form-group col-6">
 				<selectSeries :filtro="filtro" />
 			</div>
-			<div class="form-group">
+		</div>
+		<div class="row">
+			<div class="form-group col-6">
+				<inputCpf :filtro="filtro"/>
+			</div>
+			<div class="form-group col-6">
 				<selectTurnos :filtro="filtro" />
 			</div>
 		</div>
-		<div class="col-sm-12">
-			<div class="row">
-				<div class="col-md-2 pt-1">
-					<botaoBuscaInscricao @msg="msg = $event" :filtro="filtro"/>
-				</div>
-				<div class="col-md-10">
-					<msg :tipo="msg.tipo" :msg="msg.msg" />
-				</div>
+		<div class="row">
+			<div class="col-8">
+				<msg :tipo="msg.tipo" :msg="msg.msg" />
+			</div>
+			<div class="col-4 text-right">
+				<botaoBuscaInscricao @msg="msg = $event" :filtro="filtro"/>
 			</div>
 		</div>
 	</templateBusca>

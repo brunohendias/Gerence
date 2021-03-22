@@ -2627,25 +2627,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2704,20 +2685,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _select_atencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @select/atencoes */ "./resources/js/components/shared/select/atencoes.vue");
 /* harmony import */ var _botao_busca_candidato__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @botao/busca/candidato */ "./resources/js/components/shared/botao/busca/candidato.vue");
 /* harmony import */ var _msg_msg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @msg/msg */ "./resources/js/components/shared/mensagem/msg.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2923,8 +2890,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2969,6 +2934,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _botao_edita_inscricao__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @botao/edita/inscricao */ "./resources/js/components/shared/botao/edita/inscricao.vue");
 /* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 /* harmony import */ var _msg_msg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @msg/msg */ "./resources/js/components/shared/mensagem/msg.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3077,6 +3048,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _select_turmas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @select/turmas */ "./resources/js/components/shared/select/turmas.vue");
 /* harmony import */ var _select_professores__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @select/professores */ "./resources/js/components/shared/select/professores.vue");
 /* harmony import */ var _form_inputRequire__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @form/inputRequire */ "./resources/js/components/shared/form/inputRequire.vue");
+//
+//
 //
 //
 //
@@ -3599,7 +3572,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'listaInscricao',
   props: {
@@ -3611,8 +3583,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       colunas: [{
-        dsc_coluna: 'Selecionar'
-      }, {
         dsc_coluna: 'Série'
       }, {
         dsc_coluna: 'Turno'
@@ -3624,6 +3594,8 @@ __webpack_require__.r(__webpack_exports__);
         dsc_coluna: 'Total de alunos'
       }, {
         dsc_coluna: 'Limite de alunos'
+      }, {
+        dsc_coluna: 'Selecionar'
       }]
     };
   },
@@ -42409,107 +42381,91 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("templateBusca", { attrs: { titulo: "Busque os alunos" } }, [
-    _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-6" },
         [_c("inputNome", { attrs: { filtro: _vm.filtro } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-3" },
+        [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group col-3" },
+        [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "form-group col-6" },
         [_c("inputCpf", { attrs: { filtro: _vm.filtro } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
-        [_c("selectProfessores", { attrs: { filtro: _vm.filtro } })],
+        { staticClass: "form-group col-3" },
+        [_c("selectTurmas", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group col-3" },
+        [_c("selectAtencoes", { attrs: { filtro: _vm.filtro } })],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-6" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ])
-      ]),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "form-group col-6" },
+        [_c("selectProfessores", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectTurmas", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectAtencoes", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectSituacoes", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ])
-      ])
+      _c(
+        "div",
+        { staticClass: "form-group col-3" },
+        [_c("selectSituacoes", { attrs: { filtro: _vm.filtro } })],
+        1
+      )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-12" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-2 pt-1" },
-          [
-            _c("botaoBuscaAluno", {
-              attrs: { filtro: _vm.filtro },
-              on: {
-                msg: function($event) {
-                  _vm.msg = $event
-                }
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-8" },
+        [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-4 text-right" },
+        [
+          _c("botaoBuscaAluno", {
+            attrs: { filtro: _vm.filtro },
+            on: {
+              msg: function($event) {
+                _vm.msg = $event
               }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-10" },
-          [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
-          1
-        )
-      ])
+            }
+          })
+        ],
+        1
+      )
     ])
   ])
 }
@@ -42536,96 +42492,84 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("templateBusca", { attrs: { titulo: "Busque os candidatos" } }, [
-    _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-6" },
         [_c("inputNome", { attrs: { filtro: _vm.filtro } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-3" },
+        [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group col-3" },
+        [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "form-group col-6" },
         [_c("inputCpf", { attrs: { filtro: _vm.filtro } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-3" },
+        [_c("selectTurmas", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group col-3" },
+        [_c("selectAtencoes", { attrs: { filtro: _vm.filtro } })],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "form-group col-6" },
         [_c("selectProfessores", { attrs: { filtro: _vm.filtro } })],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-6" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ])
-      ]),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-8" },
+        [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectTurmas", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [_c("selectAtencoes", { attrs: { filtro: _vm.filtro } })],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-sm-12" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-2 pt-1" },
-          [
-            _c("botaoBuscaCandidato", {
-              attrs: { filtro: _vm.filtro },
-              on: {
-                msg: function($event) {
-                  _vm.msg = $event
-                }
+      _c(
+        "div",
+        { staticClass: "col-4 text-right" },
+        [
+          _c("botaoBuscaCandidato", {
+            attrs: { filtro: _vm.filtro },
+            on: {
+              msg: function($event) {
+                _vm.msg = $event
               }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-10" },
-          [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
-          1
-        )
-      ])
+            }
+          })
+        ],
+        1
+      )
     ])
   ])
 }
@@ -42652,88 +42596,74 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("templateBusca", { attrs: { titulo: "Busque as séries" } }, [
-    _c(
-      "div",
-      { staticClass: "col-md-4" },
-      [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
-      1
-    ),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4" },
+        [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-4" },
+        [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-4" },
+        [_c("selectTurmas", { attrs: { filtro: _vm.filtro } })],
+        1
+      )
+    ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-md-4" },
-      [
-        _c("selectTurnos", {
-          staticClass: "float-right w-100",
-          attrs: { filtro: _vm.filtro }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-md-4" },
-      [
-        _c("selectTurmas", {
-          staticClass: "float-right w-100",
-          attrs: { filtro: _vm.filtro }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-12 pt-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-sm-3" },
-          [
-            _c("botaoBuscaSerie", {
-              attrs: { filtro: _vm.filtro },
+    _c("div", { staticClass: "row pt-3" }, [
+      _c(
+        "div",
+        { staticClass: "col-8" },
+        [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-4 text-right" },
+        [
+          _c(
+            "span",
+            {
               on: {
-                msg: function($event) {
-                  _vm.msg = $event
+                click: function($event) {
+                  return _vm.trocaAcao("cadastra")
                 }
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.trocaAcao("cadastra")
-                  }
-                }
-              },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-primary ml-3",
-                    attrs: { to: "/cadastraserie" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            Cadastrar\n                        "
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-9" },
-          [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
-          1
-        )
-      ])
+            },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { to: "/cadastraserie" }
+                },
+                [_vm._v("\n                    Cadastrar\n                ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("botaoBuscaSerie", {
+            attrs: { filtro: _vm.filtro },
+            on: {
+              msg: function($event) {
+                _vm.msg = $event
+              }
+            }
+          })
+        ],
+        1
+      )
     ])
   ])
 }
@@ -42760,8 +42690,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("templateBusca", { attrs: { titulo: "Busque as inscrições" } }, [
-    _c("div", { staticClass: "col-sm-6" }, [
-      _c("div", { staticClass: "form-group" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-group col-6" }, [
         _c("label", { attrs: { for: "nome" } }, [_vm._v("Nome")]),
         _vm._v(" "),
         _c("input", {
@@ -42789,53 +42719,51 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
-        [_c("inputCpf", { attrs: { filtro: _vm.filtro } })],
+        { staticClass: "form-group col-6" },
+        [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "form-group" },
-        [_c("selectSeries", { attrs: { filtro: _vm.filtro } })],
+        { staticClass: "form-group col-6" },
+        [_c("inputCpf", { attrs: { filtro: _vm.filtro } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group" },
+        { staticClass: "form-group col-6" },
         [_c("selectTurnos", { attrs: { filtro: _vm.filtro } })],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-12" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-2 pt-1" },
-          [
-            _c("botaoBuscaInscricao", {
-              attrs: { filtro: _vm.filtro },
-              on: {
-                msg: function($event) {
-                  _vm.msg = $event
-                }
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-8" },
+        [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-4 text-right" },
+        [
+          _c("botaoBuscaInscricao", {
+            attrs: { filtro: _vm.filtro },
+            on: {
+              msg: function($event) {
+                _vm.msg = $event
               }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-10" },
-          [_c("msg", { attrs: { tipo: _vm.msg.tipo, msg: _vm.msg.msg } })],
-          1
-        )
-      ])
+            }
+          })
+        ],
+        1
+      )
     ])
   ])
 }
@@ -42863,88 +42791,49 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-white p-3 rounded", attrs: { id: "cadastro" } },
+    { staticClass: "bg-white p-4 rounded", attrs: { id: "cadastro" } },
     [
       _vm._m(0),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
       _c("form", { attrs: { method: "POST" } }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-6" },
-            [
-              _c("label", [_vm._v("Nome completo *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.inscricao.nom_insc,
-                    expression: "inscricao.nom_insc"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  name: "nome",
-                  type: "text",
-                  placeholder: "Nome",
-                  disabled: "true",
-                  required: ""
-                },
-                domProps: { value: _vm.inscricao.nom_insc },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.inscricao, "nom_insc", $event.target.value)
-                  }
+        _c("div", { staticClass: "row mb-3" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c("label", [_vm._v("Nome completo *")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.inscricao.nom_insc,
+                  expression: "inscricao.nom_insc"
                 }
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("E-mail *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.inscricao.email,
-                    expression: "inscricao.email"
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "nome",
+                type: "text",
+                placeholder: "Nome",
+                disabled: "true",
+                required: ""
+              },
+              domProps: { value: _vm.inscricao.nom_insc },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  name: "email",
-                  type: "email",
-                  placeholder: "Example@example.com",
-                  required: "",
-                  maxlength: "50"
-                },
-                domProps: { value: _vm.inscricao.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.inscricao, "email", $event.target.value)
-                  }
+                  _vm.$set(_vm.inscricao, "nom_insc", $event.target.value)
                 }
-              }),
-              _vm._v(" "),
-              _vm.msg.email
-                ? _c("msg", { attrs: { msg: _vm.msg.email, tipo: "notfound" } })
-                : _vm._e()
-            ],
-            1
-          ),
+              }
+            })
+          ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-6" },
+            { staticClass: "col-6" },
             [
               _c("label", [_vm._v("Telefone celular *")]),
               _vm._v(" "),
@@ -42983,52 +42872,97 @@ var render = function() {
                 ? _c("msg", {
                     attrs: { msg: _vm.msg.telefone, tipo: "notfound" }
                   })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("label", [_vm._v("CPF *")]),
+                : _vm._e()
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mb-3" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c("label", [_vm._v("CPF *")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.inscricao.cpf,
+                  expression: "inscricao.cpf"
+                },
+                {
+                  name: "mask-cpf",
+                  rawName: "v-mask-cpf.br",
+                  modifiers: { br: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "cpf",
+                type: "text",
+                placeholder: "000.000.00-00",
+                disabled: "true"
+              },
+              domProps: { value: _vm.inscricao.cpf },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.inscricao, "cpf", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-6" },
+            [
+              _c("label", [_vm._v("E-mail *")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.inscricao.cpf,
-                    expression: "inscricao.cpf"
-                  },
-                  {
-                    name: "mask-cpf",
-                    rawName: "v-mask-cpf.br",
-                    modifiers: { br: true }
+                    value: _vm.inscricao.email,
+                    expression: "inscricao.email"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  name: "cpf",
-                  type: "text",
-                  placeholder: "000.000.00-00",
-                  disabled: "true"
+                  name: "email",
+                  type: "email",
+                  placeholder: "Example@example.com",
+                  required: "",
+                  maxlength: "50"
                 },
-                domProps: { value: _vm.inscricao.cpf },
+                domProps: { value: _vm.inscricao.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.inscricao, "cpf", $event.target.value)
+                    _vm.$set(_vm.inscricao, "email", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.msg.email
+                ? _c("msg", { attrs: { msg: _vm.msg.email, tipo: "notfound" } })
+                : _vm._e()
             ],
             1
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _vm.inscricao.serie
-            ? _c("div", { staticClass: "col-md-6" }, [
-                _c("label", [_vm._v("Série à cursar *")]),
-                _vm._v(" "),
-                _c("input", {
+          _c("div", { staticClass: "col-6" }, [
+            _c("label", [_vm._v("Série à cursar *")]),
+            _vm._v(" "),
+            _vm.inscricao.serie
+              ? _c("input", {
                   directives: [
                     {
                       name: "model",
@@ -43059,12 +42993,12 @@ var render = function() {
                     }
                   }
                 })
-              ])
-            : _vm._e(),
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-6" },
+            { staticClass: "col-6" },
             [
               _c("label", [_vm._v("Tipo de atenção com o candidato *")]),
               _vm._v(" "),
@@ -43100,12 +43034,14 @@ var render = function() {
         attrs: { inscricao: _vm.inscricao }
       }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        [_c("botaoEditaInscricao", { staticClass: "mt-5 ml-auto mr-4" })],
-        1
-      )
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-12 text-right" },
+          [_c("botaoEditaInscricao")],
+          1
+        )
+      ])
     ],
     1
   )
@@ -43115,7 +43051,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h4", [_c("strong", [_vm._v("Enturme o candidato")])])
+    return _c("h5", [_c("strong", [_vm._v("Enturme o candidato")])])
   }
 ]
 render._withStripped = true
@@ -43141,9 +43077,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-white p-3 rounded", attrs: { id: "cadastro" } },
+    { staticClass: "bg-white p-4 rounded", attrs: { id: "cadastro" } },
     [
-      _c("h4", [_vm._v(_vm._s(_vm.titulo))]),
+      _c("h5", [_vm._v(_vm._s(_vm.titulo))]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -43151,7 +43087,7 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "col-md-6" },
+            { staticClass: "col-6" },
             [
               _c("selectSeries", {
                 attrs: {
@@ -43166,7 +43102,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-3" },
+            { staticClass: "col-3" },
             [
               _c("selectTurnos", {
                 attrs: { filtro: _vm.dados, required: true }
@@ -43177,7 +43113,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-3" },
+            { staticClass: "col-3" },
             [
               _c("selectTurmas", {
                 attrs: { filtro: _vm.dados, required: true }
@@ -43190,13 +43126,13 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "col-md-6" },
+            { staticClass: "col-6" },
             [_c("selectProfessores", { attrs: { filtro: _vm.dados } })],
             1
           ),
           _vm._v(" "),
           _vm.editando
-            ? _c("div", { staticClass: "col-md-3" }, [
+            ? _c("div", { staticClass: "col-3" }, [
                 _c("label", [_vm._v("Total de alunos")]),
                 _vm._v(" "),
                 _c("input", {
@@ -43207,7 +43143,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
+          _c("div", { staticClass: "col-3" }, [
             _c("label", [_vm._v("Limite de alunos "), _c("inputRequire")], 1),
             _vm._v(" "),
             _c("input", {
@@ -43234,18 +43170,20 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _vm.editando
-              ? _c("botaoEditaSerie", { staticClass: "mt-5 ml-auto mr-4" })
-              : _vm.cadastrando
-              ? _c("botaoCadastraSerie", { staticClass: "mt-5 ml-auto mr-4" })
-              : _vm._e()
-          ],
-          1
-        )
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-12 text-right mt-3" },
+            [
+              _vm.editando
+                ? _c("botaoEditaSerie")
+                : _vm.cadastrando
+                ? _c("botaoCadastraSerie")
+                : _vm._e()
+            ],
+            1
+          )
+        ])
       ])
     ]
   )
@@ -43754,6 +43692,18 @@ var render = function() {
                   : ""
             },
             [
+              _c("th", [_vm._v(_vm._s(serie.serie.serie))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(serie.turno.turno))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(serie.turma.turma))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(serie.professor.nom_prof))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(serie.qtd_alunos))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(serie.limite_alunos))]),
+              _vm._v(" "),
               _c("th", [
                 _c("input", {
                   directives: [
@@ -43782,19 +43732,7 @@ var render = function() {
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.serie.serie))]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.turno.turno))]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.turma.turma))]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.professor.nom_prof))]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.qtd_alunos))]),
-              _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(serie.limite_alunos))])
+              ])
             ]
           )
         }),
@@ -44447,9 +44385,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("form", [
-        _c("div", { staticClass: "row p-4" }, [_vm._t("default")], 2)
-      ])
+      _c("form", [_c("div", { staticClass: "p-4" }, [_vm._t("default")], 2)])
     ]
   )
 }

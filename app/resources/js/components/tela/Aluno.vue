@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<buscaAluno :classTitulo="classTitulo" />
-		<listaAluno :classTitulo="classTitulo" />
+		<buscaAluno />
+		<listaAluno />
 	</div>
 </template>
 
@@ -14,11 +14,6 @@ export default {
 	components: {
 		buscaAluno,
 		listaAluno
-	},
-	data() {
-		return {
-			classTitulo: 'backgroundColor: brown;'
-		}
 	}
 }
 </script>

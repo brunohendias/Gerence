@@ -1,52 +1,38 @@
 <template>
-	<templateBusca :classTitulo="classTitulo" titulo="Busque os candidatos">
-		<div class="col-sm-6">
-			<div class="form-group">
+	<templateBusca titulo="Busque os candidatos">
+		<div class="row">
+			<div class="form-group col-6">
 				<inputNome :filtro="filtro"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group col-3">
+				<selectSeries :filtro="filtro" />
+			</div>
+			<div class="form-group col-3">
+				<selectTurnos :filtro="filtro" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-6">
 				<inputCpf :filtro="filtro"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group col-3">
+				<selectTurmas :filtro="filtro" />
+			</div>
+			<div class="form-group col-3">
+				<selectAtencoes :filtro="filtro" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-6">
 				<selectProfessores :filtro="filtro"/>
 			</div>
 		</div>
-
-		<div class="col-sm-6">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<selectSeries :filtro="filtro" />
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<selectTurnos :filtro="filtro" />
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-8">
+				<msg :tipo="msg.tipo" :msg="msg.msg" />
 			</div>
-
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<selectTurmas :filtro="filtro" />
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<selectAtencoes :filtro="filtro" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-12">
-			<div class="row">
-				<div class="col-md-2 pt-1">
-					<botaoBuscaCandidato @msg="msg = $event" :filtro="filtro"/>
-				</div>
-				<div class="col-md-10">
-					<msg :tipo="msg.tipo" :msg="msg.msg" />
-				</div>
+			<div class="col-4 text-right">
+				<botaoBuscaCandidato @msg="msg = $event" :filtro="filtro"/>
 			</div>
 		</div>
 	</templateBusca>
@@ -77,11 +63,6 @@ export default {
 		selectAtencoes,
 		botaoBuscaCandidato,
 		msg
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

@@ -1,7 +1,9 @@
 import apiDadosSerie from '@api/dados/apiDadosSerie'
-import { mostraSwal } from '@helpers/helpers'
+import { mostraSwal, load } from '@helpers/helpers'
 
 const dadosSerie = (self, body) => {
+    load(self, true)
+
     apiDadosSerie.editar(body, body.cod_serie_v)
         .then(response => mostraSwal(response))
         .catch(() => {
@@ -10,6 +12,8 @@ const dadosSerie = (self, body) => {
                 icon: 'error'
             })
         })
+    
+    load(self, false)
 }
 
 export { dadosSerie }

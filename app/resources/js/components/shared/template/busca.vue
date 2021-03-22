@@ -1,12 +1,12 @@
 <template>
-	<div class="bg-white mb-4 borda-top" :style="classTitulo">
-		<div class="borda-top" :style="classTitulo">
-			<div class="row ml-4 pt-2">
-				<h5 class="text-white">{{titulo}}</h5>
+	<div class="bg-white mb-4 borda-top" :class="'headerpanel-'+pathname">
+		<div class="borda-top" :class="'headerpanel-'+pathname">
+			<div class="row ml-4 pt-2 text-white">
+				<h5>{{titulo}}</h5>
 			</div>
 		</div>
 		<form>
-			<div class="row p-4">
+			<div class="p-4">
 				<slot></slot>
 			</div>
 		</form>
@@ -20,17 +20,12 @@ export default {
 		titulo: {
 			type: String,
 			required: true
-		},
-		classTitulo: {
-			Type: String,
-			default: 'backgroundColor: black;'
-		},
+		}
+	},
+	computed: {
+		pathname() {
+			return window.location.pathname.split('/').reverse()[0]
+		}
 	}
 }
 </script>
-
-<style scoped>
-	.borda-top {
-		border-radius: 8px 8px 0px 0px;
-	}
-</style>

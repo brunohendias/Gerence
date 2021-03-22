@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<buscaDadosSerie :classTitulo="classTitulo" />
-		<listaDadosSerie :classTitulo="classTitulo"/>
+		<buscaDadosSerie />
+		<listaDadosSerie />
 	</div>
 </template>
 
@@ -14,11 +14,6 @@ export default {
     components: {
         buscaDadosSerie,
 		listaDadosSerie
-    },
-    data() {
-		return {
-			classTitulo: 'backgroundColor: brown;'
-		}
-	}
+    }
 }
 </script>

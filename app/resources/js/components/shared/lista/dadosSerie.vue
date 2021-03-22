@@ -1,5 +1,5 @@
 <template>
-	<templatelista :colunas="colunas" titulo="séries" :classTitulo="classTitulo" 
+	<templatelista :colunas="colunas" titulo="séries"
 		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(serie, i) in series" :key="i">
@@ -28,11 +28,6 @@ export default {
 	name: 'listaInscricao',
 	components: {
 		templatelista
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

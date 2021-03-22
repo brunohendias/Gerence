@@ -1,6 +1,6 @@
 <template>
-	<button class="btn btn-primary btn-tabela" @click="geraAluno" :disabled="cadastrando">
-		<i v-if="cadastrando" class="spinner-border spinner-border-sm"></i>
+	<button class="btn btn-primary btn-tabela" @click="geraAluno" :disabled="processando">
+		<span v-if="processando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 		<i v-else class="fas fa-edit"></i>
 	</button>
 </template>
@@ -16,20 +16,16 @@ export default {
 			required: true
 		}
 	},
-	data() {
-		return {
-			cadastrando: false
+	computed: {
+		processando() {
+			return this.$store.state.status.processando
 		}
 	},
 	methods: {
 		geraAluno() {
-			this.cadastrando = true
-
 			this.candidato.cod_situacao = 3 
 			
 			aluno(this, this.candidato)
-			
-			this.cadastrando = false
 		}
 	}
 }

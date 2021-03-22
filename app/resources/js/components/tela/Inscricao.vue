@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<buscaInscricao :classTitulo="classTitulo"/>
-		<listaInscricao :classTitulo="classTitulo"/>
+		<buscaInscricao />
+		<listaInscricao />
 	</div>
 </template>
 
@@ -14,11 +14,6 @@ export default {
 	components: {
 		buscaInscricao,
 		listaInscricao
-	},
-	data() {
-		return {
-			classTitulo: 'backgroundColor: midnightblue;'
-		}
 	}
 }
 </script>

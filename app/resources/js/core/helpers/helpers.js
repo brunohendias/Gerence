@@ -20,7 +20,7 @@ const emptyKey = obj => {
 }
 
 const load = (self, value) => {
-    self.$store.dispatch('buscando', value)
+    self.$store.dispatch('processando', value)
 }
 
 const mostraSwal = response => {
@@ -41,11 +41,8 @@ const mostraSwal = response => {
 const paginaArray = array => {
     
     let newArray = []
-    
     let pagina = 0
-    
     let qtd_por_pagina = 0
-
     let limite_por_pagina = 15
     
     newArray.push([])

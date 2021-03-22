@@ -10,11 +10,6 @@
         <tbody>
             <tr v-for="(serie, i) in series" :key="i"
                 :class="serie.cod_serie_v == inscricao.cod_serie_v ? 'table-primary' : ''">
-                
-                <th>
-                    <input type="radio" id="seriev" :value="serie.cod_serie_v" v-model="inscricao.cod_serie_v" />
-                </th>
-                
                 <th>{{serie.serie.serie}}</th>
                 
                 <th>{{serie.turno.turno}}</th>
@@ -26,6 +21,10 @@
                 <th>{{serie.qtd_alunos}}</th>
                 
                 <th>{{serie.limite_alunos}}</th>
+
+				<th>
+                    <input type="radio" id="seriev" :value="serie.cod_serie_v" v-model="inscricao.cod_serie_v" />
+                </th>
             </tr>
         </tbody>
 	</table>
@@ -44,13 +43,13 @@ export default {
 	data() {
 		return {
 			colunas: [
-				{dsc_coluna: 'Selecionar'},
 				{dsc_coluna: 'Série'},
 				{dsc_coluna: 'Turno'},
 				{dsc_coluna: 'Turma'},
 				{dsc_coluna: 'Professor'},
 				{dsc_coluna: 'Total de alunos'},
-				{dsc_coluna: 'Limite de alunos'}
+				{dsc_coluna: 'Limite de alunos'},
+				{dsc_coluna: 'Selecionar'}
 			]
 		}
 	},

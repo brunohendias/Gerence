@@ -1,18 +1,18 @@
-const BUSCANDO = 'BUSCANDO'
+const PROCESSANDO = 'PROCESSANDO'
 
 const state = {
-	buscando: false
+	processando: false
 }
 
 const mutations = {
-	[BUSCANDO] (state, value) {
-		state.buscando = value
+	[PROCESSANDO] (state, value) {
+		state.processando = value
 	}
 }
 
 const actions = {
-	buscando(context, value) {
-		context.commit('BUSCANDO', value)
+	processando(context, value) {
+		context.commit('PROCESSANDO', value)
 	}
 }
 

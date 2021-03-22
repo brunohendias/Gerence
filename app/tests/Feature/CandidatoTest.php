@@ -53,29 +53,12 @@ class CandidatoTest extends TestCase
     }
 
     /** @test */
-    public function check_if_success_edit_candidate()
+    public function check_if_failed_delete_candidate_student()
     {
-        $edit = [
-            'telefone' => '37 999887766',
-            'email' => 'editphpunit@phpunit.com',
-            'cod_serie_v' => 3,
-            'cod_atencao' => 5,
-        ];
+        $this->response = $this->delete($this->url.'/1');
 
-        $this->response = $this->put($this->url.'/1', $edit);
+        $this->msg = 'Não podemos deletar um candidato que se tornou um aluno.';
 
-        $this->msg = 'Editamos esse candidato com sucesso.';
-
-        $this->return_success();
-    }
-
-    /** @test */
-    public function check_if_success_delete_candidate()
-    {
-        $this->response = $this->delete($this->url.'/2');
-
-        $this->msg = 'Deletamos esse candidato com sucesso.';
-
-        $this->return_success();
+        $this->return_failed();
     }
 }

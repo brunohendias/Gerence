@@ -12,15 +12,18 @@ class ProfessorVinculo extends Model
     protected $table = 'professor_v';
     protected $primaryKey = 'cod_prof_v';
 
-    public function professor() {
-    	return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof')->select(['cod_prof', 'nom_prof']);
+    public function professor(): object
+    {
+    	return $this->hasOne(Professor::class, 'cod_prof', 'cod_prof');
     }
 
-    public function atencao() {
-    	return $this->hasOne(Atencao::class, 'cod_atencao', 'cod_atencao')->select(['cod_atencao', 'atencao']);
+    public function atencao(): object
+    {
+    	return $this->hasOne(Atencao::class, 'cod_atencao', 'cod_atencao');
     }
 
-    public function scopeSelectProfessor($builder) {
+    public function scopeSelectProfessor(object $builder): object
+    {
         return $builder->select('cod_prof_v','cod_prof','cod_atencao');
     }
 }

@@ -4,5 +4,5 @@ namespace Contracts;
 
 interface InscricaoInterface
 {
-    public function index($request);
+    public function index(object $request): object;
 }

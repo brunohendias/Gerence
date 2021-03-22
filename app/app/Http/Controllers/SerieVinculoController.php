@@ -8,14 +8,14 @@ use Contracts\SerieVinculoInterface;
 
 class SerieVinculoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(SerieVinculoInterface $interface)
     {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $entidade = 'os dados das séries';
         try {
@@ -28,17 +28,17 @@ class SerieVinculoController extends Controller
 
             $msg = $this->MsgSearch($entidade);
             return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): object
+    {
         $entidade = 'essa série';
         try {
             $dado = $this->interface->index($request);
-            
             if ($this->existeRegistro($dado)) {
                 $msg = 'Essa série já esta cadastrada com essas informações.';
                 return $this->RespErrorNormal($msg);
@@ -48,13 +48,14 @@ class SerieVinculoController extends Controller
 
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg.$e->getMessage());
+			return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function update(Request $request, $cod_serie_v) {
+    public function update(Request $request, int $cod_serie_v): object
+    {
         $entidade = 'as informações dessa série';
         try {
             $dado = $this->interface->find($cod_serie_v);
@@ -69,9 +70,9 @@ class SerieVinculoController extends Controller
 
             $msg = $this->MsgEdit($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgEdit($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

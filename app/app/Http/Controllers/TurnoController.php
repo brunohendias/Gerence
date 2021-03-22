@@ -8,14 +8,14 @@ use Contracts\TurnoInterface;
 
 class TurnoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(TurnoInterface $interface)
     {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $entidade = 'os turnos';
         try {
@@ -28,9 +28,9 @@ class TurnoController extends Controller
 
             $msg = $this->MsgSearch($entidade);
             return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

@@ -1,0 +1,67 @@
+variables:
+  VPS_HOST: "brunohendias.com.br"
+  IDENTITY_PROJECT: "*$CI_PROJECT_NAME CI_COMMIT_REF_NAME*"
+  SSHH: "brunoh67@brunohendias.com.br"
+
+stages:
+  - build
+  - deploy
+
+cache:
+  untracked: true
+  paths:
+    - ./app/node_modules/
+    - ./app/vendor/
+
+Build:
+  image: registry.gitlab.com/gerence/gerence
+  stage: build
+  script:
+    - cd ./app
+    - echo "Configuring composer"
+    - wget https://getcomposer.org/installer
+    - php installer
+    - echo "Running composer install"
+    - php composer.phar install --no-progress --ignore-platform-reqs
+    - cp .env.prod .env
+    - echo "Running NPM"
+    - npm install --no-progress
+    - npm run prod --no-progress
+  artifacts:
+    paths:
+      - ./app/public/css
+      - ./app/public/js
+      - ./app/public/mix-manifest.json
+    expire_in: 1 days
+    when: always
+
+
+Deploy:
+  image: registry.gitlab.com/gerence/gerence
+  stage: deploy
+  dependencies:
+    - Build
+  script:
+    - echo "Running Deploy"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "Version"
+    - php -v
+    - npm -v
+    - composer --version
+    - echo "Deploying in $VPS_HOST"
+    - ssh $SSHH /bin/bash
+    - rm -rf gerence
+    - git clone git@gitlab.com:gerence/gerence.git
+    - cd gerence/app
+    - composer install --no-dev --optimize-autoloader
+    - npm run prod
+    - php artisan cache:clear
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
+    #- php artisan db:weep
+    #- php artisan migrate
+    #- php artisan db:seed
+  only:
+    - master

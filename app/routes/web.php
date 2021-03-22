@@ -17,7 +17,6 @@ Route::prefix('/api')->group(function () {
 		Route::get('/situacoes', 'SituacaoController@index');
 		Route::prefix('inscricao')->group(function () {
 			Route::post('/busca', 'InscricaoController@index');
-			Route::get('/{cod_insc}', 'InscricaoController@show');
 		});
 		Route::prefix('candidato')->group(function () {
 			Route::post('/busca', 'CandidatoController@index');

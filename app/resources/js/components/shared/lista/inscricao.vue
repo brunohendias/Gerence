@@ -1,5 +1,5 @@
 <template>
-	<templatelista :colunas="colunas" titulo="inscrições" :classTitulo="classTitulo" 
+	<templatelista :colunas="colunas" titulo="inscrições"
 		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(inscricao, i) in inscricoes" :key="i">
@@ -10,7 +10,7 @@
 				<th>{{inscricao.turno.turno}}</th>
 				<th>
 					<span @click="editainscricao(inscricao)">
-						<router-link class="btn btn-primary" to="/editainscricao">
+						<router-link class="btn btn-primary btn-tabela" to="/editainscricao">
 							<i class="fas fa-pencil-alt"></i>
 						</router-link>
 					</span>
@@ -28,11 +28,6 @@ export default {
 	name: 'listaInscricao',
 	components: {
 		templatelista
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

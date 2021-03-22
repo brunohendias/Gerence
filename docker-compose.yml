@@ -4,6 +4,9 @@ services:
   #PHP Service
   app:
     build:
+      args:
+        user: dev
+        uid: 1000
       context: .
       dockerfile: Dockerfile
     image: php:7.4-fpm
@@ -13,12 +16,12 @@ services:
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
-    working_dir: /var/www/app
+    working_dir: /var/www
     volumes:
-      - ./:/var/www
+      - ./app:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - gerence-network
+      - gerence
 
   # Nginx Service
   webserver:
@@ -30,32 +33,21 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./:/var/www
+      - ./app:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - gerence-network
-  
-  # Downloading vendor
-  composer:
-    container_name: composer
-    image: composer
-    working_dir: /var/www/app
-    volumes:
-      - ./:/var/www
-    command: composer install --ignore-platform-reqs
-    networks:
-      - gerence-network
-  
+      - gerence
+
   # Downloading node_modules
   node:
     container_name: node
     image: node:alpine
-    working_dir: /var/www/app
+    working_dir: /var/www
     volumes: 
-      - ./:/var/www
+      - ./app:/var/www
     command: npm install
     networks: 
-      - gerence-network
+      - gerence
   
   # MySQL Service
   db:
@@ -74,13 +66,13 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql:/docker-entrypoint-initdb.d
     networks:
-      - gerence-network
+      - gerence
 
 # Docker Networks
 networks:
-  gerence-network:
+  gerence:
     driver: bridge
 
 # Volumes

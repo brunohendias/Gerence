@@ -1,6 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" titulo="alunos" :classTitulo="classTitulo" 
-		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
+	<templatelista :colunas="colunas" titulo="alunos" :totalRegistros="totalRegistros"
+		 @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(aluno, i) in alunos" :key="i">
 				<th>{{aluno.nom_aluno}}</th>
@@ -22,11 +22,6 @@ export default {
 	name: 'listaAluno',
 	components: {
 		templatelista
-	},
-	props: {
-		classTitulo: {
-			type: String
-		}
 	},
 	data() {
 		return {

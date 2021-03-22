@@ -4,11 +4,11 @@ namespace Contracts;
 
 interface SerieVinculoInterface {
     
-    public function index($request);
+    public function index(object $request): object;
 
-    public function find($id);
+    public function find(int $id): object;
 
-    public function store($request);
+    public function store(object $request): object;
 
-    public function update($request, $id);
+    public function update(array $request, int $id): bool;
 }

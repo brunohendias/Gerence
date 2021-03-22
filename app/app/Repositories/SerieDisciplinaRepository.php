@@ -14,7 +14,8 @@ class SerieDisciplinaRepository implements SerieDisciplinaInterface
         $this->model = $model;
     }
 
-    public function index($request) {
+    public function index(object $request): object
+    {
         $cod_serie = $request->cod_serie;
 
         return $this->model->select('cod_serie_disc','cod_disciplina')
@@ -23,11 +24,13 @@ class SerieDisciplinaRepository implements SerieDisciplinaInterface
             ->get();
     }
 
-    public function find($id) {
+    public function find(int $id): object
+    {
         return $this->model->find($id);
     }
     
-    public function store($request) {
+    public function store(object $request): object
+    {
         $this->model->cod_serie = $request->cod_serie;
         $this->model->cod_disciplina = $request->cod_disciplina;
         $this->model->save();
@@ -35,8 +38,8 @@ class SerieDisciplinaRepository implements SerieDisciplinaInterface
         return $this->model;
     }
     
-    public function destroy($id) {
-
+    public function destroy(int $id): bool
+    {
         $dado = $this->find($id);
 
         return $dado->delete();

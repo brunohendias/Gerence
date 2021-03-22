@@ -4,6 +4,5 @@ namespace Contracts;
 
 interface TurnoInterface {
     
-    public function index($request);
-
+    public function index(object $request): object;
 }

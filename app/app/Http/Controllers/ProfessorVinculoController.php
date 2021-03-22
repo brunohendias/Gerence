@@ -8,13 +8,13 @@ use Contracts\ProfessorVinculoInterface;
 
 class ProfessorVinculoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
 	public function __construct(ProfessorVinculoInterface $interface) {
 		$this->interface = $interface;
 	}
 
-	public function index()
+	public function index(): object
     {
         $entidade = 'os professores';
         try{
@@ -27,9 +27,9 @@ class ProfessorVinculoController extends Controller
 
             $msg = $this->MsgSearch($entidade);
             return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 }

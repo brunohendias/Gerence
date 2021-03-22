@@ -1,6 +1,6 @@
 <template>
-	<button class="btn btn-dark" @click.stop.prevent="buscarDadosSerie" :disabled="buscando">
-		<i v-if="buscando" class="spinner-border spinner-border-sm"></i>
+	<button class="btn btn-dark" @click.stop.prevent="buscarDadosSerie" :disabled="processando">
+        <span v-if="processando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 		<span v-else>Buscar</span>
 	</button>
 </template>
@@ -17,8 +17,8 @@ export default {
 		}
 	},
 	computed: {
-		buscando() {
-			return this.$store.state.status.buscando
+		processando() {
+			return this.$store.state.status.processando
 		}
 	},
 	methods: {

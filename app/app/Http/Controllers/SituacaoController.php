@@ -8,13 +8,14 @@ use Contracts\SituacaoInterface;
 
 class SituacaoController extends Controller
 {
-    private $interface;
+    private object $interface;
 
     public function __construct(SituacaoInterface $interface) {
     	$this->interface = $interface;
     }
 
-    public function index(Request $request) {
+    public function index(Request $request): object
+    {
         $entidade = 'as situações';
     	try {
             $dados = $this->interface->index($request);
@@ -26,42 +27,23 @@ class SituacaoController extends Controller
 
             $msg = $this->MsgSearch($entidade);
             return $this->RespSuccess(array('msg' => $msg, 'dados' => $dados));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgSearch($entidade, 'error');
-            return $this->RespLogErro($e, $msg);
+            return $this->RespLogErro($exception, $msg);
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): object
+    {
         $entidade = 'essa situação';
     	try {
             $this->interface->store($request);
 
             $msg = $this->MsgRegister($entidade);
 	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $msg = $this->MsgRegister($entidade, 'error');
-			return $this->RespLogErro($e, $msg);
-        }
-    }
-
-    public function destroy($id) {
-        $entidade = 'essa situação';
-        try {
-            $dado = $this->interface->index($id);
-
-            if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('situação');
-	    		return $this->RespErrorNormal($msg);
-            }
-
-            $this->interface->destroy($id);
-
-            $msg = $this->MsgDelete($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $e) {
-            $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($e, $msg, 500);
+			return $this->RespLogErro($exception, $msg);
         }
     }
 }

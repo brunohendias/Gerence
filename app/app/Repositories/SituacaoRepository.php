@@ -5,9 +5,9 @@ namespace Repositories;
 use Contracts\SituacaoInterface;
 use App\Models\Situacao;
 
-class SituacaoRepository implements SituacaoInterface {
-    
-    private $model;
+class SituacaoRepository implements SituacaoInterface
+{
+    private object $model;
 
     public function __construct(Situacao $model)
     {

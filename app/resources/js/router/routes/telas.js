@@ -2,18 +2,16 @@ import Inscricoes from '@tela/Inscricao'
 import Candidatos from '@tela/Candidato'
 import Alunos from '@tela/Aluno'
 import Serie from '@tela/Serie'
-import EditaInscricao from '@edicao/inscricao'
-import EditaSerie from '@edicao/serie'
 
-const routes = [
-	{
+export default [
+    {
 		path: '/',
 		redirect: '/inscricao'
 	},
 	{
 		id: 1,
 		path: '#',
-		name: 'listas',
+		name: 'Listas',
 		icon: 'fas fa-file-alt',
 	},
 	{
@@ -40,7 +38,7 @@ const routes = [
 	{
 		id: 2,
 		path: '#',
-		name: 'configurações',
+		name: 'Configurações',
 		icon: 'fas fa-cogs'
 	},
 	{
@@ -50,26 +48,9 @@ const routes = [
 		pai: 2,
 		component: Serie
 	},
-	{
-		path: '/editainscricao',
-		name: 'editainscricao',
-		component: EditaInscricao
-	},
-	{
-		path: '/editaserie',
-		name: 'editaserie',
-		component: EditaSerie
-	},
-	{
-		path: '/cadastraserie',
-		name: 'cadastraserie',
-		component: EditaSerie
-	},
-	{
+    {
 		path: '*',
 		name: 'not_found',
 		component: Inscricoes
 	}
 ]
-
-export default routes

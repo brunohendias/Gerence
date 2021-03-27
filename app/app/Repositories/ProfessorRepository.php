@@ -7,7 +7,7 @@ use App\Models\Professor;
 
 class ProfessorRepository implements ProfessorInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(Professor $model)
     {
@@ -30,12 +30,5 @@ class ProfessorRepository implements ProfessorInterface
         $this->model->save();
 
         return $this->model;
-    }
-    
-    public function destroy(int $id): object
-    {
-        $dado = $this->find($id);
-        
-        return $dado->delete();
     }
 }

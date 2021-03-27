@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::middleware('auth')->group(function () {	
-	Route::prefix('/api')->group(function () {
+Route::middleware('auth')->group(function () {
+	Route::prefix('/api')->group(function() {
 		Route::prefix('/v1')->group(function () {
+			Route::prefix('/user')->group(function() {
+				Route::get('/', 'UserController@show');
+				Route::get('/logout', 'UserController@logout');
+			});
 			Route::prefix('/series')->group(function() {
 				Route::get('/', 'SerieController@index');
 				Route::post('/', 'SerieController@store');

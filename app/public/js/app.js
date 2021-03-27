@@ -3657,6 +3657,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/user */ "./resources/js/core/functions/user.js");
 //
 //
 //
@@ -3668,8 +3669,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'navbar'
+  name: 'navbar',
+  data: function data() {
+    return {
+      logout: _functions_user__WEBPACK_IMPORTED_MODULE_0__["logout"],
+      user: {}
+    };
+  },
+  created: function created() {
+    this.user = Object(_functions_user__WEBPACK_IMPORTED_MODULE_0__["show"])(this);
+  }
 });
 
 /***/ }),
@@ -43819,21 +43848,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "container-fluid mb-3 text-right", attrs: { id: "navbar" } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-9 pt-1" }, [
+          _c("div", { staticClass: "dropdown" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("ul", { staticClass: "dropdown-menu p-3" }, [
+              _c("p", [
+                _c("strong", [_vm._v("Usuario: ")]),
+                _vm._v(" " + _vm._s(_vm.user.name) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Email: ")]),
+                _vm._v(" " + _vm._s(_vm.user.email) + "\n                    ")
+              ]),
+              _vm._v(" "),
+              _c("p"),
+              _c("hr", { staticClass: "dropdown-divider" }),
+              _c("p"),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-right" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-danger ml-2",
+                    on: { click: _vm.logout }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            logout\n                        "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2 pt-2" }, [
+      _c("h4", [_vm._v("Gerence")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "div",
-      { staticClass: "mb-3 text-right pt-2", attrs: { id: "navbar" } },
-      [
-        _c("div", { staticClass: "col-sm-2" }, [_c("h4", [_vm._v("Gerence")])]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-10" })
-      ]
+      "span",
+      {
+        staticClass: "btn text-white",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [_c("i", { staticClass: "fas fa-user" })]
     )
   }
 ]
@@ -69395,6 +69475,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/core/api/entidade/apiUser.js":
+/*!***************************************************!*\
+  !*** ./resources/js/core/api/entidade/apiUser.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  busca: function busca() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/user');
+  },
+  logout: function logout() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/user/logout');
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/core/functions/busca.js":
 /*!**********************************************!*\
   !*** ./resources/js/core/functions/busca.js ***!
@@ -69444,7 +69547,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var turmas = function turmas(self, params) {
-  _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_5__["default"].busca({
+  return _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_5__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69456,7 +69559,7 @@ var turmas = function turmas(self, params) {
 };
 
 var turnos = function turnos(self, params) {
-  _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_4__["default"].busca({
+  return _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_4__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69468,7 +69571,7 @@ var turnos = function turnos(self, params) {
 };
 
 var series = function series(self, params) {
-  _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_3__["default"].busca({
+  return _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_3__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69484,7 +69587,7 @@ var series = function series(self, params) {
 };
 
 var atencoes = function atencoes(self, params) {
-  _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"].busca({
+  return _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69496,7 +69599,7 @@ var atencoes = function atencoes(self, params) {
 };
 
 var situacoes = function situacoes(self, params) {
-  _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_8__["default"].busca({
+  return _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_8__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69508,7 +69611,7 @@ var situacoes = function situacoes(self, params) {
 };
 
 var professores = function professores(self, params) {
-  _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_6__["default"].busca({
+  return _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_6__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69779,6 +69882,40 @@ var dadosSerie = function dadosSerie(self, body) {
     });
   });
   Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_1__["load"])(self, false);
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/core/functions/user.js":
+/*!*********************************************!*\
+  !*** ./resources/js/core/functions/user.js ***!
+  \*********************************************/
+/*! exports provided: show, logout */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony import */ var _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiUser */ "./resources/js/core/api/entidade/apiUser.js");
+
+
+var show = function show(self) {
+  return _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_0__["default"].busca().then(function (response) {
+    if (response.data.success) {
+      self.user = response.data.data.dados;
+    } else {
+      self.msg = response.data.error.message;
+    }
+  });
+};
+
+var logout = function logout() {
+  return _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_0__["default"].logout().then(function (response) {
+    if (response.data.success) window.location.replace('/login');
+  });
 };
 
 

@@ -7,6 +7,7 @@ import apiTurma from '@api/entidade/apiTurma'
 import apiProfessor from '@api/entidade/apiProfessor'
 import apiAtencoes from '@api/entidade/apiAtencoes'
 import apiSituacoes from '@api/entidade/apiSituacoes'
+import { busca } from '@api/entidade/apiRelatorio'
 import apiDadosProfessor from '@api/dados/apiDadosProfessor'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
@@ -132,7 +133,10 @@ const dadosSeries = (self, params) => {
     load(self, false)
 }
 
+const relatorios = relatorio => busca(relatorio)
+
 export { 
     turmas, turnos, series, atencoes, situacoes, professores, 
-    dadosProfessores, inscricoes, candidatos, alunos, dadosSeries
+    dadosProfessores, inscricoes, candidatos, alunos, dadosSeries,
+    relatorios
 }

@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "di-vue-mask": "^1.1.0",
+        "file-system": "^2.2.2",
+        "fs": "^0.0.1-security",
         "sweetalert": "^2.1.2",
         "vue-router": "^3.3.4",
         "vue-search-select": "^2.9.3",

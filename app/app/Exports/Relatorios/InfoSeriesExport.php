@@ -14,11 +14,11 @@ class InfoSeriesExport implements FromCollection, WithHeadings, WithMapping, Sho
 {
     use Exportable;
 
-    private $fileName = 'infoseries.xlsx';
+    private string $fileName = 'infoseries.xlsx';
     
-    private $writerType = Excel::XLSX;
+    private string $writerType = Excel::XLSX;
     
-    private $headers = [
+    private array $headers = [
         'Content-Type' => 'text/csv',
     ];
 
@@ -40,7 +40,7 @@ class InfoSeriesExport implements FromCollection, WithHeadings, WithMapping, Sho
         return SerieVinculo::with('serie')->with('turno')->with('turma')->with('professor')->get();
     }
 
-    public function map($dado): array
+    public function map(mixed $dado): array
     {
         return [
             $dado->cod_serie_v,

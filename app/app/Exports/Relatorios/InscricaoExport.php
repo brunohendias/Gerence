@@ -13,18 +13,18 @@ class InscricaoExport implements FromQuery, WithHeadings, Responsable
 {
     use Exportable;
 
-    private int $cod_serie;
+    private $cod_serie;
 
-    public function __construct(int $cod_serie)
+    public function __construct($cod_serie)
     {
         $this->cod_serie = $cod_serie;
     }
 
-    private $fileName = 'inscricoes.xlsx';
+    private string $fileName = 'inscricoes.xlsx';
     
-    private $writerType = Excel::XLSX;
+    private string $writerType = Excel::XLSX;
     
-    private $headers = [
+    private array $headers = [
         'Content-Type' => 'text/csv',
     ];
 
@@ -40,6 +40,10 @@ class InscricaoExport implements FromQuery, WithHeadings, Responsable
 
     public function query(): object
     {
-        return Inscricao::query()->where('cod_serie', $this->cod_serie);
+        if ($this->cod_serie) {
+            return Inscricao::query()->where('cod_serie', $this->cod_serie);
+        } else {
+            return Inscricao::query();
+        }
     }
 }

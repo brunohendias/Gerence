@@ -19,11 +19,11 @@ class AtencaoExport implements FromCollection, WithHeadings, Responsable
         $this->repository = $repository;
     }
     
-    private $fileName = 'atencoes.xlsx';
+    private string $fileName = 'atencoes.xlsx';
     
-    private $writerType = Excel::XLSX;
+    private string $writerType = Excel::XLSX;
     
-    private $headers = [
+    private array $headers = [
         'Content-Type' => 'text/csv',
     ];
     

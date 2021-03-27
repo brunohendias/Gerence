@@ -35,9 +35,4 @@ class AtencaoController extends Controller
 			return $this->RespLogErro($exception, $msg);
         }
     }
-
-    public function export() 
-    {
-        return Excel::download(new AtencaoExport, 'atencao.xlsx');
-    }
 }

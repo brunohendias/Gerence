@@ -37,8 +37,9 @@ Route::prefix('/api')->group(function () {
 			Route::get('/', 'ProfessorVinculoController@index');
 		});
 		Route::prefix('relatorio')->group(function() {
-			Route::get('/atencoes', 'AtencaoController@export');
-			Route::get('/inscricoes', 'InscricaoController@export');
+			Route::get('/atencoes', 'RelatorioController@atencoes');
+			Route::get('/inscricoes', 'RelatorioController@inscricoes');
+			Route::get('/infoseries', 'RelatorioController@infoSeries');
 		});
 	});
 });

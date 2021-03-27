@@ -7,7 +7,7 @@ use App\Models\Atencao;
 
 class AtencaoRepository implements AtencaoInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(Atencao $model)
     {

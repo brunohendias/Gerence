@@ -11,11 +11,11 @@ use Repositories\AtencaoRepository;
 
 class RelatorioController extends Controller
 {
-    private array $retorno = [
-        'msg' => 'Estamos gerando o relatorio. Iremos enviar uma notificação assim que terminar!'
-    ];
-
     private string $fila = 'relatorio';
+
+    private array $retorno = [
+        'msg' => 'Estamos gerando o relatorio. Iremos enviar uma notificação assim que terminar!' 
+    ];
 
     protected function atencoes(AtencaoRepository $repository): object 
         { return new AtencaoExport($repository); }
@@ -25,9 +25,7 @@ class RelatorioController extends Controller
 
     protected function infoSeries(): object
     {
-        (new InfoSeriesExport)
-            ->store('infoserie.xlsx')
-            ->allOnQueue($this->fila);
+        (new InfoSeriesExport)->store('infoserie.xlsx')->allOnQueue($this->fila);
 
         return $this->RespSuccess($this->retorno);
     }

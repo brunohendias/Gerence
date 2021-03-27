@@ -8,15 +8,10 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Excel;
 
 class InfoSeriesExport implements FromCollection, WithHeadings, WithMapping, ShouldQueue
 {
     use Exportable;
-
-    private string $fileName = 'infoseries.xlsx';
-    
-    private string $writerType = Excel::XLSX;
     
     private array $headers = [
         'Content-Type' => 'text/csv',
@@ -37,10 +32,11 @@ class InfoSeriesExport implements FromCollection, WithHeadings, WithMapping, Sho
 
     public function collection(): object
     {
-        return SerieVinculo::with('serie')->with('turno')->with('turma')->with('professor')->get();
+        return SerieVinculo::with('serie')->with('turno')
+            ->with('turma')->with('professor')->get();
     }
 
-    public function map(mixed $dado): array
+    public function map($dado): array
     {
         return [
             $dado->cod_serie_v,

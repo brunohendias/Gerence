@@ -5,9 +5,9 @@ namespace Repositories;
 use Contracts\SerieInterface;
 use App\Models\Serie;
 
-class SerieRepository implements SerieInterface {
-    
-    private $model;
+class SerieRepository implements SerieInterface
+{
+    private object $model;
 
     public function __construct(Serie $model)
     {
@@ -16,7 +16,6 @@ class SerieRepository implements SerieInterface {
     
     public function index(object $request): object
     {
-        
         $codserie = $request->cod_serie;
         $serie = $request->serie;
 

@@ -5,9 +5,9 @@ namespace Repositories;
 use Contracts\TurnoInterface;
 use App\Models\Turno;
 
-class TurnoRepository implements TurnoInterface {
-
-    private $model;
+class TurnoRepository implements TurnoInterface
+{
+    private object $model;
 
     public function __construct(Turno $model)
     {

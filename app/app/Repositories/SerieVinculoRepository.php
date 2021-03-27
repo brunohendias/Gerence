@@ -7,7 +7,7 @@ use App\Models\Vinculo\SerieVinculo;
 
 class SerieVinculoRepository implements SerieVinculoInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(SerieVinculo $model)
     {

@@ -2010,6 +2010,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2058,6 +2060,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -2134,6 +2138,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2191,6 +2197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2204,6 +2211,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'botaoBuscaSerie',
@@ -2213,10 +2222,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "default": {}
     }
   },
-  computed: {
-    processando: function processando() {
-      return this.$store.state.status.processando;
-    }
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
     buscarDadosSerie: function buscarDadosSerie() {
@@ -2260,6 +2267,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/cadastra */ "./resources/js/core/functions/cadastra.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
 //
 //
 //
@@ -2267,6 +2275,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'botaoGeraAluno',
@@ -2276,10 +2286,8 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     }
   },
-  computed: {
-    processando: function processando() {
-      return this.$store.state.status.processando;
-    }
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     geraAluno: function geraAluno() {
@@ -2301,6 +2309,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/cadastra */ "./resources/js/core/functions/cadastra.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
+//
 //
 //
 //
@@ -2309,24 +2319,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'botaoCadastraSerie',
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   computed: {
     body: function body() {
       return this.$store.state.dados.serie.serie;
     },
     validaCampoObrigatorio: function validaCampoObrigatorio() {
       return !(this.body.cod_serie && this.body.cod_turno && this.body.cod_turma && this.body.limite_alunos);
-    },
-    processando: function processando() {
-      return this.$store.state.status.processando;
     }
   },
   methods: {
     preCadastro: function preCadastro() {
-      /*cadastra.serie(this, this.body.serie.serie)
-      cadastra.turno(this, this.body.turno.turno)
-      cadastra.turma(this, this.body.turma.turma)*/
       this.cadastro();
     },
     cadastro: function cadastro() {
@@ -2349,6 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_deleta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/deleta */ "./resources/js/core/functions/deleta.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2362,6 +2371,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'botaoDeletaCandidato',
@@ -2379,10 +2390,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       required: true
     }
   },
-  computed: {
-    processando: function processando() {
-      return this.$store.state.status.processando;
-    }
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
     deletaCandidato: function deletaCandidato() {
@@ -2449,6 +2458,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_cadastra__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/cadastra */ "./resources/js/core/functions/cadastra.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
+//
 //
 //
 //
@@ -2457,7 +2468,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       lista: true
@@ -2469,9 +2484,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     validarCandidato: function validarCandidato() {
       return !(this.inscricao.nom_insc && this.inscricao.email && this.inscricao.telefone && this.inscricao.cpf && this.inscricao.cod_atencao && this.inscricao.cod_serie_v);
-    },
-    processando: function processando() {
-      return this.$store.state.status.processando;
     }
   },
   methods: {
@@ -2493,6 +2505,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_edita__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @functions/edita */ "./resources/js/core/functions/edita.js");
+/* harmony import */ var _shared_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shared/load */ "./resources/js/components/shared/load.vue");
+//
 //
 //
 //
@@ -2501,17 +2515,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'botaoEditaSerie',
+  components: {
+    load: _shared_load__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   computed: {
     body: function body() {
       return this.$store.state.dados.serie.serie;
     },
     validaCampoObrigatorio: function validaCampoObrigatorio() {
       return !(this.body.cod_serie && this.body.cod_turno && this.body.cod_turma && this.body.limite_alunos);
-    },
-    processando: function processando() {
-      return this.$store.state.status.processando;
     }
   },
   methods: {
@@ -3581,14 +3596,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'load',
-  props: {
-    texto: {
-      type: String,
-      "default": ''
-    }
-  },
   computed: {
     processando: function processando() {
       return this.$store.state.status.processando;
@@ -42056,7 +42067,7 @@ var render = function() {
         }
       }
     },
-    [_c("load", { attrs: { texto: "Buscar" } })],
+    [_c("load", [_c("span", [_vm._v("Buscar")])])],
     1
   )
 }
@@ -42094,7 +42105,7 @@ var render = function() {
         }
       }
     },
-    [_c("load", { attrs: { texto: "Buscar" } })],
+    [_c("load", [_c("span", [_vm._v("Buscar")])])],
     1
   )
 }
@@ -42132,7 +42143,7 @@ var render = function() {
         }
       }
     },
-    [_c("load", { attrs: { texto: "Buscar" } })],
+    [_c("load", [_c("span", [_vm._v("Buscar")])])],
     1
   )
 }
@@ -42162,7 +42173,6 @@ var render = function() {
     "button",
     {
       staticClass: "btn btn-dark",
-      attrs: { disabled: _vm.processando },
       on: {
         click: function($event) {
           $event.stopPropagation()
@@ -42171,14 +42181,8 @@ var render = function() {
         }
       }
     },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("span", [_vm._v("Buscar")])
-    ]
+    [_c("load", [_c("span", [_vm._v("Buscar")])])],
+    1
   )
 }
 var staticRenderFns = []
@@ -42205,19 +42209,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    {
-      staticClass: "btn btn-primary btn-tabela",
-      attrs: { disabled: _vm.processando },
-      on: { click: _vm.geraAluno }
-    },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("i", { staticClass: "fas fa-edit" })
-    ]
+    { staticClass: "btn btn-primary btn-tabela", on: { click: _vm.geraAluno } },
+    [_c("load", [_c("i", { staticClass: "fas fa-edit" })])],
+    1
   )
 }
 var staticRenderFns = []
@@ -42246,7 +42240,7 @@ var render = function() {
     "button",
     {
       staticClass: "btn btn-success",
-      attrs: { disabled: _vm.processando || _vm.validaCampoObrigatorio },
+      attrs: { disabled: _vm.validaCampoObrigatorio },
       on: {
         click: function($event) {
           $event.preventDefault()
@@ -42254,14 +42248,8 @@ var render = function() {
         }
       }
     },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("span", [_vm._v("Cadastrar")])
-    ]
+    [_c("load", [_c("span", [_vm._v("Cadastrar")])])],
+    1
   )
 }
 var staticRenderFns = []
@@ -42288,19 +42276,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    {
-      staticClass: "btn btn-danger",
-      attrs: { disabled: _vm.processando },
-      on: { click: _vm.deletaCandidato }
-    },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("i", { staticClass: "fas fa-trash" })
-    ]
+    { staticClass: "btn btn-danger", on: { click: _vm.deletaCandidato } },
+    [_c("load", [_c("i", { staticClass: "fas fa-trash" })])],
+    1
   )
 }
 var staticRenderFns = []
@@ -42329,7 +42307,7 @@ var render = function() {
     "button",
     {
       staticClass: "btn btn-success ml-3",
-      attrs: { disabled: _vm.validarCandidato || _vm.processando },
+      attrs: { disabled: _vm.validarCandidato },
       on: {
         click: function($event) {
           $event.preventDefault()
@@ -42337,14 +42315,8 @@ var render = function() {
         }
       }
     },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("span", [_vm._v("Gerar candidato")])
-    ]
+    [_c("load", [_c("span", [_vm._v("Gerar candidato")])])],
+    1
   )
 }
 var staticRenderFns = []
@@ -42373,7 +42345,7 @@ var render = function() {
     "button",
     {
       staticClass: "btn btn-success",
-      attrs: { disabled: _vm.processando || _vm.validaCampoObrigatorio },
+      attrs: { disabled: _vm.validaCampoObrigatorio },
       on: {
         click: function($event) {
           $event.preventDefault()
@@ -42381,14 +42353,8 @@ var render = function() {
         }
       }
     },
-    [
-      _vm.processando
-        ? _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          })
-        : _c("span", [_vm._v("Atualizar dados")])
-    ]
+    [_c("load", [_c("span", [_vm._v("Atualizar dados")])])],
+    1
   )
 }
 var staticRenderFns = []
@@ -43796,12 +43762,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.processando
-    ? _c("span", {
-        staticClass: "spinner-border spinner-border-sm",
-        attrs: { role: "status", "aria-hidden": "true" }
-      })
-    : _c("span", [_vm._v(_vm._s(_vm.texto))])
+  return _c("div", [
+    _vm.processando
+      ? _c("span", {
+          staticClass: "spinner-border spinner-border-sm",
+          attrs: { role: "status", "aria-hidden": "true" }
+        })
+      : _c("span", [_vm._t("default")], 2)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -13,28 +13,26 @@ import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import { load, validaRetornoLista } from '@helpers/helpers'
 
-const turmas = (self, params) => {
-    apiTurma.busca({params}).then(response => {
+const turmas = (self, params) => apiTurma.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.turmas = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const turnos = (self, params) => {
-    apiTurno.busca({params}).then(response => {
+const turnos = (self, params) => apiTurno.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.turnos = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const series = (self, params) => {
-    apiSerie.busca({params}).then(response => {
+const series = (self, params) => apiSerie.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.series = response.data.data.dados
         } else {
@@ -42,37 +40,33 @@ const series = (self, params) => {
             self.series = [{cod_serie: null, serie: params ? params.serie : ''}]
         }
     })
-}
 
-const atencoes = (self, params) => {
-    apiAtencoes.busca({params}).then(response => {
+const atencoes = (self, params) => apiAtencoes.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.atencoes = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const situacoes = (self, params) => {
-    apiSituacoes.busca({params}).then(response => {
+const situacoes = (self, params) => apiSituacoes.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.situacoes = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const professores = (self, params) => {
-    apiProfessor.busca({params}).then(response => {
+const professores = (self, params) => apiProfessor.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.professores = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
     
 const dadosProfessores = (self, params) => {
     self.professores = []

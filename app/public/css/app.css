@@ -6,6 +6,10 @@
   margin-left: 5px;
 }
 
+.navbar {
+  padding: 0px !important;
+}
+
 /* Form */
 
 .required {

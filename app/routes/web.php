@@ -45,10 +45,6 @@ Route::middleware('auth')->group(function () {
 				Route::post('/', 'SerieVinculoController@store');
 				Route::put('/{cod_serie_v}', 'SerieVinculoController@update');
 			});
-			Route::post('/seriedisciplina/busca', 'SerieDisciplinaController@index');
-			Route::prefix('/professorvinculo')->group(function() {
-				Route::get('/', 'ProfessorVinculoController@index');
-			});
 			Route::prefix('relatorio')->group(function() {
 				Route::get('/atencoes', 'RelatorioController@atencoes');
 				Route::get('/inscricoes', 'RelatorioController@inscricoes');

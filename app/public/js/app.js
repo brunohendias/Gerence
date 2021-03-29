@@ -1968,7 +1968,6 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_sidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/shared/sidebar */ "./resources/js/components/shared/sidebar.vue");
-/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -1980,15 +1979,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   components: {
     sidebar: _components_shared_sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  created: function created() {
-    Object(_functions_busca__WEBPACK_IMPORTED_MODULE_1__["user"])();
   }
 });
 
@@ -66227,9 +66222,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core_functions_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/functions/auth */ "./resources/js/core/functions/auth.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
@@ -66241,6 +66239,9 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+_core_functions_auth__WEBPACK_IMPORTED_MODULE_0__["default"]._getToken();
 
 /***/ }),
 
@@ -68931,11 +68932,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Api; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/auth */ "./resources/js/core/functions/auth.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -68949,8 +68952,7 @@ var Api = /*#__PURE__*/function () {
   _createClass(Api, [{
     key: "_getAccessToken",
     value: function _getAccessToken() {
-      var token = 'Bearer 30|hnGIqWs3TPgdTio3FjmWMq5FU2XFZEQDD0TAcI77';
-      return token;
+      return _functions_auth__WEBPACK_IMPORTED_MODULE_1__["default"].get();
     }
   }, {
     key: "_setHeaderAutorization",
@@ -69781,6 +69783,54 @@ var apiUser = new ApiUser('/api/v1/');
 
 /***/ }),
 
+/***/ "./resources/js/core/functions/auth.js":
+/*!*********************************************!*\
+  !*** ./resources/js/core/functions/auth.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Auth = /*#__PURE__*/function () {
+  function Auth() {
+    _classCallCheck(this, Auth);
+  }
+
+  _createClass(Auth, [{
+    key: "_getToken",
+    value: function _getToken() {
+      var token = window.location.pathname.replace('/', '');
+
+      if (token) {
+        this.set(token);
+      }
+    }
+  }, {
+    key: "set",
+    value: function set(token) {
+      localStorage.setItem('_san', token);
+    }
+  }, {
+    key: "get",
+    value: function get() {
+      return "Bearer ".concat(localStorage.getItem('_san'));
+    }
+  }]);
+
+  return Auth;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new Auth());
+
+/***/ }),
+
 /***/ "./resources/js/core/functions/busca.js":
 /*!**********************************************!*\
   !*** ./resources/js/core/functions/busca.js ***!
@@ -69830,9 +69880,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var user = function user() {
-  return _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_1__["default"].me().then(function (response) {
-    console.log(response.data);
+  var dados = {};
+  _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_1__["default"].me().then(function (response) {
+    dados = response.data;
   });
+  return dados;
 };
 
 var turmas = function turmas(self, params) {

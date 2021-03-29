@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Token from '@functions/auth'
 
 export default class Api {
     constructor(host) {
@@ -6,21 +7,19 @@ export default class Api {
     }
 
     _getAccessToken() {
-        let token = 'Bearer 30|hnGIqWs3TPgdTio3FjmWMq5FU2XFZEQDD0TAcI77'
-
-        return token
+        return Token.get();
     }
 
     _setHeaderAutorization() {
         let headers = { Authorization: this._getAccessToken() }
-        
+
         return headers
     }
 
     _request(method = 'get', path, data = {}) {
         let headers = this._setHeaderAutorization()
         let url = this._host + path
-        
+
         return axios({ method, url, data, headers })
     }
 

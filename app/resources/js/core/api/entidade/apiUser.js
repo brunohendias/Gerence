@@ -7,7 +7,7 @@ class ApiUser extends Api {
     
     me() {
 		return this.get('user');
-	}
+    }
 }
 
 const apiUser = new ApiUser('/api/v1/');

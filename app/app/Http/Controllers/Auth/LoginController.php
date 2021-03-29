@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         $header = array('Authorization' => "Bearer $token");
 
-        return redirect('/', 302, $header, null);
+        return redirect('/'.$token, 302, $header, null);
     }
 
     /**

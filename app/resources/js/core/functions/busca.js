@@ -13,10 +13,15 @@ import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import { load, validaRetornoLista } from '@helpers/helpers'
 
-const user = () => apiUser.me()
-    .then(response => {
-        console.log(response.data)
+const user = () => {
+    let dados = {}
+    
+    apiUser.me().then(response => {
+        dados = response.data
     })
+
+    return dados
+}
 
 const turmas = (self, params) => apiTurma.busca({params})
     .then(response => {
@@ -122,6 +127,6 @@ const dadosSeries = (self, params) => {
 }
 
 export { 
-    user, turmas, turnos, series, atencoes, situacoes,professores, 
+    user, turmas, turnos, series, atencoes, situacoes, professores, 
     inscricoes, candidatos, alunos, dadosSeries, relatorios
 }

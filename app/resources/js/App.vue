@@ -11,9 +11,13 @@
 
 <script>
 import sidebar from './components/shared/sidebar'
+import { user } from '@functions/busca'
 
 export default {
 	name: 'App',
-	components: { sidebar }
+	components: { sidebar },
+	created() {
+		user()
+	}
 }
 </script>

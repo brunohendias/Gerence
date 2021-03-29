@@ -1,11 +1,18 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca (params) {
-		return axios.get('/api/v1/turnos', params);
-	},
+class ApiTurno extends Api {
+    constructor(host) {
+        super(host)
+    }
+    
+    busca(params) {
+		return this.get('turnos', params);
+	}
 
-	cadastra(body) {
-		return axios.post('/api/v1/turnos', body);
+	cadastra(body){
+		return this.post('turnos', body);
 	}
 }
+
+const apiTurno = new ApiTurno('/api/v1/');
+export default apiTurno;

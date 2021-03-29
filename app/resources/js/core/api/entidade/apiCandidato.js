@@ -1,19 +1,26 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca(filtro) {
-		return axios.post('/api/v1/candidato/busca', filtro);
-	},
+class ApiCandidato extends Api {
+	constructor(host) {
+		super(host)
+	}
 
-	cadastra(dados) {
-		return axios.post('/api/v1/candidato', dados);
-	},
+    busca(filtro) {
+		return this.post('candidato/busca', filtro);
+	}
+
+	cadastra(body){
+		return this.post('candidato', body);
+	}
 
 	editarCandidato(id, dados) {
-		return axios.put('/api/v1/candidato/'+id, dados);
-	},
+		return this.put('candidato/'+id, dados);
+	}
 
 	deleta(id) {
-		return axios.delete('/api/v1/candidato/'+id);
+		return this.delete('candidato/'+id);
 	}
 }
+
+const apiCandidato = new ApiCandidato('/api/v1/');
+export default apiCandidato;

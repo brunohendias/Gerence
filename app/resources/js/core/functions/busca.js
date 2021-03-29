@@ -1,4 +1,5 @@
 import apiInscricao from '@api/entidade/apiInscricao'
+import apiUser from '@api/entidade/apiUser'
 import apiCandidato from '@api/entidade/apiCandidato'
 import apiAluno from '@api/entidade/apiAluno'
 import apiSerie from '@api/entidade/apiSerie'
@@ -7,11 +8,15 @@ import apiTurma from '@api/entidade/apiTurma'
 import apiProfessor from '@api/entidade/apiProfessor'
 import apiAtencoes from '@api/entidade/apiAtencoes'
 import apiSituacoes from '@api/entidade/apiSituacoes'
-import { busca } from '@api/entidade/apiRelatorio'
-import apiDadosProfessor from '@api/dados/apiDadosProfessor'
+import apiRelatorio from '@api/entidade/apiRelatorio'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import { load, validaRetornoLista } from '@helpers/helpers'
+
+const user = () => apiUser.me()
+    .then(response => {
+        console.log(response.data)
+    })
 
 const turmas = (self, params) => apiTurma.busca({params})
     .then(response => {
@@ -67,19 +72,8 @@ const professores = (self, params) => apiProfessor.busca({params})
             self.msg = response.data.error.message
         }
     })
-    
-const dadosProfessores = (self, params) => {
-    self.professores = []
-    apiDadosProfessor.buscaProfessores(params).then(response => {
-        if(response.data.success) {
-            response.data.data.dados.map(professor => {
-                self.professores.push(professor.professor)
-            })
-        } else {
-            self.msg = response.data.error.message
-        }
-    })
-}
+
+const relatorios = relatorio => apiRelatorio.busca(relatorio)
     
 const inscricoes = (self, params) => {
     load(self, true)
@@ -127,10 +121,7 @@ const dadosSeries = (self, params) => {
     load(self, false)
 }
 
-const relatorios = relatorio => busca(relatorio)
-
 export { 
-    turmas, turnos, series, atencoes, situacoes, professores, 
-    dadosProfessores, inscricoes, candidatos, alunos, dadosSeries,
-    relatorios
+    user, turmas, turnos, series, atencoes, situacoes,professores, 
+    inscricoes, candidatos, alunos, dadosSeries, relatorios
 }

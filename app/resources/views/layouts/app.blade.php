@@ -63,6 +63,7 @@
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
+                                            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                                         </form>
                                     </div>
                                 </li>

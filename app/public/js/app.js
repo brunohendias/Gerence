@@ -1968,6 +1968,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_sidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/shared/sidebar */ "./resources/js/components/shared/sidebar.vue");
+/* harmony import */ var _functions_busca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @functions/busca */ "./resources/js/core/functions/busca.js");
 //
 //
 //
@@ -1980,10 +1981,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   components: {
     sidebar: _components_shared_sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  created: function created() {
+    Object(_functions_busca__WEBPACK_IMPORTED_MODULE_1__["user"])();
   }
 });
 
@@ -68914,26 +68919,90 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/core/api/dados/apiDadosProfessor.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/core/api/dados/apiDadosProfessor.js ***!
-  \**********************************************************/
+/***/ "./resources/js/core/api/Api.js":
+/*!**************************************!*\
+  !*** ./resources/js/core/api/Api.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Api; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  buscaDadosProfessor: function buscaDadosProfessor() {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/professorvinculo');
-  },
-  buscaProfessores: function buscaProfessores(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/professorvinculo/professores', params);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Api = /*#__PURE__*/function () {
+  function Api(host) {
+    _classCallCheck(this, Api);
+
+    this._host = host;
   }
-});
+
+  _createClass(Api, [{
+    key: "_getAccessToken",
+    value: function _getAccessToken() {
+      var token = 'Bearer 30|hnGIqWs3TPgdTio3FjmWMq5FU2XFZEQDD0TAcI77';
+      return token;
+    }
+  }, {
+    key: "_setHeaderAutorization",
+    value: function _setHeaderAutorization() {
+      var headers = {
+        Authorization: this._getAccessToken()
+      };
+      return headers;
+    }
+  }, {
+    key: "_request",
+    value: function _request() {
+      var method = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'get';
+      var path = arguments.length > 1 ? arguments[1] : undefined;
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      var headers = this._setHeaderAutorization();
+
+      var url = this._host + path;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: method,
+        url: url,
+        data: data,
+        headers: headers
+      });
+    }
+  }, {
+    key: "get",
+    value: function get(path, params) {
+      return this._request('get', path, params);
+    }
+  }, {
+    key: "post",
+    value: function post(path, body) {
+      return this._request('post', path, body);
+    }
+  }, {
+    key: "put",
+    value: function put(path, body) {
+      return this._request('put', path, body);
+    }
+  }, {
+    key: "delete",
+    value: function _delete(path) {
+      return this._request('delete', path);
+    }
+  }]);
+
+  return Api;
+}();
+
+
 
 /***/ }),
 
@@ -68946,20 +69015,64 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(filter) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo/busca', filter);
-  },
-  cadastrar: function cadastrar(body) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/serievinculo', body);
-  },
-  editar: function editar(body, id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/api/v1/serievinculo/' + id, body);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiDadosSerie = /*#__PURE__*/function (_Api) {
+  _inherits(ApiDadosSerie, _Api);
+
+  var _super = _createSuper(ApiDadosSerie);
+
+  function ApiDadosSerie(host) {
+    _classCallCheck(this, ApiDadosSerie);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiDadosSerie, [{
+    key: "busca",
+    value: function busca(filter) {
+      return this.post('serievinculo/busca', filter);
+    }
+  }, {
+    key: "cadastrar",
+    value: function cadastrar(body) {
+      return this.post('serievinculo', body);
+    }
+  }, {
+    key: "editar",
+    value: function editar(body, id) {
+      return this.put('serievinculo/' + id, body);
+    }
+  }]);
+
+  return ApiDadosSerie;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiDadosSerie = new ApiDadosSerie('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiDadosSerie);
 
 /***/ }),
 
@@ -68972,17 +69085,59 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/aluno/busca', filtro);
-  },
-  cadastra: function cadastra(body) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/aluno', body);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiAluno = /*#__PURE__*/function (_Api) {
+  _inherits(ApiAluno, _Api);
+
+  var _super = _createSuper(ApiAluno);
+
+  function ApiAluno(host) {
+    _classCallCheck(this, ApiAluno);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiAluno, [{
+    key: "busca",
+    value: function busca(filtro) {
+      return this.post('aluno/busca', filtro);
+    }
+  }, {
+    key: "cadastra",
+    value: function cadastra(body) {
+      return this.post('aluno', body);
+    }
+  }]);
+
+  return ApiAluno;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiAluno = new ApiAluno('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiAluno);
 
 /***/ }),
 
@@ -68995,14 +69150,54 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca() {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/atencoes');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiAtencoes = /*#__PURE__*/function (_Api) {
+  _inherits(ApiAtencoes, _Api);
+
+  var _super = _createSuper(ApiAtencoes);
+
+  function ApiAtencoes(host) {
+    _classCallCheck(this, ApiAtencoes);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiAtencoes, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('atencoes', params);
+    }
+  }]);
+
+  return ApiAtencoes;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiAtencoes = new ApiAtencoes('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiAtencoes);
 
 /***/ }),
 
@@ -69015,23 +69210,69 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/candidato/busca', filtro);
-  },
-  cadastra: function cadastra(dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/candidato', dados);
-  },
-  editarCandidato: function editarCandidato(id, dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/api/v1/candidato/' + id, dados);
-  },
-  deleta: function deleta(id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/v1/candidato/' + id);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiCandidato = /*#__PURE__*/function (_Api) {
+  _inherits(ApiCandidato, _Api);
+
+  var _super = _createSuper(ApiCandidato);
+
+  function ApiCandidato(host) {
+    _classCallCheck(this, ApiCandidato);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiCandidato, [{
+    key: "busca",
+    value: function busca(filtro) {
+      return this.post('candidato/busca', filtro);
+    }
+  }, {
+    key: "cadastra",
+    value: function cadastra(body) {
+      return this.post('candidato', body);
+    }
+  }, {
+    key: "editarCandidato",
+    value: function editarCandidato(id, dados) {
+      return this.put('candidato/' + id, dados);
+    }
+  }, {
+    key: "deleta",
+    value: function deleta(id) {
+      return this["delete"]('candidato/' + id);
+    }
+  }]);
+
+  return ApiCandidato;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiCandidato = new ApiCandidato('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiCandidato);
 
 /***/ }),
 
@@ -69044,20 +69285,64 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  buscarInscricao: function buscarInscricao(id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/inscricao/' + id);
-  },
-  busca: function busca(filtro) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/inscricao/busca', filtro);
-  },
-  editarInscricao: function editarInscricao(id, dados) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/api/v1/inscricao/' + id, dados);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiInscricao = /*#__PURE__*/function (_Api) {
+  _inherits(ApiInscricao, _Api);
+
+  var _super = _createSuper(ApiInscricao);
+
+  function ApiInscricao(host) {
+    _classCallCheck(this, ApiInscricao);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiInscricao, [{
+    key: "buscarInscricao",
+    value: function buscarInscricao(id) {
+      return this.get('inscricao/' + id);
+    }
+  }, {
+    key: "busca",
+    value: function busca(filtro) {
+      return this.post('inscricao/busca', filtro);
+    }
+  }, {
+    key: "editarInscricao",
+    value: function editarInscricao(id, dados) {
+      return this.put('inscricao/' + id, dados);
+    }
+  }]);
+
+  return ApiInscricao;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiInscricao = new ApiInscricao('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiInscricao);
 
 /***/ }),
 
@@ -69070,14 +69355,54 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/professores', params);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiProfessor = /*#__PURE__*/function (_Api) {
+  _inherits(ApiProfessor, _Api);
+
+  var _super = _createSuper(ApiProfessor);
+
+  function ApiProfessor(host) {
+    _classCallCheck(this, ApiProfessor);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiProfessor, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('professores', params);
+    }
+  }]);
+
+  return ApiProfessor;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiProfessor = new ApiProfessor('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiProfessor);
 
 /***/ }),
 
@@ -69085,17 +69410,59 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************!*\
   !*** ./resources/js/core/api/entidade/apiRelatorio.js ***!
   \********************************************************/
-/*! exports provided: busca */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "busca", function() { return busca; });
-var busca = function busca(relatorio) {
-  return window.location.replace('/api/v1/relatorio/' + relatorio);
-};
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+
+var ApiRelatorio = /*#__PURE__*/function (_Api) {
+  _inherits(ApiRelatorio, _Api);
+
+  var _super = _createSuper(ApiRelatorio);
+
+  function ApiRelatorio(host) {
+    _classCallCheck(this, ApiRelatorio);
+
+    return _super.call(this, host);
+  }
+
+  _createClass(ApiRelatorio, [{
+    key: "busca",
+    value: function busca(relatorio) {
+      window.location.replace('/api/v1/relatorio/' + relatorio); //return this.get('series', params);
+    }
+  }]);
+
+  return ApiRelatorio;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiRelatorio = new ApiRelatorio('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiRelatorio);
 
 /***/ }),
 
@@ -69108,17 +69475,59 @@ var busca = function busca(relatorio) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/series', params);
-  },
-  cadastra: function cadastra(body) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/series', body);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiSerie = /*#__PURE__*/function (_Api) {
+  _inherits(ApiSerie, _Api);
+
+  var _super = _createSuper(ApiSerie);
+
+  function ApiSerie(host) {
+    _classCallCheck(this, ApiSerie);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiSerie, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('series', params);
+    }
+  }, {
+    key: "cadastra",
+    value: function cadastra(body) {
+      return this.post('series', body);
+    }
+  }]);
+
+  return ApiSerie;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiSerie = new ApiSerie('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiSerie);
 
 /***/ }),
 
@@ -69131,14 +69540,54 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca() {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/situacoes');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiSituacoes = /*#__PURE__*/function (_Api) {
+  _inherits(ApiSituacoes, _Api);
+
+  var _super = _createSuper(ApiSituacoes);
+
+  function ApiSituacoes(host) {
+    _classCallCheck(this, ApiSituacoes);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiSituacoes, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('situacoes', params);
+    }
+  }]);
+
+  return ApiSituacoes;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiSituacoes = new ApiSituacoes('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiSituacoes);
 
 /***/ }),
 
@@ -69151,17 +69600,59 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/turmas', params);
-  },
-  cadastra: function cadastra(body) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/turmas', body);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiTurma = /*#__PURE__*/function (_Api) {
+  _inherits(ApiTurma, _Api);
+
+  var _super = _createSuper(ApiTurma);
+
+  function ApiTurma(host) {
+    _classCallCheck(this, ApiTurma);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiTurma, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('turmas', params);
+    }
+  }, {
+    key: "cadastra",
+    value: function cadastra(body) {
+      return this.post('turmas', body);
+    }
+  }]);
+
+  return ApiTurma;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiTurma = new ApiTurma('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiTurma);
 
 /***/ }),
 
@@ -69174,17 +69665,119 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  busca: function busca(params) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/turnos', params);
-  },
-  cadastra: function cadastra(body) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/v1/turnos', body);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiTurno = /*#__PURE__*/function (_Api) {
+  _inherits(ApiTurno, _Api);
+
+  var _super = _createSuper(ApiTurno);
+
+  function ApiTurno(host) {
+    _classCallCheck(this, ApiTurno);
+
+    return _super.call(this, host);
   }
-});
+
+  _createClass(ApiTurno, [{
+    key: "busca",
+    value: function busca(params) {
+      return this.get('turnos', params);
+    }
+  }, {
+    key: "cadastra",
+    value: function cadastra(body) {
+      return this.post('turnos', body);
+    }
+  }]);
+
+  return ApiTurno;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiTurno = new ApiTurno('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiTurno);
+
+/***/ }),
+
+/***/ "./resources/js/core/api/entidade/apiUser.js":
+/*!***************************************************!*\
+  !*** ./resources/js/core/api/entidade/apiUser.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Api */ "./resources/js/core/api/Api.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ApiUser = /*#__PURE__*/function (_Api) {
+  _inherits(ApiUser, _Api);
+
+  var _super = _createSuper(ApiUser);
+
+  function ApiUser(host) {
+    _classCallCheck(this, ApiUser);
+
+    return _super.call(this, host);
+  }
+
+  _createClass(ApiUser, [{
+    key: "me",
+    value: function me() {
+      return this.get('user');
+    }
+  }]);
+
+  return ApiUser;
+}(_Api__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+var apiUser = new ApiUser('/api/v1/');
+/* harmony default export */ __webpack_exports__["default"] = (apiUser);
 
 /***/ }),
 
@@ -69192,34 +69785,34 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./resources/js/core/functions/busca.js ***!
   \**********************************************/
-/*! exports provided: turmas, turnos, series, atencoes, situacoes, professores, dadosProfessores, inscricoes, candidatos, alunos, dadosSeries, relatorios */
+/*! exports provided: user, turmas, turnos, series, atencoes, situacoes, professores, inscricoes, candidatos, alunos, dadosSeries, relatorios */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "user", function() { return user; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "turmas", function() { return turmas; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "turnos", function() { return turnos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "series", function() { return series; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "atencoes", function() { return atencoes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "situacoes", function() { return situacoes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "professores", function() { return professores; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dadosProfessores", function() { return dadosProfessores; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inscricoes", function() { return inscricoes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "candidatos", function() { return candidatos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alunos", function() { return alunos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dadosSeries", function() { return dadosSeries; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "relatorios", function() { return relatorios; });
 /* harmony import */ var _api_entidade_apiInscricao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/entidade/apiInscricao */ "./resources/js/core/api/entidade/apiInscricao.js");
-/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
-/* harmony import */ var _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
-/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
-/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
-/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
-/* harmony import */ var _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @api/entidade/apiProfessor */ "./resources/js/core/api/entidade/apiProfessor.js");
-/* harmony import */ var _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @api/entidade/apiAtencoes */ "./resources/js/core/api/entidade/apiAtencoes.js");
-/* harmony import */ var _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @api/entidade/apiSituacoes */ "./resources/js/core/api/entidade/apiSituacoes.js");
-/* harmony import */ var _api_entidade_apiRelatorio__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @api/entidade/apiRelatorio */ "./resources/js/core/api/entidade/apiRelatorio.js");
-/* harmony import */ var _api_dados_apiDadosProfessor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @api/dados/apiDadosProfessor */ "./resources/js/core/api/dados/apiDadosProfessor.js");
+/* harmony import */ var _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @api/entidade/apiUser */ "./resources/js/core/api/entidade/apiUser.js");
+/* harmony import */ var _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @api/entidade/apiCandidato */ "./resources/js/core/api/entidade/apiCandidato.js");
+/* harmony import */ var _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @api/entidade/apiAluno */ "./resources/js/core/api/entidade/apiAluno.js");
+/* harmony import */ var _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @api/entidade/apiSerie */ "./resources/js/core/api/entidade/apiSerie.js");
+/* harmony import */ var _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @api/entidade/apiTurno */ "./resources/js/core/api/entidade/apiTurno.js");
+/* harmony import */ var _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @api/entidade/apiTurma */ "./resources/js/core/api/entidade/apiTurma.js");
+/* harmony import */ var _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @api/entidade/apiProfessor */ "./resources/js/core/api/entidade/apiProfessor.js");
+/* harmony import */ var _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @api/entidade/apiAtencoes */ "./resources/js/core/api/entidade/apiAtencoes.js");
+/* harmony import */ var _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @api/entidade/apiSituacoes */ "./resources/js/core/api/entidade/apiSituacoes.js");
+/* harmony import */ var _api_entidade_apiRelatorio__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @api/entidade/apiRelatorio */ "./resources/js/core/api/entidade/apiRelatorio.js");
 /* harmony import */ var _api_dados_apiDadosSerie__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @api/dados/apiDadosSerie */ "./resources/js/core/api/dados/apiDadosSerie.js");
 /* harmony import */ var _helpers_helpers__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @helpers/helpers */ "./resources/js/core/helpers/helpers.js");
 
@@ -69236,8 +69829,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var user = function user() {
+  return _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_1__["default"].me().then(function (response) {
+    console.log(response.data);
+  });
+};
+
 var turmas = function turmas(self, params) {
-  return _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_5__["default"].busca({
+  return _api_entidade_apiTurma__WEBPACK_IMPORTED_MODULE_6__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69249,7 +69848,7 @@ var turmas = function turmas(self, params) {
 };
 
 var turnos = function turnos(self, params) {
-  return _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_4__["default"].busca({
+  return _api_entidade_apiTurno__WEBPACK_IMPORTED_MODULE_5__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69261,7 +69860,7 @@ var turnos = function turnos(self, params) {
 };
 
 var series = function series(self, params) {
-  return _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_3__["default"].busca({
+  return _api_entidade_apiSerie__WEBPACK_IMPORTED_MODULE_4__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69277,7 +69876,7 @@ var series = function series(self, params) {
 };
 
 var atencoes = function atencoes(self, params) {
-  return _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_7__["default"].busca({
+  return _api_entidade_apiAtencoes__WEBPACK_IMPORTED_MODULE_8__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69289,7 +69888,7 @@ var atencoes = function atencoes(self, params) {
 };
 
 var situacoes = function situacoes(self, params) {
-  return _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_8__["default"].busca({
+  return _api_entidade_apiSituacoes__WEBPACK_IMPORTED_MODULE_9__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69301,7 +69900,7 @@ var situacoes = function situacoes(self, params) {
 };
 
 var professores = function professores(self, params) {
-  return _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_6__["default"].busca({
+  return _api_entidade_apiProfessor__WEBPACK_IMPORTED_MODULE_7__["default"].busca({
     params: params
   }).then(function (response) {
     if (response.data.success) {
@@ -69312,17 +69911,8 @@ var professores = function professores(self, params) {
   });
 };
 
-var dadosProfessores = function dadosProfessores(self, params) {
-  self.professores = [];
-  _api_dados_apiDadosProfessor__WEBPACK_IMPORTED_MODULE_10__["default"].buscaProfessores(params).then(function (response) {
-    if (response.data.success) {
-      response.data.data.dados.map(function (professor) {
-        self.professores.push(professor.professor);
-      });
-    } else {
-      self.msg = response.data.error.message;
-    }
-  });
+var relatorios = function relatorios(relatorio) {
+  return _api_entidade_apiRelatorio__WEBPACK_IMPORTED_MODULE_10__["default"].busca(relatorio);
 };
 
 var inscricoes = function inscricoes(self, params) {
@@ -69340,7 +69930,7 @@ var inscricoes = function inscricoes(self, params) {
 
 var candidatos = function candidatos(self, params) {
   Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_12__["load"])(self, true);
-  _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_1__["default"].busca(params).then(function (response) {
+  _api_entidade_apiCandidato__WEBPACK_IMPORTED_MODULE_2__["default"].busca(params).then(function (response) {
     return Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_12__["validaRetornoLista"])(self, 'carregaCandidatos', response);
   })["catch"](function (e) {
     return self.mostraMensagem({
@@ -69353,7 +69943,7 @@ var candidatos = function candidatos(self, params) {
 
 var alunos = function alunos(self, params) {
   Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_12__["load"])(self, true);
-  _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_2__["default"].busca(params).then(function (response) {
+  _api_entidade_apiAluno__WEBPACK_IMPORTED_MODULE_3__["default"].busca(params).then(function (response) {
     return Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_12__["validaRetornoLista"])(self, 'carregaAlunos', response);
   })["catch"](function (e) {
     return self.mostraMensagem({
@@ -69381,10 +69971,6 @@ var dadosSeries = function dadosSeries(self, params) {
     });
   });
   Object(_helpers_helpers__WEBPACK_IMPORTED_MODULE_12__["load"])(self, false);
-};
-
-var relatorios = function relatorios(relatorio) {
-  return Object(_api_entidade_apiRelatorio__WEBPACK_IMPORTED_MODULE_9__["busca"])(relatorio);
 };
 
 

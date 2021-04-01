@@ -1,11 +1,18 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca(filtro) {
-		return axios.post('/api/v1/aluno/busca', filtro);
-	},
+class ApiAluno extends Api {
+	constructor(host) {
+		super(host)
+	}
 
-	cadastra(body) {
-		return axios.post('/api/v1/aluno', body);
+    busca(filtro) {
+		return this.post('aluno/busca', filtro);
+	}
+
+	cadastra(body){
+		return this.post('aluno', body);
 	}
 }
+
+const apiAluno = new ApiAluno('/api/v1/');
+export default apiAluno;

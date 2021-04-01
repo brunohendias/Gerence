@@ -1,11 +1,18 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca(params) {
-		return axios.get('/api/v1/series', params);
-	},
+class ApiSerie extends Api {
+	constructor(host) {
+		super(host)
+	}
+
+    busca(params) {
+		return this.get('series', params);
+	}
 
 	cadastra(body){
-		return axios.post('/api/v1/series', body);
+		return this.post('series', body);
 	}
 }
+
+const apiSerie = new ApiSerie('/api/v1/');
+export default apiSerie;

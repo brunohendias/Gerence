@@ -2,7 +2,7 @@
 
 namespace Contracts;
 
-interface TurnoInterface {
-    
+interface TurnoInterface
+{
     public function index(object $request): object;
 }

@@ -7,7 +7,7 @@ use App\Models\Aluno;
 
 class AlunoRepository implements AlunoInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(Aluno $model)
     {

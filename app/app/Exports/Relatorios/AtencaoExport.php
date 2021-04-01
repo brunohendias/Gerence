@@ -2,24 +2,41 @@
 
 namespace Relatorios;
 
-use App\Models\Atencao;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Excel;
 
-class AtencaoExport implements FromCollection, WithHeadings
+class AtencaoExport implements FromCollection, WithHeadings, Responsable
 {
-    private $colunms_name = [
-        'cod_atencao',
-        'atencao',
-    ];
+    use Exportable;
 
+    private object $repository;
+    
+    public function __construct(object $repository)
+    {
+        $this->repository = $repository;
+    }
+    
+    private string $fileName = 'atencoes.xlsx';
+    
+    private string $writerType = Excel::XLSX;
+    
+    private array $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+    
     public function headings(): array
     {
-        return $this->colunms_name;
+        return [
+            'cod_atencao',
+            'atencao',
+        ];
     }
 
-    public function collection()
+    public function collection(): object
     {
-        return Atencao::select('cod_atencao', 'atencao')->get();
+        return $this->repository->index();
     }
 }

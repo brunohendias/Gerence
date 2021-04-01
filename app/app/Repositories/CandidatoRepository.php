@@ -7,7 +7,7 @@ use App\Models\Candidato;
 
 class CandidatoRepository implements CandidatoInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(Candidato $model)
     {

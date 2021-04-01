@@ -2,8 +2,8 @@
 
 namespace Contracts;
 
-interface SerieInterface {
-    
+interface SerieInterface 
+{
     public function index(object $request): object;
 
     public function store(object $request): object;

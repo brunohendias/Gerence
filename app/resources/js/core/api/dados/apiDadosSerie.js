@@ -1,15 +1,22 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
+class ApiDadosSerie extends Api {
+    constructor(host) {
+        super(host)
+    }
+    
 	busca(filter) {
-		return axios.post('/api/v1/serievinculo/busca', filter);
-	},
+		return this.post('serievinculo/busca', filter);
+	}
 
 	cadastrar(body) {
-		return axios.post('/api/v1/serievinculo', body);
-	},
+		return this.post('serievinculo', body);
+	}
 
 	editar(body, id) {
-		return axios.put('/api/v1/serievinculo/'+id, body);
+		return this.put('serievinculo/'+id, body);
 	}
 }
+
+const apiDadosSerie = new ApiDadosSerie('/api/v1/');
+export default apiDadosSerie;

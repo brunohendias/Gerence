@@ -1,7 +1,14 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca() {
-		return axios.get('/api/v1/atencoes');
+class ApiAtencoes extends Api {
+	constructor(host) {
+		super(host)
+	}
+
+    busca(params) {
+		return this.get('atencoes', params);
 	}
 }
+
+const apiAtencoes = new ApiAtencoes('/api/v1/');
+export default apiAtencoes;

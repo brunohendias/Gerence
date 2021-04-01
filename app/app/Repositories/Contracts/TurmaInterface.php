@@ -2,7 +2,7 @@
 
 namespace Contracts;
 
-interface TurmaInterface {
-    
+interface TurmaInterface 
+{
     public function index(object $request): object;
 }

@@ -5,9 +5,9 @@ namespace Repositories;
 use Contracts\TurmaInterface;
 use App\Models\Turma;
 
-class TurmaRepository implements TurmaInterface {
-
-    private $model;
+class TurmaRepository implements TurmaInterface
+{
+    private object $model;
 
     public function __construct(Turma $model)
     {

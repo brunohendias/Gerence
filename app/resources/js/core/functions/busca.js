@@ -12,12 +12,16 @@ import apiRelatorio from '@api/entidade/apiRelatorio'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import { load, validaRetornoLista } from '@helpers/helpers'
+import { set } from '@functions/token'
 
 const user = () => {
     let dados = {}
     
     apiUser.me().then(response => {
         dados = response.data
+        if (dados.token) {
+            set(dados.token)
+        }
     })
 
     return dados

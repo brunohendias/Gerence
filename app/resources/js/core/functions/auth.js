@@ -1,18 +1,12 @@
-class Auth {
-    _getToken() {
-        let token = window.location.pathname.replace('/', '')
-        if (token) {
-            this.set(token);
+import auth from '@api/auth'
+import { set } from '@functions/token'
+
+const login = (self, dados) => auth.login(dados)
+    .then(response => {
+        if (response.data.success) {
+            set(response.data.data.token)
+            window.location.replace('/')
         }
-    }
+    }).catch(e => self.$emit('error', e.response.data.errors) )
 
-    set(token) {
-        localStorage.setItem('_san', token)
-    }
-
-    get() { 
-        return `Bearer ${localStorage.getItem('_san')}`
-    }
-}
-
-export default new Auth();
+export { login }

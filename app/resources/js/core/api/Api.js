@@ -1,14 +1,12 @@
 import axios from 'axios'
-import Token from '@functions/auth'
+import { get } from '@functions/token'
 
 export default class Api {
     constructor(host) {
         this._host = host
     }
 
-    _getAccessToken() {
-        return Token.get();
-    }
+    _getAccessToken() { return get(); }
 
     _setHeaderAutorization() {
         let headers = { Authorization: this._getAccessToken() }

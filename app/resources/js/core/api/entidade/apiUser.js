@@ -5,8 +5,8 @@ class ApiUser extends Api {
         super(host)
     }
     
-    me() {
-		return this.get('user');
+    me () {
+		  return this.get('user');
     }
 }
 

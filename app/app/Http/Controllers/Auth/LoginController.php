@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -47,13 +47,11 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request, object $user): object
     {
-        $token = auth()->user()->createToken($user->name)->plainTextToken;
+        $token = $user->createToken($user->name)->plainTextToken;
 
-        $header = array('Authorization' => "Bearer $token");
-
-        return redirect('/'.$token, 302, $header, null);
+        return $this->RespSuccess(array('token' => $token, 'user' => $user));
     }
 
     /**
@@ -62,7 +60,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
-    protected function loggedOut(Request $request)
+    protected function loggedOut(Request $request): void
     {
         User::find($request->id)->tokens()->delete();
     }

@@ -8,6 +8,10 @@ class Auth extends Api {
     login(body) {
         return this.post('login', body);
     }
+
+    register(body) {
+        return this.post('register', body);
+    }
 }
 
 const auth = new Auth('/');

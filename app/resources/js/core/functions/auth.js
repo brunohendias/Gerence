@@ -9,4 +9,12 @@ const login = (self, dados) => auth.login(dados)
         }
     }).catch(e => self.$emit('error', e.response.data.errors) )
 
-export { login }
+const register = (self, dados) => auth.register(dados)
+    .then(response => {
+        if (response.data.success) {
+            set(response.data.data.token)
+            window.location.replace('/')
+        }
+    }).catch(e => self.$emit('error', e.response.data.errors) )
+
+export { register, login }

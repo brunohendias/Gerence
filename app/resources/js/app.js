@@ -3,6 +3,7 @@ require('./bootstrap');
 import Vue from 'vue'
 import App from './App'
 import Login from '@tela/Login'
+import Register from '@tela/Register'
 import router from './router/router'
 import store from './store/store'
 import vueMask from 'di-vue-mask'
@@ -14,5 +15,5 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 Vue.use(vueMask)
 Vue.use(VueSidebarMenu)
 const app = new Vue (
-    { el: '#app', components: { App, Login }, router, store }
+    { el: '#app', components: { App, Register, Login }, router, store }
 );

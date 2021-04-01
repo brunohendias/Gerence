@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Contracts\AtencaoInterface;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use Relatorios\AtencaoExport;
+use Contracts\AtencaoInterface;
 
 class AtencaoController extends Controller
 {
@@ -34,10 +32,5 @@ class AtencaoController extends Controller
             $msg = $this->MsgSearch($entidade, 'error');
 			return $this->RespLogErro($exception, $msg);
         }
-    }
-
-    public function export() 
-    {
-        return Excel::download(new AtencaoExport, 'atencao.xlsx');
     }
 }

@@ -1,24 +1,24 @@
 <template>
-	<button class="btn btn-dark" @click.stop.prevent="buscarAlunos" :disabled="processando">
-		<span v-if="processando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-		<span v-else>Buscar</span>
+	<button class="btn btn-dark" @click.stop.prevent="buscarAlunos">
+		<load>
+			<span>Buscar</span>
+		</load>
 	</button>
 </template>
 
 <script>
 import { alunos } from '@functions/busca'
+import load from '@shared/load'
 
 export default {
 	name: 'botaoBuscaAluno',
+	components: {
+		load
+	},
 	props: {
 		filtro: {
 			type: Object,
 			default: {}
-		}
-	},
-	computed: {
-		processando() {
-			return this.$store.state.status.processando
 		}
 	},
 	methods: {

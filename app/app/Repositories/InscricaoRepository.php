@@ -7,7 +7,7 @@ use App\Models\Inscricao;
 
 class InscricaoRepository implements InscricaoInterface
 {
-    private $model;
+    private object $model;
 
     public function __construct(Inscricao $model)
     {

@@ -24,6 +24,7 @@ mix.webpackConfig({
             '@botao': path.resolve('resources/js/components/shared/botao'),
             '@select': path.resolve('resources/js/components/shared/select'),
             '@msg': path.resolve('resources/js/components/shared/mensagem'),
+            '@shared': path.resolve('resources/js/components/shared'),
             '@api': path.resolve('resources/js/core/api'),
             '@functions': path.resolve('resources/js/core/functions'),
             '@helpers': path.resolve('resources/js/core/helpers')

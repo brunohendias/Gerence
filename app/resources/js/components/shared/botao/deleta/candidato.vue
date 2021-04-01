@@ -1,12 +1,14 @@
 <template>
-	<button class="btn btn-danger" @click="deletaCandidato" :disabled="processando">
-        <span v-if="processando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-		<i v-else class="fas fa-trash"></i>
+	<button class="btn btn-danger" @click="deletaCandidato">
+		<load>
+			<i class="fas fa-trash"></i>
+		</load>
 	</button>
 </template>
 
 <script>
 import { candidato } from '@functions/deleta'
+import load from '@shared/load'
 
 export default {
 	name: 'botaoDeletaCandidato',
@@ -24,10 +26,8 @@ export default {
 			required: true
 		}
 	},
-	computed: {
-		processando() {
-			return this.$store.state.status.processando
-		}
+	components: {
+		load
 	},
 	methods: {
 		async deletaCandidato() {

@@ -1,11 +1,18 @@
-import axios from 'axios'
+import Api from '../Api'
 
-export default {
-	busca (params) {
-		return axios.get('/api/v1/turmas', params);
-	},
+class ApiTurma extends Api {
+	constructor(host) {
+		super(host)
+	}
 
-	cadastra(body) {
-		return axios.post('/api/v1/turmas', body);
+    busca(params) {
+		return this.get('turmas', params);
+	}
+
+	cadastra(body){
+		return this.post('turmas', body);
 	}
 }
+
+const apiTurma = new ApiTurma('/api/v1/');
+export default apiTurma;

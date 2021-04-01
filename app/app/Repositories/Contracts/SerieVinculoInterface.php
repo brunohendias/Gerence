@@ -2,8 +2,8 @@
 
 namespace Contracts;
 
-interface SerieVinculoInterface {
-    
+interface SerieVinculoInterface 
+{
     public function index(object $request): object;
 
     public function find(int $id): object;

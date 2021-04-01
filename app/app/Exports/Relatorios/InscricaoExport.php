@@ -3,34 +3,47 @@
 namespace Relatorios;
 
 use App\Models\Inscricao;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Excel;
 
-class InscricaoExport implements FromCollection, WithHeadings
+class InscricaoExport implements FromQuery, WithHeadings, Responsable
 {
-    private $colunms_name = [
-        'cod_insc',
-        'nome',
-        'data nascimento',
-        'email',
-        'telefone',
-        'cpf',
-        'rg',
-        'mãe',
-        'pai',
-        'serie',
-        'atencao',
-        'turno',
-        'data inscrição'
+    use Exportable;
+
+    private $cod_serie;
+
+    public function __construct($cod_serie)
+    {
+        $this->cod_serie = $cod_serie;
+    }
+
+    private string $fileName = 'inscricoes.xlsx';
+    
+    private string $writerType = Excel::XLSX;
+    
+    private array $headers = [
+        'Content-Type' => 'text/csv',
     ];
 
     public function headings(): array
     {
-        return $this->colunms_name;
+        return [
+            'cod_insc', 'nome', 'data nascimento',
+            'email', 'telefone', 'cpf', 'rg',
+            'mãe', 'pai', 'serie', 'atencao',
+            'turno', 'data inscrição'
+        ];
     }
 
-    public function collection()
+    public function query(): object
     {
-        return Inscricao::all();
+        if ($this->cod_serie) {
+            return Inscricao::query()->where('cod_serie', $this->cod_serie);
+        } else {
+            return Inscricao::query();
+        }
     }
 }

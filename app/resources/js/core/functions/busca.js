@@ -1,4 +1,5 @@
 import apiInscricao from '@api/entidade/apiInscricao'
+import apiUser from '@api/entidade/apiUser'
 import apiCandidato from '@api/entidade/apiCandidato'
 import apiAluno from '@api/entidade/apiAluno'
 import apiSerie from '@api/entidade/apiSerie'
@@ -7,33 +8,45 @@ import apiTurma from '@api/entidade/apiTurma'
 import apiProfessor from '@api/entidade/apiProfessor'
 import apiAtencoes from '@api/entidade/apiAtencoes'
 import apiSituacoes from '@api/entidade/apiSituacoes'
-import apiDadosProfessor from '@api/dados/apiDadosProfessor'
+import apiRelatorio from '@api/entidade/apiRelatorio'
 import apiDadosSerie from '@api/dados/apiDadosSerie'
 
 import { load, validaRetornoLista } from '@helpers/helpers'
+import { set } from '@functions/token'
 
-const turmas = (self, params) => {
-    apiTurma.busca({params}).then(response => {
+const user = () => {
+    let dados = {}
+    
+    apiUser.me().then(response => {
+        if (response.data.success) {
+            dados = response.data.data
+            set(dados.token)
+        }
+    })
+
+    return dados
+}
+
+const turmas = (self, params) => apiTurma.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.turmas = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const turnos = (self, params) => {
-    apiTurno.busca({params}).then(response => {
+const turnos = (self, params) => apiTurno.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.turnos = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const series = (self, params) => {
-    apiSerie.busca({params}).then(response => {
+const series = (self, params) => apiSerie.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.series = response.data.data.dados
         } else {
@@ -41,50 +54,35 @@ const series = (self, params) => {
             self.series = [{cod_serie: null, serie: params ? params.serie : ''}]
         }
     })
-}
 
-const atencoes = (self, params) => {
-    apiAtencoes.busca({params}).then(response => {
+const atencoes = (self, params) => apiAtencoes.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.atencoes = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const situacoes = (self, params) => {
-    apiSituacoes.busca({params}).then(response => {
+const situacoes = (self, params) => apiSituacoes.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.situacoes = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
 
-const professores = (self, params) => {
-    apiProfessor.busca({params}).then(response => {
+const professores = (self, params) => apiProfessor.busca({params})
+    .then(response => {
         if(response.data.success) {
             self.professores = response.data.data.dados
         } else {
             self.msg = response.data.error.message
         }
     })
-}
-    
-const dadosProfessores = (self, params) => {
-    self.professores = []
-    apiDadosProfessor.buscaProfessores(params).then(response => {
-        if(response.data.success) {
-            response.data.data.dados.map(professor => {
-                self.professores.push(professor.professor)
-            })
-        } else {
-            self.msg = response.data.error.message
-        }
-    })
-}
+
+const relatorios = relatorio => apiRelatorio.busca(relatorio)
     
 const inscricoes = (self, params) => {
     load(self, true)
@@ -133,6 +131,6 @@ const dadosSeries = (self, params) => {
 }
 
 export { 
-    turmas, turnos, series, atencoes, situacoes, professores, 
-    dadosProfessores, inscricoes, candidatos, alunos, dadosSeries
+    user, turmas, turnos, series, atencoes, situacoes, professores, 
+    inscricoes, candidatos, alunos, dadosSeries, relatorios
 }

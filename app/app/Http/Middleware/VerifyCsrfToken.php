@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://homestead.test/api/v1/*'
+        'http://gerence.local/api/v1/*',
+        'http://localhost/api/v1/*'
     ];
 }

@@ -47,25 +47,4 @@ class ProfessorController extends Controller
 			return $this->RespLogErro($exception, $msg);
         }
     }
-
-    public function destroy(int $id): object
-    {
-        $entidade = 'esse professor';
-        try {
-            $dado = $this->interface->find($id);
-            
-            if ($this->Objetovazio($dado)) {
-                $msg = $this->MsgNotFound('professor');
-	    		return $this->RespErrorNormal($msg);
-            }
-
-            $this->interface->destroy($id);
-
-            $msg = $this->MsgDelete($entidade);
-	    	return $this->RespSuccess(array('msg' => $msg));
-        } catch (\Exception $exception) {
-            $msg = $this->MsgDelete($entidade, 'error');
-            return $this->RespLogErro($exception, $msg);
-        }
-    }
 }

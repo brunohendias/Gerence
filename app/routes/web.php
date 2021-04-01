@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+Route::prefix('/api/v1/relatorio')->group(function() {
+	Route::get('/atencoes', 'RelatorioController@atencoes');
+	Route::get('/inscricoes', 'RelatorioController@inscricoes');
+	Route::get('/infoseries', 'RelatorioController@infoSeries');
+});
+
 Route::middleware('auth')->group(function () {
 	Route::view('/', 'App');
 	Route::view('/{any}', 'App');

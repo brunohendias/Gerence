@@ -44,10 +44,5 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/', 'SerieVinculoController@store');
             Route::put('/{cod_serie_v}', 'SerieVinculoController@update');
         });
-        Route::prefix('relatorio')->group(function() {
-            Route::get('/atencoes', 'RelatorioController@atencoes');
-            Route::get('/inscricoes', 'RelatorioController@inscricoes');
-            Route::get('/infoseries', 'RelatorioController@infoSeries');
-        });
     });
 });

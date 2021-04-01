@@ -7,7 +7,6 @@ class ApiRelatorio extends Api {
 
     busca(relatorio) {
         window.location.replace('/api/v1/relatorio/' + relatorio)
-		//return this.get('series', params);
 	}
 }
 

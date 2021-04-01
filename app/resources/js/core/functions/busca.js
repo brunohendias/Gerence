@@ -18,8 +18,8 @@ const user = () => {
     let dados = {}
     
     apiUser.me().then(response => {
-        dados = response.data
-        if (dados.token) {
+        if (response.data.success) {
+            dados = response.data.data
             set(dados.token)
         }
     })

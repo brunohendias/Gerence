@@ -4530,25 +4530,28 @@ __webpack_require__.r(__webpack_exports__);
       inputs: [{
         label: 'Nome',
         name: 'name',
-        tipo: 'text'
+        tipo: 'text',
+        placeholder: 'Example'
       }, {
         label: 'Email',
         name: 'email',
-        tipo: 'email'
+        tipo: 'email',
+        placeholder: 'example@example.com'
       }, {
         label: 'Senha',
         name: 'password',
-        tipo: 'password'
+        tipo: 'password',
+        placeholder: '********'
       }, {
         label: 'Confirme sua senha',
         name: 'password_confirmation',
-        tipo: 'password'
+        tipo: 'password',
+        placeholder: '********'
       }],
       errors: {
         name: [],
         email: [],
-        password: [],
-        password_confirmation: []
+        password: []
       }
     };
   }
@@ -44852,7 +44855,9 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Login")]),
+          _c("div", { staticClass: "card-header bg-dark text-white" }, [
+            _vm._v("Login")
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("form", { staticClass: "form" }, [
@@ -44883,7 +44888,8 @@ var render = function() {
                       name: "email",
                       required: "",
                       autocomplete: "email",
-                      autofocus: ""
+                      autofocus: "",
+                      placeholder: "example@example.com"
                     },
                     domProps: { value: _vm.dados.email },
                     on: {
@@ -44932,7 +44938,8 @@ var render = function() {
                       type: "password",
                       name: "password",
                       required: "",
-                      autocomplete: "current-password"
+                      autocomplete: "current-password",
+                      placeholder: "********"
                     },
                     domProps: { value: _vm.dados.password },
                     on: {
@@ -45005,7 +45012,9 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Registre-se")]),
+          _c("div", { staticClass: "card-header bg-dark text-white" }, [
+            _vm._v("Registre-se")
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -45040,6 +45049,7 @@ var render = function() {
                               name: input.name,
                               required: "",
                               autocomplete: input.name,
+                              placeholder: input.placeholder,
                               type: "checkbox"
                             },
                             domProps: {
@@ -45094,6 +45104,7 @@ var render = function() {
                               name: input.name,
                               required: "",
                               autocomplete: input.name,
+                              placeholder: input.placeholder,
                               type: "radio"
                             },
                             domProps: {
@@ -45120,6 +45131,7 @@ var render = function() {
                               name: input.name,
                               required: "",
                               autocomplete: input.name,
+                              placeholder: input.placeholder,
                               type: input.tipo
                             },
                             domProps: { value: _vm.dados[input.name] },
@@ -70480,7 +70492,7 @@ var ApiRelatorio = /*#__PURE__*/function (_Api) {
   _createClass(ApiRelatorio, [{
     key: "busca",
     value: function busca(relatorio) {
-      window.location.replace('/api/v1/relatorio/' + relatorio); //return this.get('series', params);
+      window.location.replace('/api/v1/relatorio/' + relatorio);
     }
   }]);
 
@@ -70902,9 +70914,8 @@ __webpack_require__.r(__webpack_exports__);
 var user = function user() {
   var dados = {};
   _api_entidade_apiUser__WEBPACK_IMPORTED_MODULE_1__["default"].me().then(function (response) {
-    dados = response.data;
-
-    if (dados.token) {
+    if (response.data.success) {
+      dados = response.data.data;
       Object(_functions_token__WEBPACK_IMPORTED_MODULE_13__["set"])(dados.token);
     }
   });

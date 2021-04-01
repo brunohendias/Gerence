@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header bg-dark text-white">Login</div>
 
                     <div class="card-body">
                         <form class="form">
@@ -12,7 +12,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" 
-                                        v-model="dados.email" required autocomplete="email" autofocus>
+                                        v-model="dados.email" required autocomplete="email" autofocus placeholder="example@example.com">
 
                                     <div class="error">
                                         {{ emailError }}
@@ -25,7 +25,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" 
-                                        required autocomplete="current-password" v-model="dados.password">
+                                        required autocomplete="current-password" v-model="dados.password" placeholder="********">
 
                                     <div class="error">
                                         {{ passwordError }}

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Registre-se</div>
+                    <div class="card-header bg-dark text-white">Registre-se</div>
 
                     <div class="card-body">
                         <form class="form">
@@ -12,7 +12,7 @@
 
                                 <div class="col-md-6">
                                     <input :id="input.name" :type="input.tipo" class="form-control" :name="input.name" 
-                                        v-model="dados[input.name]" required :autocomplete="input.name" />
+                                        v-model="dados[input.name]" required :autocomplete="input.name" :placeholder="input.placeholder"/>
                                     
                                     <div class="error">
                                         {{ errors[input.name] ? errors[input.name][0] : '' }}
@@ -50,16 +50,15 @@ export default {
                 password_confirmation: null
             },
             inputs: [
-                {label: 'Nome', name: 'name', tipo: 'text'},
-                {label: 'Email', name: 'email', tipo: 'email'},
-                {label: 'Senha', name: 'password', tipo: 'password'},
-                {label: 'Confirme sua senha', name: 'password_confirmation', tipo: 'password'}
+                {label: 'Nome', name: 'name', tipo: 'text', placeholder: 'Example'},
+                {label: 'Email', name: 'email', tipo: 'email', placeholder: 'example@example.com'},
+                {label: 'Senha', name: 'password', tipo: 'password', placeholder: '********'},
+                {label: 'Confirme sua senha', name: 'password_confirmation', tipo: 'password', placeholder: '********'}
             ],
             errors: {
                 name: [],
                 email: [],
-                password: [],
-                password_confirmation: []
+                password: []
             }
         }
     }

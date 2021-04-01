@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/v1')->group(function () {
-        Route::get('/user', function () {
-            $user = auth()->user();
-            return array('user' => $user, 'token' => $user->createToken($user->name)->plainTextToken);
-        });
+        Route::get('/user', 'UserController@show');
         Route::prefix('/series')->group(function() {
             Route::get('/', 'SerieController@index');
             Route::post('/', 'SerieController@store');

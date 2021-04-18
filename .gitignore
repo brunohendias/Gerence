@@ -4,6 +4,7 @@ app/public/storage
 app/storage/*.key
 app/vendor
 app/.env
+app/.env.prod
 app/.phpunit.result.cache
 app/docker-compose.override.yml
 app/npm-debug.log

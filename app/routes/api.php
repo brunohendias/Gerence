@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/v1')->group(function () {
-        Route::get('/user', 'UserController@show');
         Route::prefix('/series')->group(function() {
             Route::get('/', 'SerieController@index');
             Route::post('/', 'SerieController@store');

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+Route::prefix('/login')->group(function() { // Login social
+	Route::get('/{provider}', 'Auth\LoginController@redirectToProvider');
+	Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
 Route::prefix('/api/v1/relatorio')->group(function() {
 	Route::get('/atencoes', 'RelatorioController@atencoes');
 	Route::get('/inscricoes', 'RelatorioController@inscricoes');
@@ -21,6 +26,7 @@ Route::prefix('/api/v1/relatorio')->group(function() {
 });
 
 Route::middleware('auth')->group(function () {
+	Route::get('/api/v1/user', 'UserController@show');
 	Route::view('/', 'App');
 	Route::view('/{any}', 'App');
 	Route::view('/{any}/{sub}', 'App');

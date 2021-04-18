@@ -5,12 +5,8 @@ class Auth extends Api {
         super(host)
     }
 
-    login(body) {
-        return this.post('login', body);
-    }
-
-    register(body) {
-        return this.post('register', body);
+    loginSocial(provider) {
+        return window.location.replace('/login/'+provider);
     }
 }
 

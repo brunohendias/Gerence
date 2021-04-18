@@ -4,4 +4,6 @@ const set = token => localStorage.setItem(key, token);
 
 const get = () => `Bearer ${localStorage.getItem(key)}`;
 
-export { get, set }
+const remove = () => localStorage.removeItem(key);
+
+export { set, get, remove }

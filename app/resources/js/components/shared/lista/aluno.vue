@@ -1,5 +1,5 @@
 <template>
-	<templatelista :colunas="colunas" titulo="alunos" :totalRegistros="totalRegistros"
+	<templatelista :colunas="colunas" :totalRegistros="totalRegistros"
 		 @proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(aluno, i) in alunos" :key="i">

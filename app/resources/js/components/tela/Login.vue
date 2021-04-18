@@ -1,63 +1,64 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-dark text-white">Login</div>
+    <auth title="Login">
+        <form class="form" method="POST" action="/login">
+            <div class="form-group">
+                <label for="email" class="col-form-label text-md-right">Email</label>
 
-                    <div class="card-body">
-                        <form class="form">
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                <input id="email" type="email" class="form-control" name="email" v-model="dados.email" 
+                    required autocomplete="email" autofocus placeholder="example@example.com">
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" 
-                                        v-model="dados.email" required autocomplete="email" autofocus placeholder="example@example.com">
-
-                                    <div class="error">
-                                        {{ emailError }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Senha</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" 
-                                        required autocomplete="current-password" v-model="dados.password" placeholder="********">
-
-                                    <div class="error">
-                                        {{ passwordError }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4 text-right">
-                                    <botaoLogin :dados="dados" @error="errors = $event"/>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="error">
+                    {{ emailError }}
                 </div>
             </div>
-        </div>
-    </div>
+
+            <div class="form-group">
+                <label for="password" class="col-form-label text-md-right">Senha</label>
+
+                <input id="password" type="password" class="form-control" name="password" 
+                    required autocomplete="current-password" v-model="dados.password" placeholder="********">
+
+                <div class="error">
+                    {{ passwordError }}
+                </div>
+            </div>
+            <input type="hidden" name="_token" :value="csrf">
+
+            <div class="form-group text-right">
+                <botaoAuth title="Logar"/>
+            </div>
+            <hr>
+            <div class="text-center">
+                <h5>Faça login com sua rede social</h5>
+                <loginSocial provider="github" />
+                <loginSocial provider="google" />
+            </div>
+        </form>
+    </auth>
 </template>
 
 <script>
-import botaoLogin from '@botao/auth/login'
+import auth from '@/components/shared/template/auth'
+import botaoAuth from '@botao/auth/auth'
+import loginSocial from '@botao/auth/loginSocial'
 
 export default {
     name: 'Login',
     components: {
-        botaoLogin
+        auth,
+        botaoAuth,
+        loginSocial
     },
     data() {
         return {
-            dados: {},
-            errors: { email: [], password: [] }
+            dados: {
+                email: null,
+                password: null
+            },
+            errors: { 
+                email: [], 
+                password: [] 
+            }
         }
     },
     computed: {
@@ -66,6 +67,9 @@ export default {
         },
         passwordError() {
             return this.errors.password ? this.errors.password[0] : null
+        },
+        csrf() {
+            return document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" titulo="séries"
-		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
+	<templatelista :colunas="colunas" :totalRegistros="totalRegistros" 
+		@proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(serie, i) in series" :key="i">
 				<th>{{serie.serie.serie}}</th>

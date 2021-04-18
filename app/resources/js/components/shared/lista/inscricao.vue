@@ -1,6 +1,6 @@
 <template>
-	<templatelista :colunas="colunas" titulo="inscrições"
-		:totalRegistros="totalRegistros" @proximaPagina="current = $event">
+	<templatelista :colunas="colunas" :totalRegistros="totalRegistros" 
+		@proximaPagina="current = $event">
 		<tbody>
 			<tr v-for="(inscricao, i) in inscricoes" :key="i">
 				<th>{{inscricao.nom_insc}}</th>

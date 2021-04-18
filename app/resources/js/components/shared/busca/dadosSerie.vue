@@ -1,5 +1,5 @@
 <template>
-    <templateBusca titulo="Busque as séries">
+    <templateBusca titulo="Séries">
         <div class="row">
             <div class="col-md-4">
                 <selectSeries :filtro="filtro" />

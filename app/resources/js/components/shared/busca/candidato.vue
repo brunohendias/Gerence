@@ -1,5 +1,5 @@
 <template>
-	<templateBusca titulo="Busque os candidatos">
+	<templateBusca titulo="Candidatos">
 		<div class="row">
 			<div class="form-group col-6">
 				<inputNome :filtro="filtro"/>

@@ -1,9 +1,10 @@
 <template>
-	<div class="bg-white mb-4 borda-top" :class="'headerpanel-'+pathname">
-		<div class="borda-top" :class="'headerpanel-'+pathname">
-			<div class="row ml-4 pt-2 text-white">
-				<h5>{{titulo}}</h5>
+	<div class="bg-white mb-4 borda-top">
+		<div class="borda-top">
+			<div class="text-center">
+				<h4 class="pt-2">{{titulo}}</h4>
 			</div>
+			<hr>
 		</div>
 		<form>
 			<div class="p-4">

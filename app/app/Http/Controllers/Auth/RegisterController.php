@@ -68,20 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'avatar' => 'https://img.icons8.com/ios/2x/user-male-circle.png'
         ]);
-    }
-
-    /**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function registered(object $request, object $user): object
-    {
-        $token = $user->createToken($user->name)->plainTextToken;
-
-        return $this->RespSuccess(array('token' => $token, 'user' => $user));
     }
 }

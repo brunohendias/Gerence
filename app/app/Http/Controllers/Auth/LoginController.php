@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -41,17 +44,35 @@ class LoginController extends Controller
     }
 
     /**
-     * The user has been authenticated.
+     * Redirect the user to the GitHub authentication page.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
+     * @return \Illuminate\Http\Response
      */
-    protected function authenticated(Request $request, object $user): object
+    public function redirectToProvider(string $provider)
     {
-        $token = $user->createToken($user->name)->plainTextToken;
+        return Socialite::driver($provider)->redirect();
+    }
 
-        return $this->RespSuccess(array('token' => $token, 'user' => $user));
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback(string $provider)
+    {
+        $user = Socialite::driver($provider)->user();
+
+        $user = User::firstOrCreate(['email' => $user->getEmail()],[
+            'name' => $user->getName() ? $user->getName() : $user->getNickname(),
+            'email' => $user->getEmail(),
+            'password' => Hash::make($user->getNickname()),
+            'id_provider' => $user->getId(),
+            'avatar' => $user->getAvatar()
+        ]);
+
+        Auth::login($user);
+
+        return redirect('/');
     }
 
     /**

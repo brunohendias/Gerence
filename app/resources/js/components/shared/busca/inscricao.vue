@@ -1,5 +1,5 @@
 <template>
-	<templateBusca titulo="Busque as inscrições">
+	<templateBusca titulo="Inscrições">
 		<div class="row">
 			<div class="form-group col-6">
 				<label for="nome">Nome</label>

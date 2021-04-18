@@ -14,13 +14,14 @@ import apiDadosSerie from '@api/dados/apiDadosSerie'
 import { load, validaRetornoLista } from '@helpers/helpers'
 import { set } from '@functions/token'
 
-const user = () => {
+const user = (self, start) => {
     let dados = {}
     
     apiUser.me().then(response => {
         if (response.data.success) {
             dados = response.data.data
             set(dados.token)
+            self.start = true
         }
     })
 

@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+body {
+  background-image: url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d);
+}
+
 .v-sidebar-menu .vsm--link_level-1 .vsm--icon {
   width: 20px !important;
   height: 20px !important;
@@ -23,22 +27,6 @@
 /* Fim form */
 
 /* Panel */
-
-.headerpanel-inscricao {
-  background-color: midnightblue;
-}
-
-.headerpanel-candidato {
-  background-color: darkgreen;
-}
-
-.headerpanel-aluno {
-  background-color: brown;
-}
-
-.headerpanel-serie {
-  background-color: brown;
-}
 
 .bordas {
   border-radius: 10px;
@@ -135,7 +123,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #ddd;
+  background-color: url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -573,7 +561,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #ddd;
+  background-color: url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d);
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -4333,15 +4321,15 @@ input[type=button].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d), 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d), 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #ddd, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d), 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4547,8 +4535,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #ddd;
-  border-color: #dee2e6 #dee2e6 #ddd;
+  background-color: url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d);
+  border-color: #dee2e6 #dee2e6 url(/images/body.jpg?a9e92c6f3c48f2caf6411cb8f91ee89d);
 }
 
 .nav-tabs .dropdown-menu {

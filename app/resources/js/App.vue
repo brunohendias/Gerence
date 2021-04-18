@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" v-if="start">
 		<sidebar />
 		<div class="container">
 			<keep-alive>
@@ -10,10 +10,25 @@
 </template>
 
 <script>
+import { user } from '@functions/busca'
 import sidebar from './components/shared/sidebar'
 
 export default {
 	name: 'App',
-	components: { sidebar }
+	components: { sidebar },
+	data() {
+		return {
+			start: false
+		}
+	},
+	created() {
+		this.preLoad()
+	},
+	methods: {
+		preLoad() {
+			user(this, this.start)
+			console.clear()
+		}
+	}
 }
 </script>

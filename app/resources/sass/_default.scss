@@ -1,3 +1,7 @@
+body {
+    background-image: $body-bg;
+}
+
 // Sidebar
 .v-sidebar-menu .vsm--link_level-1 .vsm--icon 
 {
@@ -23,23 +27,6 @@
 /* Fim form */
 
 /* Panel */
-.headerpanel-inscricao 
-{
-    background-color: $inscricao;
-}
-.headerpanel-candidato 
-{
-    background-color: $candidato;
-}
-.headerpanel-aluno 
-{
-    background-color: $aluno;
-}
-.headerpanel-serie 
-{
-    background-color: $serie;
-}
-
 .bordas 
 {
     border-radius: 10px;

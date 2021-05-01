@@ -1,33 +1,19 @@
 <template>
-	<button class="btn btn-dark" @click.stop.prevent="buscarCandidatos">
-		<load>
-			<span>Buscar</span>
-		</load>
-	</button>
+	<BotaoBusca :filtro="filtro" pathname="candidato" action="carregaCandidatos"/>
 </template>
 
 <script>
-import { candidatos } from '@functions/busca'
-import load from '@shared/load'
+import BotaoBusca from '@template/botaoBuscaLista'
 
 export default {
 	name: 'botaoBuscaCandidato',
 	components: {
-		load
+		BotaoBusca
 	},
 	props: {
 		filtro: {
 			type: Object,
 			default: {}
-		}
-	},
-	methods: {
-		async buscarCandidatos() {
-			this.mostraMensagem({tipo: null, msg: null})
-			candidatos(this, this.filtro)
-		},
-		mostraMensagem(mensagem) {
-			this.$emit('msg', mensagem)
 		}
 	}
 }

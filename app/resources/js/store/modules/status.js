@@ -2,7 +2,7 @@ const PROCESSANDO = 'PROCESSANDO'
 
 const state = {
 	processando: false
-}
+}	
 
 const mutations = {
 	[PROCESSANDO] (state, value) {

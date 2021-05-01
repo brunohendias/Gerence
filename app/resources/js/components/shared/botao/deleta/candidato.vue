@@ -8,7 +8,7 @@
 
 <script>
 import { candidato } from '@functions/deleta'
-import load from '@shared/load'
+import load from '@template/load'
 
 export default {
 	name: 'botaoDeletaCandidato',

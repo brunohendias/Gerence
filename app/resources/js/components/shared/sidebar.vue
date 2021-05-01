@@ -39,7 +39,7 @@ export default {
 			});
 		},
         onItemClick(event, item, node) {
-            if (item.api) relatorios(item.api)
+            if (item.relatorio) relatorios(item.relatorio.url)
         }
 	}}
 </script>

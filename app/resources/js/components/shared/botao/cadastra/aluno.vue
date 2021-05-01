@@ -8,7 +8,7 @@
 
 <script>
 import { aluno } from '@functions/cadastra'
-import load from '@shared/load'
+import load from '@template/load'
 
 export default {
 	name: 'botaoGeraAluno',

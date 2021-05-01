@@ -9,10 +9,9 @@
 <script>
 export default {
     name: 'inputCpf',
-    props: {
-        filtro: {
-            type: Object,
-            default: {}
+    computed: {
+        filtro() {
+            return this.$store.state.generic.filtro
         }
     }
 }

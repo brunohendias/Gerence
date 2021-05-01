@@ -1,43 +1,22 @@
 <template>
-    <div>
-        <label for="atencoes">Atenção <inputRequire v-if="required"/></label>
-        <select class="form-control" name="atencoes" id="atencoes" v-model="filtro.cod_atencao">
-            <option value=""></option>
-            <option v-for="atencao in atencoes" :value="atencao.cod_atencao" :key="atencao.cod_atencao">{{atencao.atencao}}</option>
-        </select>
-        <msg v-if="msg" :msg="msg" tipo="notfound"/>
-    </div>
+    <ISelect title="Atenção" label="atencao" 
+        value="cod_atencao" :required="required" 
+        pathname="atencoes" />
 </template>
 
 <script>
-import { atencoes } from '@functions/busca'
-import inputRequire from '@form/inputRequire'
-import msg from '@msg/msg'
+import ISelect from '@template/select'
 
 export default {
     name: 'selectAtencoes',
     components: {
-        msg,
-        inputRequire
+        ISelect
     },
     props: {
         required: {
             type: Boolean,
             default: false
-        },
-        filtro: {
-            type: Object,
-            default: {}
         }
-    },
-    data() {
-        return {
-            atencoes: [],
-            msg: null
-        }
-    },
-    created() {
-        atencoes(this)
     }
 }
 </script>

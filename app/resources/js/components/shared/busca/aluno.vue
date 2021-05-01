@@ -2,49 +2,42 @@
 	<templateBusca titulo="Alunos">
 		<div class="row">
 			<div class="form-group col-6">
-				<inputNome :filtro="filtro"/>
+				<inputNomeAluno />
 			</div>
 			<div class="form-group col-3">
-				<selectSeries :filtro="filtro" />
+				<selectSeries />
 			</div>
 			<div class="form-group col-3">
-				<selectTurnos :filtro="filtro" />
+				<selectTurnos />
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-6">
-				<inputCpf :filtro="filtro"/>
+				<inputCpf />
 			</div>
 			<div class="form-group col-3">
-				<selectTurmas :filtro="filtro" />
+				<selectTurmas />
 			</div>
 			<div class="form-group col-3">
-				<selectAtencoes :filtro="filtro" />
+				<selectAtencoes />
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-6">
-				<selectProfessores :filtro="filtro"/>
+				<selectProfessores />
 			</div>
 			<div class="form-group col-3">
-				<selectSituacoes :filtro="filtro" />
+				<selectSituacoes />
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-8">
-				<msg :tipo="msg.tipo" :msg="msg.msg" />
-			</div>
-			<div class="col-4 text-right">
-				<botaoBuscaAluno @msg="msg = $event" :filtro="filtro"/>
-			</div>
-		</div>
+		<botaoBuscaAluno />
 	</templateBusca>
 </template>
 
 <script>
 import templateBusca from '../template/busca'
-import inputNome from '@form/inputNome'
-import inputCpf from '@form/inputCpf'
+import inputNomeAluno from '@form/input/nomeAluno'
+import inputCpf from '@form/input/cpf'
 import selectProfessores from '@select/professores'
 import selectSeries from '@select/series'
 import selectTurnos from '@select/turnos'
@@ -52,13 +45,12 @@ import selectTurmas from '@select/turmas'
 import selectAtencoes from '@select/atencoes'
 import selectSituacoes from '@select/situacoes'
 import botaoBuscaAluno from '@botao/busca/aluno'
-import msg from '@msg/msg'
 
 export default {
 	name: 'buscaCandidato',
 	components: {
 		templateBusca,
-		inputNome,
+		inputNomeAluno,
 		inputCpf,
 		selectProfessores,
 		selectSeries,
@@ -66,17 +58,7 @@ export default {
 		selectTurmas,
 		selectAtencoes,
 		selectSituacoes,
-		botaoBuscaAluno,
-		msg
-	},
-	data() {
-		return {
-			filtro: {},
-			msg: {
-				tipo: '',
-				msg: ''
-			}
-		}
+		botaoBuscaAluno
 	}
 }
 </script>

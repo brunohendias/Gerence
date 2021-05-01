@@ -6,9 +6,11 @@
 export default {
     props: {
         tipo: {
+            type: String,
             required: true
         },
         msg: {
+            type: String,
             default: 'Sucesso'
         }
     },

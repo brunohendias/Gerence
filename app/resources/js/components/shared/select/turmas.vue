@@ -1,43 +1,22 @@
 <template>
-    <div>
-        <label for="turmas">Turma <inputRequire v-if="required"/></label>
-        <select class="form-control" name="turmas" id="turmas" v-model="filtro.cod_turma">
-            <option value=""></option>
-            <option v-for="turma in turmas" :value="turma.cod_turma" :key="turma.cod_turma">{{turma.turma}}</option>
-        </select>
-        <msg v-if="msg" :msg="msg" tipo="notfound"/>
-    </div>
+    <ISelect title="Turma" label="turma" 
+        value="cod_turma" :required="required" 
+        pathname="turmas" />
 </template>
 
 <script>
-import { turmas } from '@functions/busca'
-import inputRequire from '@form/inputRequire'
-import msg from '@msg/msg'
+import ISelect from '@template/select'
 
 export default {
     name: 'selectTurmas',
     components: {
-        msg,
-        inputRequire
+        ISelect
     },
     props: {
         required: {
             type: Boolean,
             default: false
-        },
-        filtro: {
-            type: Object,
-            default: {}
         }
-    },
-    data() {
-        return {
-            turmas: [],
-            msg: null
-        }
-    },
-    created() {
-        turmas(this)
     }
 }
 </script>

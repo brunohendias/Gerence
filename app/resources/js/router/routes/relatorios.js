@@ -12,12 +12,16 @@ export default [
 		path, pai,
 		name: 'Atenções',
 		icon: 'fas fa-exclamation-triangle',
-		api: 'atencoes'
+		relatorio: {
+			pathname: 'atencoes'
+		}
 	},
 	{
 		path, pai,
 		name: 'Inscrições',
 		icon: 'fas fa-file-alt',
-		api: 'inscricoes'
+		relatorio: {
+			pathname: 'inscricoes'
+		}
 	}
 ]

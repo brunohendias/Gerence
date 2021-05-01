@@ -8,7 +8,7 @@
 
 <script>
 import { dadosSerie } from '@functions/edita'
-import load from '@shared/load'
+import load from '@template/load'
 
 export default {
     name: 'botaoEditaSerie',

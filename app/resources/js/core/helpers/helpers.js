@@ -4,23 +4,7 @@ const load = (self, value) => self.$store.dispatch('processando', value)
 
 const swalCatch = string => swal({ title: 'Erro ao tentar cadastrar ' + string, icon: 'error' })
 
-const limpaMsg = msg => {
-    for (let i in msg) msg[i] = null
-}
-
-const mostraSwal = response => {
-    let title, icon
-    
-    if(response.data.success) {
-        title = response.data.data.msg
-        icon = 'success'
-    } else {
-        title = response.data.error.message
-        icon = 'error'
-    }
-    
-    swal({ title, icon })
-}
+const limpaMsg = msg => { for (let i in msg) msg[i] = null }
 
 const paginaArray = array => {
     let newArray = []
@@ -42,27 +26,42 @@ const paginaArray = array => {
     return newArray
 }
 
-const validaRetornoLista = (self, acao, resp) => {
-    let tipo, msg, total_registros, dados = []
+const mostraMsg = (self, data) => {
     
-    if(resp.data.success) {
-        dados = resp.data.data.dados
-        tipo = 'successo'
-        msg = resp.data.data.msg
+    if (data.success) {
+        self.dados = data.data.dados
+        self.msg = data.data.msg
+        self.tipo = 'success'
+    } else {
+        self.msg = data.error.message
+        self.tipo = 'error'
+    }
+}
+
+const msgCatch = (self, e) => {
+    self.msg = e.message
+    self.tipo = 'error'
+}
+
+const validaRetornoLista = (self, data) => {
+    let total_registros, dados = []
+    
+    if(data.success) {
+        self.tipo = 'successo'
+        self.msg = data.data.msg
+
+        dados = data.data.dados
         total_registros = dados.length
         dados = paginaArray(dados);
-        self.$store.dispatch(acao, {dados, total_registros})
+        self.$store.dispatch(self.acao, {dados, total_registros})
     } else {
-        tipo = 'notfound'
-        msg = resp.data.error.message
-    }
-
-    if (!self.lista) {
-        self.mostraMensagem({tipo, msg})
+        self.tipo = 'notfound'
+        self.msg = data.error.message
     }
 }
 
 export {
     msgObrigatorio, load, swalCatch, limpaMsg,
-    mostraSwal, paginaArray, validaRetornoLista, 
+    paginaArray, validaRetornoLista, mostraMsg,
+    msgCatch
 }

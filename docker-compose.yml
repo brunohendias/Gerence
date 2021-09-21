@@ -1,43 +1,6 @@
 version: '3'
 services:
 
-  #PHP Service
-  app:
-    build:
-      args:
-        user: root
-        uid: 1000
-      context: .
-      dockerfile: Dockerfile
-    image: php:8.0-fpm
-    container_name: app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www
-    volumes:
-      - ./app:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    networks:
-      - gerence
-
-  # Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./app:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - gerence
-  
   # MySQL Service
   db:
     image: mysql:5.7.22
@@ -56,13 +19,6 @@ services:
     volumes:
       - dbdata:/var/lib/mysql/
       - ./mysql:/docker-entrypoint-initdb.d
-    networks:
-      - gerence
-
-# Docker Networks
-networks:
-  gerence:
-    driver: bridge
 
 # Volumes
 volumes:

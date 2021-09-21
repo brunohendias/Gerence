@@ -5,11 +5,11 @@ services:
   app:
     build:
       args:
-        user: dev
+        user: root
         uid: 1000
       context: .
       dockerfile: Dockerfile
-    image: php:7.4-fpm
+    image: php:8.0-fpm
     container_name: app
     restart: unless-stopped
     tty: true
@@ -37,17 +37,6 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - gerence
-
-  # Downloading node_modules
-  node:
-    container_name: node
-    image: node:alpine
-    working_dir: /var/www
-    volumes: 
-      - ./app:/var/www
-    command: npm install
-    networks: 
-      - gerence
   
   # MySQL Service
   db:
@@ -58,9 +47,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: brunoh67_dbgerence
+      MYSQL_DATABASE: dbgerence
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: brunoh67_gerence
+      MYSQL_USER: gerence
       MYSQL_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql

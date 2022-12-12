@@ -31,8 +31,6 @@ Mas independente de tudo isso devo muito a pessoa que des de que entrei aqui me 
 
 ## Mesmo que algo pareça complicado e dificil, nunca é tarde para tentar
 
-Projeto como foi entregue no teste [cadastroAluno](https://github.com/brunohendias/cadastroAluno).
-
 ## Como rodar o projeto?
 
 Esse projeto possui o Homestead, ele é uma maquina virtual já pronta com as ferramentas nescessarias para rodar seu projeto Laravel.
